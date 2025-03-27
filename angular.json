@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "proyecto-patron": {
+    "proyecto-eden-dusk": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/proyecto-patron",
+            "outputPath": "dist/proyecto-eden-dusk",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -34,7 +34,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/flowbite/dist/flowbite.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -69,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "proyecto-patron:build:production"
+              "buildTarget": "proyecto-eden-dusk:build:production"
             },
             "development": {
-              "buildTarget": "proyecto-patron:build:development"
+              "buildTarget": "proyecto-eden-dusk:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,10 +100,15 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/flowbite/dist/flowbite.min.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "123d34f0-ef65-4b13-8792-466a7fcc2408"
   }
 }

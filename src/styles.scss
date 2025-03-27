@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'c-regular';
+    src: url('./assets/fonts/circular/Circular_Std_Book.ttf');
+  }
+  @font-face {
+    font-family: 'c-medium';
+    src: url('./assets/fonts/circular/Circular_Std_Medium.ttf');
+  }
+  @font-face {
+    font-family: 'c-bold';
+    src: url('./assets/fonts/circular/Circular_Std_Bold.ttf');
+  }
+}
+
+
+body {
+  @apply font-primary-regular;
+}
