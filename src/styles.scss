@@ -18,8 +18,8 @@
   }
 }
 
-
 body {
   @apply font-primary-regular;
-  @apply text-black dark:text-sage-100;
+  @apply text-black dark:text-grays-200;
+  @apply dark:bg-gray-800;
 }

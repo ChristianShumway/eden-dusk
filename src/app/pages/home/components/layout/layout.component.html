@@ -1,4 +1,24 @@
-<div class="wrapper__layout w-screen h-screen">
+<div class="wrapper__layout w-auto h-screen flex flex-col items-start justify-end gap-8 md:gap-12">
   <div class="bg__layout h-screen bg-cover bg-no-repeat bg-center relative" [style.background-image]="urlImageBackground | backgroundImage"></div>
-  <h1>HOLA</h1>
+  <div class="col__info">
+    <p class="text-sage-100 text-5xl">
+      <b class="font-primary-bold bg-gradient-to-br from-sage-100 via-grays-300 to-sage-200 bg-clip-text text-transparent">Arte, Cultura y Naturaleza:</b>
+      Explorando Historias para Transformar Conciencias.
+    </p>
+
+  </div>
+  <div class="col__actions w-4/5 mx-auto my-0 md:mb-8 flex justify-start items-center gap-5 flex-col md:w-full md:flex-row">
+    <button type="button" class="w-full md:w-auto text-white hover:text-white border border-white hover:bg-gray-900 focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 cursor-pointer">Ver proyectos</button>
+    <button type="button" class="w-full md:w-auto text-white hover:text-white border border-white hover:bg-gray-900 focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 cursor-pointer">Ver transmisiones</button>
+    <button type="button" class="w-full md:w-auto text-white hover:text-white border border-white hover:bg-gray-900 focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 cursor-pointer">Apoya el proyecto</button>
+  </div>
+  <div class="relative w-full h-16 md:h-48 z-10">
+    <div class="col__items w-full grid gap-4 md:gap-8 grid-cols-1 md:grid-cols-3 mb-4">
+      @for (item of itemsLayout; track $index) {
+        <div class="item__layout w-full h-96 p-4 bg-cover bg-no-repeat bg-center relative border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700" [style.background-image]="item.url | backgroundImage">
+          <span> {{ item.text }} </span>
+        </div>
+      }
+    </div>
+  </div>
 </div>
