@@ -2,12 +2,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'backgroundImage'
+  name: 'backgroundImage',
+  standalone: true,
 })
 export class BackgroundImagePipe implements PipeTransform {
 
   constructor(
-    private sanitizer: DomSanitizer
+    private readonly sanitizer: DomSanitizer
   ) {}
 
   transform(value: string): SafeStyle {

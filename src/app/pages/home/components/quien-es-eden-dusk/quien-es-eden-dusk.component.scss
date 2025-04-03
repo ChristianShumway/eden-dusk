@@ -1,0 +1,17 @@
+.section__whois {
+  margin-top: 1184px;
+  position: relative;
+}
+
+.semicolons__bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media(min-width:768px) {
+  .section__whois {
+    margin-top: calc(70vh - 12vh);
+  }
+}

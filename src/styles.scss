@@ -18,7 +18,12 @@
   }
 }
 
-
 body {
   @apply font-primary-regular;
+  @apply text-black dark:text-grays-200;
+  @apply bg-gray-50 dark:bg-gray-800;
+}
+
+p {
+  @apply text-black text-base dark:text-grays-200;
 }
