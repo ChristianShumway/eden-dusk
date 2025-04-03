@@ -25,6 +25,13 @@ export class HeaderComponent {
 
   isNavbarOpen = false;
 
+  logoBlack = './../../../../assets/images/logos/EdenDusk-black.png';
+  logoWhite = './../../../../assets/images/logos/EdenDusk-white.png';
+
+  // https://ibb.co/JR4pRY1P
+// https://ibb.co/FL73N5r6
+
+
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;
   }
