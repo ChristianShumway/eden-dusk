@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '${PORT:-80}:80'  # Mapea el puerto 80 de Nginx al 8080 en el host
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
