@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MenuItemModel } from '../../../core/models/item-menu.model';
 import { DrawerCartComponent } from '../drawer-cart/drawer-cart.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -11,7 +11,7 @@ import { MenuComponent } from './components/menu/menu.component';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   public itemsMenu: MenuItemModel[] = [
     { name: 'home', path: '/home' },
@@ -22,23 +22,22 @@ export class HeaderComponent {
   ];
 
   isScrolled = false; // Variable para controlar el estado del navbar
-
   isNavbarOpen = false;
-
-  logoBlack = './../../../../assets/images/logos/EdenDusk-black.png';
-  logoWhite = './../../../../assets/images/logos/EdenDusk-white.png';
-
-  // https://ibb.co/JR4pRY1P
-// https://ibb.co/FL73N5r6
-
+  urlImageMain = '';
+  urlImageblack = 'https://raw.githubusercontent.com/ChristianShumway/eden-dusk/refs/heads/master/src/assets/images/logos/EdenDusk-black.png';
+  urlimageWhite = 'https://raw.githubusercontent.com/ChristianShumway/eden-dusk/refs/heads/master/src/assets/images/logos/EdenDusk-white.png';
 
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;
+  }
+  ngOnInit(): void {
+    this.urlImageMain = this.urlImageblack;
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 80; // Detecta cuando el scroll supera los 60px
+    this.urlImageMain = !this.isScrolled ? this.urlImageblack : this.urlimageWhite;
   }
 
 }
