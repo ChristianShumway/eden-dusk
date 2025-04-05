@@ -17,17 +17,17 @@ export class PreviewPortfolioComponent {
 
     public itemsPortfolio: ItemLayoutModel[] = [
       {
-        text: 'Texto muestra',
+        text: 'Título',
         url: 'https://images.pexels.com/photos/31339924/pexels-photo-31339924/free-photo-of-vibrantes-flores-de-cerezo-en-la-primavera-berlinesa.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         visible: true
       },
       {
-        text: 'Texto muestra',
+        text: 'Título',
         url: 'https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         visible: true
       },
       {
-        text: 'Texto muestra',
+        text: 'Título',
         url: 'https://images.pexels.com/photos/2310641/pexels-photo-2310641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         visible: true
       }
