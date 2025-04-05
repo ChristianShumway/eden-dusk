@@ -7,7 +7,7 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   // darkMode: 'media', // Se activa automáticamente según el sistema del usuario
-  darkMode: ['selector', '[data-theme="dark"]'],
+  // darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       fontFamily: {
