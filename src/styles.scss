@@ -16,6 +16,18 @@
     font-family: 'c-bold';
     src: url('./assets/fonts/circular/Circular_Std_Bold.ttf');
   }
+  @font-face {
+    font-family: 'static-regular';
+    src: url('./assets/fonts/static/WixMadeforDisplay-Regular.ttf');
+  }
+  @font-face {
+    font-family: 'static-medium';
+    src: url('./assets/fonts/static/WixMadeforDisplay-Medium.ttf');
+  }
+  @font-face {
+    font-family: 'static-bold';
+    src: url('./assets/fonts/static/WixMadeforDisplay-Bold.ttf');
+  }
 }
 
 body {

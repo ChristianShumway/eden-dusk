@@ -6,19 +6,32 @@ module.exports = {
     "./src/**/*.{html,ts}",
     "./node_modules/flowbite/**/*.js"
   ],
-  darkMode: 'media', // Se activa automáticamente según el sistema del usuario
+  // darkMode: 'media', // Se activa automáticamente según el sistema del usuario
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       fontFamily: {
         'primary-regular': ['c-regular'],
         'primary-medium': ['c-medium'],
-        'primary-bold': ['c-bold']
+        'primary-bold': ['c-bold'],
+        'secondary-regular': ['static-regular'],
+        'secondary-medium': ['static-medium'],
+        'secondary-bold': ['static-bold'],
       },
       colors: {
         'primary': {
           200: "#D4A84A",
           DEFAULT: "#F5CB5C",
           100: "#F9DF93",
+        },
+        'secondary': {
+          DEFAULT: "darkgoldenrod"
+        },
+        'esmeralda': {
+          DEFAULT: "#5FAD56",
+        },
+        'terracota': {
+          DEFAULT: "#A76D60"
         },
         'black': {
           DEFAULT: "#242423",
