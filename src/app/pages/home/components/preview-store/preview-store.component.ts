@@ -37,9 +37,9 @@ export class PreviewStoreComponent {
       if(this.screenWidth <= 768) {
         this.slidesPerView = 1;
       } else if( this.screenWidth > 768 && this.screenWidth <= 1024) {
-        this.slidesPerView = 2;
-      } else {
         this.slidesPerView = 3;
+      } else {
+        this.slidesPerView = 4;
       }
     }
   }
