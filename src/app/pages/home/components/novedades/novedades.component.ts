@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
+import { SvgService } from '../../../../core/services/svg.service';
+import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 
 @Component({
   selector: 'home-novedades',
@@ -12,6 +15,9 @@ import { Component } from '@angular/core';
 })
 export class NovedadesComponent {
 
+  private readonly svgService = inject(SvgService);
+
+  svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
   fechaHoy = new Date;
 
 }
