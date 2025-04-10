@@ -1,6 +1,9 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, HostListener, inject, Inject, PLATFORM_ID } from '@angular/core';
 import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
+import { SvgService } from '../../../../core/services/svg.service';
+import { SafeHtml } from '@angular/platform-browser';
+import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 
 @Component({
   selector: 'home-preview-store',
@@ -16,6 +19,9 @@ import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.p
 })
 export class PreviewStoreComponent {
 
+  private readonly svgService = inject(SvgService);
+
+  svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
   slidesPerView = 3;
   screenWidth: number = 0;
 

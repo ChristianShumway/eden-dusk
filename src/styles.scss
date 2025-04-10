@@ -5,16 +5,20 @@
 
 @layer base {
   @font-face {
-    font-family: 'c-regular';
-    src: url('./assets/fonts/circular/Circular_Std_Book.ttf');
+    font-family: 'f-thin';
+    src: url('./assets/fonts/google-sans/ProductSans-Thin.woff');
   }
   @font-face {
-    font-family: 'c-medium';
-    src: url('./assets/fonts/circular/Circular_Std_Medium.ttf');
+    font-family: 'f-regular';
+    src: url('./assets/fonts/google-sans/ProductSans-Regular.woff');
   }
   @font-face {
-    font-family: 'c-bold';
-    src: url('./assets/fonts/circular/Circular_Std_Bold.ttf');
+    font-family: 'f-medium';
+    src: url('./assets/fonts/google-sans/ProductSans-Medium.woff');
+  }
+  @font-face {
+    font-family: 'f-bold';
+    src: url('./assets/fonts/google-sans/ProductSans-Bold.woff');
   }
   @font-face {
     font-family: 'static-regular';
@@ -33,7 +37,7 @@
 body {
   @apply font-primary-regular;
   @apply text-black dark:text-grays-200;
-  @apply bg-gray-50 dark:bg-gray-800;
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
 p {

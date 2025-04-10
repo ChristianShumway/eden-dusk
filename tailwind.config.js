@@ -11,16 +11,18 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'primary-regular': ['c-regular'],
-        'primary-medium': ['c-medium'],
-        'primary-bold': ['c-bold'],
+        'primary-thin': ['f-thin'],
+        'primary-regular': ['f-regular'],
+        'primary-medium': ['f-medium'],
+        'primary-bold': ['f-bold'],
         'secondary-regular': ['static-regular'],
         'secondary-medium': ['static-medium'],
         'secondary-bold': ['static-bold'],
       },
       colors: {
         'primary': {
-          200: "#D4A84A",
+          // 200: "#D4A84A",
+          200: "#e0b847",
           DEFAULT: "#F5CB5C",
           100: "#F9DF93",
         },

@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { MenuItemModel } from '../../../core/models/item-menu.model';
 import { DrawerCartComponent } from '../drawer-cart/drawer-cart.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { SvgService } from '../../../core/services/svg.service';
+import { SafeHtml } from '@angular/platform-browser';
+import { SvgIcons } from '../../../core/utils/svg-icons.enum';
 
 @Component({
   selector: 'shared-header',
@@ -13,6 +16,8 @@ import { MenuComponent } from './components/menu/menu.component';
 })
 export class HeaderComponent implements OnInit {
 
+  private readonly svgService = inject(SvgService);
+
   public itemsMenu: MenuItemModel[] = [
     { name: 'home', path: '/home' },
     { name: 'transmisiones', path: '/transmisiones' },
@@ -21,8 +26,11 @@ export class HeaderComponent implements OnInit {
     { name: 'galeria', path: '/galeria' }
   ];
 
+
   isScrolled = false; // Variable para controlar el estado del navbar
   isNavbarOpen = false;
+  svgBag: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.bag);
+  svgMenu: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.menu);
   urlImageMain = '';
   urlImageblack = 'https://raw.githubusercontent.com/ChristianShumway/eden-dusk/refs/heads/master/src/assets/images/logos/EdenDusk-black.png';
   urlimageWhite = 'https://raw.githubusercontent.com/ChristianShumway/eden-dusk/refs/heads/master/src/assets/images/logos/EdenDusk-white.png';
