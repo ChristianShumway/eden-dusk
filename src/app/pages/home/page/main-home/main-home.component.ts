@@ -5,6 +5,7 @@ import { PreviewPortfolioComponent } from '../../components/preview-portfolio/pr
 import { PreviewStoreComponent } from '../../components/preview-store/preview-store.component';
 import { NovedadesComponent } from '../../components/novedades/novedades.component';
 import { NewsLetterComponent } from '../../components/news-letter/news-letter.component';
+import { EventosTransmisionesComponent } from '../../components/eventos-transmisiones/eventos-transmisiones.component';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -14,7 +15,8 @@ import { NewsLetterComponent } from '../../components/news-letter/news-letter.co
     PreviewPortfolioComponent,
     PreviewStoreComponent,
     NovedadesComponent,
-    NewsLetterComponent
+    NewsLetterComponent,
+    EventosTransmisionesComponent
   ],
   templateUrl: './main-home.component.html',
   styleUrl: './main-home.component.scss'
