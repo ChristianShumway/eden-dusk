@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, input, Input, OnChanges, OnInit, output, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { TransmisionesService } from '../../../../core/services/transmisiones.service';
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 
@@ -11,55 +11,62 @@ declare let Datepicker: any;
   templateUrl: './filtros.component.html',
   styleUrl: './filtros.component.scss'
 })
-export class FiltrosComponent implements AfterViewInit {
+export class FiltrosComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('datepicker', { static: false }) datepickerElement!: ElementRef;
+  public eventos = input.required<TransmisionModel[]>();
+  public newDate = output<Date>();
 
-  eventos: TransmisionModel[] = [];
 
-  constructor(
-    private readonly transmisionesService: TransmisionesService
-  ) {}
-
-  getTransmissionsByMonth(date: Date) {
-    this.transmisionesService.getTransmissionsByMonth(date.getFullYear(), date.getMonth()).subscribe({
-      next: response => {
-        console.log(response);
-        this.eventos = response;
-        this.resaltarFechas(response);
-      },
-      error: error => console.error(error)
-    })
+  onGetTransmissions(date: Date) {
+    this.newDate.emit(date);
   }
 
   ngAfterViewInit() {
-    const picker = this.datepickerElement.nativeElement;
-
-      // Espera un pequeño delay para asegurar que esté renderizado
-      setTimeout(() => {
-        new Datepicker(picker, {
-          autohide: false,
-          inline: true,
-          language: 'es',
-        });
-      }, 100);
+    const pickerElement = this.datepickerElement.nativeElement;
 
     setTimeout(() => {
-      this.getTransmissionsByMonth(new Date());
+
+      new Datepicker(pickerElement, {
+        autohide: false,
+        inline: true,
+        language: 'es',
+        i18n: {
+          es: {
+            months: [
+              'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+              'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            ],
+            days: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+            today: 'Hoy',
+            clear: 'Limpiar',
+            close: 'Cerrar',
+          }
+        }
+      });
+
+      if(this.eventos) {
+        this.resaltarFechas(this.eventos());
+      }
 
       if (typeof window !== 'undefined' && typeof MutationObserver !== 'undefined') {
         const observer = new MutationObserver(() => {
           const fechaActual = this.obtenerFechaDelCalendario();
-          console.log(fechaActual);
           if (fechaActual) {
-            this.getTransmissionsByMonth(fechaActual);
+            this.onGetTransmissions(fechaActual);
           }
         });
 
-        observer.observe(picker, { childList: true, subtree: true });
+        observer.observe(pickerElement, { childList: true, subtree: true });
       }
 
     }, 500);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['eventos'] && !changes['eventos'].firstChange) {
+      this.resaltarFechas(this.eventos());
+    }
   }
 
   obtenerFechaDelCalendario(): Date | null {
@@ -72,23 +79,12 @@ export class FiltrosComponent implements AfterViewInit {
     return null;
   }
 
-  resaltarEventos(fecha: Date) {
-    const eventos = this.transmisionesService.getEventosPorMes(fecha.getFullYear(), fecha.getMonth());
-    console.log('eventos', eventos)
-
+  resaltarFechas(eventos: TransmisionModel[]) {
     const dias = this.datepickerElement.nativeElement.querySelectorAll('[data-date]');
     dias.forEach((diaEl: HTMLElement) => {
-      console.log(diaEl)
-      const dia = parseInt(diaEl.textContent ?? '');
-      if (eventos.includes(dia)) {
-        diaEl.classList.add('bg-blue-500', 'text-white', 'rounded-full');
-      } else {
-        diaEl.classList.remove('bg-blue-500', 'text-white', 'rounded-full');
-      }
+      diaEl.classList.remove('bg-primary-200', 'text-white', 'rounded-full');
     });
-  }
 
-  resaltarFechas(eventos: TransmisionModel[]) {
     eventos.forEach(evento => {
       const fecha = new Date(evento.date);
       const fechaUTC = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate() + 1);
@@ -101,5 +97,22 @@ export class FiltrosComponent implements AfterViewInit {
       }
     });
   }
+
+  // resaltarEventos(fecha: Date) {
+  //   const eventos = this.transmisionesService.getEventosPorMes(fecha.getFullYear(), fecha.getMonth());
+  //   console.log('eventos', eventos)
+
+  //   const dias = this.datepickerElement.nativeElement.querySelectorAll('[data-date]');
+  //   dias.forEach((diaEl: HTMLElement) => {
+  //     console.log(diaEl)
+  //     const dia = parseInt(diaEl.textContent ?? '');
+  //     if (eventos.includes(dia)) {
+  //       diaEl.classList.add('bg-blue-500', 'text-white', 'rounded-full');
+  //     } else {
+  //       diaEl.classList.remove('bg-blue-500', 'text-white', 'rounded-full');
+  //     }
+  //   });
+  // }
+
 
 }
