@@ -43,3 +43,9 @@ body {
 p {
   @apply text-black text-base dark:text-grays-200;
 }
+
+
+::ng-deep .flatpickr-day.prevMonthDay,
+::ng-deep .flatpickr-day.nextMonthDay {
+  display: none !important;
+}
