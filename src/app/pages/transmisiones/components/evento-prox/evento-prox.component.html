@@ -1,0 +1,15 @@
+<li class="mb-10 ms-8">
+  <span class="absolute flex items-center justify-center flex-col w-10 h-10 bg-white -start-5 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
+      <span class="text-xl font-primary-bold"> {{ fechaEvento.getDate() }} </span>
+      <span class="text-xs"> {{ fechaEvento | diaSemana }} </span>
+  </span>
+  <div class="w-full lg:w-10/12 bg-sage-100 p-4 rounded-lg">
+    <p class="font-primary-bold text-black text-lg leading-tight"> {{ evento().title }} </p>
+    <p class="text-sm"> {{ evento().description }} </p>
+    <span> 19:30 hrs </span>
+    <div class="col__actions w-full flex justify-start items-center gap-5 flex-col md:w-full md:flex-row mt-4">
+      <button type="button" class="w-full md:w-auto border text-black border-black hover:text-black hover:border-gray-200 hover:bg-primary focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium rounded-lg text-sm px-5 py-3 text-center cursor-pointer transition-colors dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-black-100 duration-300">Ver detalles de la transmisión</button>
+      <button type="button" class="w-full md:w-auto border text-black border-black hover:text-black hover:border-gray-200 hover:bg-primary focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium rounded-lg text-sm px-5 py-3 text-center cursor-pointer transition-colors dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-black-100 duration-300">Unirme ahora</button>
+    </div>
+  </div>
+</li>

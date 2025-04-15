@@ -1,0 +1,26 @@
+import { Component, input, OnInit } from '@angular/core';
+import { TransmisionModel } from '../../../../core/models/transmission.model';
+import { CommonModule } from '@angular/common';
+import { DiaSemanaPipe } from '../../../../shared/pipes/dia-semana.pipe';
+
+@Component({
+  selector: 'transmisiones-evento-prox',
+  standalone: true,
+  imports: [
+    CommonModule,
+    DiaSemanaPipe
+  ],
+  templateUrl: './evento-prox.component.html',
+  styleUrl: './evento-prox.component.scss'
+})
+export class EventoProxComponent implements OnInit {
+
+  public evento = input.required<TransmisionModel>();
+  public fechaEvento: Date = new Date();
+
+  ngOnInit(): void {
+    const setDate = new Date(this.evento().date)
+    this.fechaEvento = new Date(setDate.getFullYear(), setDate.getMonth(), setDate.getDate() +1);
+  }
+
+}

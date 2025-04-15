@@ -24,11 +24,11 @@ export class MainTransmisionesComponent implements OnInit {
   private readonly transmisionesService = inject(TransmisionesService);
 
   public urlImageBackground: string = 'https://images.pexels.com/photos/66134/pexels-photo-66134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
-  public today = new Date();
   public eventos = signal<TransmisionModel[]>([]);
+  public dateToSearh = new Date();
 
   ngOnInit(): void {
-    this.getTransmissionsByMonth(this.today);
+    this.getTransmissionsByMonth(this.dateToSearh);
   }
 
   getTransmissionsByMonth(date: Date) {
@@ -40,8 +40,9 @@ export class MainTransmisionesComponent implements OnInit {
     })
   }
 
-  onNewDateEvents(date: Date) {
+  onNewDateEvents(date: any) {
     this.getTransmissionsByMonth(date);
+    this.dateToSearh = date;
 
   }
 

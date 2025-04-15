@@ -5,9 +5,9 @@
     <div class="col__info  w-full md:w-9/12 lg:w-6/12">
       <p class="text-sage-100 font-primary-thin text-2xl md:text-3xl lg:text-4xl">
         <b class="font-primary-bold bg-clip-text text-primary text-3xl md:text-4xl lg:text-5xl">
-          Conectando en tiempo real
+          Transmisiones en Vivo:
         </b>
-        con la Cultura, la Naturaleza y la Experiencia de Campo.
+        Experimenta Eden Dusk en Tiempo Real
       </p>
     </div>
     <div class="col__filters w-full flex justify-center md:justify-end items-center">
@@ -16,7 +16,7 @@
 
   </div>
 
-  <transmisiones-eventos-proximos [eventos]="eventos()" />
+  <transmisiones-eventos-proximos [eventos]="eventos()" [dateEvents]="dateToSearh" />
   <transmisiones-eventos-pasados />
 </section>
 
