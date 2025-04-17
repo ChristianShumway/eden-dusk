@@ -1,1 +1,19 @@
-<p>eventos-pasados works!</p>
+
+<section class="my-8" #sectionLastEvents>
+  <div class="mb-4 md:mb-10">
+    <div class="text-3xl md:text-4xl lg:text-5xl text-black dark:text-sage-100  font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start capitalize mb-4">
+      Eventos Pasados
+      <div [innerHTML]="svgArrow" class="w-8 h-8 text-primary lg:w-12 lg:h-12 hidden md:flex md:ml-4"></div>
+    </div>
+    <p class="text-base md:text-lg  text-black dark:text-sage-100 text-center md:text-start">
+      ¿Te perdiste de nuestras últimas transmisiones, o te gustaría volver a repetír la experiencia?,
+      no te preocupes en nuestra siguiense sección podrás hacerlo sin ningún problema.
+    </p>
+  </div>
+
+  <div class="wrap__events w-full lg:w-10/12 my-0 mx-auto flex justify-center md:justify-around lg:justify-start items-center gap-8 flex-wrap">
+    @for (event of eventos(); track event.id) {
+      <transmisiones-evento-pasado [evento]="event" />
+    }
+  </div>
+</section>

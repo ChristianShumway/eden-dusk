@@ -13,10 +13,9 @@
     <div class="col__filters w-full flex justify-center md:justify-end items-center">
       <transmisiones-filtros [eventos]="eventos()" (newDate)="onNewDateEvents($event)" />
     </div>
-
   </div>
 
-  <transmisiones-eventos-proximos [eventos]="eventos()" [dateEvents]="dateToSearh" />
-  <transmisiones-eventos-pasados />
+  <transmisiones-eventos-proximos [eventos]="eventos()" [dateEvents]="dateToSearh" (scrollDown)="scrollToLastEvents()" />
+  <transmisiones-eventos-pasados [eventos]="eventos()" #lastEvents />
 </section>
 

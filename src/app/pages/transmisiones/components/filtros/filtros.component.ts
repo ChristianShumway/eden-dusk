@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, input, Input, OnChanges, OnInit, output, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { TransmisionesService } from '../../../../core/services/transmisiones.service';
+import { AfterViewInit, Component, ElementRef, input, OnChanges, output, SimpleChanges, ViewChild } from '@angular/core';
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 
 declare let Datepicker: any;
@@ -27,23 +26,26 @@ export class FiltrosComponent implements AfterViewInit, OnChanges {
 
     setTimeout(() => {
 
-      new Datepicker(pickerElement, {
-        autohide: false,
-        inline: true,
-        language: 'es',
-        i18n: {
-          es: {
-            months: [
-              'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-              'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-            ],
-            days: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-            today: 'Hoy',
-            clear: 'Limpiar',
-            close: 'Cerrar',
+      if (typeof window !== 'undefined' && typeof Datepicker !== 'undefined') {
+        new Datepicker(pickerElement, {
+          autohide: false,
+          inline: true,
+          language: 'es',
+          i18n: {
+            es: {
+              months: [
+                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+              ],
+              days: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+              today: 'Hoy',
+              clear: 'Limpiar',
+              close: 'Cerrar',
+            }
           }
-        }
-      });
+        });
+      }
+
 
       if(this.eventos) {
         this.resaltarFechas(this.eventos());
