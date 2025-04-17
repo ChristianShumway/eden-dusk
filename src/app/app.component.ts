@@ -1,5 +1,5 @@
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
+import { Component, HostListener, inject, signal, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { SafeHtml } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { SvgService } from './core/services/svg.service';
 import { SvgIcons } from './core/utils/svg-icons.enum';
 
 import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,7 +20,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+
+export class AppComponent {
 
   private readonly router = inject(Router);
   private readonly svgService = inject(SvgService);
@@ -27,14 +29,18 @@ export class AppComponent implements OnInit {
   public svgArrowUp = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.arrowUp));
   public mostrarScrollTop = false;
 
-  ngOnInit(): void {
-    window.scrollTo({ top: 0 });
+  constructor(
+    @Inject(PLATFORM_ID) private readonly platformId: Object
+  ){
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({ top: 0 });
 
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+      this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
   }
 
   @HostListener('window:scroll', [])
