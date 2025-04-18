@@ -15,7 +15,13 @@
     </div>
   </div>
 
-  <transmisiones-eventos-proximos [eventos]="eventos()" [dateEvents]="dateToSearh" (scrollDown)="scrollToLastEvents()" />
+  <transmisiones-eventos-proximos [eventos]="eventos()" [dateEvents]="dateToSearh" (scrollDown)="scrollToLastEvents()" (dataEvento)="onViewInfoEvent($event)" />
   <transmisiones-eventos-pasados [eventos]="eventos()" #lastEvents />
 </section>
+
+<shared-modal-transmision
+  #myModal
+  [modalTitle]="'Información importante'"
+  [modalMessage]="mensajeModal">
+</shared-modal-transmision>
 

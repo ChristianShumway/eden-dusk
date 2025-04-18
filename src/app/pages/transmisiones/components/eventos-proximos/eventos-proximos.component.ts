@@ -1,4 +1,4 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, input, Output, output, signal } from '@angular/core';
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { CommonModule } from '@angular/common';
 import { SafeHtml } from '@angular/platform-browser';
@@ -21,6 +21,7 @@ import { TypeMessage } from '../../../../core/models/type-message.model';
   templateUrl: './eventos-proximos.component.html',
   styleUrl: './eventos-proximos.component.scss'
 })
+
 export class EventosProximosComponent {
 
   private readonly svgService = inject(SvgService);
@@ -28,6 +29,7 @@ export class EventosProximosComponent {
   public eventos = input.required<TransmisionModel[]>();
   public dateEvents = input.required<Date>();
   public scrollDown = output();
+  @Output() dataEvento = new EventEmitter<TransmisionModel>();
 
   public svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
   public svgEye = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.eye));
@@ -37,6 +39,10 @@ export class EventosProximosComponent {
   get numberMont() {
     const month = this.dateEvents().getMonth() + 1 ;
     return month < 10 ? `0${month}` : month;
+  }
+
+  onViewInfoEvent(evento: TransmisionModel) {
+    this.dataEvento.emit(evento);
   }
 
 }

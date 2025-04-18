@@ -6,16 +6,18 @@ import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.p
 import { TransmisionesService } from '../../../../core/services/transmisiones.service';
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { CommonModule } from '@angular/common';
+import { ModalTransmisionComponent } from '../../../../shared/components/modal-transmision/modal-transmision.component';
 
 @Component({
   selector: 'app-main-transmisiones',
   standalone: true,
   imports: [
+    CommonModule,
     FiltrosComponent,
     EventosProximosComponent,
     EventosPasadosComponent,
-    BackgroundImagePipe,
-    CommonModule
+    ModalTransmisionComponent,
+    BackgroundImagePipe
   ],
   templateUrl: './main-transmisiones.component.html',
   styleUrl: './main-transmisiones.component.scss'
@@ -26,6 +28,8 @@ export class MainTransmisionesComponent implements OnInit {
   private readonly transmisionesService = inject(TransmisionesService);
 
   @ViewChild('lastEvents') lastEvents!: EventosPasadosComponent; //referencia a métodos y variables del componente eventos pasados
+  @ViewChild('myModal') myModal!: ModalTransmisionComponent;
+  mensajeModal = 'Este es un mensaje dinámico desde el padre';
 
   public urlImageBackground: string = 'https://images.pexels.com/photos/66134/pexels-photo-66134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
   public eventos = signal<TransmisionModel[]>([]);
@@ -59,6 +63,10 @@ export class MainTransmisionesComponent implements OnInit {
 
   scrollToLastEvents() {
     this.lastEvents.scrollToMe();
+  }
+
+  onViewInfoEvent(evento: TransmisionModel) {
+    this.myModal.openModal(evento);
   }
 
 }

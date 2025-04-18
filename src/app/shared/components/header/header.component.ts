@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   public itemsMenu: MenuItemModel[] = [
     { name: 'home', path: '/home' },
     { name: 'transmisiones', path: '/transmisiones' },
-    { name: 'nuestra historia', path: '/historia' },
+    { name: 'nuestra historia', path: '/nosotros' },
     { name: 'blog', path: '/blog' },
     { name: 'galeria', path: '/galeria' }
   ];

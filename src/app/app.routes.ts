@@ -8,5 +8,13 @@ export const routes: Routes = [
   {
     path: 'transmisiones',
     loadChildren: () => import('./pages/transmisiones/transmisiones.routes').then(m => m.TRANSMISIONES_ROUTES)
+  },
+  {
+    path: 'nosotros',
+    loadChildren: () => import('./pages/nosotros/nosotros.routes').then(m => m.NOSOTROS_ROUTES)
+  },
+  {
+    path: 'blog',
+    loadChildren: () => import('./pages/blog/blog.routes').then(m => m.BLOG_ROUTES)
   }
 ];
