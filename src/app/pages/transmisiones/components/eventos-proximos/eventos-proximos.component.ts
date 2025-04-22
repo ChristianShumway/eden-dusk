@@ -8,6 +8,7 @@ import { EventoProxComponent } from '../evento-prox/evento-prox.component';
 import { MesNombrePipe } from '../../../../shared/pipes/mes-anio.pipe';
 import { AlertRemovableComponent } from '../../../../shared/components/alert-removable/alert-removable.component';
 import { TypeMessage } from '../../../../core/models/type-message.model';
+import { NoEventosComponent } from '../../../../shared/components/no-eventos/no-eventos.component';
 
 @Component({
   selector: 'transmisiones-eventos-proximos',
@@ -15,8 +16,9 @@ import { TypeMessage } from '../../../../core/models/type-message.model';
   imports: [
     CommonModule,
     EventoProxComponent,
-    MesNombrePipe,
-    AlertRemovableComponent
+    AlertRemovableComponent,
+    NoEventosComponent,
+    MesNombrePipe
   ],
   templateUrl: './eventos-proximos.component.html',
   styleUrl: './eventos-proximos.component.scss'
@@ -32,7 +34,7 @@ export class EventosProximosComponent {
   @Output() dataEvento = new EventEmitter<TransmisionModel>();
 
   public svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
-  public svgEye = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.eye));
+  public svgCamara = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.camera));
   public msg: string = 'Para poder ver los eventos de otro mes, selecciona la fecha en el calendario de arriba.';
   public typeMessage: TypeMessage = 'info';
 

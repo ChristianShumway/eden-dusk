@@ -5,12 +5,12 @@
 
   <div class="wrap__title flex justify-start items-center gap-4 mb-4 md:mb-6">
     <!--? CALENDARIO -->
-    <div class="w-8 h-8 border border-gray-200 rounded shadow-sm flex flex-col justify-between gap-0 text-gray-800 dark:text-white">
+    <div class="w-8 h-8 border border-gray-200 rounded shadow-sm flex flex-col justify-between gap-0 text-gray-800 dark:text-white dark:bg-red-500 dark:border-black-100">
       <div class="flex justify-around rounded-t bg-red-500 p-0.5">
         <div class="w-1 h-1 bg-gray-200 dark:bg-white rounded-full"></div>
         <div class="w-1 h-1 bg-gray-200 dark:bg-white rounded-full"></div>
       </div>
-      <div class="w-full flex items-center justify-center">
+      <div class="w-full flex items-center justify-center bg-white">
         <span class="text-sm text-black-100 font-primary-bold"> {{ numberMont }} </span>
       </div>
     </div>
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <p class="text-base md:text-lg  text-black dark:text-sage-100 mb-4 md:mb-6 text-center md:text-start">
+  <p class="text-base md:text-lg  text-black dark:text-sage-100 mb-4 md:mb-6 text-start md:text-start">
     es un pilar esencial del proyecto Eden Dusk, ya
     que muestra la realidad en tiempo real, permitiendo a la audiencia sumergirse en
     paisajes, eventos culturales, rituales, talleres y cualquier experiencia significativa que
@@ -28,30 +28,38 @@
     documental de Eden Dusk..
   </p>
 
-  <div id="alert-additional-content-msg-info" class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800" role="alert">
+  <div
+    id="alert-additional-content-msg-info"
+    class="p-4 mb-4 border border-gray-300 rounded-lg bg-gray-50 dark:border-gray-600 dark:bg-gray-800"
+    role="alert">
     <div class="flex items-center">
       <h3 class="text-lg font-medium">¡Apoya nuestro proyecto!</h3>
     </div>
-    <div class="mt-2 mb-4 text-sm">
+    <div class="mt-2 mb-6 text-sm">
       Recuerda que es importante el apoyo que recibimos por parte de sus donaciones para mantener viva la experiencia de nuestra cultural,
       rituales y toda tipo de experiencia que sucede en nuestro Estado.
     </div>
-    <div class="flex">
-      <button type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-5 py-3 me-2 text-center  dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
+    <div class="flex flex-wrap justify-center items-center md:flex-nowrap md:justify-start gap-4">
+      <button type="button"
+        class="w-full md:w-auto bg-primary hover:bg-primary-200 text-black font-medium px-6 py-3 rounded-md transition-colors duration-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 text-sm text-center">
         Apoya nuestro proyecto
       </button>
-      <button (click)="scrollDown.emit()" type="button" class="text-yellow-800 bg-transparent border border-yellow-800 hover:bg-yellow-900 hover:text-white focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-5 py-3 text-center dark:hover:bg-yellow-300 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-gray-800 dark:focus:ring-yellow-800 inline-flex items-center" >
-        <div class="me-2 h-3 w-3 flex" [innerHTML]="svgEye()"></div>
+      <button (click)="scrollDown.emit()" type="button" class="group w-full md:w-auto flex items-center border rounded-lg text-sm bg-transparent text-black border-black hover:text-white hover:border-black-100 hover:bg-black focus:ring-1 focus:outline-none font-medium px-6 py-3 text-center cursor-pointer transition-colors dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-white dark:hover:bg-sage-100 duration-300" >
+        <div class="me-2 w-5 h-5 text-black group-hover:text-white transition-colors duration-300 dark:text-sage-100 dark:group-hover:text-black flex items-center"  [innerHTML]="svgCamara()"></div>
         Ver últimas transmisiones
       </button>
     </div>
   </div>
 
-  <div class="wrap__stepper bg-white py-0.5 px-8">
-    <ol class="relative text-gray-500 border-s border-gray-200 dark:border-gray-700 dark:text-gray-400 my-12">
-      @for (evento of eventos(); track evento.id) {
-        <transmisiones-evento-prox [evento]="evento" (dataEvento)="onViewInfoEvent($event)" />
-      }
-    </ol>
-  </div>
+  @if (eventos().length) {
+    <div class="wrap__stepper rounded-lg shadow-sm border-gray-200 bg-sage-100/30 py-0.5 px-8 dark:bg-gray-700/30 dark:border-gray-700">
+      <ol class="relative text-gray-500  dark:text-gray-400 my-12">
+        @for (evento of eventos(); track evento.id) {
+          <transmisiones-evento-prox [evento]="evento" (dataEvento)="onViewInfoEvent($event)" />
+        }
+      </ol>
+    </div>
+  } @else {
+    <shared-no-eventos />
+  }
 </section>

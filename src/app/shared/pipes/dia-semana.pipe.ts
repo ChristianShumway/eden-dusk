@@ -8,7 +8,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DiaSemanaPipe implements PipeTransform {
   private readonly dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
-  transform(value: Date | string): string {
+  transform(value: Date | string | undefined): string {
+    if(!value) return '';
     const fecha = new Date(value);
     const diaIndex = fecha.getDay(); // 0 = domingo, 1 = lunes, etc.
     return this.dias[diaIndex] ?? '';

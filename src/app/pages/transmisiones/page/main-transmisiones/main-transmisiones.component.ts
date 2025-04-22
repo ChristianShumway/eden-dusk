@@ -29,20 +29,33 @@ export class MainTransmisionesComponent implements OnInit {
 
   @ViewChild('lastEvents') lastEvents!: EventosPasadosComponent; //referencia a métodos y variables del componente eventos pasados
   @ViewChild('myModal') myModal!: ModalTransmisionComponent;
-  mensajeModal = 'Este es un mensaje dinámico desde el padre';
 
   public urlImageBackground: string = 'https://images.pexels.com/photos/66134/pexels-photo-66134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
   public eventos = signal<TransmisionModel[]>([]);
+  public eventosPasados = signal<TransmisionModel[]>([]);
   public dateToSearh = new Date();
+  public eventSelected!: TransmisionModel;
 
   ngOnInit(): void {
     this.getTransmissionsByMonth(this.dateToSearh);
+    this.getLastTransmissions();
   }
 
   getTransmissionsByMonth(date: Date) {
-    this.transmisionesService.getTransmissionsByMonth(date.getFullYear(), date.getMonth()).subscribe({
+    this.transmisionesService.getTransmissionsByMonth(date).subscribe({
       next: response => {
+        console.log(response);
         this.eventos.set([...response]);
+      },
+      error: error => console.error(error)
+    })
+  }
+
+  getLastTransmissions() {
+    this.transmisionesService.getLastTransmissions().subscribe({
+      next: response => {
+        console.log(response);
+        this.eventosPasados.set([...response]);
       },
       error: error => console.error(error)
     })
@@ -66,7 +79,8 @@ export class MainTransmisionesComponent implements OnInit {
   }
 
   onViewInfoEvent(evento: TransmisionModel) {
-    this.myModal.openModal(evento);
+    this.eventSelected = evento;
+    this.myModal.openModal();
   }
 
 }

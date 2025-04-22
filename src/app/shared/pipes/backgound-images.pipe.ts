@@ -11,7 +11,7 @@ export class BackgroundImagePipe implements PipeTransform {
     private readonly sanitizer: DomSanitizer
   ) {}
 
-  transform(value: string): SafeStyle {
+  transform(value: string | undefined): SafeStyle {
     return this.sanitizer.bypassSecurityTrustStyle(`url(${value})`);
   }
 

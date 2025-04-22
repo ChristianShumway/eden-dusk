@@ -1,6 +1,10 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, input, OnInit, ViewChild } from '@angular/core';
 import { TransmisionModel } from '../../../core/models/transmission.model';
 import { BackgroundImagePipe } from '../../pipes/backgound-images.pipe';
+import { CommonModule } from '@angular/common';
+import { DiaSemanaPipe } from '../../pipes/dia-semana.pipe';
+import { MesNombrePipe } from '../../pipes/mes-anio.pipe';
+import { TimezonesPipe } from '../../pipes/zona-horaria.pipe';
 
 declare let Modal: any;
 
@@ -8,19 +12,31 @@ declare let Modal: any;
   selector: 'shared-modal-transmision',
   standalone: true,
   imports: [
-    BackgroundImagePipe
+    CommonModule,
+    BackgroundImagePipe,
+    DiaSemanaPipe,
+    MesNombrePipe,
+    TimezonesPipe
   ],
   templateUrl: './modal-transmision.component.html',
   styleUrl: './modal-transmision.component.scss'
 })
-export class ModalTransmisionComponent {
+export class ModalTransmisionComponent implements OnInit {
 
   @ViewChild('modalEl') modalElementRef!: ElementRef;
   modalInstance: any;
 
-  @Input() modalTitle: string = 'Título';
-  @Input() modalMessage: string = 'Mensaje de ejemplo';
-  public infoTransmission!: TransmisionModel;
+  public modalData = input.required<TransmisionModel>();
+
+  public fechaEvento: Date = new Date();
+
+  ngOnInit(): void {
+    let setDate = new Date();
+    if (this.modalData())  {
+      setDate = new Date(this.modalData().date);
+    }
+    this.fechaEvento = new Date(setDate.getFullYear(), setDate.getMonth(), setDate.getDate() +2);
+  }
 
   ngAfterViewInit() {
     const modalEl = this.modalElementRef.nativeElement;
@@ -32,9 +48,8 @@ export class ModalTransmisionComponent {
     }
   }
 
-  openModal(evento: TransmisionModel) {
+  openModal() {
     this.modalInstance?.show();
-    this.infoTransmission = evento;
   }
 
   closeModal() {

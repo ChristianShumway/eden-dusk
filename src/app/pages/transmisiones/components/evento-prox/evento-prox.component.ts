@@ -2,12 +2,16 @@ import { Component, EventEmitter, input, OnInit, Output, output } from '@angular
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { CommonModule } from '@angular/common';
 import { DiaSemanaPipe } from '../../../../shared/pipes/dia-semana.pipe';
+import { MesNombrePipe } from '../../../../shared/pipes/mes-anio.pipe';
+import { TimezonesPipe } from '../../../../shared/pipes/zona-horaria.pipe';
 @Component({
   selector: 'transmisiones-evento-prox',
   standalone: true,
   imports: [
     CommonModule,
-    DiaSemanaPipe
+    DiaSemanaPipe,
+    MesNombrePipe,
+    TimezonesPipe
   ],
   templateUrl: './evento-prox.component.html',
   styleUrl: './evento-prox.component.scss'
