@@ -33,7 +33,7 @@
     <!-- Menú de Navegación -->
     <div [ngClass]="{ 'hidden': !isNavbarOpen, 'block': isNavbarOpen }"
     class="items-center justify-between w-full md:flex md:w-auto md:order-1" id="navbar">
-      <header-menu [isNavbarOpen]="isNavbarOpen" [itemsMenu]="itemsMenu" />
+      <header-menu [isNavbarOpen]="isNavbarOpen" [itemsMenu]="itemsMenu" (clickItemMenu)="toggleNavbar()" />
     </div>
 
   </div>

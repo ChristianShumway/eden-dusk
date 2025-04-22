@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MenuItemModel } from '../../../../../core/models/item-menu.model';
 import { ItemMenuComponent } from '../item-menu/item-menu.component';
 
@@ -15,7 +15,7 @@ import { ItemMenuComponent } from '../item-menu/item-menu.component';
             rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-black md:dark:bg-transparent
             dark:border-transparent">
       @for (item of itemsMenu(); track $index) {
-        <header-item-menu [itemMenu]="item" />
+        <header-item-menu [itemMenu]="item" (clickItemMenu)="clickItemMenu.emit()" />
       }
     </ul>
   `
@@ -24,4 +24,5 @@ import { ItemMenuComponent } from '../item-menu/item-menu.component';
 export class MenuComponent {
   public isNavbarOpen = input.required<boolean>();
   public itemsMenu = input.required<MenuItemModel[]>();
+  public clickItemMenu = output()
 }

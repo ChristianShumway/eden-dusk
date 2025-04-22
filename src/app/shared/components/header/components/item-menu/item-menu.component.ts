@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MenuItemModel } from '../../../../../core/models/item-menu.model';
 import { CommonModule } from '@angular/common';
@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
       <a [routerLink]="itemMenu().path"
       [routerLinkActiveOptions]="{ exact: true }"
       routerLinkActive="bg-primary font-bold md:text-primary "
+      (click)="clickItemMenu.emit()"
       class="block text-sage-100 py-2 px-3 rounded md:bg-transparent md:p-0  hover:md:text-primary-200"
       >
         {{ itemMenu().name | titlecase }}
@@ -26,4 +27,5 @@ import { CommonModule } from '@angular/common';
 export class ItemMenuComponent {
 
   public itemMenu = input.required<MenuItemModel>();
+  public clickItemMenu = output();
 }
