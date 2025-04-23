@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, OnInit, Output, output } from '@angular/core';
+import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { CommonModule } from '@angular/common';
 import { DiaSemanaPipe } from '../../../../shared/pipes/dia-semana.pipe';

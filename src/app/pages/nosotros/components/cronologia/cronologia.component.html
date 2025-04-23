@@ -1,0 +1,49 @@
+<section class="mt-8">
+  <div class="w-full">
+    <div class="text-3xl md:text-4xl lg:text-5xl text-black dark:text-sage-100 mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start capitalize">
+      Línea del tiempo
+      <div [innerHTML]="svgArrow" class="w-8 h-8 text-primary lg:w-12 lg:h-12 hidden md:flex md:ml-4"></div>
+    </div>
+
+    <div class="wrapper__line border border-gray-200 rounded-lg shadow-sm bg-sage-100/30 dark:bg-gray-700/30 dark:border-gray-700 px-2 py-8 md:px-4 mb-6">
+      <div class="relative border-l-4 border-gray-400 ml-4 pl-1.5">
+        @for (item of dataDummy; track $index; ; let last = $last) {
+          <!-- Evento -->
+          <div class="mb-12 relative">
+            <div
+              [ngClass]="{
+                'top-0' : !last,
+                'top-8' : last
+              }"
+              class="absolute left-[-32px] w-12 h-12 rounded-full bg-gray-100 text-white flex items-center justify-center shadow-md">
+              <!-- Ícono (puedes usar un emoji, SVG o imagen) -->
+              📷
+            </div>
+            <div class="ml-8">
+              <p class="text-2xl font-primary-bold text-primary"> {{ item.title }}</p>
+              <p class="text-black"> {{ item.description }} </p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="section__whois rounded  bg-center bg-cover bg-no-repeat bg-[url('https://cdn.pixabay.com/photo/2022/12/15/20/26/frozen-lake-7658478_1280.jpg')] bg-gray-600 bg-blend-multiply">
+    <div class="py-12 px-4 mx-auto max-w-screen-xl text-center lg:py-40 lg:px-8">
+      <div class="wrap__info relative">
+        <blockquote class="text-2xl text-sage-100 font-secondary-regular italic mb-6 relative z-10">
+          Comenzamos con una sola cámara y un sueño: <span class="text-primary font-primary-regular"> capturar la belleza del universo para compartirla con el mundo. </span>
+        </blockquote>
+
+        <p class="mb-16 text-sage-100  text-xl font-primary-thin tracking-tight leading-none relative z-10">
+          - Eden Dusk
+        </p>
+        <div [innerHTML]="svgSemiColons" class="text-primary/60 w-64 h-64 semicolons__bg absolute"></div>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,15 @@
+/* Tailwind no trae esto por defecto */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+
+@media(min-width:768px) {
+  .wrap__selection {
+    grid-template-columns: 2fr 1fr;
+  }
+}
