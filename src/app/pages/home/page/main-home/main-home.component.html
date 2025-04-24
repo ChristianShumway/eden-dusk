@@ -4,6 +4,6 @@
 <home-preview-portfolio />
 <home-novedades />
 <div class="mb-8 md:mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-2">
-  <home-eventos-transmisiones />
+  <home-eventos-transmisiones [proximoEventos]="eventos()" [eventosPasados]="eventosPasados()" />
   <home-news-letter />
 </div>

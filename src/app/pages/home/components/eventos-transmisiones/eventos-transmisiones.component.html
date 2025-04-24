@@ -4,126 +4,86 @@
     <div class="w-full lg:max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 mb-4 dark:bg-gray-700/30 dark:border-gray-700">
       <div class="flex items-center justify-between mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Próximas transmisiones</h5>
-        <a href="#" class="text-sm font-medium text-primary hover:underline dark:text-primary-200">
+        <a [routerLink]="['/transmisiones']" routerLinkActive="router-link-active"  class="text-sm font-medium text-primary hover:underline dark:text-primary-200">
           Ver todas
         </a>
       </div>
       <div class="flow-root">
-        <ul  class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li class="py-3 sm:py-4">
+        @if(proximoEventos().length) {
+          <ul  class="divide-y divide-gray-200 dark:divide-gray-700">
+            @for (evento of proximoEventos(); track $index) {
+              <li class="py-3 sm:py-4">
                 <div class="flex items-center">
-                    <div class="shrink-0">
-                      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-                      </svg>
-                    </div>
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate title__event dark:text-white">
-                          Título de la próxima transmisión
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                          {{ fechaHoy | date }}
-                        </p>
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                      <button type="button" class="w-full md:w-auto text-black hover:text-sage-100 border border-black hover:border-sage-100 hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center  cursor-pointer dark:text-black-100 dark:bg-white dark:hover:text-sage-100 dark:hover:bg-black">Ver detalle</button>
-                    </div>
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-              <div class="flex items-center">
                   <div class="shrink-0">
-                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-                    </svg>
+                    <div class="w-6 h-6 text-gray-800 dark:text-white" [innerHTML]="svgCalendar()"></div>
                   </div>
                   <div class="flex-1 min-w-0 ms-4">
-                      <p class="text-sm font-medium text-gray-900 truncate title__event dark:text-white">
-                        Título de la próxima transmisión
-                      </p>
-                      <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {{ fechaHoy | date }}
-                      </p>
-                  </div>
-                  <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    <button type="button" class="w-full md:w-auto text-black hover:text-sage-100 border border-black hover:border-sage-100 hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center  cursor-pointer dark:text-black-100 dark:bg-white dark:hover:text-sage-100 dark:hover:bg-black">Ver detalle</button>
-                  </div>
-              </div>
-          </li>
-          <li class="pt-3 pb-0 sm:pt-4">
-            <div class="flex items-center">
-                <div class="shrink-0">
-                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-                  </svg>
-                </div>
-                <div class="flex-1 min-w-0 ms-4">
                     <p class="text-sm font-medium text-gray-900 truncate title__event dark:text-white">
-                      Título de la próxima transmisión
+                      {{ evento.title }}
                     </p>
                     <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                      {{ fechaHoy | date }}
+                      {{ evento.date | date }}
                     </p>
+                  </div>
+                  <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                    <button
+                      type="button"
+                      class="w-full md:w-auto text-black hover:text-sage-100 border border-black hover:border-sage-100 hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center  cursor-pointer dark:text-black-100 dark:bg-white dark:hover:text-sage-100 dark:hover:bg-black"
+                    >
+                      Ver detalle
+                    </button>
+                  </div>
                 </div>
-                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  <button type="button" class="w-full md:w-auto text-black hover:text-sage-100 border border-black hover:border-sage-100 hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center  cursor-pointer dark:text-black-100 dark:bg-white dark:hover:text-sage-100 dark:hover:bg-black">Ver detalle</button>
-                </div>
-            </div>
-        </li>
-        </ul>
+              </li>
+            }
+          </ul>
+        }@else {
+          <shared-no-eventos />
+        }
       </div>
     </div>
+
+
     <!-- últimas -->
     <div class="w-full lg:max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 dark:bg-gray-700/30 dark:border-gray-700">
       <div class="flex items-center justify-between mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Últimas transmisiones</h5>
-        <a href="#" class="text-sm font-medium text-primary hover:underline dark:text-primary-200">
+        <a [routerLink]="['/transmisiones']" class="text-sm font-medium text-primary hover:underline dark:text-primary-200">
           Ver todas
         </a>
       </div>
       <div class="flow-root">
-        <ul  class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li class="py-3 sm:py-4">
+        @if(eventosPasados().length) {
+          <ul  class="divide-y divide-gray-200 dark:divide-gray-700">
+            @for (evento of eventosPasados(); track $index) {
+              <li class="py-3 sm:py-4">
                 <div class="flex items-center ">
-                    <div class="shrink-0">
-                      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M14 7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7Zm2 9.387 4.684 1.562A1 1 0 0 0 22 17V7a1 1 0 0 0-1.316-.949L16 7.613v8.774Z" clip-rule="evenodd"/>
-                      </svg>
-                    </div>
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate title__event dark:text-white">
-                          Título de la transmisión realizada
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                          {{ fechaHoy | date }}
-                        </p>
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                      <button type="button" class="w-full md:w-auto text-black hover:text-sage-100 border border-black hover:border-sage-100 hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center  cursor-pointer dark:text-black-100 dark:bg-white dark:hover:text-sage-100 dark:hover:bg-black">Ver ahora</button>
-                    </div>
-                </div>
-            </li>
-            <li class="pt-3 pb-0 sm:pt-4">
-              <div class="flex items-center ">
                   <div class="shrink-0">
-                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M14 7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7Zm2 9.387 4.684 1.562A1 1 0 0 0 22 17V7a1 1 0 0 0-1.316-.949L16 7.613v8.774Z" clip-rule="evenodd"/>
-                    </svg>
+                    <div class="w-6 h-6 text-gray-800 dark:text-white" [innerHTML]="svgCamera()"></div>
                   </div>
                   <div class="flex-1 min-w-0 ms-4">
                       <p class="text-sm font-medium text-gray-900 truncate title__event dark:text-white">
-                        Título de la transmisión realizada
+                        {{ evento.title }}
                       </p>
                       <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {{ fechaHoy | date }}
+                        {{ evento.date| date }}
                       </p>
                   </div>
                   <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    <button type="button" class="w-full md:w-auto text-black hover:text-sage-100 border border-black hover:border-sage-100 hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center  cursor-pointer dark:text-black-100 dark:bg-white dark:hover:text-sage-100 dark:hover:bg-black">Ver ahora</button>
+                    <button
+                      type="button"
+                      class="w-full md:w-auto text-black hover:text-sage-100 border border-black hover:border-sage-100 hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center  cursor-pointer dark:text-black-100 dark:bg-white dark:hover:text-sage-100 dark:hover:bg-black"
+                    >
+                      Ver ahora
+                    </button>
                   </div>
-              </div>
-          </li>
-        </ul>
+                </div>
+              </li>
+            }
+          </ul>
+        } @else {
+          <shared-no-eventos />
+        }
       </div>
     </div>
   </div>
