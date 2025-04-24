@@ -1,0 +1,30 @@
+<section class="my-8 w-full">
+  <div class="text-3xl md:text-4xl lg:text-5xl text-black dark:text-sage-100 mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start capitalize">
+    Premios y Distinciones
+    <div [innerHTML]="svgArrow" class="w-8 h-8 text-primary lg:w-12 lg:h-12 hidden md:flex md:ml-4"></div>
+  </div>
+
+
+  <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    <time class="text-3xl font-semibold text-gray-900 dark:text-white">2022</time>
+    <ol class="mt-3 divide-y divide-gray-200 dark:divide-gray-700">
+        <li class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700">
+          <img class="w-12 h-12 mb-3 me-3 rounded-full sm:mb-0" src="https://logowik.com/content/uploads/images/tv-azteca5717.jpg" alt="Jese Leos"/>
+          <div class="text-gray-600 dark:text-gray-400">
+              <div class="text-base font-normal">
+                <span class="font-medium text-gray-900 dark:text-white">
+                  Tv azteca
+                </span>
+              </div>
+              <div class="text-sm font-normal">Descripción del reconocimiento, premio o información a mostrar</div>
+              <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">13 enero 2022</time>
+              <button type="button" href="#" class="inline-flex justify-center items-center py-2 px-4 text-sm text-center text-black hover:text-black-100 border border-black hover:border-black-100 hover:bg-primary focus:ring-1 focus:outline-none focus:ring-primary-100 rounded-lg transition-colors duration-300">
+                Ver más detalle
+                <div class="w-3.5 h-3.5 ms-2 flex" [innerHTML]="svgArrow"></div>
+              </button>
+          </div>
+        </li>
+    </ol>
+  </div>
+
+</section>

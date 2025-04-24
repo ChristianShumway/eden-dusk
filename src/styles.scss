@@ -6,31 +6,35 @@
 @layer base {
   @font-face {
     font-family: 'f-thin';
-    src: url('./assets/fonts/google-sans/ProductSans-Thin.woff');
+    src: url('./assets/fonts/avenir-font/AvenirLTStd-Light.otf');
   }
   @font-face {
     font-family: 'f-regular';
-    src: url('./assets/fonts/google-sans/ProductSans-Regular.woff');
+    src: url('./assets/fonts/avenir-font/AvenirLTStd-Book.otf');
   }
   @font-face {
     font-family: 'f-medium';
-    src: url('./assets/fonts/google-sans/ProductSans-Medium.woff');
+    src: url('./assets/fonts/avenir-font/AvenirLTStd-Medium.otf');
   }
   @font-face {
     font-family: 'f-bold';
-    src: url('./assets/fonts/google-sans/ProductSans-Bold.woff');
+    src: url('./assets/fonts/avenir-font/AvenirLTStd-Black.otf');
   }
   @font-face {
-    font-family: 'static-regular';
-    src: url('./assets/fonts/static/WixMadeforDisplay-Regular.ttf');
+    font-family: 's-light';
+    src: url('./assets/fonts/opensans/OpenSans-Light.ttf');
   }
   @font-face {
-    font-family: 'static-medium';
-    src: url('./assets/fonts/static/WixMadeforDisplay-Medium.ttf');
+    font-family: 's-regular';
+    src: url('./assets/fonts/opensans/OpenSans-Regular.ttf');
   }
   @font-face {
-    font-family: 'static-bold';
-    src: url('./assets/fonts/static/WixMadeforDisplay-Bold.ttf');
+    font-family: 's-medium';
+    src: url('./assets/fonts/opensans/OpenSans-Medium.ttf');
+  }
+  @font-face {
+    font-family: 's-bold';
+    src: url('./assets/fonts/opensans/OpenSans-SemiBold.ttf');
   }
 }
 
@@ -42,6 +46,10 @@ body {
 
 p {
   @apply text-black text-base dark:text-grays-200;
+}
+
+button {
+  @apply font-secondary-medium border rounded-lg text-sm px-5 py-3 text-center  cursor-pointer transition-colors duration-300;
 }
 
 

@@ -15,15 +15,17 @@ module.exports = {
         'primary-regular': ['f-regular'],
         'primary-medium': ['f-medium'],
         'primary-bold': ['f-bold'],
-        'secondary-regular': ['static-regular'],
-        'secondary-medium': ['static-medium'],
-        'secondary-bold': ['static-bold'],
+        'secondary-thin': ['s-thin'],
+        'secondary-light': ['s-light'],
+        'secondary-regular': ['s-regular'],
+        'secondary-medium': ['s-medium'],
+        'secondary-bold': ['s-bold']
       },
       colors: {
         'primary': {
           // 200: "#D4A84A",
           200: "#e0b847",
-          DEFAULT: "#F5CB5C",
+          DEFAULT: "#A3B18A",
           100: "#F9DF93",
         },
         'secondary': {
@@ -37,7 +39,8 @@ module.exports = {
         },
         'black': {
           DEFAULT: "#242423",
-          100: "#333533"
+          100: "#333533",
+          'secondary': "#595959",
         },
         'grays': {
           500: "#595959",
@@ -46,7 +49,7 @@ module.exports = {
           200: "#cccccc",
           100: "#f2f2f2",
         },
-        white: "#FFFFFF",
+        white: "#F5F3F0",
         'sage': {
           200: "#CFDBD5",
           100: "#E8EDDF",
