@@ -14,7 +14,7 @@
         <span class="text-sm text-black-100 font-primary-bold"> {{ numberMont }} </span>
       </div>
     </div>
-    <div class="text-3xl md:text-4xl lg:text-5xl text-black dark:text-sage-100  font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start capitalize">
+    <div class="text-2xl md:text-3xl lg:text-4xl text-black dark:text-sage-100  font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start uppercase">
       {{ dateEvents().getMonth() + 1 | mesNombre }}
     </div>
   </div>
@@ -33,19 +33,19 @@
     class="p-4 mb-4 border border-gray-300 rounded-lg bg-gray-50 dark:border-gray-600 dark:bg-gray-800"
     role="alert">
     <div class="flex items-center">
-      <h3 class="text-lg font-medium">¡Apoya nuestro proyecto!</h3>
+      <h3 class="text-2xl font-secondary-bold text-primary">¡Apoya nuestro proyecto!</h3>
     </div>
-    <div class="mt-2 mb-6 text-sm">
+    <div class="mt-2 mb-6 text-base">
       Recuerda que es importante el apoyo que recibimos por parte de sus donaciones para mantener viva la experiencia de nuestra cultural,
       rituales y toda tipo de experiencia que sucede en nuestro Estado.
     </div>
     <div class="flex flex-wrap justify-center items-center md:flex-nowrap md:justify-start gap-4">
       <button type="button"
-        class="w-full md:w-auto bg-primary hover:bg-primary-200 text-black font-medium px-6 py-3 rounded-md transition-colors duration-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 text-sm text-center">
+        class="w-full md:w-auto bg-primary hover:bg-primary-200 hover:border-primary-50 text-white px-6 py-3 rounded-md focus:ring-1 focus:outline-none">
         Apoya nuestro proyecto
       </button>
       <button (click)="scrollDown.emit()" type="button" class="group w-full md:w-auto flex items-center border rounded-lg text-sm bg-transparent text-black border-black hover:text-white hover:border-black-100 hover:bg-black focus:ring-1 focus:outline-none font-medium px-6 py-3 text-center cursor-pointer transition-colors dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-white dark:hover:bg-sage-100 duration-300" >
-        <div class="me-2 w-5 h-5 text-black group-hover:text-white transition-colors duration-300 dark:text-sage-100 dark:group-hover:text-black flex items-center"  [innerHTML]="svgCamara()"></div>
+        <div class="me-2 w-5 h-5 text-black group-hover:text-white dark:text-sage-100 dark:group-hover:text-black flex items-center"  [innerHTML]="svgCamara()"></div>
         Ver últimas transmisiones
       </button>
     </div>

@@ -23,7 +23,7 @@ export class EventosPasadosComponent {
 
   private readonly svgService = inject(SvgService);
   public eventos = input.required<TransmisionModel[]>();
-  public svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
+  public svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
 
   public scrollToMe(): void {
     this.sectionLastEvents.nativeElement.scrollIntoView({ behavior: 'smooth' });
