@@ -51,7 +51,7 @@ module.exports = {
           200: "#cccccc",
           100: "#f2f2f2",
         },
-        white: "#F5F3F0",
+        white: "#FFF",
         'sage': {
           200: "#CFDBD5",
           100: "#E8EDDF",

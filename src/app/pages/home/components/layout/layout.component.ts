@@ -15,22 +15,22 @@ import { PathsEnum } from '../../../../core/utils/paths.enum';
 
 export class LayoutComponent {
 
-  public urlImageBackground: string = `${PathsEnum.URLIMAGES}/NEL00817.jpg`;
+  public urlImageBackground: string = `${PathsEnum.URLIMAGES}/_NEL3001_-min.jpg`;
 
   public itemsLayout: ItemLayoutModel[] = [
     {
       text: 'Texto muestra',
-      url: `${PathsEnum.URLIMAGES}/DSC03262.jpg`,
+      url: `${PathsEnum.URLIMAGES}/_ELA8309-min.jpg`,
       visible: true
     },
     {
       text: 'Texto muestra',
-      url: `${PathsEnum.URLIMAGES}/NEL00829.jpg`,
+      url: `${PathsEnum.URLIMAGES}/_NEL2557-min.jpg`,
       visible: true
     },
     {
       text: 'Texto muestra',
-      url: `${PathsEnum.URLIMAGES}/NEL05759.jpg`,
+      url: `${PathsEnum.URLIMAGES}/_ELA8285-min.jpg`,
       visible: true
     }
   ];

@@ -16,6 +16,6 @@ export class NovedadesComponent {
 
   private readonly svgService = inject(SvgService);
 
-  svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
+  svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
 
 }

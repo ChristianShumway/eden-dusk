@@ -4,7 +4,7 @@
     <div class="w-full lg:max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 mb-4 dark:bg-gray-700/30 dark:border-gray-700">
       <div class="flex items-center justify-between mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Próximas transmisiones</h5>
-        <a [routerLink]="['/transmisiones']" routerLinkActive="router-link-active"  class="text-sm font-medium text-primary hover:underline dark:text-primary-200">
+        <a [routerLink]="['/transmisiones']" routerLinkActive="router-link-active"  class="text-sm font-medium text-primary-200 hover:underline hover:text-primary-300 dark:text-primary-200">
           Ver todas
         </a>
       </div>
@@ -21,7 +21,7 @@
                     <p class="text-sm font-medium text-gray-900 truncate title__event dark:text-white">
                       {{ evento.title }}
                     </p>
-                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                    <p class="text-sm text-primary truncate dark:text-gray-400">
                       {{ evento.date | date }}
                     </p>
                   </div>
@@ -48,7 +48,7 @@
     <div class="w-full lg:max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 dark:bg-gray-700/30 dark:border-gray-700">
       <div class="flex items-center justify-between mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Últimas transmisiones</h5>
-        <a [routerLink]="['/transmisiones']" class="text-sm font-medium text-primary hover:underline dark:text-primary-200">
+        <a [routerLink]="['/transmisiones']" class="text-sm font-medium text-primary-200 hover:underline hover:text-primary-300 dark:text-primary-200">
           Ver todas
         </a>
       </div>
@@ -65,7 +65,7 @@
                       <p class="text-sm font-medium text-gray-900 truncate title__event dark:text-white">
                         {{ evento.title }}
                       </p>
-                      <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                      <p class="text-sm text-primary truncate dark:text-gray-400">
                         {{ evento.date| date }}
                       </p>
                   </div>

@@ -10,8 +10,8 @@
 @if (mostrarScrollTop) {
   <button
     (click)="scrollArriba()"
-    class="fixed bottom-12 left-2/4 -translate-x-1/2 z-50 p-4 bg-black/70 text-white rounded-xl shadow-lg hover:bg-black/90 transition-opacity duration-300 dark:bg-sage-100/70 dark:text-black dark:hover:bg-sage-100/90"
+    class="fixed bottom-12 left-2/4 -translate-x-1/2 z-50 p-4 bg-black/70 text-white rounded-full shadow-lg hover:bg-black/90 transition-opacity duration-300 dark:bg-sage-100/70 dark:text-black dark:hover:bg-sage-100/90"
   >
-    <div class="w-6 h-6 text-sage-100 dark:text-black" [innerHTML]="svgArrowUp()"></div>
+    <div class="w-6 h-6 text-sage-100 dark:text-black -rotate-90" [innerHTML]="svgArrowUp()"></div>
   </button>
 }

@@ -26,7 +26,7 @@ export class AppComponent {
   private readonly router = inject(Router);
   private readonly svgService = inject(SvgService);
 
-  public svgArrowUp = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.arrowUp));
+  public svgArrowUp = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
   public mostrarScrollTop = false;
 
   constructor(

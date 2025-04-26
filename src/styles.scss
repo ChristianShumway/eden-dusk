@@ -49,7 +49,7 @@ p {
 }
 
 button {
-  @apply font-secondary-medium border rounded-lg text-sm px-5 py-3 text-center  cursor-pointer;
+  @apply font-secondary-medium border rounded-lg text-sm px-5 py-3 text-center  cursor-pointer transition-colors duration-500;
 }
 
 

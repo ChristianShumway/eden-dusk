@@ -1,26 +1,23 @@
 <section class="section__store w-full my-8 md:my-16">
-  <div class="border border-gray-200 rounded-lg shadow-sm bg-sage-100/30 dark:bg-gray-700/30 dark:border-gray-700 px-2 py-8 md:px-4 mb-6">
-    <div class="text-3xl md:text-4xl lg:text-5xl text-black dark:text-sage-100 mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start capitalize">
-      Productos más populares
-      <div [innerHTML]="svgArrow" class="w-8 h-8 text-primary lg:w-12 lg:h-12 hidden md:flex md:ml-4"></div>
+  <div class="border border-gray-200 rounded-lg shadow-sm bg-sage-100/20 dark:bg-gray-700/30 dark:border-gray-700 px-2 py-8 md:px-4 mb-6">
+    <div class=" mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start uppercase">
+      <div [innerHTML]="svgArrow" class="w-12 h-12 text-primary hidden md:flex md:mr-4"></div>
+      <span class="text-2xl md:text-3xl lg:text-4xl text-black dark:text-sage-100"> Productos más populares </span>
     </div>
+
     <p class="text-base md:text-lg  text-black dark:text-sage-100 mb-4 md:mb-6 text-center md:text-start">
       Cada pieza que adquieres contribuye a la producción de
       documentales culturales, talleres en comunidades y respaldas la misión cultural y ambiental de Eden Dusk.
     </p>
 
     <div class="wrap__actions">
-      <p class="text-xl md:text-2xl lg:text-3xl font-primary-bold text-primary dark:text-primary mb-4 md:mb-6 text-center md:text-start">
+      <p class="text-xl md:text-2xl lg:text-3xl font-secondary-bold text-primary dark:text-primary mb-4 md:mb-6 text-center md:text-start">
         ¿Deséas apoyar al proyecto?
       </p>
       <div class="col__actions w-full flex justify-start items-center gap-5 flex-col md:w-full md:flex-row">
-        <button type="button" class="w-full md:w-auto border text-black border-black hover:text-black hover:border-gray-200 hover:bg-primary focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium rounded-lg text-sm px-5 py-3 text-center cursor-pointer transition-colors dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-black-100 duration-300">Ver tienda completa</button>
-        <button type="button" class="w-full md:w-auto border text-black border-black hover:text-black hover:border-gray-200 hover:bg-primary focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium rounded-lg text-sm px-5 py-3 text-center cursor-pointer transition-colors dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-black-100 duration-300">Haz una donación</button>
-        <button type="button" class="w-full md:w-auto border text-black border-black hover:text-black hover:border-gray-200 hover:bg-primary focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium rounded-lg text-sm px-5 py-3 text-center cursor-pointer transition-colors dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-black-100 duration-300">Patrocinadores</button>
-
-        <!-- <button type="button" class="w-full md:w-auto border border-grays-100 text-sage-100 bg-black-100 hover:text-white hover:bg-black  dark:text-black-100 dark:bg-white dark:hover:text-primary-200 dark:hover:border-primary-200 dark:hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 text-center  cursor-pointer transition-colors duration-300">Ver tienda completa</button>
-        <button type="button" class="w-full md:w-auto border border-grays-100 text-sage-100 bg-black-100 hover:text-white hover:bg-black  dark:text-black-100 dark:bg-white dark:hover:text-primary-200 dark:hover:border-primary-200 dark:hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 text-center  cursor-pointer transition-colors duration-300">Haz una donación</button>
-        <button type="button" class="w-full md:w-auto border border-grays-100 text-sage-100 bg-black-100 hover:text-white hover:bg-black  dark:text-black-100 dark:bg-white dark:hover:text-primary-200 dark:hover:border-primary-200 dark:hover:bg-black focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 text-center  cursor-pointer transition-colors duration-300">Patrocinadores</button> -->
+        <button type="button" class="w-full md:w-auto text-black border-black hover:text-white hover:border-primary-50 hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-black-100">Ver tienda completa</button>
+        <button type="button" class="w-full md:w-auto text-black border-black hover:text-white hover:border-primary-50 hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-black-100">Haz una donación</button>
+        <button type="button" class="w-full md:w-auto text-black border-black hover:text-white hover:border-primary-50 hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-black-100">Patrocinadores</button>
       </div>
     </div>
   </div>
@@ -38,39 +35,29 @@
   [loop]="true"
   autoplay-delay="2500"
   autoplay-disable-on-interaction="false"
-  style=" --swiper-pagination-color: #D4A84A; --swiper-navigation-color: #F9DF93; "
+  style=" --swiper-pagination-color: #7C8D64; --swiper-navigation-color: #7C8D64; "
   >
     <swiper-slide *ngFor="let producto of productos" >
       <div class=" bg-gray-50 border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700/30 dark:border-gray-700 p-4">
         <div class="bg-no-repeat bg-center bg-cover w-full h-64 mb-5" [style.background-image]="producto.image | backgroundImage"></div>
         <div class="pb-5">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"> {{ producto.name }} </h5>
+            <h5 class="text-xl font-semibold tracking-tight text-black dark:text-white"> {{ producto.name }} </h5>
             <div class="flex items-center mt-2.5 mb-5">
                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
-                    <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                    </svg>
+                    <div class="w-4 h-4 text-yellow-300 flex" [innerHTML]="svgStar"></div>
+                    <div class="w-4 h-4 text-yellow-300 flex" [innerHTML]="svgStar"></div>
+                    <div class="w-4 h-4 text-yellow-300 flex" [innerHTML]="svgStar"></div>
+                    <div class="w-4 h-4 text-yellow-300 flex" [innerHTML]="svgStar"></div>
+                    <div class="w-4 h-4 text-gray-200 dark:text-gray-600 flex" [innerHTML]="svgStar"></div>
                 </div>
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">4.0</span>
             </div>
             <div class="flex items-center justify-between">
-                <span class="text-2xl font-bold text-gray-900 dark:text-white"> {{ producto.price | currency }} </span>
-                <a href="#" class="bg-primary text-sm lg:text-base hover:bg-primary-200 text-black font-semibold px-3 py-3 rounded-md transition-colors duration-300"
+                <span class="text-2xl font-bold text-black dark:text-white"> {{ producto.price | currency }} </span>
+                <button type="button" class="bg-primary text-sm lg:text-base hover:bg-primary-200 text-white"
                 >
                   Agregar al carrito
-                </a>
+                </button>
             </div>
         </div>
       </div>
