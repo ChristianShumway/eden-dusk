@@ -1,9 +1,10 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, HostListener, inject, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, inject, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
 import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
+import { Swiper } from 'swiper/types';
 
 @Component({
   selector: 'home-preview-store',
@@ -24,6 +25,9 @@ export class PreviewStoreComponent {
   svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
   slidesPerView = 3;
   screenWidth: number = 0;
+
+  @ViewChild('swiperContainer') swiperContainer!: ElementRef;
+  swiper!: Swiper;
 
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: Object
@@ -88,5 +92,11 @@ export class PreviewStoreComponent {
       image: 'https://uc7fd31d65232618df6f6067e78e.previews.dropboxusercontent.com/p/thumb/ACl188lwbMQVmDWC4Ai7oMOpa79wWFnDSs9JqY2kZ8HIVxyM7_6PqLHS_pDOwZURSWuj2qBsgVP2j9_4GHJUZlNGUY8zlSKMIe1nFgkbHtDkDApcFFf4VIPm8PoBcJirxW9_KvQ_A1lWkKuypmP2Ao4MuUqlXTRwBbLsaeMlITpuBHpWsvatMLtfiF1WCYRxIFIUEI4ePCoXaXD4uBEQ95Do8aUM_WJYLPeISDWPJlJqDVD7L0v8ngXXxkCngD2ChMvfFMDgl0V8E1YDEpSjkvOXXNl0hjCz6pV0kyHBf2rZgZokLkktcaR8xXnfo7bTmEdkkBm4XX6UowXKIRuHDUgvIGCibUanTJaDdIGoEBRzu1Aj3n_GelnhVOR7UyMczWfzwE0sYr40eublttf_5S5NNrhrXGkyBF1QMzT5D9ylXcTxKXUQMZY1slxjmZCzshGi-RqoIE5U-gYgCPLnw1Vb3vO68CQDPtEtb7Wlw1jpBChCmSdy9ofhXnUAli-OAGOndZHksbmA2lYc1stWUyFSIQ4JFWimwVfwl3NXXwCGYyq4-i9to1SdDIToJd3L6BqJP93fzDlPeM8VBbkCb6ZsVvdcHESQan02xP43dfEacNvr9ZGNXuJUTZSBT9-mRominfdvzw_AklWurMsYhGdnXGHVFAOphaorUsa6MS9LXg7d8g3jMmK7gz_OB2gwUIDtQemM5uf5jrJUldxko5pp8RI7Uprz5Y1YUtc57kFSrcNWazduOadPf26d2q3Z-06ysvlvVg2USl0FCEl1biVJSn_txagZvUmoojOJWx2Qp42nafzxVk1rnDtWK3u5_rQCX9eMLBgaURh70SJq3RkQj_5SFxlDIwHlc4cR-KwugUF8QIGmOfBeRNCAx3zbr0ZF2EmdzdHA_oCOAVm778svhDjmpv34r-cFJP2Mlb-4AudWuP2bDx_K_rT4JQmpJjhsliUzGOTteNbmZ-o6DQXUPIO8oHl3f-vpmmtsnZVWX-_9M0QlUgSZ9rYzGsEVCZ7uWQwatKKG9FW48LOVKM242TYTybiAavJskTjsJOqaNn8frIfO8fjnzaE3jpv6Up8/p.jpeg'
     },
   ];
+
+  ngOnDestroy() {
+    if (this.swiper) {
+      this.swiper.destroy(true, true);
+    }
+  }
 
 }

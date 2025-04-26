@@ -23,10 +23,12 @@ module.exports = {
       },
       colors: {
         'primary': {
-          // 200: "#D4A84A",
-          200: "#e0b847",
+          300: "#7C8D64",
+          200: "#8E9F76",
           DEFAULT: "#A3B18A",
-          100: "#F9DF93",
+          100: "#DDE2D2",
+          50: "#F3F5EF",
+          'focus': '#C3CEA8'
         },
         'secondary': {
           DEFAULT: "darkgoldenrod"
