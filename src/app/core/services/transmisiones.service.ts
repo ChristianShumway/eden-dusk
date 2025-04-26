@@ -2,13 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { TransmisionModel } from "../models/transmission.model";
+import { PathsEnum } from "../utils/paths.enum";
 @Injectable({ providedIn: 'root' })
 
 export class TransmisionesService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl = 'http://209.38.152.22:3000';
+  private readonly apiUrl = PathsEnum.APIURL;
   private readonly pathTransmissions = 'api/events';
   private readonly pathLastTransmissions = 'api/events/findPastEvents';
 
