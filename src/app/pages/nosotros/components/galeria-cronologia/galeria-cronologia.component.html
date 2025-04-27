@@ -14,7 +14,7 @@
         <p class="font-secondary-bold text-primary text-2xl md:text-3xl mb-4"> {{ currencyEvent().title }} </p>
         <p class="text-base mb-8"> {{ currencyEvent().description }} </p>
         <div class="text-end">
-          <button type="button" class="inline-flex justify-center items-center  text-black hover:text-primary-300 border border-black hover:border-primary-focus hover:bg-primary-50 focus:ring-1 focus:outline-none focus:ring-primary-100">
+          <button type="button" class="inline-flex justify-center items-center  text-black hover:text-primary-300 border border-black hover:border-primary-focus hover:bg-primary-50 focus:ring-1 focus:outline-none focus:ring-primary-100 dark:bg-black dark:text-gray-400 dark:border-gray-600 dark:hover:text-black dark:hover:bg-white dark:focus:ring-gray-700">
             Conoce un poco más
             <div class="w-4 h-4 ms-2 flex" [innerHTML]="svgArrow"></div>
           </button>
@@ -38,10 +38,10 @@
           <div class="flex-shrink-0 w-48" (click)="selectItem(item)" onkeypress>
             <img
               [ngClass]="{
-                'border-2 border-primary-300': currencyEvent().id === item.id,
+                'border-2 border-primary-200': currencyEvent().id === item.id,
                 'border': currencyEvent().id !== item.id,
               }"
-              class="h-48 w-48 object-cover rounded-lg cursor-pointer  border-1 hover:border-primary-200"
+              class="h-48 w-48 object-cover rounded-lg cursor-pointer  border-1 hover:border-primary-100"
               [src]="item.image"
               alt="cronologia"
             />

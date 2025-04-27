@@ -5,11 +5,11 @@
       Línea del tiempo
     </div>
 
-    <div class="w-full p-6 mb-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full p-6 mb-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-black/50 dark:border-gray-700">
       <ol class="relative border-s border-gray-200 dark:border-gray-700 pl-2">
         @for (item of dataDummy; track $index; ; let last = $last) {
           <li class="mb-10 ms-6">
-              <span class="absolute flex items-center justify-center w-8 h-8 -left-4 bg-primary-50 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+              <span class="absolute flex items-center justify-center w-8 h-8 -left-4 bg-primary-50 rounded-full -start-3 ring-8 ring-white dark:ring-transparent dark:bg-primary-300">
                 <div class="w-4 h-4 text-primary-300 dark:text-primary-50" [innerHTML]="svgCalendar"></div>
               </span>
               <h3 class="flex items-center mb-1 text-lg md:text-xl font-primary-bold text-black dark:text-white">
@@ -20,7 +20,7 @@
               </h3>
               <time class="block mb-2 text-sm font-normal leading-none text-primary dark:text-gray-500">Released on January 13th, 2022</time>
               <p class="mb-4 text-base font-normal text-black dark:text-gray-400">{{ item.description }} </p>
-              <button class="inline-flex items-center  text-black bg-white border-black  hover:bg-primary-50 hover:text-primary-300 hover:border-primary-focus focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+              <button class="inline-flex items-center  text-black bg-white border-black  hover:bg-primary-50 hover:text-primary-300 hover:border-primary-focus focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-black dark:text-gray-400 dark:border-gray-600 dark:hover:text-black dark:hover:bg-white dark:focus:ring-gray-700">
                 Ver más detalles
               </button>
           </li>

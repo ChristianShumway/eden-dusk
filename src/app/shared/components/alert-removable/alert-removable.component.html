@@ -1,7 +1,7 @@
 <div
   id="alert-message"
   [ngClass] = "
-    { 'text-blue-600 bg-blue-100 dark:text-white dark:bg-blue-500': type() === 'info' }
+    { 'text-blue-600 bg-blue-100 dark:text-white dark:bg-blue-400': type() === 'info' }
   "
   class="flex items-center p-4 mb-4  rounded-lg dark:bg-gray-800"
   role="alert"
@@ -13,7 +13,7 @@
   <button
     type="button"
     [ngClass] = "
-      { 'bg-blue-50 text-blue-500 focus:ring-blue-400 p-1.5 hover:bg-blue-300 hover:text-white dark:text-white dark:bg-blue-500 dark:hover:bg-blue-700': type() === 'info' }
+      { 'bg-blue-50 text-blue-500 focus:ring-blue-400 p-1.5 hover:bg-blue-300 hover:text-white dark:text-blue-400 dark:bg-white dark:hover:bg-blue-600': type() === 'info' }
     "
     class="ms-auto -mx-1.5 -my-1.5  rounded-lg focus:ring-1  inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800  dark:hover:bg-gray-700 transition-colors duration-300"
     data-dismiss-target="#alert-message"

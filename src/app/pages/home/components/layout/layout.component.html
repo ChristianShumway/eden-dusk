@@ -10,15 +10,15 @@
 
   </div>
   <div class="col__actions mb-4  w-4/5 mx-auto my-0 md:mb-8 flex justify-start items-center gap-5 flex-col md:w-full md:flex-row">
-    <button type="button" class="w-full md:w-auto text-white border-white hover:border-primary-focus hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-50">Ver proyectos</button>
-    <button type="button" class="w-full md:w-auto text-white border-white hover:border-primary-focus hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-50">Ver transmisiones</button>
-    <button type="button" class="w-full md:w-auto text-white border-primary-focus bg-primary hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-50 transition-colors duration-300">Apoya el proyecto</button>
+    <button type="button" class="w-full md:w-auto text-white border-white hover:border-primary-focus hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-50 dark:hover:text-black">Ver proyectos</button>
+    <button type="button" class="w-full md:w-auto text-white border-white hover:border-primary-focus hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-50 dark:hover:text-black">Ver transmisiones</button>
+    <button type="button" class="w-full md:w-auto text-white border-primary-focus bg-primary hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-50 dark:text-black dark:hover:text-black">Apoya el proyecto</button>
   </div>
   <div class="relative w-full h-40 md:h-48 z-10">
     <div class="col__items w-full grid gap-4 md:gap-8 grid-cols-1 md:grid-cols-3 mb-4">
       @for (item of itemsLayout; track $index) {
         <div
-          class="item__layout w-full p-4 relative border-2 overflow-hidden cursor-pointer border-primary rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-200"
+          class="item__layout w-full p-4 relative border-2 overflow-hidden cursor-pointer border-primary rounded-xl shadow-sm dark:bg-gray-800"
         >
           <span class="absolute bottom-6 right-6 text-white font-primary-thin font-primary text-2xl"> {{ item.text }} </span>
           <div class="layout__imagebg bg-cover bg-no-repeat bg-center absolute top-0 right-0 bottom-0 left-0 " [style.background-image]="item.url | backgroundImage"></div>
