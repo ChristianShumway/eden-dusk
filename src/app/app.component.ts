@@ -28,6 +28,7 @@ export class AppComponent {
 
   public svgArrowUp = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
   public mostrarScrollTop = false;
+  public mostrarScrollDown = true;
 
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: Object
@@ -46,11 +47,21 @@ export class AppComponent {
   @HostListener('window:scroll', [])
   onScroll(): void {
     this.mostrarScrollTop = window.scrollY > 500;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    this.mostrarScrollDown = scrollY < 100;
   }
+
 
   scrollArriba(): void {
     window.scrollTo({
       top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  scrollDown() {
+    window.scrollBy({
+      top: 1000,
       behavior: 'smooth'
     });
   }
