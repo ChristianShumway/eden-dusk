@@ -7,6 +7,7 @@ import { TransmisionesService } from '../../../../core/services/transmisiones.se
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { CommonModule } from '@angular/common';
 import { ModalTransmisionComponent } from '../../../../shared/components/modal-transmision/modal-transmision.component';
+import { DialogHelpFloatComponent } from '../../../../shared/components/dialog-help-float/dialog-help-float.component';
 
 @Component({
   selector: 'app-main-transmisiones',
@@ -17,6 +18,7 @@ import { ModalTransmisionComponent } from '../../../../shared/components/modal-t
     EventosProximosComponent,
     EventosPasadosComponent,
     ModalTransmisionComponent,
+    DialogHelpFloatComponent,
     BackgroundImagePipe
   ],
   templateUrl: './main-transmisiones.component.html',
@@ -35,6 +37,8 @@ export class MainTransmisionesComponent implements OnInit {
   public eventosPasados = signal<TransmisionModel[]>([]);
   public dateToSearh = new Date();
   public eventSelected!: TransmisionModel;
+  public titleMsg: string = 'Atención';
+  public descriptionMsg: string = 'Para poder ver los eventos de otro mes, selecciona la fecha en el calendario existente.';
 
   ngOnInit(): void {
     this.getTransmissionsByMonth(this.dateToSearh);

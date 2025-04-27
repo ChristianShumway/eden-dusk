@@ -14,5 +14,6 @@ export class PremiosDistincionesComponent {
   private readonly svgService = inject(SvgService);
 
   public svgArrow = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
+  public svgAngle = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
 
 }

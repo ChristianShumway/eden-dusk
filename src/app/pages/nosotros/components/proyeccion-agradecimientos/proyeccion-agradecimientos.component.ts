@@ -13,6 +13,6 @@ export class ProyeccionAgradecimientosComponent {
 
   private readonly svgService = inject(SvgService);
 
-  public svgArrow = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
+  public svgArrow = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
 
 }

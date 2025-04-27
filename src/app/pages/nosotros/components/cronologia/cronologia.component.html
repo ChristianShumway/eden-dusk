@@ -1,33 +1,28 @@
 <section class="my-8">
   <div class="w-full">
-    <div class="text-3xl md:text-4xl lg:text-5xl text-black dark:text-sage-100 mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start capitalize">
+    <div class="text-2xl md:text-3xl lg:text-4xl text-black dark:text-sage-100 mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start uppercase">
+      <div [innerHTML]="svgArrow" class="w-12 h-12 text-primary lg:w-12 lg:h-12 hidden md:flex md:mr-4"></div>
       Línea del tiempo
-      <div [innerHTML]="svgArrow" class="w-8 h-8 text-primary lg:w-12 lg:h-12 hidden md:flex md:ml-4"></div>
     </div>
 
     <div class="w-full p-6 mb-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-      <ol class="relative border-s border-gray-200 dark:border-gray-700">
+      <ol class="relative border-s border-gray-200 dark:border-gray-700 pl-2">
         @for (item of dataDummy; track $index; ; let last = $last) {
           <li class="mb-10 ms-6">
-              <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                <svg class="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                </svg>
+              <span class="absolute flex items-center justify-center w-8 h-8 -left-4 bg-primary-50 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                <div class="w-4 h-4 text-primary-300 dark:text-primary-50" [innerHTML]="svgCalendar"></div>
               </span>
-              <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 class="flex items-center mb-1 text-lg md:text-xl font-primary-bold text-black dark:text-white">
                 {{ item.title }}
                 @if(last) {
-                  <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300 ms-3">Último</span>
+                  <span class="bg-primary-50 text-primary-300 text-xs font-secondary-regular me-2 px-2 py-1.5 rounded-lg dark:bg-blue-900 dark:text-blue-300 ms-3">Último</span>
                 }
               </h3>
-              <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on January 13th, 2022</time>
-              <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{{ item.description }} </p>
-              <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-                <svg class="w-3.5 h-3.5 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/>
-                  <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
-                </svg> Download ZIP
-              </a>
+              <time class="block mb-2 text-sm font-normal leading-none text-primary dark:text-gray-500">Released on January 13th, 2022</time>
+              <p class="mb-4 text-base font-normal text-black dark:text-gray-400">{{ item.description }} </p>
+              <button class="inline-flex items-center  text-black bg-white border-black  hover:bg-primary-50 hover:text-primary-300 hover:border-primary-focus focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+                Ver más detalles
+              </button>
           </li>
         }
       </ol>
@@ -36,16 +31,17 @@
   </div>
 
 
-  <div class="section__whois rounded  bg-center bg-cover bg-no-repeat bg-[url('https://uc9914f3cc8f8eccac8601845b70.previews.dropboxusercontent.com/p/thumb/ACk-_C1jfJBXhbX9S1AUisAw1eekVJio8t06-7YJMsmQybfnglc3tnM1h96bd-78xynygm7fqeGzzQbzE6ZkgWvzAaauABck2AfCkgFgzEeIKWLpKG9euH4IDENAZ2Qco-JJgOtKUhvMTC6bVVk8gdIWYPJf1s9hKXHKnVQN1716ehBxgtkQj92yZ1CQ1AXn7fErpoIG-mKZ9khrr0y3FY9r3-_CkUo1w2KO3LRPBW6rklTjSi4h0vYNMttLVNTRCUf8HcHWrRRUcle6bb1VVant935zlhMckKmrmqIHQM4QgjZ1S1xaWaagYlFOpUVcMR76BOLlrQ9im3Gslbo3qux6oSWMwMAOJeMAHNqMbehDg_y8GzW-NAIC0Zqy053sp9I16D0icNDtrukLy-VI1NTy7FplXXDG6mzU-Duok4u_wAF4akQc9iKBtgih-djYg15EJykKU2rCZyAD_Zvcv--cesKmR6i_b40dSfyEbsU5sQ/p.jpeg')] bg-gray-600 bg-blend-multiply">
-    <div class="py-12 px-4 mx-auto max-w-screen-xl text-center lg:py-40 lg:px-8">
+  <div class="section__whois rounded  bg-center bg-cover bg-no-repeat bg-[url('https://raw.githubusercontent.com/ChristianShumway/eden-dusk/refs/heads/master/src/assets/images/fotos/_NEL3202-min.jpg')] bg-gray-600 bg-blend-multiply">
+    <div class="py-24 px-4 mx-auto max-w-screen-xl text-center lg:py-40 lg:px-8">
       <div class="wrap__info relative">
-        <blockquote class="text-2xl text-sage-100 font-secondary-regular mb-6 relative z-10">
+        <blockquote class="text-xl md:text-2xl text-sage-100 font-secondary-light italic mb-6 relative z-10">
           Comenzamos con una sola cámara y un sueño: <span class="text-primary font-primary-regular"> capturar la belleza del universo para compartirla con el mundo. </span>
         </blockquote>
 
-        <p class="mb-16 text-sage-100  text-xl font-primary-thin tracking-tight leading-none relative z-10">
+        <p class="mb-16 text-sage-100  text-xl font-primary-regular tracking-tight leading-none relative z-10">
           - Eden Dusk
         </p>
+
         <div [innerHTML]="svgSemiColons" class="text-primary/60 w-64 h-64 semicolons__bg absolute"></div>
       </div>
     </div>

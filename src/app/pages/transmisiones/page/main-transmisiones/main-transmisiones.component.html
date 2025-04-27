@@ -1,5 +1,5 @@
 <section class="main__transmisiones">
-  <div class="wrapper__bg w-auto h-screen flex flex-col items-start justify-end gap-4 md:gap-0 pb-8">
+  <div class="wrapper__bg  w-auto h-screen flex flex-col items-start justify-end gap-4 md:gap-0 pb-8">
     <div class="bg__layout h-screen bg-cover bg-no-repeat bg-center relative" [style.background-image]="urlImageBackground | backgroundImage"></div>
 
     <div class="col__info  w-full md:w-9/12 lg:w-6/12">
@@ -12,6 +12,10 @@
     </div>
     <div class="col__filters w-full flex justify-center md:justify-end items-center">
       <transmisiones-filtros [eventos]="eventos()" (newDate)="onNewDateEvents($event)" />
+    </div>
+
+    <div class="wrap__help absolute top-36 right-4">
+      <shared-dialog-help-float [titleMsg]="titleMsg" [descriptionMsg]="descriptionMsg"></shared-dialog-help-float>
     </div>
   </div>
 

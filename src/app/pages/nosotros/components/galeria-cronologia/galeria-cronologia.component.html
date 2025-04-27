@@ -1,7 +1,7 @@
 
-<div class="text-3xl mt-8 md:text-4xl lg:text-5xl text-black dark:text-sage-100 mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start capitalize">
+<div class="mt-12 text-2xl md:text-3xl lg:text-4xl text-black dark:text-sage-100 mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start uppercase">
+  <div [innerHTML]="svgAnle" class="w-12 h-12 text-primary lg:w-12 lg:h-12 hidden md:flex md:mr-4"></div>
   Evolución histórica
-  <div [innerHTML]="svgArrow" class="w-8 h-8 text-primary lg:w-12 lg:h-12 hidden md:flex md:ml-4"></div>
 </div>
 <section class="my-8 w-full lg:w-10/12 mx-auto">
   <div class="grid gap-4">
@@ -11,12 +11,12 @@
         <img class="h-auto max-w-full rounded-lg" [src]="currencyEvent().image" alt="">
       </div>
       <div class="info__selection">
-        <p class="font-primary-bold text-2xl md:text-4xl mb-4"> {{ currencyEvent().title }} </p>
+        <p class="font-secondary-bold text-primary text-2xl md:text-3xl mb-4"> {{ currencyEvent().title }} </p>
         <p class="text-base mb-8"> {{ currencyEvent().description }} </p>
         <div class="text-end">
-          <button type="button" href="#" class="inline-flex justify-center items-center py-3 px-5 text-base text-center text-black hover:text-black-100 border border-black hover:border-black-100 hover:bg-primary focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium rounded-lg transition-colors duration-300">
+          <button type="button" class="inline-flex justify-center items-center  text-black hover:text-primary-300 border border-black hover:border-primary-focus hover:bg-primary-50 focus:ring-1 focus:outline-none focus:ring-primary-100">
             Conoce un poco más
-            <div class="w-6 h-6 ms-2 flex" [innerHTML]="svgArrow"></div>
+            <div class="w-4 h-4 ms-2 flex" [innerHTML]="svgArrow"></div>
           </button>
         </div>
       </div>
@@ -24,7 +24,7 @@
 
 
     <div class="wrap__slide relative w-full overflow-hidden">
-      <button (click)="scrollLeft()" type="button" class="absolute left-2 top-1/2 -translate-y-1/2 rotate-180 z-10text-white bg-primary hover:bg-primary-200 focus:ring-0 focus:outline-none rounded-full p-2.5  inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-200">
+      <button (click)="scrollLeft()" type="button" class="absolute left-2 top-1/2 border-0 -translate-y-1/2 rotate-180 z-10 text-white bg-primary hover:bg-primary-200 focus:ring-0 focus:outline-none rounded-full p-2.5  inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-200">
         <div class="w-4 h-4 flex text-white dark:text-black" [innerHTML]="svgArrow"></div>
       </button>
 
@@ -38,10 +38,10 @@
           <div class="flex-shrink-0 w-48" (click)="selectItem(item)" onkeypress>
             <img
               [ngClass]="{
-                'border-2 border-primary-200': currencyEvent().id === item.id,
+                'border-2 border-primary-300': currencyEvent().id === item.id,
                 'border': currencyEvent().id !== item.id,
               }"
-              class="h-48 w-48 object-cover rounded-lg cursor-pointer  border-1 hover:border-primary-100"
+              class="h-48 w-48 object-cover rounded-lg cursor-pointer  border-1 hover:border-primary-200"
               [src]="item.image"
               alt="cronologia"
             />
@@ -49,7 +49,7 @@
         }
       </div>
 
-      <button (click)="scrollRight()" type="button" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 text-white bg-primary hover:bg-primary-200 focus:ring-0 focus:outline-none rounded-full p-2.5  inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-200">
+      <button (click)="scrollRight()" type="button" class="absolute border-none right-2 top-1/2 -translate-y-1/2 z-10 text-white bg-primary hover:bg-primary-200 focus:ring-0 focus:outline-none rounded-full p-2.5  inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-200">
         <div class="w-4 h-4 flex text-white dark:text-black" [innerHTML]="svgArrow"></div>
       </button>
     </div>

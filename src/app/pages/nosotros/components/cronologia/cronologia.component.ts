@@ -19,7 +19,8 @@ export class CronologiaComponent {
   private readonly svgService = inject(SvgService);
 
   svgSemiColons: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.semicolons);
-  svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight)
+  svgCalendar: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.calendar);
+  svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.angleRight)
 
   public dataDummy:TimeLineHistoryModel[] = [
     {
