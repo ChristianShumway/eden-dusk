@@ -2,10 +2,10 @@
   <div class="border border-gray-200 rounded-lg shadow-sm bg-sage-100/20 dark:bg-black/50 dark:border-gray-700 px-2 py-8 md:px-4 mb-6">
     <div class=" mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start uppercase">
       <div [innerHTML]="svgArrow" class="w-12 h-12 text-primary hidden md:flex md:mr-4"></div>
-      <span class="text-2xl md:text-3xl lg:text-4xl text-black dark:text-sage-100"> Productos más populares </span>
+      <span class="text-2xl md:text-3xl lg:text-4xl"> Productos más populares </span>
     </div>
 
-    <p class="text-base md:text-lg  text-black dark:text-sage-100 mb-4 md:mb-6 text-center md:text-start">
+    <p class="text-base md:text-lg mb-4 md:mb-6 text-center md:text-start">
       Cada pieza que adquieres contribuye a la producción de
       documentales culturales, talleres en comunidades y respaldas la misión cultural y ambiental de Eden Dusk.
     </p>
@@ -15,9 +15,9 @@
         ¿Deséas apoyar al proyecto?
       </p>
       <div class="col__actions w-full flex justify-start items-center gap-5 flex-col md:w-full md:flex-row">
-        <button type="button" class="w-full md:w-auto text-black border-black hover:text-white hover:border-primary-50 hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium dark:text-sage-100 dark:border-sage-100 dark:hover:text-black">Ver tienda completa</button>
-        <button type="button" class="w-full md:w-auto text-black border-black hover:text-white hover:border-primary-50 hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium dark:text-sage-100 dark:border-sage-100 dark:hover:text-black">Haz una donación</button>
-        <button type="button" class="w-full md:w-auto text-black border-black hover:text-white hover:border-primary-50 hover:bg-primary-200 focus:ring-1 focus:outline-none focus:ring-primary-100 font-medium dark:text-sage-100 dark:border-sage-100 dark:hover:text-black">Patrocinadores</button>
+        <button type="button" class="w-full md:w-auto btn__outline--black">Ver tienda completa</button>
+        <button type="button" class="w-full md:w-auto btn__outline--black">Haz una donación</button>
+        <button type="button" class="w-full md:w-auto btn__outline--black">Patrocinadores</button>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
             </div>
             <div class="flex items-center justify-between">
                 <span class="text-2xl font-bold text-black dark:text-white"> {{ producto.price | currency }} </span>
-                <button type="button" class="bg-primary px-2 py-2.5 text-sm lg:text-base hover:bg-primary-200 text-white dark:text-black dark:hover:text-black"
+                <button type="button" class="px-2 py-2.5 text-sm lg:text-base  btn__primary"
                 >
                   Agregar al carrito
                 </button>

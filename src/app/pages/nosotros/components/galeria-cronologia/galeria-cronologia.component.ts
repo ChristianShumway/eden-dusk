@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SvgService } from '../../../../core/services/svg.service';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
@@ -14,10 +14,12 @@ import { PathsEnum } from '../../../../core/utils/paths.enum';
   templateUrl: './galeria-cronologia.component.html',
   styleUrl: './galeria-cronologia.component.scss'
 })
-export class GaleriaCronologiaComponent {
+export class GaleriaCronologiaComponent implements AfterViewInit {
 
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
   private readonly svgService = inject(SvgService);
+  public isAtStart = true;
+  public isAtEnd = false;
 
   public svgAnle = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
   public svgArrow = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
@@ -74,6 +76,23 @@ export class GaleriaCronologiaComponent {
   ];
 
   currencyEvent = signal<TimeLineHistoryModel>(this.dataDummy[0]);
+
+
+  ngAfterViewInit(): void {
+    this.scrollContainer.nativeElement.addEventListener('scroll', () => {
+      this.checkScrollPosition();
+    });
+    this.checkScrollPosition(); // Llamarlo al inicio
+  }
+
+  checkScrollPosition() {
+    const container = this.scrollContainer.nativeElement;
+    const scrollLeft = container.scrollLeft;
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+    this.isAtStart = scrollLeft <= 0;
+    this.isAtEnd = scrollLeft >= maxScrollLeft - 1; // Pequeña tolerancia
+  }
 
   scrollLeft() {
     this.scrollContainer.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });

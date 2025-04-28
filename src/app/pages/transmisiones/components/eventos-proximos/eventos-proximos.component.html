@@ -14,12 +14,12 @@
         <span class="text-sm text-black-100 font-primary-bold"> {{ numberMont }} </span>
       </div>
     </div>
-    <div class="text-2xl md:text-3xl lg:text-4xl text-black dark:text-sage-100  font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start uppercase">
+    <div class="text-2xl md:text-3xl lg:text-4xl  font-primary-bold text-center md:text-start flex items-center justify-center md:justify-start uppercase">
       {{ dateEvents().getMonth() + 1 | mesNombre }}
     </div>
   </div>
 
-  <p class="text-base md:text-lg  text-black dark:text-sage-100 mb-4 md:mb-6 text-start md:text-start">
+  <p class="text-base md:text-lg mb-4 md:mb-6 text-start md:text-start">
     es un pilar esencial del proyecto Eden Dusk, ya
     que muestra la realidad en tiempo real, permitiendo a la audiencia sumergirse en
     paisajes, eventos culturales, rituales, talleres y cualquier experiencia significativa que
@@ -35,17 +35,17 @@
     <div class="flex items-center">
       <h3 class="text-2xl font-secondary-bold text-primary">¡Apoya nuestro proyecto!</h3>
     </div>
-    <div class="mt-2 mb-6 text-base">
+    <div class="mt-2 mb-6">
       Recuerda que es importante el apoyo que recibimos por parte de sus donaciones para mantener viva la experiencia de nuestra cultural,
       rituales y toda tipo de experiencia que sucede en nuestro Estado.
     </div>
     <div class="flex flex-wrap justify-center items-center md:flex-nowrap md:justify-start gap-4">
       <button type="button"
-        class="w-full md:w-auto bg-primary hover:bg-primary-200 hover:border-primary-50 text-white px-6 py-3 rounded-md focus:ring-1 focus:outline-none dark:text-black">
+        class="w-full md:w-auto btn__primary">
         Apoya nuestro proyecto
       </button>
-      <button (click)="scrollDown.emit()" type="button" class="group w-full md:w-auto flex items-center border rounded-lg text-sm bg-transparent text-black border-black hover:text-white hover:border-black-100 hover:bg-black focus:ring-1 focus:outline-none font-medium px-6 py-3 text-center cursor-pointer transition-colors dark:text-sage-100 dark:border-sage-100 dark:hover:text-black dark:hover:border-white dark:hover:bg-sage-100 duration-300" >
-        <div class="me-2 w-5 h-5 text-black group-hover:text-white dark:text-sage-100 dark:group-hover:text-black flex items-center"  [innerHTML]="svgCamara()"></div>
+      <button (click)="scrollDown.emit()" type="button" class="group w-full md:w-auto flex items-center btn__outline--black" >
+        <div class="me-2 w-5 h-5 btn__outline--black flex items-center"  [innerHTML]="svgCamara()"></div>
         Ver últimas transmisiones
       </button>
     </div>
