@@ -1,7 +1,7 @@
-<section class="main__blog">
+<section class="main__blog my-8">
   <blog-layout />
   <blog-filtros [categories]="categoriesList()" (setCategoryOut)="onChangeCategory($event)" />
-  <div class="grid__blog my-8 grid gap-4">
+  <div class="grid__blog grid grid-cols-1 lg:grid-cols-[75%_25%] gap-4">
     <div class="wrapper__main">
       <blog-feed-articulos/>
     </div>
