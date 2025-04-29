@@ -1,0 +1,14 @@
+<div class="flex items-center justify-center gap-1.5 py-4 md:py-8 flex-wrap">
+  @for (category of categories(); track $index) {
+    <button
+      type="button"
+      (click)="setCategory(category)"
+      [ngClass]="{
+        'btn__filter--active': category.name === currencyFilter(),
+        'btn__filter': category.name !== currencyFilter()
+      }"
+    >
+      {{ category.name }}
+    </button>
+  }
+</div>

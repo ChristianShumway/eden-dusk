@@ -1,1 +1,12 @@
-<p>main-blog works!</p>
+<section class="main__blog">
+  <blog-layout />
+  <blog-filtros [categories]="categoriesList()" (setCategoryOut)="onChangeCategory($event)" />
+  <div class="grid__blog my-8 grid gap-4">
+    <div class="wrapper__main">
+      <blog-feed-articulos/>
+    </div>
+    <div class="wrapper__sidebar">
+      <blog-side-bar />
+    </div>
+  </div>
+</section>
