@@ -5,12 +5,13 @@ export interface ArticleModel {
   title: string;
   description: string;
   date: string; // Formato: 'yyyy/MM/dd'
-  type: CategoryArticle;
-  time: string; // "12:00:00"
+  category: CategoryArticle;
   imageUrl: string;
   imageUrlThumbnail: string;
   imageUrlMedium: string;
   color: string;
+  authorImage: string;
+  authorName: string;
 }
 
 export interface CategoryArticleModel {

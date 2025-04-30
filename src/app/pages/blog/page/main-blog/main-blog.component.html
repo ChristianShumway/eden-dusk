@@ -1,12 +1,12 @@
-<section class="main__blog my-8">
+<section class="main__blog">
   <blog-layout />
   <blog-filtros [categories]="categoriesList()" (setCategoryOut)="onChangeCategory($event)" />
-  <div class="grid__blog grid grid-cols-1 lg:grid-cols-[75%_25%] gap-4">
+  <div class="grid__blog grid grid-cols-1 lg:grid-cols-[3fr_1.5fr] gap-4 overflow-hidden">
     <div class="wrapper__main">
-      <blog-feed-articulos/>
+      <blog-feed-articulos [articles]="articles()"/>
     </div>
     <div class="wrapper__sidebar">
-      <blog-side-bar />
+      <blog-side-bar [articles]="articles()" />
     </div>
   </div>
 </section>

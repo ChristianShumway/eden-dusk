@@ -1,4 +1,4 @@
-<div class="p-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+<div class="p-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-black/50 dark:border-gray-700">
 
   <div class=" mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start uppercase">
     <div [innerHTML]="svgAngle()" class="w-12 h-12 text-primary hidden md:flex md:mr-4"></div>
@@ -6,15 +6,11 @@
   </div>
 
   <ol class="mt-3 divide-y divide-gray-200 dark:divide-gray-700">
-    <li>
-      <blog-articulo-feed />
-    </li>
-    <li>
-      <blog-articulo-feed />
-    </li>
-    <li>
-      <blog-articulo-feed />
-    </li>
+    @for (article of articles(); track $index) {
+      <li>
+        <blog-articulo-feed [article]="article" />
+      </li>
+    }
   </ol>
 </div>
 

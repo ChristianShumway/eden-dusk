@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
-import { PathsEnum } from '../../../../core/utils/paths.enum';
+import { ArticleModel } from '../../../../core/models/article-blog.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'blog-articulo-feed',
   standalone: true,
   imports: [
+    CommonModule,
     BackgroundImagePipe
   ],
   templateUrl: './articulo-feed.component.html',
@@ -13,6 +15,6 @@ import { PathsEnum } from '../../../../core/utils/paths.enum';
 })
 export class ArticuloFeedComponent {
 
-  public urlImageBackground: string = `${PathsEnum.URLIMAGES}/_NEL2385-min.jpg`;
+  public article = input.required<ArticleModel>();
 
 }

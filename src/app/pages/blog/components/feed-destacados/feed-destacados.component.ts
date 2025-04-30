@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-feed-destacados',
+  selector: 'blog-feed-destacados',
   standalone: true,
   imports: [],
   templateUrl: './feed-destacados.component.html',

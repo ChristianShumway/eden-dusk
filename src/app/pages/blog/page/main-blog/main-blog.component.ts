@@ -4,7 +4,7 @@ import { FiltrosComponent } from '../../components/filtros/filtros.component';
 import { FeedArticulosComponent } from '../../components/feed-articulos/feed-articulos.component';
 import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 import { BlogService } from '../../../../core/services/blog.service';
-import { CategoryArticleModel } from '../../../../core/models/article-blog.model';
+import { ArticleModel, CategoryArticleModel } from '../../../../core/models/article-blog.model';
 
 @Component({
   selector: 'app-main-blog',
@@ -23,15 +23,23 @@ export class MainBlogComponent implements OnInit {
   private readonly blogService = inject(BlogService);
 
   public categoriesList = signal<CategoryArticleModel[]>([]);
+  public articles = signal<ArticleModel[]>([]);
 
   ngOnInit(): void {
     this.getCategories();
+    this.getAllArticles();
   }
 
   getCategories() {
     this.blogService.getCategories().subscribe({
       next: response => this.categoriesList.set(response)
     });
+  }
+
+  getAllArticles() {
+    this.blogService.getAllArticles().subscribe({
+      next: response => this.articles.set(response)
+    })
   }
 
   onChangeCategory(category: CategoryArticleModel) {
