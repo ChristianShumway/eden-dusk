@@ -1,1 +1,43 @@
-<p>feed-destacados works!</p>
+<div>
+  <p class="text-xl md:text-2xl font-secondary-bold uppercase mb-4">
+    Articulos Destacados
+  </p>
+
+  <div class="wrap__slide relative w-full overflow-hidden">
+    <button
+      (click)="scrollLeft()"
+      type="button"
+      [ngClass]="{
+        'opacity-50 cursor-none': isAtStart,
+        'bg-primary hover:bg-primary-200': !isAtStart
+      }"
+      class="absolute lg:hidden left-2 top-1/2 border-0 -translate-y-1/2 rotate-180 z-10 text-white focus:ring-0 focus:outline-none rounded-full p-2.5  inline-flex items-center me-2 dark:bg-white dark:hover:bg-gray-200">
+      <div class="w-4 h-4 flex text-white dark:text-black" [innerHTML]="svgArrow"></div>
+    </button>
+
+    <!-- Contenedor scrollable -->
+    <div
+      #scrollContainer
+      class="flex overflow-x-auto scroll-smooth space-x-4 scrollbar-hide px-1 max-w-full lg:grid lg:overflow-x-hidden lg:space-x-0 lg:px-0"
+    >
+      @for (article of articles(); track $index) {
+        <div class="flex-shrink-0 lg:flex-shrink w-64 lg:w-full">
+          <blog-articulo-destacado [article]="article" />
+        </div>
+      }
+    </div>
+
+    <button
+      (click)="scrollRight()"
+      type="button"
+      [ngClass]="{
+        'opacity-50 cursor-none': isAtEnd,
+        'bg-primary hover:bg-primary-200': !isAtEnd
+      }"
+      class="absolute lg:hidden border-none right-2 top-1/2 -translate-y-1/2 z-10 text-white focus:ring-0 focus:outline-none rounded-full p-2.5  inline-flex items-center me-2 dark:bg-white dark:hover:bg-gray-200">
+      <div class="w-4 h-4 flex text-white dark:text-black" [innerHTML]="svgArrow"></div>
+    </button>
+
+  </div>
+
+</div>

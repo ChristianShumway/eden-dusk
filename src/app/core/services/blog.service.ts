@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from "rxjs";
+import { map, Observable, of } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
 import { ArticleModel, CategoryArticleModel } from '../models/article-blog.model';
 
@@ -77,6 +77,13 @@ export class BlogService {
 
   getAllArticles(): Observable<ArticleModel[]> {
     return of (ARTICLES_DUMMY);
+  }
+
+  getHighlights(): Observable<ArticleModel[]> {
+    return of (ARTICLES_DUMMY).pipe(
+      map(articles => articles.slice(0, 5))
+
+    );
   }
 
   // getTransmissionsByMonth(category: string): Observable<ArticleModel[]> {
