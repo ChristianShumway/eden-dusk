@@ -3,6 +3,7 @@ import { NewsletterSidebarComponent } from '../newsletter-sidebar/newsletter-sid
 import { FeedDestacadosComponent } from '../feed-destacados/feed-destacados.component';
 import { ArticleModel } from '../../../../core/models/article-blog.model';
 import { CommonModule } from '@angular/common';
+import { AutoresComponent } from '../autores/autores.component';
 
 @Component({
   selector: 'blog-side-bar',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     NewsletterSidebarComponent,
     FeedDestacadosComponent,
+    AutoresComponent
   ],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.scss'

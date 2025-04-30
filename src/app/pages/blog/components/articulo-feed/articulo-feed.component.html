@@ -24,7 +24,10 @@
         </span>
       </div>
       <div class="actions text-end md:text-start">
-        <button type="button" class="btn__primary"> Ver más </button>
+        <button type="button" class="inline-flex justify-center items-center  btn__outline--black">
+          Ver más
+          <div class="w-4 h-4 ms-2 flex" [innerHTML]="svgArrow()"></div>
+        </button>
       </div>
     </div>
     <div class="col__image w-full h-64 md:h-auto bg-no-repeat bg-center bg-cover order-1 md:order-2 " [style.background-image]="article().imageUrl | backgroundImage"></div>
