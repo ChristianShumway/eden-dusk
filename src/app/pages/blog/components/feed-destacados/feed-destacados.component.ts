@@ -27,6 +27,8 @@ export class FeedDestacadosComponent implements AfterViewInit {
 
   public isAtStart = true;
   public isAtEnd = false;
+  public totalScroll: number = 300;
+
 
   ngAfterViewInit(): void {
     this.scrollContainer.nativeElement.addEventListener('scroll', () => {
@@ -40,8 +42,13 @@ export class FeedDestacadosComponent implements AfterViewInit {
     const scrollLeft = container.scrollLeft;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
 
+    console.log(container.scrollWidth)
+    console.log(container.scrollWidth - scrollLeft);
+
     this.isAtStart = scrollLeft <= 0;
-    this.isAtEnd = scrollLeft >= maxScrollLeft - 1; // Pequeña tolerancia
+    // this.isAtEnd = scrollLeft >= maxScrollLeft - 1; // Pequeña tolerancia
+    this.isAtEnd =  container.scrollWidth - scrollLeft < this.totalScroll;
+    console.log(this.isAtEnd);
   }
 
   scrollLeft() {
@@ -49,7 +56,7 @@ export class FeedDestacadosComponent implements AfterViewInit {
   }
 
   scrollRight() {
-    this.scrollContainer.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
+    this.scrollContainer.nativeElement.scrollBy({ left: this.totalScroll, behavior: 'smooth' });
   }
 
 }

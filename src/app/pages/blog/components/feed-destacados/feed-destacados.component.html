@@ -5,7 +5,7 @@
 
   <div class="wrap__slide relative w-full overflow-hidden mb-8">
     <button
-      (click)="scrollLeft()"
+      (click)="!isAtStart && scrollLeft()"
       type="button"
       [ngClass]="{
         'opacity-50 cursor-none': isAtStart,
