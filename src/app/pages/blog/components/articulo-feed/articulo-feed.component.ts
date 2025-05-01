@@ -5,6 +5,7 @@ import { SvgService } from '../../../../core/services/svg.service';
 import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
 import { ArticleModel } from '../../../../core/models/article-blog.model';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'blog-articulo-feed',
@@ -18,10 +19,14 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 })
 export class ArticuloFeedComponent {
 
+  private readonly router = inject(Router);
   private readonly svgService = inject(SvgService);
 
   public article = input.required<ArticleModel>();
   public svgArrow = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.arrowRight));
 
+  goTo(id: number) {
+    this.router.navigate(['/blog', id]);
+  }
 
 }

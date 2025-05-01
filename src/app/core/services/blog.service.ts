@@ -79,6 +79,12 @@ export class BlogService {
     return of (ARTICLES_DUMMY);
   }
 
+  getArticleById(id: number): Observable<ArticleModel> {
+    const article = ARTICLES_DUMMY.find(article => article.id = id);
+    if(!article) return of (ARTICLES_DUMMY[0]);
+    return of (article);
+  }
+
   getHighlights(): Observable<ArticleModel[]> {
     return of (ARTICLES_DUMMY).pipe(
       map(articles => articles.slice(0, 5))

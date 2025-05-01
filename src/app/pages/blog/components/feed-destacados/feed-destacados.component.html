@@ -28,7 +28,7 @@
     </div>
 
     <button
-      (click)="scrollRight()"
+      (click)="!isAtEnd && scrollRight()"
       type="button"
       [ngClass]="{
         'opacity-50 cursor-none': isAtEnd,
