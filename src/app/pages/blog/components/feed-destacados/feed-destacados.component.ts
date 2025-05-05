@@ -17,8 +17,9 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 })
 export class FeedDestacadosComponent implements AfterViewInit {
 
-  public articles = input.required<ArticleModel[]>();
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+  public articles = input.required<ArticleModel[]>();
+  public title = input.required<string>();
 
   private readonly svgService = inject(SvgService);
 
@@ -42,13 +43,8 @@ export class FeedDestacadosComponent implements AfterViewInit {
     const scrollLeft = container.scrollLeft;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
 
-    console.log(container.scrollWidth)
-    console.log(container.scrollWidth - scrollLeft);
-
     this.isAtStart = scrollLeft <= 0;
-    // this.isAtEnd = scrollLeft >= maxScrollLeft - 1; // Pequeña tolerancia
-    this.isAtEnd =  container.scrollWidth - scrollLeft < this.totalScroll;
-    console.log(this.isAtEnd);
+    this.isAtEnd = scrollLeft >= maxScrollLeft - 1; // Pequeña tolerancia
   }
 
   scrollLeft() {

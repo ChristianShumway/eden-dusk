@@ -4,13 +4,20 @@ import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { BlogService } from '../../../../core/services/blog.service';
 import { ArticleModel } from '../../../../core/models/article-blog.model';
+import { FeedDestacadosComponent } from '../../components/feed-destacados/feed-destacados.component';
+import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
+import { SvgService } from '../../../../core/services/svg.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 
 @Component({
   selector: 'app-main-articulo',
   standalone: true,
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    FeedDestacadosComponent,
+    BackgroundImagePipe
   ],
   templateUrl: './main-articulo.component.html',
   styleUrl: './main-articulo.component.scss'
@@ -19,11 +26,18 @@ export class MainArticuloComponent implements OnInit {
 
   private readonly blogService = inject(BlogService);
   private readonly ar = inject(ActivatedRoute);
+  private readonly svgService = inject(SvgService);
+  private readonly sanitizer = inject(DomSanitizer)
 
   public article = signal<ArticleModel | undefined>(undefined);
+  public highLights = signal<ArticleModel[]>([]);
+  public titleFeed : string = 'Artículos recomendados';
+  public svgAngle = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
+  // public descriptionHtml = signal<SafeHtml>(this.sanitizer.bypassSecurityTrustHtml(this.article()?.description));
 
   ngOnInit(): void {
     this.initParams();
+    this.getHighlights();
   }
 
   initParams() {
@@ -34,6 +48,14 @@ export class MainArticuloComponent implements OnInit {
     ).subscribe({
       next: response => {
         this.article.set(response);
+      }
+    })
+  }
+
+  getHighlights() {
+    this.blogService.getHighlights().subscribe({
+      next: response => {
+        this.highLights.set(response);
       }
     })
   }

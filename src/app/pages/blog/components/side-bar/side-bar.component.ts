@@ -20,5 +20,6 @@ import { AutoresComponent } from '../autores/autores.component';
 export class SideBarComponent {
 
   public articles = input.required<ArticleModel[]>();
+  public titleFeed: string = '    Articulos Destacados';
 
 }

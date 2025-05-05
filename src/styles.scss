@@ -56,6 +56,11 @@ button.btn__primary {
   @apply border-primary-focus bg-primary-50 text-primary-300 hover:bg-primary hover:text-white;
 }
 
+button.btn__primary--black {
+  @apply border-black-200 bg-black-100 text-white hover:bg-black dark:border-gray-200 dark:bg-white dark:text-black dark:hover:bg-gray-200;
+}
+
+
 button.btn__outline--white {
   @apply border-white bg-transparent text-white hover:bg-white hover:text-black;
 }

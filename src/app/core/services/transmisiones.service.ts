@@ -15,7 +15,7 @@ export class TransmisionesService {
 
   getTransmissionsByMonth(date: Date): Observable<TransmisionModel[]> {
     const setDate =  this.setDate(new Date(date));
-    return this.http.get<TransmisionModel[]>(`${this.apiUrl}/${this.pathTransmissions}?month='${setDate}'`);
+    return this.http.get<TransmisionModel[]>(`${this.apiUrl}/${this.pathTransmissions}?month=${setDate}`);
   }
 
   getLastTransmissions(): Observable<TransmisionModel[]> {

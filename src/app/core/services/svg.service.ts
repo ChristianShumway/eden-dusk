@@ -14,4 +14,9 @@ export class SvgService {
     return this.sanitizer.bypassSecurityTrustHtml(rawSvg);
   }
 
+  getTrueHtml(text: string): SafeHtml | undefined {
+    if(!text) return this.sanitizer.bypassSecurityTrustHtml('');
+    return this.sanitizer.bypassSecurityTrustHtml(text)
+  }
+
 }
