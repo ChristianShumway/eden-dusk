@@ -9,6 +9,8 @@ import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.p
 import { SvgService } from '../../../../core/services/svg.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
+import { AgregarComentarioComponent } from '../../components/agregar-comentario/agregar-comentario.component';
+import { ComentariosComponent } from '../../components/comentarios/comentarios.component';
 
 @Component({
   selector: 'app-main-articulo',
@@ -17,6 +19,8 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
     RouterModule,
     CommonModule,
     FeedDestacadosComponent,
+    AgregarComentarioComponent,
+    ComentariosComponent,
     BackgroundImagePipe
   ],
   templateUrl: './main-articulo.component.html',
@@ -33,7 +37,7 @@ export class MainArticuloComponent implements OnInit {
   public highLights = signal<ArticleModel[]>([]);
   public titleFeed : string = 'Artículos recomendados';
   public svgAngle = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
-  // public descriptionHtml = signal<SafeHtml>(this.sanitizer.bypassSecurityTrustHtml(this.article()?.description));
+  public selectedTab: 'leer' | 'agregar' = 'leer';
 
   ngOnInit(): void {
     this.initParams();
@@ -58,6 +62,10 @@ export class MainArticuloComponent implements OnInit {
         this.highLights.set(response);
       }
     })
+  }
+
+  selectTab(tab: 'leer' | 'agregar') {
+    this.selectedTab = tab;
   }
 
 

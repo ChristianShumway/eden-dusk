@@ -67,7 +67,47 @@
         </div>
       </div>
 
+      <div class="wrap__comentarios">
+
+        <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+          <ul class="flex flex-wrap -mb-px">
+            <li class="me-2">
+              <a (click)="selectTab('leer')"
+                [ngClass]="{
+                  'text-black font-bold border-black dark:text-white dark:border-white': selectedTab === 'leer',
+                  ' cursor-pointer border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300': selectedTab !== 'leer'
+                }"
+                class="inline-block p-4 border-b-2">
+                Leer comentarios
+              </a>
+            </li>
+            <li class="me-2">
+              <a (click)="selectTab('agregar')"
+                [ngClass]="{
+                  'text-black font-bold border-black dark:text-white dark:border-white': selectedTab === 'agregar',
+                  'cursor-pointer border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300': selectedTab !== 'agregar'
+                }"
+                class="inline-block p-4 border-b-2">
+                Agregar comentario
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-4 px-4">
+          @if (selectedTab === 'leer') {
+            <blog-comentarios />
+          } @else {
+            <blog-agregar-comentario />
+          }
+        </div>
+
+
+      </div>
+
     </div>
+
+
     <blog-feed-destacados [articles]="highLights()" [title]="titleFeed" />
   </div>
 

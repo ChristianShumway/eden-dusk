@@ -1,0 +1,65 @@
+<form [formGroup]="form" (ngSubmit)="enviar()" class="space-y-6 max-w-xl mx-auto p-6 bg-white dark:bg-gray-800 rounded shadow">
+
+  <!-- Nombre -->
+  <div>
+    <label for="nombre" class="block text-sm font-medium">Nombre</label>
+    <input formControlName="nombre" type="text" id="nombre" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700" />
+    <span *ngIf="validField('nombre')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('nombre') }}
+    </span>
+  </div>
+
+  <!-- Correo -->
+  <div>
+    <label for="correo" class="block text-sm font-medium">Correo electrónico</label>
+    <input formControlName="correo" type="email" id="correo" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700" />
+    <span *ngIf="validField('correo')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('correo') }}
+    </span>
+  </div>
+
+  <!-- Calificación con estrellas -->
+  <div>
+    <span class="block mb-1 text-sm font-medium">Calificación</span>
+    <div class="flex gap-1">
+      @for (star of [1,2,3,4,5]; track $index) {
+        <button type="button" class="border-0" (click)="calificationFormField.setValue(star)">
+          <div
+            class="w-6 h-6 transition-colors"
+            [ngClass]="{
+              'text-yellow-400 hover:text-yellow-500': calificationFormField.value >= star,
+              'text-gray-300 hover:text-gray-400 dark:text-gray-600': calificationFormField.value < star
+            }"
+            [innerHTML]="svgStar()">
+          </div>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Avatar -->
+  <div>
+    <span class="block mb-1 text-sm font-medium">Selecciona tu avatar</span>
+    <div class="flex gap-4">
+      <label *ngFor="let avatar of avatarList" class="cursor-pointer">
+        <input type="radio" [value]="avatar.src" formControlName="avatar" class="hidden peer" />
+        <img [src]="avatar.src" alt="avatar" class="w-12 h-12 rounded-full border-2 border-transparent p-[1px] peer-checked:border-gray-600 hover:contrast-[.80]" />
+      </label>
+    </div>
+  </div>
+
+  <!-- Comentario -->
+  <div>
+    <label for="comentario" class="block text-sm font-medium">Comentario</label>
+    <textarea formControlName="comentario" id="comentario" rows="4" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"></textarea>
+    <span *ngIf="validField('comentario')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('comentario') }}
+    </span>
+  </div>
+
+  <!-- Botón enviar -->
+  <div class="text-right">
+    <button [disabled]="form.invalid" type="submit" class="btn__primary--black">Enviar</button>
+  </div>
+
+</form>
