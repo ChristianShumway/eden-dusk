@@ -23,7 +23,7 @@
     <span class="block mb-1 text-sm font-medium">Calificación</span>
     <div class="flex gap-1">
       @for (star of [1,2,3,4,5]; track $index) {
-        <button type="button" class="border-0" (click)="calificationFormField.setValue(star)">
+        <button type="button" class="border-0 py-2 px-3 md:px-4" (click)="calificationFormField.setValue(star)">
           <div
             class="w-6 h-6 transition-colors"
             [ngClass]="{
@@ -40,10 +40,10 @@
   <!-- Avatar -->
   <div>
     <span class="block mb-1 text-sm font-medium">Selecciona tu avatar</span>
-    <div class="flex gap-4">
+    <div class="flex gap-3 md:gap-4">
       <label *ngFor="let avatar of avatarList" class="cursor-pointer">
         <input type="radio" [value]="avatar.src" formControlName="avatar" class="hidden peer" />
-        <img [src]="avatar.src" alt="avatar" class="w-12 h-12 rounded-full border-2 border-transparent p-[1px] peer-checked:border-gray-600 hover:contrast-[.80]" />
+        <img [src]="avatar.src" alt="avatar" class="w-10 h-10 md:w-12 md:h-12 rounded-full border md:border-2 border-transparent p-[1px] peer-checked:border-gray-600 hover:contrast-[.80]" />
       </label>
     </div>
   </div>
