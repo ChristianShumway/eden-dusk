@@ -11,6 +11,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { AgregarComentarioComponent } from '../../components/agregar-comentario/agregar-comentario.component';
 import { ComentariosComponent } from '../../components/comentarios/comentarios.component';
+import { SharedSocialmediaComponent } from '../../../../shared/components/shared-socialmedia/shared-socialmedia.component';
 
 @Component({
   selector: 'app-main-articulo',
@@ -21,6 +22,7 @@ import { ComentariosComponent } from '../../components/comentarios/comentarios.c
     FeedDestacadosComponent,
     AgregarComentarioComponent,
     ComentariosComponent,
+    SharedSocialmediaComponent,
     BackgroundImagePipe
   ],
   templateUrl: './main-articulo.component.html',

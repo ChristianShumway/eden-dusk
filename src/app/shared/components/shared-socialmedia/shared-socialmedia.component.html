@@ -1,0 +1,32 @@
+<div data-dial-init data-dial-toggle="click" class="absolute flex end-6 bottom-6 group">
+  <div id="speed-dial-menu-horizontal" class="flex items-center hidden me-4 space-x-2 rtl:space-x-reverse">
+
+    <button type="button" data-tooltip-target="tooltip-ig" data-tooltip-placement="top" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-black bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-xs hover:bg-gray-50 dark:text-gray-200 dark:hover:text-white  dark:bg-black-200 dark:hover:bg-black focus:ring-1 focus:ring-gray-50 focus:outline-none dark:focus:ring-white">
+      <div class="w-5 h-5 flex" [innerHTML]="iconInstagram()"></div>
+    </button>
+    <div id="tooltip-ig" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-black rounded-lg shadow-xs opacity-0 tooltip dark:bg-white dark:text-black">
+      Instagram
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+
+    <button type="button" data-tooltip-target="tooltip-fb" data-tooltip-placement="top" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-black bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-xs hover:bg-gray-50 dark:text-gray-200 dark:hover:text-white  dark:bg-black-200 dark:hover:bg-black focus:ring-1 focus:ring-gray-50 focus:outline-none dark:focus:ring-white">
+      <div class="w-5 h-5 flex" [innerHTML]="iconFacebook()"></div>
+    </button>
+    <div id="tooltip-fb" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-black rounded-lg shadow-xs opacity-0 tooltip dark:bg-white dark:text-black">
+      Facebook
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+
+    <button type="button" data-tooltip-target="tooltip-x" data-tooltip-placement="top" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-black bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-xs hover:bg-gray-50 dark:text-gray-200 dark:hover:text-white  dark:bg-black-200 dark:hover:bg-black focus:ring-1 focus:ring-gray-50 focus:outline-none dark:focus:ring-white">
+      <div class="w-4 h-4 flex" [innerHTML]="iconX()"></div>
+    </button>
+    <div id="tooltip-x" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-black rounded-lg shadow-xs opacity-0 tooltip dark:bg-white dark:text-black">
+      X
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+  </div>
+
+  <button type="button" data-dial-toggle="speed-dial-menu-horizontal" aria-controls="speed-dial-menu-horizontal" aria-expanded="false" class="flex items-center justify-center text-white bg-black rounded-full w-14 h-14 hover:bg-black-200 dark:text-black dark:bg-white dark:hover:bg-gray-200 focus:ring-0  focus:outline-none">
+    <div class="w-4 h-4 flex" [innerHTML]="iconShared()"></div>
+  </button>
+</div>

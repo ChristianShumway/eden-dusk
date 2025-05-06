@@ -6,7 +6,6 @@ import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 import { BlogService } from '../../../../core/services/blog.service';
 import { ArticleModel, CategoryArticleModel } from '../../../../core/models/article-blog.model';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-main-blog',
   standalone: true,
