@@ -72,7 +72,7 @@ button.btn__outline--black {
 button.btn__filter {
   @apply text-black bg-white hover:bg-gray-200  border-gray-200 focus:ring-2 focus:outline-none focus:ring-gray-100  dark:focus:ring-gray-600 dark:bg-transparent dark:border-white dark:text-white dark:hover:bg-gray-50 dark:hover:text-black;
   &--active {
-    @apply border-black-100 bg-black text-white dark:bg-white dark:text-black hover:bg-gray-100;
+    @apply border-black-100 bg-black text-white dark:bg-white dark:text-black hover:bg-gray-900;
   }
 
 }

@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, of } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
-import { ArticleModel, CategoryArticleModel } from '../models/article-blog.model';
+import { ArticleModel, CategoryArticleModel, FiltersArticle, ResponseArticleModel } from '../models/article-blog.model';
 
 const FILTERS_DUMMY: CategoryArticleModel[] = [
   {
@@ -75,8 +75,19 @@ export class BlogService {
     return of (FILTERS_DUMMY);
   }
 
-  getAllArticles(): Observable<ArticleModel[]> {
-    return of (ARTICLES_DUMMY);
+  getAllArticles(filters: FiltersArticle): Observable<ResponseArticleModel> {
+    console.log(filters);
+    const response = {
+      total: 10,
+      data: ARTICLES_DUMMY
+    }
+    return of (response);
+  }
+
+  getMainArticles(): Observable<ArticleModel[]> {
+    return of (ARTICLES_DUMMY).pipe(
+      map(articles => articles.slice(0, 4))
+    );
   }
 
   getArticleById(id: number): Observable<ArticleModel> {

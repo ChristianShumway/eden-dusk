@@ -6,7 +6,6 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { Router, RouterModule } from '@angular/router';
 import { BlogService } from '../../../../core/services/blog.service';
 import { ArticleModel } from '../../../../core/models/article-blog.model';
-import { map } from 'rxjs';
 @Component({
   selector: 'home-novedades',
   standalone: true,
@@ -31,9 +30,7 @@ export class NovedadesComponent implements OnInit {
   }
 
   getArticles() {
-    this.blogService.getAllArticles().pipe(
-      map(articles => articles.slice(0, 4))
-    ).subscribe({
+    this.blogService.getMainArticles().subscribe({
       next: response => this.articlesList.set(response)
     });
   }

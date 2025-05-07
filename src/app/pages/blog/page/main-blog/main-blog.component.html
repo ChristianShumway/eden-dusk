@@ -1,9 +1,25 @@
 <section class="main__blog">
   <blog-layout />
-  <blog-filtros [categories]="categoriesList()" (setCategoryOut)="onChangeCategory($event)" />
+  <blog-filtros [categories]="categoriesList()" (filterChanged)="onFilterChanged($event)" />
   <div class="grid__blog grid grid-cols-1 lg:grid-cols-[3fr_1.5fr] gap-4 overflow-hidden">
     <div class="wrapper__main">
       <blog-feed-articulos [articles]="articles()"/>
+      <!-- PAGINATION -->
+      <pagination-controls
+      *ngIf="articles().length !== 0"
+      id="paginator"
+      class="text-right mt-4 font-circular-regular"
+      (maxSize)=5;
+      (directionLinks)=true
+      (pageChange)="page = $event"
+      (autoHide)=true
+      (responsive)=true
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      screenReaderPaginationLabel="Pagination"
+      (pageChange)="pageChanged($event)"
+    >
+    </pagination-controls>
     </div>
     <div class="wrapper__sidebar">
       <blog-side-bar [articles]="highLights()" />

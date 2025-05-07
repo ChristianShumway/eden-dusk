@@ -14,7 +14,20 @@ export interface ArticleModel {
   authorName: string;
 }
 
+export interface ResponseArticleModel {
+  total: number;
+  data: ArticleModel[];
+}
+
 export interface CategoryArticleModel {
   id: number;
   name: CategoryArticle;
+}
+
+export interface FiltersArticle {
+  status?:            number;
+  limit:              number;
+  page:               number;
+  category:           CategoryArticle;
+  search:             string;
 }

@@ -4,11 +4,13 @@ import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { ArticleModel } from '../../../../core/models/article-blog.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'blog-feed-articulos',
   standalone: true,
   imports: [
+    CommonModule,
     ArticuloFeedComponent
   ],
   templateUrl: './feed-articulos.component.html',

@@ -1,16 +1,18 @@
 import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { LayoutComponent } from '../../components/layout/layout.component';
 import { FiltrosComponent } from '../../components/filtros/filtros.component';
 import { FeedArticulosComponent } from '../../components/feed-articulos/feed-articulos.component';
 import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 import { BlogService } from '../../../../core/services/blog.service';
-import { ArticleModel, CategoryArticleModel } from '../../../../core/models/article-blog.model';
-import { CommonModule } from '@angular/common';
+import { ArticleModel, CategoryArticle, CategoryArticleModel, FiltersArticle } from '../../../../core/models/article-blog.model';
 @Component({
   selector: 'app-main-blog',
   standalone: true,
   imports: [
     CommonModule,
+    NgxPaginationModule,
     LayoutComponent,
     FiltrosComponent,
     FeedArticulosComponent,
@@ -24,11 +26,23 @@ export class MainBlogComponent implements OnInit {
   private readonly blogService = inject(BlogService);
   private readonly cdr = inject(ChangeDetectorRef);
 
-
   public categoriesList = signal<CategoryArticleModel[]>([]);
   public articles = signal<ArticleModel[]>([]);
   public highLights = signal<ArticleModel[]>([]);
 
+  pageSize: number = 10;
+  total: number = 10;
+  limit: number = 10;
+  page: number = 1;
+  // public category = signal<CategoryArticle>('Todas');
+  // public searchInput = signal<string>('');
+
+  filters: FiltersArticle = {
+    limit: this.limit,
+    page: this.page,
+    category: 'Todas',
+    search: ''
+  }
 
   ngOnInit(): void {
     this.getCategories();
@@ -45,10 +59,16 @@ export class MainBlogComponent implements OnInit {
     });
   }
 
-  getAllArticles() {
-    this.blogService.getAllArticles().subscribe({
-      next: response => this.articles.set(response)
+  getAllArticles(page?: number) {
+    this.filters.page = page ? page : this.page
+    this.page = page ? page : this.page;
+    this.blogService.getAllArticles(this.filters).subscribe({
+      next: response => this.articles.set(response.data)
     })
+  }
+
+  pageChanged(e: any) {
+    this.getAllArticles(e);
   }
 
   getHighLights() {
@@ -58,8 +78,14 @@ export class MainBlogComponent implements OnInit {
     })
   }
 
-  onChangeCategory(category: CategoryArticleModel) {
-    console.log(category)
+  onFilterChanged(data: { search: string; category: CategoryArticle }) {
+    this.page = 1;
+    this.filters = {
+      ...data,
+      limit: this.limit,
+      page: this.page
+    }
+    this.getAllArticles();
   }
 
 }
