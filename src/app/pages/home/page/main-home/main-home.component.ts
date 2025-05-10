@@ -32,13 +32,13 @@ export class HomeComponent implements OnInit {
   public dateToSearh = new Date();
 
   ngOnInit(): void {
-    this.getTransmissionsByMonth(this.dateToSearh);
+    this.getAllTransmissions(this.dateToSearh);
     this.getLastTransmissions();
   }
 
 
-  getTransmissionsByMonth(date: Date) {
-    this.transmisionesService.getTransmissionsByMonth(date).subscribe({
+  getAllTransmissions(date: Date) {
+    this.transmisionesService.getAllTransmissions().subscribe({
       next: response => {
         this.eventos.set([...response]);
       },

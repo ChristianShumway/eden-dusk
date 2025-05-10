@@ -11,9 +11,13 @@
     </p>
   </div>
 
-  <div class="wrap__events w-full lg:w-10/12 my-0 mx-auto flex justify-center md:justify-around lg:justify-start items-center gap-8 flex-wrap">
+  <!-- <div class="wrap__events w-full lg:w-10/12 my-0 mx-auto flex justify-center md:justify-around lg:justify-start items-center gap-8 flex-wrap">
     @for (event of eventos(); track event.id) {
       <transmisiones-evento-pasado [evento]="event" />
     }
+  </div> -->
+
+  <div class="w-full md:w-11/12 lg:w-10/12 my-0 mx-auto">
+    <shared-transmisiones-list [eventos]="eventos()" [tiempoEvento]="'pasado'" [showImgLastEvent]="true" />
   </div>
 </section>

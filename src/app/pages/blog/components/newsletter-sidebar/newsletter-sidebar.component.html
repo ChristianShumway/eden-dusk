@@ -7,19 +7,19 @@
       Sé el primero en recibir noticias, novedades y contenido exclusivo.
     </p>
 
-    <form class="flex flex-col md:flex-row items-center gap-4 md:gap-2">
-      <input
-        type="email"
-        placeholder="Ingresa tu correo electrónico"
-        class="w-full sm:w-auto lg:w-full flex-1 px-4 py-3 rounded-md bg-primary-50 text-primary-300 dark:bg-black-100 dark:text-sage-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sage-100 dark:focus:ring-primary"
-        required
-      />
-      <button
-        type="submit"
-        class="btn__primary"
-      >
-        Suscribirme
-      </button>
+    <form>
+      <div class="flex">
+        <div class="relative w-full">
+          <input
+            type="search"
+            class="block p-3 w-full z-20 rounded-e-md rounded-s-gray-100 rounded-s-2 rounded-l-md bg-gray-50 text-black dark:bg-black-100 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white dark:focus:ring-primary"
+            placeholder="Ingresa tu correo electrónico" required />
+          <button type="submit" class="absolute rounded-none rounded-e-md top-0 end-0 p-3 h-full btn__primary--black">
+            Suscribirme
+          </button>
+        </div>
+      </div>
     </form>
+
   </div>
 </section>

@@ -1,0 +1,57 @@
+<ul  class="divide-y divide-gray-200 dark:divide-gray-700">
+  @for (evento of eventos(); track $index) {
+    <li class="py-3 sm:py-4">
+      <div class="flex items-center ">
+        <div class="shrink-0">
+          @if (tiempoEvento() === 'pasado') {
+            @if (!showImgLastEvent()) {
+              <div class="w-6 h-6" [innerHTML]="svgCamera()"></div>
+            } @else {
+              <div
+                class="col__image justify-self-center w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-no-repeat bg-center bg-cover"
+                [style.background-image]="evento.imageUrl| backgroundImage">
+              </div>
+            }
+          } @else {
+            <div class="w-6 h-6" [innerHTML]="svgCalendar()"></div>
+          }
+        </div>
+        <div class="flex-1 min-w-0 ms-4">
+            <p class="text-sm font-medium truncate title__event">
+              {{ evento.title }}
+            </p>
+            <p class="text-sm text-primary truncate dark:text-gray-400">
+              {{ evento.date| dateMx }}
+            </p>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold">
+          @if(tiempoEvento() === 'pasado') {
+            <button
+              type="button"
+              class="btn__outline--black"
+              [ngClass]="{
+                'py-2': component() === 'sidebar'
+              }"
+            >
+              Ver ahora
+            </button>
+          } @else {
+            <button
+              type="button"
+              (click)="onViewInfoEvent(evento)"
+              class="btn__outline--black"
+              [ngClass]="{
+                'py-2': component() === 'sidebar'
+              }"
+            >
+              Ver detalle
+            </button>
+          }
+        </div>
+      </div>
+    </li>
+  }
+</ul>
+
+<shared-modal-transmision #myModal [modalData]="eventSelected">
+</shared-modal-transmision>

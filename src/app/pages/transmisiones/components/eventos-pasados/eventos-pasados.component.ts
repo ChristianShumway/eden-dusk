@@ -5,13 +5,15 @@ import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { SvgService } from '../../../../core/services/svg.service';
 import { CommonModule } from '@angular/common';
 import { EventoPasadoComponent } from '../evento-pasado/evento-pasado.component';
+import { TransmisionesListComponent } from '../../../../shared/components/transmisiones-list/transmisiones-list.component';
 
 @Component({
   selector: 'transmisiones-eventos-pasados',
   standalone: true,
   imports: [
     CommonModule,
-    EventoPasadoComponent
+    EventoPasadoComponent,
+    TransmisionesListComponent
   ],
   templateUrl: './eventos-pasados.component.html',
   styleUrl: './eventos-pasados.component.scss'

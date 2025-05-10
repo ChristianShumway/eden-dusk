@@ -10,33 +10,7 @@
       </div>
       <div class="flow-root">
         @if(proximoEventos().length) {
-          <ul  class="divide-y divide-gray-200 dark:divide-gray-700">
-            @for (evento of proximoEventos(); track $index) {
-              <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                  <div class="shrink-0">
-                    <div class="w-6 h-6" [innerHTML]="svgCalendar()"></div>
-                  </div>
-                  <div class="flex-1 min-w-0 ms-4">
-                    <p class="text-sm font-medium truncate title__event">
-                      {{ evento.title }}
-                    </p>
-                    <p class="text-sm text-primary truncate dark:text-gray-400">
-                      {{ evento.date | date }}
-                    </p>
-                  </div>
-                  <div class="inline-flex items-center text-base font-semibold">
-                    <button
-                      type="button"
-                      class="w-full md:w-auto btn__outline--black"
-                    >
-                      Ver detalle
-                    </button>
-                  </div>
-                </div>
-              </li>
-            }
-          </ul>
+          <shared-transmisiones-list [eventos]="proximoEventos()" [tiempoEvento]="'proximo'" />
         }@else {
           <shared-no-eventos />
         }
@@ -54,33 +28,7 @@
       </div>
       <div class="flow-root">
         @if(eventosPasados().length) {
-          <ul  class="divide-y divide-gray-200 dark:divide-gray-700">
-            @for (evento of eventosPasados(); track $index) {
-              <li class="py-3 sm:py-4">
-                <div class="flex items-center ">
-                  <div class="shrink-0">
-                    <div class="w-6 h-6" [innerHTML]="svgCamera()"></div>
-                  </div>
-                  <div class="flex-1 min-w-0 ms-4">
-                      <p class="text-sm font-medium truncate title__event">
-                        {{ evento.title }}
-                      </p>
-                      <p class="text-sm text-primary truncate dark:text-gray-400">
-                        {{ evento.date| date }}
-                      </p>
-                  </div>
-                  <div class="inline-flex items-center text-base font-semibold">
-                    <button
-                      type="button"
-                      class="w-full md:w-auto btn__outline--black"
-                    >
-                      Ver ahora
-                    </button>
-                  </div>
-                </div>
-              </li>
-            }
-          </ul>
+          <shared-transmisiones-list [eventos]="eventosPasados()" [tiempoEvento]="'pasado'" />
         } @else {
           <shared-no-eventos />
         }

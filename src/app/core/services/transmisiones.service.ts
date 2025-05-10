@@ -10,12 +10,17 @@ export class TransmisionesService {
   private readonly http = inject(HttpClient);
 
   private readonly apiUrl = PathsEnum.APIURL;
-  private readonly pathTransmissions = 'api/events';
+  private readonly pathAllTransmissions = 'api/events';
+  private readonly pathNextTransmissions = 'api/events/upcoming';
   private readonly pathLastTransmissions = 'api/events/findPastEvents';
+
+  getAllTransmissions(): Observable<TransmisionModel[]> {
+    return this.http.get<TransmisionModel[]>(`${this.apiUrl}/${this.pathNextTransmissions}`);
+  }
 
   getTransmissionsByMonth(date: Date): Observable<TransmisionModel[]> {
     const setDate =  this.setDate(new Date(date));
-    return this.http.get<TransmisionModel[]>(`${this.apiUrl}/${this.pathTransmissions}?month=${setDate}`);
+    return this.http.get<TransmisionModel[]>(`${this.apiUrl}/${this.pathNextTransmissions}?month=${setDate}`);
   }
 
   getLastTransmissions(): Observable<TransmisionModel[]> {

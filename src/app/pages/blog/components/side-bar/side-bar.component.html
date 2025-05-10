@@ -1,5 +1,11 @@
-<div class=" w-full p-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-black/50 dark:border-gray-700">
+<div class=" w-full md:p-4 my-4 lg:my-0 border border-gray-100 rounded-lg bg-gray-50 dark:bg-black/50 dark:border-gray-700">
   <blog-newsletter-sidebar />
   <blog-feed-destacados [articles]="articles()" [title]="titleFeed" />
   <blog-autores />
+  <div class="mt-12">
+    <p class="text-xl md:text-2xl font-secondary-bold uppercase mb-4">
+      Próximos Eventos
+    </p>
+    <shared-transmisiones-list [eventos]="eventos()" [tiempoEvento]="'proximo'" [component]="'sidebar'" />
+  </div>
 </div>

@@ -11,3 +11,5 @@ export interface TransmisionModel {
   color: string;
   platform: string;
 }
+
+export type TiempoEvento = 'pasado' | 'proximo';
