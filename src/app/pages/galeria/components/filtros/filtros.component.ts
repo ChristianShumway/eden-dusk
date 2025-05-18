@@ -72,6 +72,8 @@ export class FiltrosComponent implements AfterViewInit {
           search: value
 
         }));
+
+        this.myForm.get('search')?.setValue(value);
         this.filterChanged.emit(this.currencyFilters());
       });
 
@@ -91,6 +93,7 @@ export class FiltrosComponent implements AfterViewInit {
 
   initForm() {
     this.myForm = this.fb.group({
+      search: [''],
       category: [''],
       subcategory: [''],
       date: [''],

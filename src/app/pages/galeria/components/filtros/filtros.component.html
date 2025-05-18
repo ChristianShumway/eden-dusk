@@ -19,24 +19,25 @@
   <!-- CONTENEDOR ACORDION -->
   <div id="accordion-collapse-body-filters" class="hidden" aria-labelledby="accordion-collapse-heading-filters">
     <div class="p-5">
-      <form class="flex items-center mb-4">
-        <label for="simple-search" class="sr-only">Search</label>
-        <div class="relative w-full">
-          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <div class="w-4 h-4" [innerHTML]="svgSearch()"></div>
-          </div>
-          <input
-            type="text"
-            (input)="onSearchChange($event)"
-            id="simple-search"
-            class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-black-100 focus:border-black-100 block w-full ps-10 p-3  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black"
-            placeholder="busqueda general..."
-          />
-        </div>
-      </form>
 
-      <!-- WRAP BOTONES FILTROS -->
       <form [formGroup]="myForm">
+        <div class="flex items-center mb-4">
+          <label for="simple-search" class="sr-only">Search</label>
+          <div class="relative w-full">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <div class="w-4 h-4" [innerHTML]="svgSearch()"></div>
+            </div>
+            <input
+              type="text"
+              (input)="onSearchChange($event)"
+              id="simple-search"
+              formControlName="search"
+              class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-black-100 focus:border-black-100 block w-full ps-10 p-3  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black"
+              placeholder="busqueda general..."
+            />
+          </div>
+        </div>
+        <!-- WRAP BOTONES FILTROS -->
         <div class="wrap__items grid justify-start items-center grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
 
           <!-- button categorías -->
@@ -45,7 +46,7 @@
             id="dropdownRadioBgHoverButtonCategories"
             type="button"
             data-dropdown-toggle="dropdownRadioBgHoverCategories"
-            class="w-full btn__primary--black flex items-center justify-end">
+            class="w-full btn__primary--black flex items-center justify-center">
             Categorías
             <div class="w-3.5 h-3.5 ms-3 flex rotate-90" [innerHTML]="svgAngle()"></div>
           </button>
@@ -87,7 +88,7 @@
             type="button"
             id="dropdownRadioBgHoverButtonSubCategories"
             data-dropdown-toggle="dropdownRadioBgHoverSubCategories"
-            class="w-full btn__primary--black flex items-center">
+            class="w-full btn__primary--black flex items-center justify-end">
             Subcategorías
             <div class="w-3.5 h-3.5 ms-3 flex rotate-90" [innerHTML]="svgAngle()"></div>
           </button>
@@ -134,7 +135,7 @@
             type="button"
             id="dropdownBgHoverButtonDate"
             data-dropdown-toggle="dropdownBgHoverDate"
-            class="btn__primary--black flex items-center">
+            class="btn__primary--black flex items-center justify-center">
             Fecha
             <div class="w-3.5 h-3.5 ms-3 flex rotate-90" [innerHTML]="svgAngle()"></div>
           </button>
@@ -163,7 +164,7 @@
             type="button"
             id="dropdownRadioBgHoverButtonCollaboratos"
             data-dropdown-toggle="dropdownRadioBgHoverCollaborators"
-            class="btn__primary--black flex items-center">
+            class="btn__primary--black flex items-center justify-center">
             Colaboradores
             <div class="w-3.5 h-3.5 ms-3 flex rotate-90" [innerHTML]="svgAngle()"></div>
           </button>
