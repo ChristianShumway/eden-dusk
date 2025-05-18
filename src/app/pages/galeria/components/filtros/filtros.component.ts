@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, inject, input, Output, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, inject, input, OnInit, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { debounceTime, Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs';
 import { initAccordions, initDropdowns } from 'flowbite';
 import { SafeHtml } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,7 @@ import { CategoryGalleryModel, CollaboratorGalleryModel, FiltersGallery, SubCate
   templateUrl: './filtros.component.html',
   styleUrl: './filtros.component.scss'
 })
-export class FiltrosComponent implements AfterViewInit {
+export class FiltrosComponent implements OnInit, AfterViewInit {
 
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
@@ -32,9 +32,6 @@ export class FiltrosComponent implements AfterViewInit {
   public collaborators = input.required<CollaboratorGalleryModel[]>();
   @Output()
   public filterChanged = new EventEmitter<FiltersGallery>();
-
-  private readonly searchSubject = new Subject<string>();
-  private readonly subscription!: Subscription;
 
   public myForm!: FormGroup;
 
@@ -51,33 +48,25 @@ export class FiltrosComponent implements AfterViewInit {
   public svgArrow = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.arrowRotate));
   public svgFilters = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.adjustFilters));
   public svgAngle = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
-  public svgClose = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.close));
-
-  @ViewChild('dropCat') public dropCat!: ElementRef;
-  @ViewChild('dropSubcat') public dropSubcat!: ElementRef;
-  @ViewChild('dropDate') public dropDate!: ElementRef;
-  @ViewChild('dropCollaborators') public dropCollaborators!: ElementRef;
 
   public isDropdownOpenCat = false;
   public isDropdownOpenSubcat = false;
   public isDropdownOpenDate = false;
   public isDropdownOpenCollaborators = false;
 
-  constructor() {
-    this.subscription = this.searchSubject
-      .pipe(debounceTime(500)) // espera medio segundo tras la última tecla
-      .subscribe(value => {
-        this.currencyFilters.update(newValue => ({
-          ...newValue,
-          search: value
-
-        }));
-
-        this.myForm.get('search')?.setValue(value);
-        this.filterChanged.emit(this.currencyFilters());
-      });
-
+  ngOnInit(): void {
     this.initForm();
+    this.myForm.get('search')?.valueChanges
+    .pipe(debounceTime(500)) // espera medio segundo tras la última teclasubscribe( value => {
+    .subscribe( value => {
+      this.currencyFilters.update(newValue => ({
+        ...newValue,
+        search: value
+
+      }));
+
+      this.filterChanged.emit(this.currencyFilters());
+    });
   }
 
   ngAfterViewInit(): void {
@@ -99,11 +88,6 @@ export class FiltrosComponent implements AfterViewInit {
       date: [''],
       collaborator: ['']
     });
-  }
-
-  onSearchChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.searchSubject.next(input.value); // aquí entra el debounce
   }
 
   onSelectCategory(category: CategoryGalleryModel, index: number) {
@@ -192,10 +176,10 @@ export class FiltrosComponent implements AfterViewInit {
   }
 
   cleanFilter(key: string) {
-    this.currencyFilters.set({
-      ...this.currencyFilters(),
+    this.currencyFilters.update( current => ({
+      ...current,
       [key]: ''
-    });
+    }));
 
     this.myForm.get(key)?.setValue(''); // Esto desmarca el radio
 
@@ -212,8 +196,6 @@ export class FiltrosComponent implements AfterViewInit {
 
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe(); // limpieza para evitar memory leaks
-  }
+
 
 }
