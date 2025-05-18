@@ -1,6 +1,4 @@
-
-
-<div id="accordion-collapse" data-accordion="collapse" class="dropdown-wrapper">
+<div id="accordion-collapse" data-accordion="collapse" class="dropdown-wrapper mt-4">
   <div id="accordion-collapse-heading-filters" class="flex justify-end">
     <button
       type="button"
@@ -20,8 +18,9 @@
   <div id="accordion-collapse-body-filters" class="hidden" aria-labelledby="accordion-collapse-heading-filters">
     <div class="p-5">
 
+      <!-- WRAP FORMULARIO BUSQUEDA -->
       <form [formGroup]="myForm">
-        <div class="flex items-center mb-4">
+        <div class="flex items-center mb-6">
           <label for="simple-search" class="sr-only">Search</label>
           <div class="relative w-full">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -86,7 +85,7 @@
             type="button"
             id="dropdownRadioBgHoverButtonSubCategories"
             data-dropdown-toggle="dropdownRadioBgHoverSubCategories"
-            class="w-full btn__primary--black flex items-center justify-end">
+            class="w-full btn__primary--black flex items-center justify-center">
             Subcategorías
             <div class="w-3.5 h-3.5 ms-3 flex rotate-90" [innerHTML]="svgAngle()"></div>
           </button>
