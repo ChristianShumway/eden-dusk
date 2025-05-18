@@ -7,6 +7,7 @@ import { FeedArticulosComponent } from '../../components/feed-articulos/feed-art
 import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 import { BlogService } from '../../../../core/services/blog.service';
 import { ArticleModel, CategoryArticle, CategoryArticleModel, FiltersArticle } from '../../../../core/models/article-blog.model';
+import { error } from 'console';
 @Component({
   selector: 'app-main-blog',
   standalone: true,
@@ -63,7 +64,11 @@ export class MainBlogComponent implements OnInit {
     this.filters.page = page ? page : this.page
     this.page = page ? page : this.page;
     this.blogService.getAllArticles(this.filters).subscribe({
-      next: response => this.articles.set(response.data)
+      next: response => {
+        console.log(response);
+        this.articles.set(response);
+      },
+      error: err => console.error(err)
     })
   }
 

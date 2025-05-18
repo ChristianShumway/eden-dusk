@@ -16,5 +16,9 @@ export const routes: Routes = [
   {
     path: 'blog',
     loadChildren: () => import('./pages/blog/blog.routes').then(m => m.BLOG_ROUTES)
+  },
+  {
+    path: 'galeria',
+    loadChildren: () => import('./pages/galeria/galeria.routes').then(m => m.GALLERY_ROUTES)
   }
 ];

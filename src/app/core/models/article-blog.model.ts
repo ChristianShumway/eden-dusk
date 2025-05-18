@@ -15,8 +15,19 @@ export interface ArticleModel {
 }
 
 export interface ResponseArticleModel {
-  total: number;
-  data: ArticleModel[];
+  // total: number;
+  // data: ArticleModel[];
+  id: number;
+  title: string;
+  description: string;
+  date: string; // Formato: 'yyyy/MM/dd'
+  category: CategoryArticle;
+  imageUrl: string;
+  imageUrlThumbnail: string;
+  imageUrlMedium: string;
+  color: string;
+  authorImage: string;
+  authorName: string;
 }
 
 export interface CategoryArticleModel {

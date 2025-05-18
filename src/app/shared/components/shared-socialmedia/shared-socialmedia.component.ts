@@ -14,7 +14,7 @@ import { SvgIcons } from '../../../core/utils/svg-icons.enum';
 })
 export class SharedSocialmediaComponent implements AfterViewInit {
 
-    private readonly router = inject(Router);
+  private readonly router = inject(Router);
 
 
   private readonly svgService = inject(SvgService);

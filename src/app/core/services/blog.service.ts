@@ -69,20 +69,23 @@ export class BlogService {
   private readonly http = inject(HttpClient);
 
   private readonly apiUrl = PathsEnum.APIURL;
-  private readonly pathBlog = 'api/events';
+  private readonly pathBlog = 'api/blog';
 
   getCategories(): Observable<CategoryArticleModel[]> {
     return of (FILTERS_DUMMY);
   }
 
-  getAllArticles(filters: FiltersArticle): Observable<ResponseArticleModel> {
-    console.log(filters);
-    const response = {
-      total: 10,
-      data: ARTICLES_DUMMY
-    }
-    return of (response);
+  getAllArticles(filters: FiltersArticle): Observable<ResponseArticleModel[]> {
+    // const response = {
+    //   total: 10,
+    //   data: ARTICLES_DUMMY
+    // }
+    // return of (response);
+
+    return this.http.get<ResponseArticleModel[]>(`${this.apiUrl}/${this.pathBlog}`);
+
   }
+
 
   getMainArticles(): Observable<ArticleModel[]> {
     return of (ARTICLES_DUMMY).pipe(

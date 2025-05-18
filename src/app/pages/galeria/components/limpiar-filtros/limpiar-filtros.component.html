@@ -1,0 +1,46 @@
+ <div class="mt-6 flex justify-center md:justify-start items-center flex-wrap gap-4">
+  @if (currencyFilters().category !== '') {
+    <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-gray-700 dark:text-gray-300">
+      {{ currencyFilters().category }}
+      <button
+        type="button"
+        (click)="cleanFilter('category')"
+        class="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-xs hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
+        <div class="w-2.5 h-2.5" [innerHTML]="svgClose()"></div>
+      </button>
+    </span>
+  }
+  @if (currencyFilters().subcategory !== '') {
+    <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-gray-700 dark:text-gray-300">
+      {{ currencyFilters().subcategory }}
+      <button
+        type="button"
+        (click)="cleanFilter('subcategory')"
+        class="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-xs hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
+        <div class="w-2.5 h-2.5" [innerHTML]="svgClose()"></div>
+      </button>
+    </span>
+  }
+  @if (currencyFilters().date !== '') {
+    <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-gray-700 dark:text-gray-300">
+      {{ currencyFilters().date }}
+      <button
+        type="button"
+        (click)="cleanFilter('date')"
+        class="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-xs hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
+        <div class="w-2.5 h-2.5" [innerHTML]="svgClose()"></div>
+      </button>
+    </span>
+  }
+  @if (currencyFilters().collaborator !== '') {
+    <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-gray-700 dark:text-gray-300">
+      {{ currencyFilters().collaborator }}
+      <button
+        type="button"
+        (click)="cleanFilter('collaborator')"
+        class="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-xs hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
+        <div class="w-2.5 h-2.5" [innerHTML]="svgClose()"></div>
+      </button>
+    </span>
+  }
+</div>
