@@ -1,8 +1,8 @@
 <div class="mt-8 flex flex-col items-center justify-center px-6 py-24 text-center border bg-yellow-50/30 border-yellow-500  rounded-lg shadow-sm dark:bg-black  ">
   <!-- Ícono de calendario -->
-  <div class="w-16 h-16 mb-4 text-gray-400 dark:text-gray-500" [innerHTML]="iconCalendar()"></div>
+  <div class="w-16 h-16 mb-4 text-gray-400 dark:text-gray-500" [innerHTML]="icon()"></div>
 
   <!-- Texto de aviso -->
   <p class="text-lg font-semibold text-black-100 dark:text-gray-300">No se encontraron resultados</p>
-  <p class="text-sm text-gray-500 dark:text-gray-400">No hay datos disponibles para el período seleccionado.</p>
+  <p class="text-sm text-gray-500 dark:text-gray-400"> {{ msg() }} </p>
 </div>

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { NoEventosComponent } from '../../../../shared/components/no-eventos/no-eventos.component';
+import { NoDataComponent } from '../../../../shared/components/no-eventos/no-data.component';
 import { TransmisionesListComponent } from '../../../../shared/components/transmisiones-list/transmisiones-list.component';
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 
@@ -12,15 +12,18 @@ import { TransmisionModel } from '../../../../core/models/transmission.model';
   imports: [
     CommonModule,
     RouterModule,
-    NoEventosComponent,
+    NoDataComponent,
     TransmisionesListComponent
   ],
   templateUrl: './eventos-transmisiones.component.html',
   styleUrl: './eventos-transmisiones.component.scss'
 })
+
 export class EventosTransmisionesComponent {
 
   public proximoEventos = input.required<TransmisionModel[]>();
   public eventosPasados = input.required<TransmisionModel[]>();
+
+  public msg = 'No hay datos disponibles para el período seleccionado.';
 
 }

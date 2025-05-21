@@ -11,27 +11,16 @@ export interface SubCategoryGalleryModel {
   name: string;
 }
 
-
 export interface CollaboratorGalleryModel {
   id: number;
   name: string;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-export interface ArticleModel {
+export interface ImageGalleryModel {
   id: number;
   title: string;
   description: string;
+  location: string;
   date: string; // Formato: 'yyyy/MM/dd'
   category: CategoryGallery;
   imageUrl: string;
@@ -40,7 +29,12 @@ export interface ArticleModel {
   color: string;
   authorImage: string;
   authorName: string;
+  downloadable: boolean;
+  forSale: boolean;
 }
+
+
+
 
 export interface ResponseArticleModel {
   // total: number;

@@ -7,7 +7,7 @@
   </div>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
     <div class="grid gap-4">
-        <div class="cursor-pointer">
+        <a class="cursor-pointer" (click)="goToDetail(1)">
           <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt="" />
           <div class="pie__info mt-2">
             <p class="font-primary-medium text-xl mb-0 line-clamp-1">Título de la nota</p>
@@ -16,7 +16,7 @@
               <span class="text-sm text-gray-500 line-clamp-1">Lugar donde se tomo la foto</span>
             </div>
           </div>
-        </div>
+        </a>
         <div>
           <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt="">
           <div class="pie__info mt-2">

@@ -1,35 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, of } from "rxjs";
+import { catchError, map, Observable, of, throwError } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
-import { ArticleModel, CategoryArticleModel, FiltersArticle, ResponseArticleModel } from '../models/article-blog.model';
-
-const FILTERS_DUMMY: CategoryArticleModel[] = [
-  {
-    id: 1,
-    name: 'Todas'
-  },
-  {
-    id: 2,
-    name: 'Astrofotografía'
-  },
-  {
-    id: 3,
-    name: 'Crónicas de Campo'
-  },
-  {
-    id: 4,
-    name: 'Educación y Talleres'
-  },
-  {
-    id: 5,
-    name: 'Novedades y Eventos'
-  },
-  {
-    id: 6,
-    name: 'Perspectivas Ambientales'
-  }
-];
+import { ArticleModel, CategoryArticleModel, FiltersArticle, RequestNewComment, ResponseArticleModel } from '../models/article-blog.model';
 
 const ARTICLES_DUMMY: ArticleModel[] = Array.from({ length: 20 }, (_, i) => {
   const categories = [
@@ -58,7 +31,8 @@ const ARTICLES_DUMMY: ArticleModel[] = Array.from({ length: 20 }, (_, i) => {
     imageUrlMedium: `https://picsum.photos/seed/medium${i + 1}/600/400`,
     color: ['#FF5733', '#33B5FF', '#28A745', '#FFC107', '#6F42C1'][i % 5],
     authorImage: `https://randomuser.me/api/portraits/${i % 2 === 0 ? 'men' : 'women'}/${i}.jpg`,
-    authorName: `Autor ${i + 1}`
+    authorName: `Autor ${i + 1}`,
+    smallDescription: 'prueba solamente'
   };
 });
 
@@ -72,20 +46,36 @@ export class BlogService {
   private readonly pathBlog = 'api/blog';
 
   getCategories(): Observable<CategoryArticleModel[]> {
-    return of (FILTERS_DUMMY);
+    return this.http.get<CategoryArticleModel[]>(`${this.apiUrl}/${this.pathBlog}/categories`)
+    .pipe(
+      catchError( error => this.getThrowError(error))
+    );
   }
 
-  getAllArticles(filters: FiltersArticle): Observable<ResponseArticleModel[]> {
-    // const response = {
-    //   total: 10,
-    //   data: ARTICLES_DUMMY
-    // }
-    // return of (response);
-
-    return this.http.get<ResponseArticleModel[]>(`${this.apiUrl}/${this.pathBlog}`);
+  getAllArticles(filters: FiltersArticle): Observable<ResponseArticleModel> {
+    const category = (filters.category === 'todas') ? '' : filters.category;
+    return this.http.get<ResponseArticleModel>(
+      `${this.apiUrl}/${this.pathBlog}/posts?category=${category}&per_page=${filters.per_page}&page=${filters.page}`
+    ).pipe(
+      catchError( error => this.getThrowError(error))
+    )
 
   }
 
+  getArticleById(id: number): Observable<ArticleModel> {
+    return this.http.get<ArticleModel>(`${this.apiUrl}/${this.pathBlog}/posts/${id}`)
+      .pipe(
+        catchError( error => this.getThrowError(error))
+    );
+  }
+
+  addCommentToPost(request: RequestNewComment): Observable<any> {
+    console.log(request);
+    return this.http.post<any>(`${this.apiUrl}/${this.pathBlog}/posts/comment`, request)
+      .pipe(
+        catchError( error => this.getThrowError(error))
+    );
+  }
 
   getMainArticles(): Observable<ArticleModel[]> {
     return of (ARTICLES_DUMMY).pipe(
@@ -93,11 +83,6 @@ export class BlogService {
     );
   }
 
-  getArticleById(id: number): Observable<ArticleModel> {
-    const article = ARTICLES_DUMMY.find(article => article.id = id);
-    if(!article) return of (ARTICLES_DUMMY[0]);
-    return of (article);
-  }
 
   getHighlights(): Observable<ArticleModel[]> {
     return of (ARTICLES_DUMMY).pipe(
@@ -109,6 +94,20 @@ export class BlogService {
   // getTransmissionsByMonth(category: string): Observable<ArticleModel[]> {
   //   return this.http.get<ArticleModel[]>(`${this.apiUrl}/${this.pathBlog}?category='${category}'`);
   // }
+
+
+    getThrowError(error: any) {
+    const statusCode = error.status;
+    switch (statusCode) {
+      case 401:
+        return throwError(() => 'Acceso no autorizado');
+      case 404:
+        return throwError(() => 'Endpoint no encontrado');
+      default:
+        break;
+    }
+    return throwError(() => error.statusText)
+  }
 
 
 

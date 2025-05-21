@@ -5,13 +5,15 @@ import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { ArticleModel } from '../../../../core/models/article-blog.model';
 import { CommonModule } from '@angular/common';
+import { NoDataComponent } from '../../../../shared/components/no-eventos/no-data.component';
 
 @Component({
   selector: 'blog-feed-articulos',
   standalone: true,
   imports: [
     CommonModule,
-    ArticuloFeedComponent
+    ArticuloFeedComponent,
+    NoDataComponent
   ],
   templateUrl: './feed-articulos.component.html',
   styleUrl: './feed-articulos.component.scss'
@@ -22,5 +24,6 @@ export class FeedArticulosComponent {
 
   public articles = input.required<ArticleModel[]>();
   public svgAngle = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
+  public msg = 'No hay artículos disponibles para esta categoría.'
 
 }

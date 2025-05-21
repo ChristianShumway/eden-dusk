@@ -8,7 +8,7 @@ import { EventoProxComponent } from '../evento-prox/evento-prox.component';
 import { MesNombrePipe } from '../../../../shared/pipes/mes-anio.pipe';
 import { AlertRemovableComponent } from '../../../../shared/components/alert-removable/alert-removable.component';
 import { TypeMessage } from '../../../../core/models/type-message.model';
-import { NoEventosComponent } from '../../../../shared/components/no-eventos/no-eventos.component';
+import { NoDataComponent } from '../../../../shared/components/no-eventos/no-data.component';
 
 @Component({
   selector: 'transmisiones-eventos-proximos',
@@ -17,7 +17,7 @@ import { NoEventosComponent } from '../../../../shared/components/no-eventos/no-
     CommonModule,
     EventoProxComponent,
     AlertRemovableComponent,
-    NoEventosComponent,
+    NoDataComponent,
     MesNombrePipe
   ],
   templateUrl: './eventos-proximos.component.html',
@@ -37,6 +37,8 @@ export class EventosProximosComponent {
   public svgCamara = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.camera));
   public msg: string = 'Para poder ver los eventos de otro mes, selecciona la fecha en el calendario de arriba.';
   public typeMessage: TypeMessage = 'info';
+  public msgSearch = 'No hay datos disponibles para el período seleccionado.';
+
 
   get numberMont() {
     const month = this.dateEvents().getMonth() + 1 ;

@@ -30,19 +30,16 @@ export class MainBlogComponent implements OnInit {
   public categoriesList = signal<CategoryArticleModel[]>([]);
   public articles = signal<ArticleModel[]>([]);
   public highLights = signal<ArticleModel[]>([]);
+  public perPage = signal<number>(10);
+  public totalArticles = signal<number>(0);
+  public totalPages = signal<number>(0);
 
-  pageSize: number = 10;
-  total: number = 10;
-  limit: number = 10;
   page: number = 1;
-  // public category = signal<CategoryArticle>('Todas');
-  // public searchInput = signal<string>('');
 
   filters: FiltersArticle = {
-    limit: this.limit,
     page: this.page,
-    category: 'Todas',
-    search: ''
+    per_page: this.perPage(),
+    category: '',
   }
 
   ngOnInit(): void {
@@ -66,7 +63,9 @@ export class MainBlogComponent implements OnInit {
     this.blogService.getAllArticles(this.filters).subscribe({
       next: response => {
         console.log(response);
-        this.articles.set(response);
+        this.articles.set(response.data);
+        this.totalArticles.set(Number(response.total));
+        this.totalPages.set(Number(response.totalPages));
       },
       error: err => console.error(err)
     })
@@ -83,11 +82,11 @@ export class MainBlogComponent implements OnInit {
     })
   }
 
-  onFilterChanged(data: { search: string; category: CategoryArticle }) {
+  onFilterChanged(data: { search: string; category: string }) {
     this.page = 1;
     this.filters = {
       ...data,
-      limit: this.limit,
+      per_page: this.perPage(),
       page: this.page
     }
     this.getAllArticles();

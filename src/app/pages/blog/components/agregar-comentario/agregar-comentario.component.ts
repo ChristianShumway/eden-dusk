@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { ValidationFormsService } from '../../../../core/services/validation-form.service';
 import { emailRegex } from '../../../../core/utils/regex.utils';
+import { BlogService } from '../../../../core/services/blog.service';
 
 @Component({
   selector: 'blog-agregar-comentario',
@@ -22,8 +23,10 @@ export class AgregarComentarioComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly validationFormService = inject(ValidationFormsService);
   private readonly svgService = inject(SvgService);
+  private readonly blogService = inject(BlogService);
 
   public form!: FormGroup;
+  public idPost = input.required<number>();
   public svgStar = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.star));
 
   avatarList = [
@@ -40,16 +43,17 @@ export class AgregarComentarioComponent implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      nombre: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.pattern(emailRegex)]],
-      calificacion: [null],
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(emailRegex)]],
+      rating: [null],
       avatar: [this.avatarList[0].src, Validators.required],
-      comentario: ['', Validators.required],
+      comment: ['', Validators.required],
+      idPost: [this.idPost()]
     });
   }
 
   get calificationFormField() {
-    return this.form.controls['calificacion'];
+    return this.form.controls['rating'];
   }
 
   validField(field: string): boolean | null | undefined {
@@ -65,7 +69,15 @@ export class AgregarComentarioComponent implements OnInit {
       if(!this.calificationFormField.value) {
         this.calificationFormField.setValue(1);
       }
-      console.log('Formulario enviado:', this.form.value);
+      this.blogService.addCommentToPost(this.form.value).subscribe({
+        next: response => {
+          console.log(response)
+          if(response) {
+            // this.form.clear
+          }
+        },
+        error: err => console.error(err)
+      });
     } else {
       this.form.markAllAsTouched();
     }

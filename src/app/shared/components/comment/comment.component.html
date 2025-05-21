@@ -1,0 +1,16 @@
+<li class="mb-10 ms-6">
+        <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-black">
+            <img class="rounded-full shadow-lg" [src]="comment().avatar" alt="Bonnie imae"/>
+        </span>
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-xs dark:bg-black-100 dark:border-gray-700">
+          <div class="items-center justify-between mb-3 sm:flex">
+            <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">{{ comment().date | relativeDate }}</time>
+            <div class="text-sm font-normal text-gray-500 dark:text-gray-300">
+              {{ comment().name }} comentó:
+            </div>
+          </div>
+          <div class="comment-container" [innerHTML]="commentHtml()"
+          >
+          </div>
+        </div>
+    </li>

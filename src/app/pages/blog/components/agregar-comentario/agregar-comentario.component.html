@@ -1,20 +1,20 @@
-<form [formGroup]="form" (ngSubmit)="enviar()" class="space-y-6 max-w-xl mx-auto p-6 bg-white dark:bg-gray-800 rounded shadow">
+<form [formGroup]="form" (ngSubmit)="enviar()" class="space-y-6 max-w-xl mx-auto p-6 bg-white dark:bg-black-100 rounded shadow">
 
   <!-- Nombre -->
   <div>
     <label for="nombre" class="block text-sm font-medium">Nombre</label>
-    <input formControlName="nombre" type="text" id="nombre" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700" />
-    <span *ngIf="validField('nombre')" class="text-xs text-red-600 font-primary-thin">
-      {{ getErrorField('nombre') }}
+    <input formControlName="name" type="text" id="nombre" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-black" />
+    <span *ngIf="validField('name')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('name') }}
     </span>
   </div>
 
   <!-- Correo -->
   <div>
     <label for="correo" class="block text-sm font-medium">Correo electrónico</label>
-    <input formControlName="correo" type="email" id="correo" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700" />
-    <span *ngIf="validField('correo')" class="text-xs text-red-600 font-primary-thin">
-      {{ getErrorField('correo') }}
+    <input formControlName="email" type="email" id="correo" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-black" />
+    <span *ngIf="validField('email')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('email') }}
     </span>
   </div>
 
@@ -28,7 +28,7 @@
             class="w-6 h-6 transition-colors"
             [ngClass]="{
               'text-yellow-400 hover:text-yellow-500': calificationFormField.value >= star,
-              'text-gray-300 hover:text-gray-400 dark:text-gray-600': calificationFormField.value < star
+              'text-gray-300 hover:text-gray-400 dark:text-black-200 dark:hover:text-white': calificationFormField.value < star
             }"
             [innerHTML]="svgStar()">
           </div>
@@ -51,9 +51,9 @@
   <!-- Comentario -->
   <div>
     <label for="comentario" class="block text-sm font-medium">Comentario</label>
-    <textarea formControlName="comentario" id="comentario" rows="4" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"></textarea>
-    <span *ngIf="validField('comentario')" class="text-xs text-red-600 font-primary-thin">
-      {{ getErrorField('comentario') }}
+    <textarea formControlName="comment" id="comentario" rows="4" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-black"></textarea>
+    <span *ngIf="validField('comment')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('comment') }}
     </span>
   </div>
 
