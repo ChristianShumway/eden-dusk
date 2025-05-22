@@ -1,0 +1,30 @@
+<div class="fixed top-5 right-5 z-50 space-y-2">
+  @for (toast of toasts; track $index) {
+    <div
+      [ngSwitch]="toast.type"
+      class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800"
+      role="alert"
+    >
+      <div
+        [ngClass]="{
+          'bg-green-100 text-green-500': toast.type === 'success',
+          'bg-orange-100 text-orange-500': toast.type === 'warning',
+          'bg-red-100 text-red-500': toast.type === 'danger'
+        }"
+        class="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-lg"
+      >
+        @if (toast.type === 'success') {
+          <div class="w-5 h-5 flex" [innerHTML]="svgSuccess()"></div>
+        } @else if ((toast.type === 'warning')) {
+          <div class="w-5 h-5 flex" [innerHTML]="svgWarning()"></div>
+        } @else if (toast.type === 'danger') {
+          <div class="w-5 h-5 flex" [innerHTML]="svgError()"></div>
+        }
+      </div>
+      <div class="ms-3 text-sm font-normal"> {{ toast.message }} </div>
+    </div>
+  }
+</div>
+
+      <!-- class="toast flex items-center bg-white max-w-xs p-4 mb-2 text-sm rounded-lg shadow-sm" -->
+

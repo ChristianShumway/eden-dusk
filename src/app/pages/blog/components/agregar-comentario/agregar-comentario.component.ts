@@ -7,6 +7,7 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { ValidationFormsService } from '../../../../core/services/validation-form.service';
 import { emailRegex } from '../../../../core/utils/regex.utils';
 import { BlogService } from '../../../../core/services/blog.service';
+import { ToastService } from '../../../../core/services/toast.service';
 
 @Component({
   selector: 'blog-agregar-comentario',
@@ -24,6 +25,7 @@ export class AgregarComentarioComponent implements OnInit {
   private readonly validationFormService = inject(ValidationFormsService);
   private readonly svgService = inject(SvgService);
   private readonly blogService = inject(BlogService);
+  private readonly toastService = inject(ToastService);
 
   public form!: FormGroup;
   public idPost = input.required<number>();
@@ -71,12 +73,14 @@ export class AgregarComentarioComponent implements OnInit {
       }
       this.blogService.addCommentToPost(this.form.value).subscribe({
         next: response => {
-          console.log(response)
+          console.log(response);
           if(response) {
+            this.toastService.showSuccess('Comentario agregado correctamente.');
             // this.form.clear
           }
         },
-        error: err => console.error(err)
+        error: () => this.toastService.showSuccess('Error al querer agregar comentario.')
+
       });
     } else {
       this.form.markAllAsTouched();

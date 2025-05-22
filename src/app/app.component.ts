@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, signal, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, HostListener, inject, signal, PLATFORM_ID, Inject, ViewChild, AfterViewInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -9,26 +9,34 @@ import { SvgIcons } from './core/utils/svg-icons.enum';
 
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { ToastComponent } from './shared/components/msg-toast/msg-toast.component';
+import { ToastService } from './core/services/toast.service';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ToastComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 
   private readonly router = inject(Router);
   private readonly svgService = inject(SvgService);
+  private readonly toastService = inject(ToastService);
+
+  @ViewChild(ToastComponent) toastComponent!: ToastComponent;
 
   public svgArrowUp = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
   public mostrarScrollTop = false;
   public mostrarScrollDown = true;
+
+
 
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: Object
@@ -42,6 +50,10 @@ export class AppComponent {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+  }
+
+  ngAfterViewInit() {
+    this.toastService.register(this.toastComponent);
   }
 
   @HostListener('window:scroll', [])
@@ -65,4 +77,6 @@ export class AppComponent {
       behavior: 'smooth'
     });
   }
+
+
 }
