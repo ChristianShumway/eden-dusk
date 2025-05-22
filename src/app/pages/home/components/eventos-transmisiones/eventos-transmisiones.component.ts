@@ -24,6 +24,6 @@ export class EventosTransmisionesComponent {
   public proximoEventos = input.required<TransmisionModel[]>();
   public eventosPasados = input.required<TransmisionModel[]>();
 
-  public msg = 'No hay datos disponibles para el período seleccionado.';
+  public msg = 'No hay transmisiones disponibles por mostrar.';
 
 }

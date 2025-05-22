@@ -46,9 +46,11 @@ export class MainTransmisionesComponent implements OnInit {
   }
 
   getTransmissionsByMonth(date: Date) {
+    const today = new Date;
+    if(date.getMonth() < today.getMonth()) return;
+
     this.transmisionesService.getTransmissionsByMonth(date).subscribe({
       next: response => {
-        console.log(response);
         this.eventos.set([...response]);
       },
       error: error => console.error(error)

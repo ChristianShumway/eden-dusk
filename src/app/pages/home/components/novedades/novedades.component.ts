@@ -5,7 +5,8 @@ import { SvgService } from '../../../../core/services/svg.service';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { Router, RouterModule } from '@angular/router';
 import { BlogService } from '../../../../core/services/blog.service';
-import { ArticleModel } from '../../../../core/models/article-blog.model';
+import { ArticleModel, FiltersArticle } from '../../../../core/models/article-blog.model';
+import { PathsEnum } from '../../../../core/utils/paths.enum';
 @Component({
   selector: 'home-novedades',
   standalone: true,
@@ -22,17 +23,38 @@ export class NovedadesComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly blogService = inject(BlogService);
 
-  svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
+  public svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
   public articlesList = signal<ArticleModel[]>([]);
 
+  public filters = signal<FiltersArticle>({
+    page: 1,
+    per_page: 4,
+    category: '',
+  });
+
   ngOnInit(): void {
-    this.getArticles();
+    this.getAllArticles();
+  }
+
+  getAllArticles() {
+    this.blogService.getAllArticles(this.filters()).subscribe({
+      next: response => {
+        console.log(response);
+        this.articlesList.set(response.data);
+      },
+      error: err => console.error(err)
+    })
   }
 
   getArticles() {
     this.blogService.getMainArticles().subscribe({
       next: response => this.articlesList.set(response)
     });
+  }
+
+  onImgError(event: Event) {
+    const element = event.target as HTMLImageElement;
+    element.src = PathsEnum.IMAGE_DEFAULT;
   }
 
   goTo(id: number) {

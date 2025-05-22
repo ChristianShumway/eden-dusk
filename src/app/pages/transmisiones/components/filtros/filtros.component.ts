@@ -54,6 +54,8 @@ export class FiltrosComponent implements AfterViewInit, OnChanges {
       if (typeof window !== 'undefined' && typeof MutationObserver !== 'undefined') {
         const observer = new MutationObserver(() => {
           const fechaActual = this.obtenerFechaDelCalendario();
+          console.log(fechaActual);
+          console.log(new Date);
           if (fechaActual) {
             this.onGetTransmissions(fechaActual);
           }
@@ -73,6 +75,7 @@ export class FiltrosComponent implements AfterViewInit, OnChanges {
 
   obtenerFechaDelCalendario(): Date | null {
     const mesAnioEl = this.datepickerElement.nativeElement.querySelector('.datepicker-header');
+    console.log(mesAnioEl);
     if (mesAnioEl) {
       const [mesTexto, anioTexto] = mesAnioEl.textContent.trim().split(' ');
       const mesIndex = new Date(`${mesTexto} 1, 2000`).getMonth(); // conviertes nombre de mes en número
@@ -99,22 +102,5 @@ export class FiltrosComponent implements AfterViewInit, OnChanges {
       }
     });
   }
-
-  // resaltarEventos(fecha: Date) {
-  //   const eventos = this.transmisionesService.getEventosPorMes(fecha.getFullYear(), fecha.getMonth());
-  //   console.log('eventos', eventos)
-
-  //   const dias = this.datepickerElement.nativeElement.querySelectorAll('[data-date]');
-  //   dias.forEach((diaEl: HTMLElement) => {
-  //     console.log(diaEl)
-  //     const dia = parseInt(diaEl.textContent ?? '');
-  //     if (eventos.includes(dia)) {
-  //       diaEl.classList.add('bg-blue-500', 'text-white', 'rounded-full');
-  //     } else {
-  //       diaEl.classList.remove('bg-blue-500', 'text-white', 'rounded-full');
-  //     }
-  //   });
-  // }
-
 
 }

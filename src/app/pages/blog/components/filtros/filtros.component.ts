@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, input, OnDestroy, Output, signal } from '@angular/core';
-import { CategoryArticle, CategoryArticleModel } from '../../../../core/models/article-blog.model';
+import { ChangeDetectorRef, Component, EventEmitter, inject, input, OnDestroy, Output, signal } from '@angular/core';
+import { CategoryArticleModel } from '../../../../core/models/article-blog.model';
 import { CommonModule } from '@angular/common';
 import { debounceTime, Subject, Subscription } from 'rxjs';
 import { SvgService } from '../../../../core/services/svg.service';
@@ -19,6 +19,7 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 export class FiltrosComponent implements OnDestroy {
 
   private readonly svgService = inject(SvgService);
+  private readonly cdr = inject(ChangeDetectorRef)
 
   public categories = input.required<CategoryArticleModel[]>();
   @Output()
@@ -41,6 +42,7 @@ export class FiltrosComponent implements OnDestroy {
 
   setCategory(category: CategoryArticleModel) {
     this.currencyCategory.set(category.id);
+    this.cdr.detectChanges(); // fuerza la detección inmediata
     this.filterChanged.emit({ search: this.searchValue(), category: this.currencyCategory() });
   }
 
