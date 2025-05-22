@@ -12,8 +12,7 @@ type TypeToast = 'success' | 'danger' | 'warning';
   imports: [
     CommonModule
   ],
-  templateUrl: './msg-toast.component.html',
-  styleUrl: './msg-toast.component.scss'
+  templateUrl: './msg-toast.component.html'
 })
 export class ToastComponent {
 

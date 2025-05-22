@@ -11,6 +11,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ToastComponent } from './shared/components/msg-toast/msg-toast.component';
 import { ToastService } from './core/services/toast.service';
+import { LoadingOverlayComponent } from './shared/components/loading-overlay/loading-overlay.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,7 +19,8 @@ import { ToastService } from './core/services/toast.service';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    ToastComponent
+    ToastComponent,
+    LoadingOverlayComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
