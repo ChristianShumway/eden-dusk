@@ -7,6 +7,7 @@ import { ArticleModel } from '../../../../core/models/article-blog.model';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { Router } from '@angular/router';
 import { DateMxPipe } from '../../../../shared/pipes/mx-date.pipe';
+import { PathsEnum } from '../../../../core/utils/paths.enum';
 
 @Component({
   selector: 'blog-articulo-feed',
@@ -30,6 +31,11 @@ export class ArticuloFeedComponent {
 
   goTo(id: number) {
     this.router.navigate(['/blog', id]);
+  }
+
+  onImgError(event: Event) {
+    const element = event.target as HTMLImageElement;
+    element.src = PathsEnum.IMAGE_USER_DEFAULT;
   }
 
 }

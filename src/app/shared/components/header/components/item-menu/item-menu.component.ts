@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <li>
       <a [routerLink]="itemMenu().path"
-      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLinkActiveOptions]="{ exact: false }"
       routerLinkActive="bg-primary font-bold md:text-primary "
       (click)="clickItemMenu.emit()"
       class="block text-sage-100 py-2 px-3 rounded md:bg-transparent md:p-0  hover:md:text-primary-200"

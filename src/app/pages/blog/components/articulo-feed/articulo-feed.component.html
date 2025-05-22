@@ -1,6 +1,11 @@
 <div class="p-4 items-center grid">
   <div class="wrap__author flex items-center gap-2 mb-2">
-    <img class="w-8 h-8 rounded-full" [src]="article().authorImage" [alt]="article().authorName" />
+    <img
+      class="w-8 h-8 rounded-full"
+      [src]="article().authorImage"
+      [alt]="article().authorName"
+      (error)="onImgError($event)"
+    />
     <p class="text-sm font-secondary-medium"> {{ article().authorName }} </p>
   </div>
   <div class="wrap__article grid grid-cols-1 md:grid-cols-[75%_25%] gap-4 overflow-hidden">

@@ -3,6 +3,7 @@ import { CommentArticleModel } from '../../../core/models/article-blog.model';
 import { SvgService } from '../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { RelativeDatePipe } from '../../pipes/relative-date.pipe';
+import { PathsEnum } from '../../../core/utils/paths.enum';
 
 @Component({
   selector: 'shared-comment',
@@ -24,6 +25,11 @@ export class CommentComponent implements OnInit {
     if(this.comment().comment) {
       this.commentHtml.set(this.svgService.getTrueHtml(this.comment().comment))
     }
+  }
+
+  onImgError(event: Event) {
+    const element = event.target as HTMLImageElement;
+    element.src = PathsEnum.IMAGE_AVATAR_DEFAULT;
   }
 
 }
