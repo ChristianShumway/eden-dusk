@@ -6,8 +6,7 @@ import { FiltrosComponent } from '../../components/filtros/filtros.component';
 import { FeedArticulosComponent } from '../../components/feed-articulos/feed-articulos.component';
 import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 import { BlogService } from '../../../../core/services/blog.service';
-import { ArticleModel, CategoryArticle, CategoryArticleModel, FiltersArticle } from '../../../../core/models/article-blog.model';
-import { error } from 'console';
+import { ArticleModel, CategoryArticleModel, FiltersArticle } from '../../../../core/models/article-blog.model';
 @Component({
   selector: 'app-main-blog',
   standalone: true,
@@ -32,7 +31,6 @@ export class MainBlogComponent implements OnInit {
   public highLights = signal<ArticleModel[]>([]);
   public perPage = signal<number>(10);
   public totalArticles = signal<number>(0);
-  public totalPages = signal<number>(0);
 
   page: number = 1;
 
@@ -65,13 +63,12 @@ export class MainBlogComponent implements OnInit {
         console.log(response);
         this.articles.set(response.data);
         this.totalArticles.set(Number(response.total));
-        this.totalPages.set(Number(response.totalPages));
       },
       error: err => console.error(err)
     })
   }
 
-  pageChanged(e: any) {
+  pageChanged(e: number) {
     this.getAllArticles(e);
   }
 

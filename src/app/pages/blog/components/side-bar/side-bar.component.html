@@ -2,10 +2,16 @@
   <blog-newsletter-sidebar />
   <blog-feed-destacados [articles]="articles()" [title]="titleFeed" />
   <blog-autores />
-  <div class="mt-12">
-    <p class="text-xl md:text-2xl font-secondary-bold uppercase mb-4">
-      Próximos Eventos
-    </p>
-    <shared-transmisiones-list [eventos]="eventos()" [tiempoEvento]="'proximo'" [component]="'sidebar'" />
-  </div>
+  @if(eventos().length) {
+    <div class="mt-12">
+      <p class="text-xl md:text-2xl font-secondary-bold uppercase mb-4">
+        Próximos Eventos
+      </p>
+      @if(eventos().length) {
+        <shared-transmisiones-list [eventos]="eventos()" [tiempoEvento]="'proximo'" [component]="'sidebar'" />
+      } @else {
+        <shared-no-data [type]="'transmision'" [msg]="msg" />
+      }
+    </div>
+  }
 </div>

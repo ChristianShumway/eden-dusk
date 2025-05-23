@@ -7,6 +7,7 @@ import { AutoresComponent } from '../autores/autores.component';
 import { TransmisionesService } from '../../../../core/services/transmisiones.service';
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { TransmisionesListComponent } from '../../../../shared/components/transmisiones-list/transmisiones-list.component';
+import { NoDataComponent } from '../../../../shared/components/no-eventos/no-data.component';
 
 @Component({
   selector: 'blog-side-bar',
@@ -16,7 +17,8 @@ import { TransmisionesListComponent } from '../../../../shared/components/transm
     NewsletterSidebarComponent,
     FeedDestacadosComponent,
     AutoresComponent,
-    TransmisionesListComponent
+    TransmisionesListComponent,
+    NoDataComponent
   ],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.scss'
@@ -27,7 +29,8 @@ export class SideBarComponent {
 
   public articles = input.required<ArticleModel[]>();
   public eventos = signal<TransmisionModel[]>([]);
-  public titleFeed: string = '    Articulos Destacados';
+  public titleFeed: string = 'Articulos Destacados';
+  public msg = 'No hay transmisiones disponibles por mostrar.';
 
   ngOnInit(): void {
     this.getAllTransmissions();

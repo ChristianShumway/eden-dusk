@@ -12,7 +12,7 @@
         @if(proximoEventos().length) {
           <shared-transmisiones-list [eventos]="proximoEventos()" [tiempoEvento]="'proximo'" />
         }@else {
-          <shared-no-data [type]="'transmision'"  msg="msg" />
+          <shared-no-data [type]="'transmision'"  [msg]="msg" />
         }
       </div>
     </div>
