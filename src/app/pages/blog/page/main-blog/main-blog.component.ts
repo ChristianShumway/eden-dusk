@@ -29,16 +29,14 @@ export class MainBlogComponent implements OnInit {
   public categoriesList = signal<CategoryArticleModel[]>([]);
   public articles = signal<ArticleModel[]>([]);
   public highLights = signal<ArticleModel[]>([]);
-  public perPage = signal<number>(10);
+  public page = signal<number>(1);
+  public perPage = signal<number>(1);
   public totalArticles = signal<number>(0);
-
-  page: number = 1;
-
-  filters: FiltersArticle = {
-    page: this.page,
+  public filters = signal<FiltersArticle>({
+    page: this.page(),
     per_page: this.perPage(),
     category: '',
-  }
+  });
 
   ngOnInit(): void {
     this.getCategories();
@@ -56,9 +54,14 @@ export class MainBlogComponent implements OnInit {
   }
 
   getAllArticles(page?: number) {
-    this.filters.page = page ? page : this.page
-    this.page = page ? page : this.page;
-    this.blogService.getAllArticles(this.filters).subscribe({
+    this.filters.update( currencyValue => {
+      return {
+        ...currencyValue,
+        page: page ? page : this.page()
+      }
+    });
+    this.page.set(page ? page : this.page());
+    this.blogService.getAllArticles(this.filters()).subscribe({
       next: response => {
         console.log(response);
         this.articles.set(response.data);
@@ -76,16 +79,18 @@ export class MainBlogComponent implements OnInit {
     this.blogService.getHighlights().subscribe({
       next: response => {
         this.highLights.set(response)}
-    })
+    });
   }
 
   onFilterChanged(data: { search: string; category: string }) {
-    this.page = 1;
-    this.filters = {
-      ...data,
-      per_page: this.perPage(),
-      page: this.page
-    }
+    this.page.set(1);
+    this.filters.update(currencyValue => {
+      return {
+        ...data,
+        per_page: this.perPage(),
+        page: this.page()
+      }
+    });
     this.getAllArticles();
   }
 

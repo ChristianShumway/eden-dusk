@@ -6,7 +6,7 @@
       <blog-feed-articulos
         [articles]="articles()"
         [articlesPerPage]="perPage()"
-        [currencyPage]="page"
+        [currencyPage]="page()"
         [totalArticles]="totalArticles()"
       />
       <!-- PAGINATION -->
@@ -16,7 +16,7 @@
       class="text-right mt-4 font-circular-regular"
       (maxSize)=10;
       (directionLinks)=true
-      (pageChange)="page = $event"
+      (pageChange)="page.set($event)"
       (autoHide)=true
       (responsive)=true
       previousLabel="Anterior"
