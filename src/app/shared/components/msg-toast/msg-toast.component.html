@@ -1,4 +1,4 @@
-<div class="fixed top-5 right-5 z-50 space-y-2">
+<div class="fixed bottom-5 right-5 z-50 space-y-2">
   @for (toast of toasts; track $index) {
     <div
       [ngSwitch]="toast.type"
@@ -9,7 +9,8 @@
         [ngClass]="{
           'bg-green-100 text-green-500': toast.type === 'success',
           'bg-orange-100 text-orange-500': toast.type === 'warning',
-          'bg-red-100 text-red-500': toast.type === 'danger'
+          'bg-red-100 text-red-500': toast.type === 'danger',
+          'bg-blue-100 text-blue-500': toast.type === 'info'
         }"
         class="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-lg"
       >
@@ -19,6 +20,8 @@
           <div class="w-5 h-5 flex" [innerHTML]="svgWarning()"></div>
         } @else if (toast.type === 'danger') {
           <div class="w-5 h-5 flex" [innerHTML]="svgError()"></div>
+        }  @else if (toast.type === 'info') {
+          <div class="w-5 h-5 flex" [innerHTML]="svgInfo()"></div>
         }
       </div>
       <div class="ms-3 text-sm font-normal"> {{ toast.message }} </div>

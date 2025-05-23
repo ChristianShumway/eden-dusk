@@ -1,17 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { SafeHtml } from '@angular/platform-browser';
+
 import { BlogService } from '../../../../core/services/blog.service';
-import { ArticleModel } from '../../../../core/models/article-blog.model';
-import { FeedDestacadosComponent } from '../../components/feed-destacados/feed-destacados.component';
-import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
 import { SvgService } from '../../../../core/services/svg.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
+import { FeedDestacadosComponent } from '../../components/feed-destacados/feed-destacados.component';
 import { AgregarComentarioComponent } from '../../components/agregar-comentario/agregar-comentario.component';
 import { ComentariosComponent } from '../../components/comentarios/comentarios.component';
 import { SharedSocialmediaComponent } from '../../../../shared/components/shared-socialmedia/shared-socialmedia.component';
+import { ArticleModel } from '../../../../core/models/article-blog.model';
+import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
+import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 
 @Component({
   selector: 'app-main-articulo',
@@ -33,6 +34,7 @@ export class MainArticuloComponent implements OnInit {
   private readonly blogService = inject(BlogService);
   private readonly ar = inject(ActivatedRoute);
   private readonly svgService = inject(SvgService);
+  private readonly location = inject(Location);
 
   public article = signal<ArticleModel>({
     id: 0,
@@ -84,6 +86,10 @@ export class MainArticuloComponent implements OnInit {
 
   selectTab(tab: 'leer' | 'agregar') {
     this.selectedTab = tab;
+  }
+
+  get currentUrl(): string {
+    return window.location.origin + this.location.path();
   }
 
 

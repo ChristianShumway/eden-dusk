@@ -79,7 +79,7 @@ export class AgregarComentarioComponent implements OnInit {
             // this.form.clear
           }
         },
-        error: () => this.toastService.showSuccess('Error al querer agregar comentario.')
+        error: () => this.toastService.showError('Error al querer agregar comentario.')
 
       });
     } else {

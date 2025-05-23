@@ -4,7 +4,7 @@ import { SvgService } from '../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../core/utils/svg-icons.enum';
 
-type TypeToast = 'success' | 'danger' | 'warning';
+type TypeToast = 'success' | 'danger' | 'warning' | 'info';
 
 @Component({
   selector: 'shared-toast',
@@ -21,7 +21,7 @@ export class ToastComponent {
   public svgSuccess = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.handUp));
   public svgWarning = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.fire));
   public svgError = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.handDown));
-
+  public svgInfo = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.msgInfo));
 
   toasts: { type: TypeToast, message: string }[] = [];
 

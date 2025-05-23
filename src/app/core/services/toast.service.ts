@@ -22,4 +22,8 @@ export class ToastService {
   showWarning(message: string) {
     this.toastComponent?.show('warning', message);
   }
+
+  showInfo(message: string) {
+    this.toastComponent?.show('info', message);
+  }
 }
