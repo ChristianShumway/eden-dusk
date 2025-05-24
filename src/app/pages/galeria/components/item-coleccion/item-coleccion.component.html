@@ -1,0 +1,10 @@
+<a class="cursor-pointer" (click)="goToDetail(itemGallery().id)">
+  <img class="h-auto max-w-full rounded-lg" [src]="itemGallery().imageUrl" [alt]="itemGallery().title" />
+  <div class="pie__info mt-2">
+    <p class="font-primary-medium text-xl mb-0 line-clamp-1">{{ itemGallery().title }}</p>
+    <div class="flex items-center gap-1">
+      <div class="w-3 h-3 flex items-center text-gray-500" [innerHTML]="svgLocation()"></div>
+      <span class="text-sm text-gray-500 line-clamp-1">{{ itemGallery().location }}</span>
+    </div>
+  </div>
+</a>

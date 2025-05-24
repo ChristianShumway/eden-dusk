@@ -10,21 +10,23 @@
         [totalArticles]="totalArticles()"
       />
       <!-- PAGINATION -->
-      <pagination-controls
-      *ngIf="articles().length > 0"
-      id="paginator"
-      class="text-right mt-4 font-circular-regular"
-      (maxSize)=10;
-      (directionLinks)=true
-      (pageChange)="page.set($event)"
-      (autoHide)=true
-      (responsive)=true
-      previousLabel="Anterior"
-      nextLabel="Siguiente"
-      screenReaderPaginationLabel="Pagination"
-      (pageChange)="pageChanged($event)"
-    >
-    </pagination-controls>
+      <div class="mt-4">
+        <pagination-controls
+        *ngIf="articles().length > 0"
+        id="paginator"
+        class="text-right font-circular-regular"
+        (maxSize)=10;
+        (directionLinks)=true
+        (pageChange)="page.set($event)"
+        (autoHide)=true
+        (responsive)=true
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        screenReaderPaginationLabel="Pagination"
+        (pageChange)="pageChanged($event)"
+        >
+        </pagination-controls>
+      </div>
     </div>
     <div class="wrapper__sidebar">
       <blog-side-bar [articles]="highLights()" />

@@ -10,6 +10,7 @@ import { FeedDestacadosComponent } from '../../components/feed-destacados/feed-d
 import { AgregarComentarioComponent } from '../../components/agregar-comentario/agregar-comentario.component';
 import { ComentariosComponent } from '../../components/comentarios/comentarios.component';
 import { SharedSocialmediaComponent } from '../../../../shared/components/shared-socialmedia/shared-socialmedia.component';
+import { BtnReturnComponent } from '../../../../shared/components/btn-return/btn-return.component';
 import { ArticleModel } from '../../../../core/models/article-blog.model';
 import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
@@ -24,6 +25,7 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
     AgregarComentarioComponent,
     ComentariosComponent,
     SharedSocialmediaComponent,
+    BtnReturnComponent,
     BackgroundImagePipe
   ],
   templateUrl: './main-articulo.component.html',

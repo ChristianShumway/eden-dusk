@@ -7,6 +7,25 @@
       (filterChanged)="onFilterChanged($event)" />
   </div>
   <div class="wrapper__main">
-    <gallery-coleccion />
+    <gallery-coleccion [galleryGroups]="groupedGridGallery()" />
+    <!-- PAGINATION -->
+    <div class="mt-4">
+      @if (imagesList().length > 0) {
+        <pagination-controls
+        id="paginator"
+        class="text-right font-circular-regular"
+        (maxSize)=10;
+        (directionLinks)=true
+        (pageChange)="page.set($event)"
+        (autoHide)=true
+        (responsive)=true
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        screenReaderPaginationLabel="Pagination"
+        (pageChange)="pageChanged($event)"
+        >
+        </pagination-controls>
+      }
+    </div>
   </div>
 </section>

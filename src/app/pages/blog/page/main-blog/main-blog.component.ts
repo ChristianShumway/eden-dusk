@@ -30,7 +30,7 @@ export class MainBlogComponent implements OnInit {
   public articles = signal<ArticleModel[]>([]);
   public highLights = signal<ArticleModel[]>([]);
   public page = signal<number>(1);
-  public perPage = signal<number>(1);
+  public perPage = signal<number>(10);
   public totalArticles = signal<number>(0);
   public filters = signal<FiltersArticle>({
     page: this.page(),

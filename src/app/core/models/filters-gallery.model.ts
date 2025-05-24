@@ -34,8 +34,6 @@ export interface ImageGalleryModel {
 }
 
 
-
-
 export interface ResponseArticleModel {
   // total: number;
   // data: ArticleModel[];
@@ -52,15 +50,12 @@ export interface ResponseArticleModel {
   authorName: string;
 }
 
-
 export interface FiltersGallery {
-  status?:             number;
-  limit?:              number;
   page?:               number;
+  per_page?:            number;
   category:            CategoryGallery;
   subcategory?:        string;
   search?:             string;
   date?:               string;
   collaborator?:       string;
-
 }

@@ -40,7 +40,7 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
     category: '',
     date: '',
     subcategory: '',
-    collaborator: ''
+    collaborator: '',
   });
 
   public currencySubcategories = signal<SubCategoryGalleryModel[]>([]);

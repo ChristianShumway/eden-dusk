@@ -1,0 +1,70 @@
+<section class="mt-24">
+  <div class="bg-black/90 w-full h-[78px] fixed left-0 top-0"></div>
+  <div class="w-full">
+    <shared-btn-return />
+    <!-- Imagen principal con controles -->
+    <div class="relative rounded-xl shadow-md mb-8 pt-4 bg-gray-50">
+      <img
+        [src]="selectedImage.imageUrl"
+        class="w-full max-h-[80vh] object-contain transition-all duration-300"
+        loading="lazy"
+        alt="ims"
+      />
+
+      <!-- Botón Anterior -->
+      <button
+        (click)="prevImage()"
+        class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full shadow-md"
+        aria-label="Anterior"
+      >
+        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Botón Siguiente -->
+      <button
+        (click)="nextImage()"
+        class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full shadow-md"
+        aria-label="Siguiente"
+      >
+        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+
+
+      <!-- Detalles -->
+      <div class="mt-6 p-4 bg-black text-gray-300 rounded-b-xl">
+        <h2 class="text-2xl sm:text-2xl font-bold">{{ selectedImage.title }}</h2>
+        <p class="mt-2 text-gray-300">{{ selectedImage.description }}</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm mt-4">
+          <div><span class="font-primary-medium">Lugar:</span> {{ selectedImage.location }}</div>
+          <div><span class="font-primary-medium">Fecha:</span> {{ selectedImage.date }}</div>
+          <div><span class="font-primary-medium">Categoría:</span> {{ selectedImage.category || 'N/A' }}</div>
+          <div><span class="font-primary-medium">Autor:</span> {{ selectedImage.authorName }}</div>
+          <div><span class="font-primary-medium">Descargable:</span> {{ selectedImage.downloadable ? 'Sí' : 'No' }}</div>
+          <div><span class="font-primary-medium">A la venta:</span> {{ selectedImage.forSale ? 'Sí' : 'No' }}</div>
+        </div>
+
+        <!-- Acciones -->
+        <div class="mt-8 flex flex-wrap gap-4">
+          @if (selectedImage.downloadable) {
+            <button download class="btn__outline--white">
+              Descargar
+            </button>
+          }
+
+          @if (selectedImage.forSale) {
+            <button class="btn__primary--white">
+              Comprar
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from "rxjs";
+import { map, Observable, of } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
-import { CategoryGalleryModel, CollaboratorGalleryModel, ImageGalleryModel } from "../models/filters-gallery.model";
+import { CategoryGalleryModel, CollaboratorGalleryModel, FiltersGallery, ImageGalleryModel } from "../models/filters-gallery.model";
 
 const FILTERS_DUMMY: CategoryGalleryModel[] = [
   {
@@ -91,6 +91,150 @@ export const DUMMY_IMAGE_GALLERY: ImageGalleryModel[] = [
     downloadable: true,
     forSale: true,
   },
+  {
+    id: 4,
+    title: 'Cielo Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto del sahara.',
+    location: 'Sahara, Marruecos',
+    date: '2023/02/05',
+    category: 'Colaboraciones Culturales',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
+  {
+    id: 5,
+    title: 'Desierto Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto.',
+    location: 'Sahara, Marruecos',
+    date: '2023/08/05',
+    category: 'Paisajes y Naturaleza',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
+  {
+    id: 6,
+    title: 'Desierto Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto.',
+    location: 'Sahara, Marruecos',
+    date: '2023/08/05',
+    category: 'Paisajes y Naturaleza',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
+  {
+    id: 7,
+    title: 'Desierto Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto.',
+    location: 'Sahara, Marruecos',
+    date: '2023/08/05',
+    category: 'Paisajes y Naturaleza',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
+  {
+    id: 8,
+    title: 'Desierto Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto.',
+    location: 'Sahara, Marruecos',
+    date: '2023/08/05',
+    category: 'Paisajes y Naturaleza',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
+  {
+    id: 9,
+    title: 'Desierto Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto.',
+    location: 'Sahara, Marruecos',
+    date: '2023/08/05',
+    category: 'Paisajes y Naturaleza',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
+  {
+    id: 10,
+    title: 'Desierto Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto.',
+    location: 'Sahara, Marruecos',
+    date: '2023/08/05',
+    category: 'Paisajes y Naturaleza',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
+  {
+    id: 11,
+    title: 'Desierto Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto.',
+    location: 'Sahara, Marruecos',
+    date: '2023/08/05',
+    category: 'Paisajes y Naturaleza',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
+  {
+    id: 12,
+    title: 'Desierto Estrellado',
+    description: 'Cielo nocturno con la Vía Láctea sobre el desierto.',
+    location: 'Sahara, Marruecos',
+    date: '2023/08/05',
+    category: 'Paisajes y Naturaleza',
+    imageUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg',
+    imageUrlThumbnail: 'https://example.com/images/desert-thumb.jpg',
+    imageUrlMedium: 'https://example.com/images/desert-medium.jpg',
+    color: '#78350f',
+    authorImage: 'https://example.com/authors/amina.jpg',
+    authorName: 'Amina El-Fassi',
+    downloadable: true,
+    forSale: true,
+  },
 ];
 
 
@@ -111,8 +255,17 @@ export class GalleryService {
     return of (COLLABORATORS_DUMMY);
   }
 
-  getImages(idImage: number): Observable<ImageGalleryModel[]> {
-    return of (DUMMY_IMAGE_GALLERY);
+  getImagesGallery(filters: FiltersGallery): Observable<ImageGalleryModel[]> {
+    console.log(filters)
+    return of (DUMMY_IMAGE_GALLERY).pipe(
+      map( images => images.slice(0,filters.per_page))
+    );
+  }
+
+  getImagesDetail(idImage: number): Observable<ImageGalleryModel[]> {
+    return of (DUMMY_IMAGE_GALLERY).pipe(
+      map( images => images.slice(0,5))
+    );
   }
 
 }

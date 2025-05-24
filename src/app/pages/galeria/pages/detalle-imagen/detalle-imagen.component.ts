@@ -1,15 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { ImageGalleryModel } from '../../../../core/models/filters-gallery.model';
 import { GalleryService } from '../../../../core/services/galeria.service';
-import { CommonModule } from '@angular/common';
+import { BtnReturnComponent } from '../../../../shared/components/btn-return/btn-return.component';
+import { ImageGalleryModel } from '../../../../core/models/filters-gallery.model';
 
 @Component({
   selector: 'app-detalle-imagen',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    BtnReturnComponent
   ],
   templateUrl: './detalle-imagen.component.html',
   styleUrl: './detalle-imagen.component.scss'
@@ -17,10 +19,8 @@ import { CommonModule } from '@angular/common';
 
 export class DetalleImagenComponent implements OnInit {
 
-
-  images: ImageGalleryModel[] = []; // Llénalo desde un endpoint o dummy
-  selectedIndex = 0;
-  modalOpen = false;
+  public images: ImageGalleryModel[] = []; // Llénalo desde un endpoint o dummy
+  public selectedIndex = 0;
 
   private readonly ar = inject(ActivatedRoute);
   private readonly galleryService = inject(GalleryService);
@@ -33,7 +33,7 @@ export class DetalleImagenComponent implements OnInit {
   initParams() {
     this.ar.paramMap.pipe(
       switchMap( (params: ParamMap) => {
-        return this.galleryService.getImages(Number(params.get('id')));
+        return this.galleryService.getImagesDetail(Number(params.get('id')));
       })
     ).subscribe({
       next: response => {
@@ -56,14 +56,5 @@ export class DetalleImagenComponent implements OnInit {
       (this.selectedIndex - 1 + this.images.length) % this.images.length;
   }
 
-  openModal(image: ImageGalleryModel): void {
-    this.modalOpen = true;
-    document.body.style.overflow = 'hidden';
-  }
-
-  closeModal(): void {
-    this.modalOpen = false;
-    document.body.style.overflow = '';
-  }
 
 }

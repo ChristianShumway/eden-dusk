@@ -4,7 +4,7 @@
   justify-content: flex-end;
   @apply font-primary-regular;
   a {
-    @apply text-black;
+    @apply text-black dark:text-white;
   }
   li:not(:first-child):not(:last-child) a {
     width: 32px;
@@ -14,14 +14,19 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    @apply text-black dark:text-white;
+
     &:hover {
       border-radius: .5rem;
-      @apply bg-gray-200 text-black
+      @apply bg-gray-200 dark:bg-gray-600 text-black dark:text-white;
     }
   }
-  li.pagination-previous a:hover, li.pagination-next a:hover {
-    background-color: transparent !important;
-    @apply text-primary-200;
+  li.pagination-previous a, li.pagination-next a {
+    @apply text-black dark:text-white;
+    &:hover {
+      background-color: transparent !important;
+      @apply text-primary-200;
+    }
   }
   .current {
     background-color: #242423 !important;
