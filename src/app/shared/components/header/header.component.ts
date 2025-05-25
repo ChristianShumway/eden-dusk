@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit {
     { name: 'transmisiones', path: '/transmisiones' },
     { name: 'nuestra historia', path: '/nosotros' },
     { name: 'blog', path: '/blog' },
-    { name: 'galeria', path: '/galeria' }
+    { name: 'galeria', path: '/galeria' },
+    { name: 'videoteca', path: '/videoteca' }
   ];
 
 

@@ -1,29 +1,29 @@
 <nav
-  [ngClass]="isScrolled ? 'md:bg-black/90 md:dark:bg-black/90' : 'md:bg-transparent md:dark:bg-transparent'"
+  [ngClass]="isScrolled ? 'lg:bg-black/90 lg:dark:bg-black/90' : 'lg:bg-transparent lg:dark:bg-transparent'"
   class="fixed bg-black dark:bg-black w-full z-20 top-0 start-0 border-b border-white dark:border-white">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img class="hidden md:block w-16 align-bottom" [src]="urlImageMain" alt="logo eden-dusk" />
-      <img class="block md:hidden w-16 align-bottom" [src]="urlimageWhite" alt="logo eden-dusk" />
+      <img class="hidden lg:block w-16 align-bottom" [src]="urlImageMain" alt="logo eden-dusk" />
+      <img class="block lg:hidden w-16 align-bottom" [src]="urlimageWhite" alt="logo eden-dusk" />
     </a>
 
-    <div class="flex md:order-2 space-x-3 md:space-x-2 rtl:space-x-reverse">
+    <div class="flex lg:order-2 space-x-3 lg:space-x-2 rtl:space-x-reverse">
       <button
         type="button"
-        class="hidden md:block btn__outline--white">
+        class="hidden lg:block btn__outline--white">
         Donaciones
       </button>
 
       <button
         type="button"
         data-drawer-target="drawer-cart-eden" data-drawer-show="drawer-cart-eden" data-drawer-placement="right" aria-controls="drawer-cart-eden"
-        class="group text-sage-100 border border-transparent hover:bg-black hover:border-primary-50 focus:ring-2 focus:outline-none  font-medium transition-all duration-300 rounded-lg text-sm p-2.5 md:p-3 text-center inline-flex items-center">
+        class="group text-sage-100 border border-transparent hover:bg-black hover:border-primary-50 focus:ring-2 focus:outline-none  font-medium transition-all duration-300 rounded-lg text-sm p-2.5 lg:p-3 text-center inline-flex items-center">
           <div [innerHTML]="svgBag" class="text-primary-50 group-hover:text-primary-100"></div>
       </button>
 
       <!-- Botón Toggle -->
       <button (click)="toggleNavbar()" type="button"
-      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-sage-100 border border-transparent rounded-lg md:hidden
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-sage-100 border border-transparent rounded-lg lg:hidden
             hover:bg-transparent hover:text-primary-100 hover:border-primary-100 focus:outline-none focus:ring-0">
         <span class="sr-only">Open main menu</span>
           <div [innerHTML]="svgMenu"></div>
@@ -32,7 +32,7 @@
 
     <!-- Menú de Navegación -->
     <div [ngClass]="{ 'hidden': !isNavbarOpen, 'block': isNavbarOpen }"
-    class="items-center justify-between w-full md:flex md:w-auto md:order-1" id="navbar">
+    class="items-center justify-between w-full lg:flex lg:w-auto lg:order-1" id="navbar">
       <header-menu [isNavbarOpen]="isNavbarOpen" [itemsMenu]="itemsMenu" (clickItemMenu)="toggleNavbar()" />
     </div>
 

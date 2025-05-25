@@ -20,5 +20,9 @@ export const routes: Routes = [
   {
     path: 'galeria',
     loadChildren: () => import('./pages/galeria/galeria.routes').then(m => m.GALLERY_ROUTES)
+  },
+  {
+    path: 'videoteca',
+    loadChildren: () => import('./pages/videoteca/videoteca.routes').then(m => m.VIDEOTECA_ROUTES)
   }
 ];
