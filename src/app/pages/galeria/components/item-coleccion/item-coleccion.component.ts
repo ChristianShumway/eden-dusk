@@ -4,11 +4,14 @@ import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { Router } from '@angular/router';
+import { ProtectImageDirective } from '../../../../core/directives/protect-images.directive';
 
 @Component({
   selector: 'gallery-item-coleccion',
   standalone: true,
-  imports: [],
+  imports: [
+    ProtectImageDirective
+  ],
   templateUrl: './item-coleccion.component.html',
 })
 export class ItemColeccionComponent {

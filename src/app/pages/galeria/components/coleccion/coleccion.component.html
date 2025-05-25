@@ -14,17 +14,21 @@
     }"
     class="grid gap-4"
   >
-    @for (group of galleryGroups(); track $index) {
-      <div
-        [ngClass]="{
-          'md:grid-cols-3' : galleryGroups().length === 1
-        }"
-        class="grid justify-center gap-4"
-      >
-        @for (itemGallery of group; track $index) {
-          <gallery-item-coleccion [itemGallery]="itemGallery" />
-        }
-      </div>
+    @if (galleryGroups().length) {
+      @for (group of galleryGroups(); track $index) {
+        <div
+          [ngClass]="{
+            'md:grid-cols-3' : galleryGroups().length === 1
+          }"
+          class="grid justify-center gap-4"
+        >
+          @for (itemGallery of group; track $index) {
+            <gallery-item-coleccion [itemGallery]="itemGallery" />
+          }
+        </div>
+      }
+    } @else {
+      <shared-no-data [type]="'galeria'" [msg]="msg" />
     }
   </div>
 

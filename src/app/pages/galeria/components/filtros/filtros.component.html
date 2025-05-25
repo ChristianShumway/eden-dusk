@@ -2,7 +2,7 @@
   <div id="accordion-collapse-heading-filters" class="flex justify-end">
     <button
       type="button"
-      class="flex border-0 items-center justify-end p-5 font-primary-medium rtl:text-right bg-transparent text-gray-500 focus:ring-0 dark:text-gray-400 gap-4"
+      class="flex border-0 items-center justify-end p-5 font-primary-medium rtl:text-right bg-transparent text-gray-500 focus:ring-0 dark:bg-transparent dark:text-gray-400 gap-4"
       data-accordion-target="#accordion-collapse-body-filters"
       aria-expanded="true"
       aria-controls="accordion-collapse-body-filters">
@@ -29,7 +29,7 @@
             <input
               type="text"
               formControlName="search"
-              class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-black-100 focus:border-black-100 block w-full ps-10 p-3  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black"
+              class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-black-100 focus:border-black-100 block w-full ps-10 p-3  dark:bg-black-100 dark:border-black dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white"
               placeholder="Buscar..."
             />
           </div>
@@ -53,12 +53,12 @@
             #dropCat
             id="dropdownRadioBgHoverCategories"
             [class.hidden]="!isDropdownOpenCat"
-            class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
+            class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-black-100 dark:divide-gray-600"
           >
             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioBgHoverButtonCategories" >
             @for (category of categories(); track $index) {
                 <li>
-                  <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                  <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-black-200">
                     <input
                       [id]="'radio-' + category.name"
                       type="radio"
@@ -66,7 +66,7 @@
                       name="category"
                       formControlName="category"
                       (change)="onSelectCategory(category, 1)"
-                      class="w-4 h-4 text-black bg-gray-100 border-gray-300 focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
+                      class="w-4 h-4 text-black bg-gray-100 border-gray-300 focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-black-100 dark:border-gray-500">
                     <label
                       [for]="'radio-' + category.name"
                       class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300"
@@ -95,12 +95,12 @@
             #dropSubcat
             id="dropdownRadioBgHoverSubCategories"
             [class.hidden]="!isDropdownOpenSubcat"
-            class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
+            class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-black-100 dark:divide-gray-600">
             @if(currencySubcategories().length) {
               <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioBgHoverButtonSubCategories" >
                 @for (subcategory of currencySubcategories(); track $index) {
                   <li>
-                    <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-black-200">
                       <input
                         [id]="'radio-sub-' + subcategory.name"
                         type="radio"
@@ -108,7 +108,7 @@
                         [value]="subcategory.name"
                         formControlName="subcategory"
                         (change)="onSelectSubCategory(subcategory, 2)"
-                        class="w-4 h-4 text-black bg-gray-100 border-gray-300 focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
+                        class="w-4 h-4 text-black bg-gray-100 border-gray-300 focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-black-100 dark:border-gray-500">
                       <label
                         [for]="'radio-sub-' + subcategory.name"
                         class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300"
@@ -142,14 +142,14 @@
             #dropDate
             id="dropdownBgHoverDate"
             [class.hidden]="!isDropdownOpenDate"
-            class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600">
+            class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-black-100 dark:divide-gray-600">
             <div class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownBgHoverButtonDate">
               <input
                 type="date"
                 id="fecha"
                 name="date"
                 formControlName="date"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg dark:bg-black-100 dark:text-gray-200 focus:ring-black focus:border-black block w-full p-2.5"
                 (change)="onDateChange($event, 3)"
               />
             </div>
@@ -171,12 +171,12 @@
             #dropCollaborators
             id="dropdownRadioBgHoverCollaborators"
             [class.hidden]="!isDropdownOpenCollaborators"
-            class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
+            class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-black-100 dark:divide-gray-600"
           >
             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioBgHoverButtonCollaborators" >
             @for (collaborator of collaborators(); track $index) {
                 <li>
-                  <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                  <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-black-200">
                     <input
                       [id]="'radio-' + collaborator.name"
                       type="radio"
@@ -184,7 +184,7 @@
                       [value]="collaborator.name"
                       formControlName="collaborator"
                       (change)="onSelectCollaborator(collaborator, 1)"
-                      class="w-4 h-4 text-black bg-gray-100 border-gray-300 focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
+                      class="w-4 h-4 text-black bg-gray-100 border-gray-300 focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-black-100 dark:border-gray-500">
                     <label
                       [for]="'radio-' + collaborator.name"
                       class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300"

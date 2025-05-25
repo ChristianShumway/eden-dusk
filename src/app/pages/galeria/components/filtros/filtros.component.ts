@@ -54,6 +54,8 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
   public isDropdownOpenDate = false;
   public isDropdownOpenCollaborators = false;
 
+  public today = new Date().toISOString().split('T')[0];
+
   ngOnInit(): void {
     this.initForm();
     this.myForm.get('search')?.valueChanges
@@ -85,7 +87,7 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
       search: [''],
       category: [''],
       subcategory: [''],
-      date: [''],
+      date: [this.today],
       collaborator: ['']
     });
   }
@@ -181,7 +183,11 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
       [key]: ''
     }));
 
-    this.myForm.get(key)?.setValue(''); // Esto desmarca el radio
+    if(key === 'date'){
+      this.myForm.get(key)?.setValue(this.today);
+    } else {
+      this.myForm.get(key)?.setValue(''); // Esto desmarca el radio
+    }
 
     if(key === 'category') {
       this.currencyFilters.set({

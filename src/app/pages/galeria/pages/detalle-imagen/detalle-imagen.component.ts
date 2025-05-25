@@ -5,13 +5,15 @@ import { switchMap } from 'rxjs';
 import { GalleryService } from '../../../../core/services/galeria.service';
 import { BtnReturnComponent } from '../../../../shared/components/btn-return/btn-return.component';
 import { ImageGalleryModel } from '../../../../core/models/filters-gallery.model';
+import { ProtectImageDirective } from '../../../../core/directives/protect-images.directive';
 
 @Component({
   selector: 'app-detalle-imagen',
   standalone: true,
   imports: [
     CommonModule,
-    BtnReturnComponent
+    BtnReturnComponent,
+    ProtectImageDirective
   ],
   templateUrl: './detalle-imagen.component.html',
   styleUrl: './detalle-imagen.component.scss'
@@ -52,9 +54,7 @@ export class DetalleImagenComponent implements OnInit {
   }
 
   prevImage(): void {
-    this.selectedIndex =
-      (this.selectedIndex - 1 + this.images.length) % this.images.length;
+    this.selectedIndex = (this.selectedIndex - 1 + this.images.length) % this.images.length;
   }
-
 
 }

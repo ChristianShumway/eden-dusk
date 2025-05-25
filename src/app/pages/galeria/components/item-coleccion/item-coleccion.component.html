@@ -1,5 +1,10 @@
 <a class="cursor-pointer" (click)="goToDetail(itemGallery().id)">
-  <img class="h-auto max-w-full rounded-lg" [src]="itemGallery().imageUrl" [alt]="itemGallery().title" />
+  <img
+    class="h-auto max-w-full rounded-lg"
+    [src]="itemGallery().imageUrl"
+    [alt]="itemGallery().title"
+    appProtectImage
+  />
   <div class="pie__info mt-2">
     <p class="font-primary-medium text-xl mb-0 line-clamp-1">{{ itemGallery().title }}</p>
     <div class="flex items-center gap-1">
