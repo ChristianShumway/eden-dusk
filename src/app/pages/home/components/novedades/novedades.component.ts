@@ -30,6 +30,7 @@ export class NovedadesComponent implements OnInit {
     page: 1,
     per_page: 4,
     category: '',
+    search: ''
   });
 
   ngOnInit(): void {
@@ -39,17 +40,10 @@ export class NovedadesComponent implements OnInit {
   getAllArticles() {
     this.blogService.getAllArticles(this.filters()).subscribe({
       next: response => {
-        console.log(response);
         this.articlesList.set(response.data);
       },
       error: err => console.error(err)
     })
-  }
-
-  getArticles() {
-    this.blogService.getMainArticles().subscribe({
-      next: response => this.articlesList.set(response)
-    });
   }
 
   onImgError(event: Event) {

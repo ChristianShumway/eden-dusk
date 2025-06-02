@@ -20,10 +20,14 @@
       #scrollContainer
       class="flex overflow-x-auto scroll-smooth space-x-4 scrollbar-hide px-1 max-w-full lg:grid lg:overflow-x-hidden lg:space-x-0 lg:px-0"
     >
-      @for (article of articles(); track $index) {
-        <div class="flex-shrink-0 lg:flex-shrink w-64 lg:w-full">
-          <blog-articulo-destacado [article]="article" />
-        </div>
+      @if(articles().length > 0) {
+        @for (article of articles(); track $index) {
+          <div class="flex-shrink-0 lg:flex-shrink w-64 lg:w-full">
+            <blog-articulo-destacado [article]="article" />
+          </div>
+        }
+      }@else {
+        <shared-no-data [type]="'articulo'" [msg]="msg" />
       }
     </div>
 

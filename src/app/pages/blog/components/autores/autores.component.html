@@ -3,21 +3,14 @@
 </p>
 
 <div class="grid__authors grid gap-4">
-  <div class="wrap__author flex items-center justify-between gap-2 mb-2">
-    <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/82.jpg" [alt]="'autora'" />
-    <div>
-      <p class="text-sm font-secondary-medium"> Nombre del o la editora  </p>
-      <p class="text-xs text-gray-500 dark:text-gray-400"> Puesto laboral  </p>
+  @for (author of authors(); track $index) {
+    <div class="wrap__author flex items-center justify-between gap-2 mb-2">
+      <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/82.jpg" [alt]="'autora'" />
+      <div>
+        <p class="text-sm font-secondary-medium"> {{ author.label }}  </p>
+        <p class="text-xs text-gray-500 dark:text-gray-400"> Puesto laboral  </p>
+      </div>
+      <button type="button" class="btn__outline--black py-2"> Seguir </button>
     </div>
-    <button type="button" class="btn__outline--black py-2"> Seguir </button>
-  </div>
-
-  <div class="wrap__author flex items-center justify-between gap-2 mb-2">
-    <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/82.jpg" [alt]="'autora'" />
-    <div>
-      <p class="text-sm font-secondary-medium"> Nombre del o la editora  </p>
-      <p class="text-xs text-gray-500 dark:text-gray-400"> Puesto laboral  </p>
-    </div>
-    <button type="button" class="btn__outline--black py-2"> Seguir </button>
-  </div>
+  }
 </div>

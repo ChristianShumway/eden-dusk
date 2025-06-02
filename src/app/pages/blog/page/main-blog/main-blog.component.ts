@@ -32,10 +32,12 @@ export class MainBlogComponent implements OnInit {
   public page = signal<number>(1);
   public perPage = signal<number>(10);
   public totalArticles = signal<number>(0);
+  public totalHighLights = signal<number>(5);
   public filters = signal<FiltersArticle>({
     page: this.page(),
     per_page: this.perPage(),
     category: '',
+    search: ''
   });
 
   ngOnInit(): void {
@@ -76,9 +78,11 @@ export class MainBlogComponent implements OnInit {
   }
 
   getHighLights() {
-    this.blogService.getHighlights().subscribe({
+    this.blogService.getHighlights(this.totalHighLights()).subscribe({
       next: response => {
-        this.highLights.set(response)}
+        this.highLights.set(response)
+      },
+      error: err => console.error(err)
     });
   }
 

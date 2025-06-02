@@ -14,8 +14,19 @@
               {{ comment().name }} comentó:
             </div>
           </div>
-          <div class="comment-container" [innerHTML]="commentHtml()"
-          >
+          <div class="comment-container" [innerHTML]="commentHtml()">
+          </div>
+          <div class="flex justify-end gap-1 mt-4">
+            @for (star of [1,2,3,4,5]; track $index) {
+              <div
+                class="w-3 h-3 transition-colors"
+                [ngClass]="{
+                  'text-yellow-400': comment().rating >= star,
+                  'hidden text-gray-300 hover:text-gray-400 dark:text-black-200 dark:hover:text-white': comment().rating < star
+                }"
+                [innerHTML]="svgStar()">
+              </div>
+            }
           </div>
         </div>
     </li>

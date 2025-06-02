@@ -4,13 +4,15 @@ import { ArticuloDestacadoComponent } from '../articulo-destacado/articulo-desta
 import { SvgService } from '../../../../core/services/svg.service';
 import { ArticleModel } from '../../../../core/models/article-blog.model';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
+import { NoDataComponent } from '../../../../shared/components/no-eventos/no-data.component';
 
 @Component({
   selector: 'blog-feed-destacados',
   standalone: true,
   imports: [
     CommonModule,
-    ArticuloDestacadoComponent
+    ArticuloDestacadoComponent,
+    NoDataComponent
   ],
   templateUrl: './feed-destacados.component.html',
   styleUrl: './feed-destacados.component.scss'
@@ -20,6 +22,7 @@ export class FeedDestacadosComponent implements AfterViewInit {
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
   public articles = input.required<ArticleModel[]>();
   public title = input.required<string>();
+  public msg = 'No hay artículos por mostrar.';
 
   private readonly svgService = inject(SvgService);
 

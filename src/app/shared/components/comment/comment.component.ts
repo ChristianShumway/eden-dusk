@@ -4,11 +4,14 @@ import { SvgService } from '../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { RelativeDatePipe } from '../../pipes/relative-date.pipe';
 import { PathsEnum } from '../../../core/utils/paths.enum';
+import { SvgIcons } from '../../../core/utils/svg-icons.enum';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'shared-comment',
   standalone: true,
   imports: [
+    CommonModule,
     RelativeDatePipe
   ],
   templateUrl: './comment.component.html',
@@ -19,7 +22,8 @@ export class CommentComponent implements OnInit {
   private readonly svgService = inject(SvgService);
 
   public comment = input.required<CommentArticleModel>();
-  public commentHtml = signal<SafeHtml>('')
+  public commentHtml = signal<SafeHtml>('');
+  public svgStar = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.star));
 
   ngOnInit() {
     if(this.comment().comment) {

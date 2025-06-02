@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
-import { ArticleModel, CategoryArticleModel, FiltersArticle, RequestNewComment, ResponseArticleModel } from '../models/article-blog.model';
+import { ArticleModel, AuthorModel, CategoryArticleModel, FiltersArticle, RequestNewComment, ResponseArticleModel } from '../models/article-blog.model';
 
 const ARTICLES_DUMMY: ArticleModel[] = Array.from({ length: 20 }, (_, i) => {
   const categories = [
@@ -55,11 +55,10 @@ export class BlogService {
   getAllArticles(filters: FiltersArticle): Observable<ResponseArticleModel> {
     const category = (filters.category === 'todas') ? '' : filters.category;
     return this.http.get<ResponseArticleModel>(
-      `${this.apiUrl}/${this.pathBlog}/posts?category=${category}&per_page=${filters.per_page}&page=${filters.page}`
+      `${this.apiUrl}/${this.pathBlog}/posts?search=${filters.search}&category=${category}&per_page=${filters.per_page}&page=${filters.page}`
     ).pipe(
       catchError( error => this.getThrowError(error))
-    )
-
+    );
   }
 
   getArticleById(id: number): Observable<ArticleModel> {
@@ -77,23 +76,29 @@ export class BlogService {
     );
   }
 
-  getMainArticles(): Observable<ArticleModel[]> {
-    return of (ARTICLES_DUMMY).pipe(
-      map(articles => articles.slice(0, 4))
+  getHighlights(total: number): Observable<ArticleModel[]> {
+    return this.http.get<ArticleModel[]>(
+      `${this.apiUrl}/${this.pathBlog}/posts/topRatedPost?limit=${total}`
+    ).pipe(
+      catchError( error => this.getThrowError(error))
     );
   }
 
-
-  getHighlights(): Observable<ArticleModel[]> {
-    return of (ARTICLES_DUMMY).pipe(
-      map(articles => articles.slice(0, 5))
-
+  getRecommendedArticles(filters: FiltersArticle): Observable<ArticleModel[]> {
+    return this.http.get<ArticleModel[]>(
+      `${this.apiUrl}/${this.pathBlog}/posts/recomended?category=${filters.category}&per_page=${filters.per_page}&page=${filters.page}`
+    ).pipe(
+      catchError( error => this.getThrowError(error))
     );
   }
 
-  // getTransmissionsByMonth(category: string): Observable<ArticleModel[]> {
-  //   return this.http.get<ArticleModel[]>(`${this.apiUrl}/${this.pathBlog}?category='${category}'`);
-  // }
+  getAuthors(): Observable<AuthorModel[]> {
+    return this.http.get<AuthorModel[]>(
+      `${this.apiUrl}/${this.pathBlog}/authors`
+    ).pipe(
+      catchError( error => this.getThrowError(error))
+    );
+  }
 
 
     getThrowError(error: any) {

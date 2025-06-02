@@ -9,7 +9,19 @@
         <div [innerHTML]="svgAngle()" class="w-12 h-12 text-primary lg:w-12 lg:h-12 hidden md:flex md:mr-4"></div>
         {{ article().title }}
       </div>
+
+      <div class="flex justify-start mb-4 md:mb-8">
+        <p class="text-sm">
+          Artículo escrito por
+          <b class="font-primary-medium"> {{ article().authorName || 'Redactor Anónimo' }} </b>
+          <span class="mx-2"> • </span>
+          {{ article().date | dateMx }}
+        </p>
+      </div>
+
       <div class="text-grays-500 line-clamp-3 mb-2 prose max-w-none" [innerHTML]="descriptionHtml()"></div>
+
+
       <div class="relative h-32">
         <shared-socialmedia [urlArticle]="currentUrl" />
       </div>
@@ -43,6 +55,10 @@
 
         <div class="my-4 px-4">
           @if (selectedTab === 'leer') {
+            <div class="flex gap-1 items-center justify-end my-2 text-gray-500 dark:text-gray-200 font-primary-medium">
+              <div class="w-4 h-4 flex" [innerHTML]="svgComment()"></div>
+              <span class="text-sm"> {{ article().comments?.length }} {{ article().comments?.length| i18nPlural: commentsMap }} </span>
+            </div>
             <blog-comentarios [comments]="article().comments" />
           } @else {
             <blog-agregar-comentario [idPost]="article().id" />
@@ -53,7 +69,6 @@
       </div>
 
     </div>
-
 
     <blog-feed-destacados [articles]="highLights()" [title]="titleFeed" />
   </div>

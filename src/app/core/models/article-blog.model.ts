@@ -63,3 +63,9 @@ export interface RequestNewComment {
   avatar: string;
   comment: string;
 }
+
+export interface AuthorModel {
+  label: string;
+  description: string;
+  id: number
+}

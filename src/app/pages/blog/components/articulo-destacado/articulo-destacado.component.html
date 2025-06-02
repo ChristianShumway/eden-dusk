@@ -1,12 +1,14 @@
-<div class="wrap__article grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-2 overflow-hidden items-center px-2 py-4 mb-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-white/5 transition-colors duration-500">
+<a
+  (click)="goTo(article().id)"
+  class="wrap__article grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-2 overflow-hidden items-center px-2 py-4 mb-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-white/5 transition-colors duration-500">
   <div class="col__image justify-self-center w-20 h-20 rounded-full bg-no-repeat bg-center bg-cover" [style.background-image]="article().imageUrl | backgroundImage"></div>
   <div class="col__info">
     <p class="text-xl font-primary-bold"> {{ article().title }} </p>
     <p class="text-grays-500 text-sm line-clamp-2 mb-2">
-      {{ article().description }}
+      {{ article().smallDescription }}
     </p>
     <div class="flex items-center justify-start gap-3 flex-wrap text-xs font-normal mb-4">
-      <time class="text-gray-500 dark:text-gray-400"> {{ article().date }} </time>
+      <time class="text-gray-500 dark:text-gray-400"> {{ article().date | dateMx }} </time>
     </div>
   </div>
-</div>
+</a>
