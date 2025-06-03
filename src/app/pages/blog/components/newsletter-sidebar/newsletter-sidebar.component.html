@@ -7,18 +7,28 @@
       Sé el primero en recibir noticias, novedades y contenido exclusivo.
     </p>
 
-    <form>
+    <form [formGroup]="form" (submit)="sendEmail()">
       <div class="flex">
         <div class="relative w-full">
           <input
-            type="search"
+            type="email"
+            formControlName = "email"
             class="block p-3 w-full z-20 rounded-e-md rounded-s-gray-100 rounded-s-2 rounded-l-md bg-gray-50 text-black dark:bg-black-100 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white dark:focus:ring-primary"
-            placeholder="Ingresa tu correo electrónico" required />
-          <button type="submit" class="absolute rounded-none rounded-e-md top-0 end-0 p-3 h-full btn__primary--black">
-            Suscribirme
+            placeholder="Ingresa tu correo electrónico" />
+          <button
+            type="submit"
+            class="absolute rounded-none rounded-e-md top-0 end-0 p-3 h-full btn__primary--black">
+            <div class="w-5 h-5 mx-3 flex items-center" [innerHTML]="svgArrow()"></div>
           </button>
         </div>
       </div>
+      @if (validField('email')) {
+        <div class="w-full text-left mt-2">
+          <span class="text-xs text-red-600 font-primary-thin ">
+            {{ getErrorField('email') }}
+          </span>
+        </div>
+      }
     </form>
 
   </div>

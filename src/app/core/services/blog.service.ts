@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
-import { ArticleModel, AuthorModel, CategoryArticleModel, FiltersArticle, RequestNewComment, ResponseArticleModel } from '../models/article-blog.model';
+import { ArticleModel, AuthorModel, CategoryArticleModel, FiltersArticle, RequestNewComment, ResponseArticleModel, ResponseNewComment } from '../models/article-blog.model';
 
 const ARTICLES_DUMMY: ArticleModel[] = Array.from({ length: 20 }, (_, i) => {
   const categories = [
@@ -68,9 +68,9 @@ export class BlogService {
     );
   }
 
-  addCommentToPost(request: RequestNewComment): Observable<any> {
+  addCommentToPost(request: RequestNewComment): Observable<ResponseNewComment> {
     console.log(request);
-    return this.http.post<any>(`${this.apiUrl}/${this.pathBlog}/posts/comment`, request)
+    return this.http.post<ResponseNewComment>(`${this.apiUrl}/${this.pathBlog}/posts/comment`, request)
       .pipe(
         catchError( error => this.getThrowError(error))
     );

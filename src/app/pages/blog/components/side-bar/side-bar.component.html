@@ -1,5 +1,5 @@
 <div class=" w-full p-4 my-4 lg:my-0 border border-gray-100 rounded-lg bg-gray-50 dark:bg-black/50 dark:border-gray-700">
-  <blog-newsletter-sidebar />
+  <blog-newsletter-sidebar (emailValue)="onGetEmail($event)" />
   <blog-feed-destacados [articles]="articles()" [title]="titleFeed" />
   <blog-autores [authors]="authors()" />
   @if(eventos().length) {

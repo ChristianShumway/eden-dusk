@@ -99,7 +99,6 @@ export class MainArticuloComponent implements OnInit {
     ).subscribe({
       next: response => {
         if(!response) return;
-        console.log(response)
         this.article.set(response);
         this.descriptionHtml.set(this.svgService.getTrueHtml(this.article().description));
         this.updateFilters();
@@ -124,7 +123,6 @@ export class MainArticuloComponent implements OnInit {
     this.blogService.getRecommendedArticles(this.filters()).subscribe({
       next: response => {
         this.highLights.set(response);
-        console.log(response)
       },
       error: err => console.error(err)
     });
@@ -132,6 +130,11 @@ export class MainArticuloComponent implements OnInit {
 
   selectTab(tab: 'leer' | 'agregar') {
     this.selectedTab = tab;
+  }
+
+  onChangeTab(tab: 'leer' | 'agregar') {
+    this.selectedTab = tab;
+    this.initParams();
   }
 
   get currentUrl(): string {

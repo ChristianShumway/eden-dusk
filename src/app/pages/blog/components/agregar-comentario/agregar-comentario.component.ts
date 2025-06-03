@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, EventEmitter, inject, input, OnInit, Output, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
@@ -29,6 +29,8 @@ export class AgregarComentarioComponent implements OnInit {
 
   public form!: FormGroup;
   public idPost = input.required<number>();
+  @Output()
+  public changeTab = new EventEmitter<'leer' | 'agregar'>();
   public svgStar = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.star));
 
   avatarList = [
@@ -73,11 +75,11 @@ export class AgregarComentarioComponent implements OnInit {
       }
       this.blogService.addCommentToPost(this.form.value).subscribe({
         next: response => {
-          console.log(response);
-          if(response) {
-            this.toastService.showSuccess('Comentario agregado correctamente.');
-            // this.form.clear
-          }
+          if(!response) return;
+          this.toastService.showSuccess(`
+            Comentario agregado correctamente y necesita ser validado por un administrador.
+          `);
+          this.changeTab.emit('leer');
         },
         error: () => this.toastService.showError('Error al querer agregar comentario.')
 

@@ -9,6 +9,9 @@ import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { TransmisionesListComponent } from '../../../../shared/components/transmisiones-list/transmisiones-list.component';
 import { NoDataComponent } from '../../../../shared/components/no-eventos/no-data.component';
 import { BlogService } from '../../../../core/services/blog.service';
+import { NewsLetterService } from '../../../../core/services/newsletter.service';
+import { ToastService } from '../../../../core/services/toast.service';
+import { RequestNewsLetter } from '../../../../core/models/news-letter.model';
 
 @Component({
   selector: 'blog-side-bar',
@@ -28,6 +31,8 @@ export class SideBarComponent {
 
   private readonly transmisionesService = inject(TransmisionesService);
   private readonly blogService = inject(BlogService);
+  private readonly newsService = inject(NewsLetterService);
+  private readonly toastService = inject(ToastService);
 
   public articles = input.required<ArticleModel[]>();
   public eventos = signal<TransmisionModel[]>([]);
@@ -56,6 +61,23 @@ export class SideBarComponent {
       },
       error: error => console.error(error)
     });
+  }
+
+  onGetEmail(email: string) {
+    const request: RequestNewsLetter = { email };
+    this.newsService.suscribeNewsLetter(request).subscribe({
+      next: response => {
+        if(!response) {
+          this.toastService.showError('Error al registar tu correo electrónico');
+          return;
+        }
+        this.toastService.showSuccess(response.message);
+      },
+      error: err => {
+        console.log(err);
+        this.toastService.showError('Problemas con el servidor')
+      }
+    })
   }
 
 }

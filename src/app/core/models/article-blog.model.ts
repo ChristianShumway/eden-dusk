@@ -65,7 +65,19 @@ export interface RequestNewComment {
 }
 
 export interface AuthorModel {
-  label: string;
+  name: string;
   description: string;
-  id: number
+  id: number;
+  image: string;
+  socialMedia: string;
+}
+
+export interface ResponseNewComment {
+  success: boolean;
+  comment_id: number;
+  acf_updated: {
+      rating: number;
+      avatar: string;
+      email: string;
+  }
 }
