@@ -41,6 +41,7 @@ export interface FiltersArticle {
   per_page: number;
   page: number;
   search?: string;
+  idPost?: number;
 }
 
 

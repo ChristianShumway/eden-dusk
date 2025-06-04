@@ -86,7 +86,7 @@ export class BlogService {
 
   getRecommendedArticles(filters: FiltersArticle): Observable<ArticleModel[]> {
     return this.http.get<ArticleModel[]>(
-      `${this.apiUrl}/${this.pathBlog}/posts/recomended?category=${filters.category}&per_page=${filters.per_page}&page=${filters.page}`
+      `${this.apiUrl}/${this.pathBlog}/posts/recomended?category=${filters.category}&per_page=${filters.per_page}&page=${filters.page}&idPost=${filters.idPost}`
     ).pipe(
       catchError( error => this.getThrowError(error))
     );

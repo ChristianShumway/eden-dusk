@@ -1,6 +1,6 @@
 @if(comments()?.length) {
   <ol class="relative border-s border-gray-200 dark:border-gray-700">
-    @for (comment of comments(); track $index) {
+    @for (comment of commentsComputed(); track $index) {
       <shared-comment [comment]="comment" />
     }
   </ol>

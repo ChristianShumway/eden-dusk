@@ -14,8 +14,7 @@
               {{ comment().name }} comentó:
             </div>
           </div>
-          <div class="comment-container" [innerHTML]="commentHtml()">
-          </div>
+          <div class="comment-container" [innerHTML]="commentComputed()"></div>
           <div class="flex justify-end gap-1 mt-4">
             @for (star of [1,2,3,4,5]; track $index) {
               <div

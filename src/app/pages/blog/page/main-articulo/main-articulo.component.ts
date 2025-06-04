@@ -67,7 +67,8 @@ export class MainArticuloComponent implements OnInit {
     page: 1,
     per_page: 5,
     category: '',
-    search: ''
+    search: '',
+    idPost: 0
   });
 
   public commentsMap = {
@@ -113,7 +114,8 @@ export class MainArticuloComponent implements OnInit {
     this.filters.update(currencyValue => {
       return {
         ...currencyValue,
-        category: currencyCategory.id
+        category: currencyCategory.id,
+        idPost: this.article().id
       }
     });
     this.getRecommendedArticles();
