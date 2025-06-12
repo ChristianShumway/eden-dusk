@@ -8,7 +8,7 @@ export const GALLERY_ROUTES: Routes  = [
     component: MainGalleryComponent
   },
   {
-    path: ':id',
+    path: ':category/:id',
     component: DetalleImagenComponent
   },
 

@@ -33,6 +33,9 @@ export class NoDataComponent implements OnInit {
       case 'comentario':
         this.icon.set(this.svgService.getSanitizedSvg(SvgIcons.msgDialog));
         break;
+      case 'video':
+        this.icon.set(this.svgService.getSanitizedSvg(SvgIcons.camera));
+        break;
       default:
         this.icon.set(this.svgService.getSanitizedSvg(SvgIcons.userHelp));
         break;

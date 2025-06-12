@@ -1,14 +1,14 @@
-<section class="main__blog">
+<section class="main__videoteca">
   <videoteca-layout />
   <videoteca-filtros [categories]="categoriesList()" (filterChanged)="onFilterChanged($event)" />
   <div class="grid__blog grid grid-cols-1 gap-4 overflow-hidden">
     <div class="wrapper__main">
-      <!-- <blog-feed-articulos
-        [articles]="articles()"
-        [articlesPerPage]="perPage()"
+      <videoteca-coleccion
+        [videos]="videoList()"
+        [videosPerPage]="perPage()"
         [currencyPage]="page()"
-        [totalArticles]="totalArticles()"
-      /> -->
+        [totalVideos]="totalVideos()"
+      />
       <!-- PAGINATION -->
       <div class="mt-4">
         <pagination-controls

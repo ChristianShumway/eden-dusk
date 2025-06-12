@@ -5,6 +5,7 @@ import { FiltrosComponent } from '../../components/filtros/filtros.component';
 import { LayoutComponent } from '../../components/layout/layout.component';
 import { VideotecaService } from '../../../../core/services/videoteca.service';
 import { CategoryVideotecaModel, FiltersVideoteca, VideotecaModel } from '../../../../core/models/videoteca.model';
+import { ColeccionVideotecaComponent } from '../../components/coleccion-videoteca/coleccion-videoteca.component';
 @Component({
   selector: 'app-main-videoteca',
   standalone: true,
@@ -12,7 +13,8 @@ import { CategoryVideotecaModel, FiltersVideoteca, VideotecaModel } from '../../
     CommonModule,
     NgxPaginationModule,
     LayoutComponent,
-    FiltrosComponent
+    FiltrosComponent,
+    ColeccionVideotecaComponent
   ],
   templateUrl: './main-videoteca.component.html',
   styleUrl: './main-videoteca.component.scss'
@@ -56,11 +58,11 @@ export class MainVideotecaComponent implements OnInit {
       }
     });
     this.page.set(page ? page : this.page());
-    this.videoService.getAllVideos(this.filters()).subscribe({
+    this.videoService.getAllVideosDummy(this.filters()).subscribe({
       next: response => {
         console.log(response);
-        // this.videoList.set(response.data);
-        this.totalVideos.set(Number(response.total));
+        this.videoList.set(response);
+        this.totalVideos.set(response.length);
       },
       error: err => console.error(err)
     })

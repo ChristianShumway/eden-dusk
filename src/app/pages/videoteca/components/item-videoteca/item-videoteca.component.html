@@ -1,1 +1,12 @@
-<p>item-videoteca works!</p>
+<div class="relative justify-self-center w-full h-64 bg-no-repeat bg-center bg-cover rounded-t-lg" [style.background-image]="video().imageUrl| backgroundImage">
+  <div class="px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2">
+    {{video().category}}
+  </div>
+</div>
+<div class="video__info mt-2 p-2">
+  <p class="font-primary-medium text-xl mb-0 line-clamp-1">{{ video().title }}</p>
+  <span class="text-sm text-gray-500 line-clamp-2">{{ video().description }}</span>
+  <div class="text-right mt-4 mb-2">
+    <button class="btn__primary--black" (click)="goTo(video().id)">Ver más detalles</button>
+  </div>
+</div>

@@ -6,8 +6,9 @@
     <div class="relative rounded-xl shadow-md mb-8 pt-4 bg-gray-50 dark:bg-black-200">
       <img
         [src]="selectedImage.imageUrl"
-        class="w-full max-h-[80vh] object-contain transition-all duration-300"
+        class="w-full max-h-[80vh] object-contain transition-all duration-300 cursor-pointer"
         loading="lazy"
+        (click)="viewTotal(selectedImage.imageUrl)"
         alt="ims"
         appProtectImage
       />
@@ -69,3 +70,5 @@
 
   </div>
 </section>
+
+<shared-image-overlay [img]="currencyImage()" (setImageEmpty)="currencyImage.set('')" />

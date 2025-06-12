@@ -13,6 +13,8 @@ export interface VideotecaModel {
   authorImage: string;
   authorName: string;
   smallDescription: string;
+  codeVideo: string;
+  platform: 'youtube' | 'vimeo' | 'dailymotion';
 }
 
 export interface ResponseVideotecaModel {

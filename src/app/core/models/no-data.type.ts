@@ -1,1 +1,1 @@
-export type NoDataType = 'transmision' | 'articulo' | 'galeria' | 'comentario';
+export type NoDataType = 'transmision' | 'articulo' | 'galeria' | 'comentario' | 'video';

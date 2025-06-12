@@ -1,0 +1,11 @@
+<div class="relative w-full pb-[56.25%]">
+  @if(safeEmbedUrl()) {
+    <iframe
+      [title]="platform()"
+      class="absolute top-0 left-0 w-full h-full rounded-lg"
+      [src]="safeEmbedUrl()"
+      allowfullscreen
+      tabindex="-1"
+    ></iframe>
+  }
+</div>

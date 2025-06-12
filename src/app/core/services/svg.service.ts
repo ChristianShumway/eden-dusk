@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { SvgIcons } from '../utils/svg-icons.enum';
 
 @Injectable({
@@ -16,6 +16,10 @@ export class SvgService {
 
   getTrueHtml(text: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(text)
+  }
+
+  getSafeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 }

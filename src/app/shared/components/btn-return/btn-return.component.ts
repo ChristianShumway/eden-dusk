@@ -11,7 +11,7 @@ import { SvgIcons } from '../../../core/utils/svg-icons.enum';
   template: `
     <a
       (click)="goToBack()"
-      class="inline-flex items-center gap-4 font-primary-medium cursor-pointer mb-6 hover:text-primary-300 transition-colors duration-300">
+      class="inline-flex items-center gap-4 font-primary-medium cursor-pointer mb-6 hover:text-primary-300 z-10 transition-colors duration-300">
       <div class="w-5 h-5 rotate-180 flex" [innerHTML]="svgArrow()"></div>
       <span> Regresar </span>
     </a>
