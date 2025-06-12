@@ -1,4 +1,4 @@
-<div class="p-4 items-center grid">
+<div class="p-4 items-center grid hover:bg-gray-100 dark:hover:bg-white/5 transition-colors duration-500">
   <div class="wrap__author flex items-center gap-2 mb-2">
     <img
       class="w-8 h-8 rounded-full"
@@ -19,6 +19,9 @@
           {{ article().category }}
         </span>
         <time class="text-gray-500 dark:text-gray-400"> {{ article().date | dateMx }} </time>
+        <span class="px-2.5 py-1 rounded-md capitalize" [class.bg-yellow-400]="article().date| recentDate">
+          {{ article().date | recentDate }}
+        </span>
       </div>
       <div class="actions text-end md:text-start">
         <button type="button" (click)="goTo(article().id)" class="inline-flex justify-center items-center  btn__outline--black">

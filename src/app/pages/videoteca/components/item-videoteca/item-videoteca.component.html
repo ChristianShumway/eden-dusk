@@ -2,6 +2,12 @@
   <div class="px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2">
     {{video().category}}
   </div>
+  <div
+    class="absolute top-2 left-2 px-2 py-1 text-sm rounded-md capitalize"
+    [class.bg-yellow-400]="video().date| recentDate"
+  >
+    {{ video().date | recentDate }}
+  </div>
 </div>
 <div class="video__info mt-2 p-2">
   <p class="font-primary-medium text-xl mb-0 line-clamp-1">{{ video().title }}</p>

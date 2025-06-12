@@ -8,6 +8,7 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { Router } from '@angular/router';
 import { DateMxPipe } from '../../../../shared/pipes/mx-date.pipe';
 import { PathsEnum } from '../../../../core/utils/paths.enum';
+import { RecentDatePipe } from '../../../../shared/pipes/recent-date.pipe';
 
 @Component({
   selector: 'blog-articulo-feed',
@@ -15,7 +16,8 @@ import { PathsEnum } from '../../../../core/utils/paths.enum';
   imports: [
     CommonModule,
     BackgroundImagePipe,
-    DateMxPipe
+    DateMxPipe,
+    RecentDatePipe
   ],
   templateUrl: './articulo-feed.component.html',
   styleUrl: './articulo-feed.component.scss'
