@@ -1,22 +1,27 @@
-<section class="mt-24">
+<section class="mt-24" *ngIf="currencyImage">
   <div class="bg-black/90 w-full h-[78px] fixed left-0 top-0"></div>
   <div class="w-full">
     <shared-btn-return />
     <!-- Imagen principal con controles -->
     <div class="relative rounded-xl shadow-md mb-8 pt-4 bg-gray-50 dark:bg-black-200">
       <img
-        [src]="selectedImage.imageUrl"
+        [src]="currencyImage.sourceUrl"
         class="w-full max-h-[80vh] object-contain transition-all duration-300 cursor-pointer"
         loading="lazy"
-        (click)="viewTotal(selectedImage.imageUrl)"
+        (click)="viewOverlay(currencyImage.sourceUrl)"
         alt="ims"
         appProtectImage
+        onkeypress=""
       />
 
       <!-- Botón Anterior -->
       <button
-        (click)="prevImage()"
-        class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full shadow-md"
+        (click)="hasPreviousPage() && prevImage()"
+        [ngClass]="{
+          'hover:bg-white opacity-100' : hasPreviousPage(),
+          'opacity-20 cursor-default' : !hasPreviousPage()
+        }"
+        class="absolute top-1/2 left-2 transform bg-white/70  -translate-y-1/2 p-2 rounded-full shadow-md"
         aria-label="Anterior"
       >
         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -26,8 +31,12 @@
 
       <!-- Botón Siguiente -->
       <button
-        (click)="nextImage()"
-        class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full shadow-md"
+        (click)="hasNextPage() && nextImage()"
+        [ngClass]="{
+          'hover:bg-white opacity-100' : hasNextPage(),
+          'opacity-20 cursor-default' : !hasNextPage()
+        }"
+        class="absolute top-1/2 right-2 transform bg-white/70 -translate-y-1/2  p-2 rounded-full shadow-md"
         aria-label="Siguiente"
       >
         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,27 +48,27 @@
 
       <!-- Detalles -->
       <div class="mt-6 p-4 bg-black text-gray-300 rounded-b-xl dark:bg-black-100">
-        <h2 class="text-2xl sm:text-2xl font-bold">{{ selectedImage.title }}</h2>
-        <p class="mt-2 text-gray-300">{{ selectedImage.description }}</p>
+        <h2 class="text-2xl sm:text-2xl font-bold">{{ currencyImage.name }}</h2>
+        <p class="mt-2 text-gray-300">{{ currencyImage.description }}</p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm mt-4">
-          <div><span class="font-primary-medium">Lugar:</span> {{ selectedImage.location }}</div>
-          <div><span class="font-primary-medium">Fecha:</span> {{ selectedImage.date }}</div>
-          <div><span class="font-primary-medium">Categoría:</span> {{ selectedImage.category || 'N/A' }}</div>
-          <div><span class="font-primary-medium">Autor:</span> {{ selectedImage.authorName }}</div>
-          <div><span class="font-primary-medium">Descargable:</span> {{ selectedImage.downloadable ? 'Sí' : 'No' }}</div>
-          <div><span class="font-primary-medium">A la venta:</span> {{ selectedImage.forSale ? 'Sí' : 'No' }}</div>
+          <div><span class="font-primary-medium">Lugar:</span> {{ currencyImage.site }}</div>
+          <div><span class="font-primary-medium">Fecha:</span> {{ currencyImage.date }}</div>
+          <div><span class="font-primary-medium">Categoría:</span> {{ currencyImage.category || 'N/A' }}</div>
+          <div><span class="font-primary-medium">Autor:</span> {{ currencyImage.autor }}</div>
+          <div><span class="font-primary-medium">Descargable:</span> {{ currencyImage.downloadable ? 'Sí' : 'No' }}</div>
+          <div><span class="font-primary-medium">A la venta:</span> {{ currencyImage.forSale ? 'Sí' : 'No' }}</div>
         </div>
 
         <!-- Acciones -->
         <div class="mt-8 flex flex-wrap gap-4">
-          @if (selectedImage.downloadable) {
+          @if (currencyImage.downloadable) {
             <button download class="btn__outline--white">
               Descargar
             </button>
           }
 
-          @if (selectedImage.forSale) {
+          @if (currencyImage.forSale) {
             <button class="btn__primary--white">
               Comprar
             </button>
@@ -71,4 +80,4 @@
   </div>
 </section>
 
-<shared-image-overlay [img]="currencyImage()" (setImageEmpty)="currencyImage.set('')" />
+<shared-image-overlay [img]="currencyUrlImage()" (setImageEmpty)="currencyUrlImage.set('')" />

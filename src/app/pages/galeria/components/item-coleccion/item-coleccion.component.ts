@@ -22,8 +22,8 @@ export class ItemColeccionComponent {
   public itemGallery = input.required<ImageGalleryModel>();
   public svgLocation = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.mapLocation));
 
-  goToDetail(category: string, id: number) {
-    this.router.navigate(['/galeria', category, id]);
+  goToDetail(item: ImageGalleryModel) {
+    this.router.navigate(['/galeria', item.category, item.id]);
   }
 
 }

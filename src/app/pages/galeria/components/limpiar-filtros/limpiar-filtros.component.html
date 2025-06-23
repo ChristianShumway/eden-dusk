@@ -43,7 +43,7 @@
       </button>
     </span>
   }
-  @if (currencyFilters().collaborator !== '') {
+  @if (currencyFilters().collaborator !== 0) {
     <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-black-100 dark:text-gray-300">
       {{ currencyFilters().collaborator }}
       <button

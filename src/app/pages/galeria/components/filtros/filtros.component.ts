@@ -40,7 +40,7 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
     category: '',
     date: '',
     subcategory: '',
-    collaborator: '',
+    collaborator: 0,
   });
 
   public currencySubcategories = signal<SubCategoryGalleryModel[]>([]);
@@ -88,14 +88,14 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
       category: [''],
       subcategory: [''],
       date: [this.today],
-      collaborator: ['']
+      collaborator: [0]
     });
   }
 
   onSelectCategory(category: CategoryGalleryModel, index: number) {
     this.currencyFilters.update(newValue => ({
       ...newValue,
-      category: category.name,
+      category: category.id,
       subcategory: ''
     }));
 
@@ -113,11 +113,11 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
   onSelectSubCategory(subcategory: SubCategoryGalleryModel, index: number): void {
     this.currencyFilters.update(newValue => ({
       ...newValue,
-      subcategory: subcategory.name
+      subcategory: subcategory.id
     }));
 
     this.closeDrop(index);
-    this.myForm.get('subcategory')?.setValue(subcategory.name);
+    this.myForm.get('subcategory')?.setValue(subcategory.id);
     this.filterChanged.emit(this.currencyFilters());
   }
 
@@ -136,11 +136,11 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
   onSelectCollaborator(collaborator: CollaboratorGalleryModel, index: number): void {
     this.currencyFilters.update(newValue => ({
       ...newValue,
-      collaborator: collaborator.name
+      collaborator: collaborator.id
     }));
 
     this.closeDrop(index);
-    this.myForm.get('collaborator')?.setValue(collaborator.name);
+    this.myForm.get('collaborator')?.setValue(collaborator.id);
     this.filterChanged.emit(this.currencyFilters());
   }
 
@@ -198,6 +198,16 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
       this.currencySubcategories.set([]);
     }
 
+
+    if(key === 'collaborator'){
+      this.currencyFilters.set({
+        ...this.currencyFilters(),
+        collaborator: 0
+      });
+      this.myForm.get('collaborator')?.setValue(0);
+    }
+
+    console.log(this.currencyFilters());
     this.filterChanged.emit(this.currencyFilters());
 
   }

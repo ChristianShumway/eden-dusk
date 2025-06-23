@@ -45,7 +45,7 @@ export class MainGalleryComponent implements OnInit {
     subcategory: '',
     search: '',
     date: '',
-    collaborator: ''
+    collaborator: 0
   });
 
   ngOnInit(): void {
@@ -82,7 +82,9 @@ export class MainGalleryComponent implements OnInit {
     this.page.set(page ? page : this.page());
     this.galleryService.getImagesGallery(this.filters()).subscribe({
       next: response => {
-        this.imagesList.set(response);
+        console.log(response);
+        this.imagesList.set(response.data);
+        this.totalItems.set(parseInt(response.total))
       }
     })
   }

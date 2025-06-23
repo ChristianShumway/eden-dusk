@@ -1,9 +1,11 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { SvgService } from '../../../../core/services/svg.service';
+import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SafeHtml } from '@angular/platform-browser';
+
+import { SvgService } from '../../../../core/services/svg.service';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { ImageGalleryModel } from '../../../../core/models/filters-gallery.model';
-import { CommonModule } from '@angular/common';
 import { ItemColeccionComponent } from '../item-coleccion/item-coleccion.component';
 import { NoDataComponent } from '../../../../shared/components/no-eventos/no-data.component';
 
@@ -12,6 +14,7 @@ import { NoDataComponent } from '../../../../shared/components/no-eventos/no-dat
   standalone: true,
   imports: [
     CommonModule,
+    NgxPaginationModule,
     ItemColeccionComponent,
     NoDataComponent
   ],
@@ -24,7 +27,9 @@ export class ColeccionComponent {
 
   public galleryGroups = input.required<ImageGalleryModel[][]>();
   public svgArrow = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
-
+  public galleriesPerPage = input.required<number>();
+  public currencyPage = input.required<number>();
+  public totalGalleries = input.required<number>();
   public msg = 'No hay galerías disponibles para esta categoría.'
 
 }

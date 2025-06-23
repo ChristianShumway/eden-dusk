@@ -23,49 +23,59 @@ import { ImageOverlayComponent } from '../../../../shared/components/image-overl
 
 export class DetalleImagenComponent implements OnInit {
 
-  public images: ImageGalleryModel[] = []; // Llénalo desde un endpoint o dummy
-  public selectedIndex = 0;
-  public idImage!: number;
-  public category!: string;
-  public currencyImage = signal<string>('');
-
   private readonly ar = inject(ActivatedRoute);
   private readonly galleryService = inject(GalleryService);
 
+  public currencyImage!: ImageGalleryModel; // Llénalo desde un endpoint o dummy
+  public category = signal<string | null>(null);
+  public idGallery = signal<number>(0);
+  public currencyUrlImage = signal<string>('');
+  public hasPreviousPage = signal<boolean>(false);
+  public hasNextPage = signal<boolean>(false);
+  public previousPage = signal<number | null>(null);
+  public nextPage = signal<number | null>(null);
+
   ngOnInit(): void {
     this.initParams();
-    // setInterval(() => this.nextImage(), 10000); // Cambia cada 10 segundos
   }
 
   initParams() {
-    this.ar.paramMap.pipe(
-      switchMap( (params: ParamMap) => {
-        this.category = params.get('category')!;
-        console.log(this.category);
-        return this.galleryService.getImagesDetail(Number(params.get('id')));
-      })
-    ).subscribe({
-      next: response => {
-        console.log(response)
-        this.images = response;
+
+    this.ar.paramMap.subscribe({
+      next: params => {
+        if(!params)return;
+        this.category.set(params.get('category'));
+        this.idGallery.set(Number(params.get('id')));
+        this.getGalleryByPage(null);
       }
     });
   }
 
-  get selectedImage(): ImageGalleryModel {
-    return this.images[this.selectedIndex];
-  }
-
-  nextImage(): void {
-    this.selectedIndex = (this.selectedIndex + 1) % this.images.length;
+  getGalleryByPage(page: number | null) {
+    this.galleryService.getImagesDetail(this.idGallery(), page).subscribe({
+      next: response => {
+        this.currencyImage = response.data[0];
+        this.hasPreviousPage.set(response.pagination.hasPreviousPage);
+        this.hasNextPage.set(response.pagination.hasNextPage);
+        this.previousPage.set(response.pagination.previousPage);
+        this.nextPage.set(response.pagination.nextPage);
+      },
+      error: err => console.error(err)
+    });
   }
 
   prevImage(): void {
-    this.selectedIndex = (this.selectedIndex - 1 + this.images.length) % this.images.length;
+    if(!this.hasPreviousPage()) return;
+    this.getGalleryByPage(this.previousPage());
   }
 
-  viewTotal(img: string) {
-    this.currencyImage.set(img);
+  nextImage(): void {
+    if(!this.hasNextPage()) return;
+    this.getGalleryByPage(this.nextPage());
+  }
+
+  viewOverlay(img: string) {
+    this.currencyUrlImage.set(img);
   }
 
 }

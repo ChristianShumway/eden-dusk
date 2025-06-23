@@ -7,14 +7,19 @@
       (filterChanged)="onFilterChanged($event)" />
   </div>
   <div class="wrapper__main">
-    <gallery-coleccion [galleryGroups]="groupedGridGallery()" />
+    <gallery-coleccion
+    [galleryGroups]="groupedGridGallery()"
+    [galleriesPerPage]="perPage()"
+    [currencyPage]="page()"
+    [totalGalleries]="totalItems()"
+    />
     <!-- PAGINATION -->
     <div class="mt-4">
       @if (imagesList().length > 0) {
         <pagination-controls
         id="paginator"
         class="text-right font-circular-regular"
-        (maxSize)=10;
+        (maxSize)=12;
         (directionLinks)=true
         (pageChange)="page.set($event)"
         (autoHide)=true
