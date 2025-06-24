@@ -136,7 +136,8 @@ export class FiltrosComponent implements OnInit, AfterViewInit {
   onSelectCollaborator(collaborator: CollaboratorGalleryModel, index: number): void {
     this.currencyFilters.update(newValue => ({
       ...newValue,
-      collaborator: collaborator.id
+      collaborator: collaborator.id,
+      collaboratorName: collaborator.name
     }));
 
     this.closeDrop(index);

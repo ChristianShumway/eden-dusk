@@ -7,6 +7,8 @@ import { BtnReturnComponent } from '../../../../shared/components/btn-return/btn
 import { ImageGalleryModel } from '../../../../core/models/filters-gallery.model';
 import { ProtectImageDirective } from '../../../../core/directives/protect-images.directive';
 import { ImageOverlayComponent } from '../../../../shared/components/image-overlay/image-overlay.component';
+import { AlertFloatComponent } from '../../../../shared/components/alert-float/alert-float.component';
+import { AlertRemovableComponent } from '../../../../shared/components/alert-removable/alert-removable.component';
 
 @Component({
   selector: 'app-detalle-imagen',
@@ -15,6 +17,8 @@ import { ImageOverlayComponent } from '../../../../shared/components/image-overl
     CommonModule,
     BtnReturnComponent,
     ImageOverlayComponent,
+    AlertFloatComponent,
+    AlertRemovableComponent,
     ProtectImageDirective
   ],
   templateUrl: './detalle-imagen.component.html',
@@ -34,6 +38,7 @@ export class DetalleImagenComponent implements OnInit {
   public hasNextPage = signal<boolean>(false);
   public previousPage = signal<number | null>(null);
   public nextPage = signal<number | null>(null);
+  public alertMsg = 'Esta imagen está protegida por derechos de autor';
 
   ngOnInit(): void {
     this.initParams();

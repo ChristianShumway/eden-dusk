@@ -73,4 +73,5 @@ export interface FiltersGallery {
   search?:             string;
   date?:               string;
   collaborator?:       number;
+  collaboratorName?:   string;
 }

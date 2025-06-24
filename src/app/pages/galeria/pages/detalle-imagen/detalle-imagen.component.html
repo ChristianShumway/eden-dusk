@@ -2,6 +2,7 @@
   <div class="bg-black/90 w-full h-[78px] fixed left-0 top-0"></div>
   <div class="w-full">
     <shared-btn-return />
+    <shared-alert-float [msg]="alertMsg" />
     <!-- Imagen principal con controles -->
     <div class="relative rounded-xl shadow-md mb-8 pt-4 bg-gray-50 dark:bg-black-200">
       <img
@@ -18,7 +19,7 @@
       <button
         (click)="hasPreviousPage() && prevImage()"
         [ngClass]="{
-          'hover:bg-white opacity-100' : hasPreviousPage(),
+          'hover:brightness-95 opacity-100' : hasPreviousPage(),
           'opacity-20 cursor-default' : !hasPreviousPage()
         }"
         class="absolute top-1/2 left-2 transform bg-white/70  -translate-y-1/2 p-2 rounded-full shadow-md"
@@ -33,7 +34,7 @@
       <button
         (click)="hasNextPage() && nextImage()"
         [ngClass]="{
-          'hover:bg-white opacity-100' : hasNextPage(),
+          'hover:brightness-95 opacity-100' : hasNextPage(),
           'opacity-20 cursor-default' : !hasNextPage()
         }"
         class="absolute top-1/2 right-2 transform bg-white/70 -translate-y-1/2  p-2 rounded-full shadow-md"

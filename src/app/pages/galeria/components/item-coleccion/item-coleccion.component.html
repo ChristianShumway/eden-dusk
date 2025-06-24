@@ -1,12 +1,14 @@
-<a class="cursor-pointer" (click)="goToDetail(itemGallery())">
+<a class="group cursor-pointer relative block overflow-hidden" (click)="goToDetail(itemGallery())">
   <img
     class="h-auto max-w-full rounded-lg"
+    class="h-auto w-full object-cover transition duration-300 ease-in-out group-hover:brightness-75"
     [src]="itemGallery().sourceUrl"
     [alt]="itemGallery().name"
     appProtectImage
   />
-  <div class="pie__info mt-2">
-    <p class="font-primary-medium text-xl mb-0 line-clamp-1">{{ itemGallery().name }}</p>
+
+  <div class="pie__info mt-2 relative z-10">
+    <p class="font-primary-medium text-xl mb-0 line-clamp-1  group-hover:text-primary">{{ itemGallery().name }}</p>
     <div class="flex items-center gap-1">
       <div class="w-3 h-3 flex items-center text-gray-500" [innerHTML]="svgLocation()"></div>
       <span class="text-sm text-gray-500 line-clamp-1">{{ itemGallery().site }}</span>

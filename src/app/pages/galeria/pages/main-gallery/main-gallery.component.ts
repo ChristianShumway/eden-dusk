@@ -82,7 +82,6 @@ export class MainGalleryComponent implements OnInit {
     this.page.set(page ? page : this.page());
     this.galleryService.getImagesGallery(this.filters()).subscribe({
       next: response => {
-        console.log(response);
         this.imagesList.set(response.data);
         this.totalItems.set(parseInt(response.total))
       }
