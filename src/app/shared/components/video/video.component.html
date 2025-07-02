@@ -1,11 +1,13 @@
-<div class="relative w-full pb-[56.25%]">
-  @if(safeEmbedUrl()) {
-    <iframe
-      [title]="platform()"
-      class="absolute top-0 left-0 w-full h-full rounded-lg"
-      [src]="safeEmbedUrl()"
-      allowfullscreen
-      tabindex="-1"
-    ></iframe>
-  }
-</div>
+@if (showIframe()) {
+  <div class="relative group w-full pb-[56.25%]">
+    @if(safeEmbedUrl()) {
+      <iframe
+        [title]="platform()"
+        class="absolute top-0 left-0 w-full h-full rounded-lg z-0 pointer-events-none group-hover:pointer-events-auto transition-all duration-300"
+        [src]="safeEmbedUrl()"
+        allowfullscreen
+        tabindex="-1"
+      ></iframe>
+    }
+  </div>
+}

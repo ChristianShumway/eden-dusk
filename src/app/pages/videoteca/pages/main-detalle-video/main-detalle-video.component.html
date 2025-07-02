@@ -11,9 +11,9 @@
       </div>
 
       <div class="wrap__author flex items-center justify-start gap-4 mb-8">
-        <img class="w-12 h-12 rounded-full" [src]="video().authorImage" [alt]="video().authorName" (error)="onImgError($event)" />
+        <img class="w-12 h-12 rounded-full" [src]="video().autorImage" [alt]="video().autorName" (error)="onImgError($event)" />
         <div>
-          <p class="text-md font-primary-medium"> {{ video().authorName }}  </p>
+          <p class="text-md font-primary-medium"> {{ video().autorName }}  </p>
           <div class="flex items-center justify-start gap-2">
             <span class="text-sm text-gray-500 ">  {{ video().date | dateMx }} </span>
             <span class=" text-xs px-2.5 py-2 rounded-md bg-black-100 dark:bg-transparent text-white dark:text-gray-400 dark:border-gray-400">

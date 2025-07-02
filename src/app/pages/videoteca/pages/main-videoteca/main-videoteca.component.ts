@@ -34,6 +34,7 @@ export class MainVideotecaComponent implements OnInit {
     page: this.page(),
     per_page: this.perPage(),
     category: '',
+    search: ''
   });
 
   ngOnInit(): void {
@@ -58,11 +59,11 @@ export class MainVideotecaComponent implements OnInit {
       }
     });
     this.page.set(page ? page : this.page());
-    this.videoService.getAllVideosDummy(this.filters()).subscribe({
+    this.videoService.getAllVideos(this.filters()).subscribe({
       next: response => {
         console.log(response);
-        this.videoList.set(response);
-        this.totalVideos.set(response.length);
+        this.videoList.set(response.data);
+        this.totalVideos.set(response.data.length);
       },
       error: err => console.error(err)
     })

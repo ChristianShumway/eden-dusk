@@ -10,11 +10,11 @@ export interface VideotecaModel {
   imageUrlThumbnail: string;
   imageUrlMedium: string;
   color: string;
-  authorImage: string;
-  authorName: string;
+  autorImage: string;
+  autorName: string;
   smallDescription: string;
   codeVideo: string;
-  platform: 'youtube' | 'vimeo' | 'dailymotion';
+  platform: 'youtube' | 'vimeo' | 'dailymotion' | 'dai';
 }
 
 export interface ResponseVideotecaModel {

@@ -1,0 +1,30 @@
+input[type='range'].range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: transparent;
+  position: absolute;
+  pointer-events: none;
+}
+
+input[type='range'].range-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #3b82f6; /* Tailwind blue-500 */
+  border-radius: 9999px;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+input[type='range'].range-thumb::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  pointer-events: all;
+}

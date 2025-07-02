@@ -9,8 +9,14 @@
   </div>
 
   @if(videos().length) {
-    <div class="wrap__videos flex flex-wrap justify-between items-center gap-y-6">
-      <div class="w-full md:w-[48%] lg:w-[32%] rounded-lg bg-gray-50" *ngFor="let video of videos()! | paginate:
+    <div
+      class="wrap__videos flex flex-wrap items-center gap-y-6 mb-8"
+      [ngClass]="{
+        'justify-start gap-x-6': videos().length  === 2 || videos().length  === 5 || videos().length  === 8,
+        'justify-between': videos().length  !== 2 && videos().length  !== 5 && videos().length  !== 4
+      }"
+    >
+      <div class="w-full md:w-[48%] lg:w-[32%] rounded-lg bg-gray-50 dark:bg-black-100" *ngFor="let video of videos()! | paginate:
         {
           id: 'paginator',
           itemsPerPage: videosPerPage(),

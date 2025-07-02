@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { VideotecaService } from '../../../../core/services/videoteca.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SvgService } from '../../../../core/services/svg.service';
-import { CategoryVideotecaModel, VideotecaModel } from '../../../../core/models/videoteca.model';
+import { VideotecaModel } from '../../../../core/models/videoteca.model';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { switchMap } from 'rxjs';
@@ -46,33 +46,20 @@ export class MainDetalleVideoComponent {
     imageUrlThumbnail: '',
     imageUrlMedium: '',
     color: '',
-    authorImage: '',
-    authorName: '',
+    autorImage: '',
+    autorName: '',
     smallDescription: '',
     codeVideo: '',
-    platform: 'youtube'
+    platform: 'vimeo'
   });
 
-  public categoriesList = signal<CategoryVideotecaModel[]>([]);
   public svgAngle = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
   public svgComment = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.msgDialog));
 
   public descriptionHtml = signal<SafeHtml>('');
 
   ngOnInit(): void {
-    this.getCategories();
     this.initParams();
-  }
-
-  getCategories() {
-    this.videotecaService.getCategories().subscribe({
-      next: response => {
-        if(!response) return;
-        this.categoriesList.set(response);
-        this.cdr.detectChanges(); // <- Solución
-      },
-      error: err => console.error(err)
-    });
   }
 
   initParams() {
@@ -83,8 +70,9 @@ export class MainDetalleVideoComponent {
     ).subscribe({
       next: response => {
         if(!response) return;
+        this.cdr.detectChanges(); // <- Solución
         this.video.set(response);
-        this.descriptionHtml.set(this.svgService.getTrueHtml(this.video().description));
+        this.descriptionHtml.set(this.svgService.getTrueHtml(this.video().smallDescription));
       }
     })
   }

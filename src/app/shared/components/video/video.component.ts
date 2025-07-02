@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal, Signal } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { SvgService } from '../../../core/services/svg.service';
 
@@ -16,12 +16,20 @@ export class VideoComponent {
 
   public platform = input.required<string>();
   public codeVideo = input.required<string>();
+  public showIframe = signal(false);
+
 
   // Computed que genera la URL segura
   safeEmbedUrl: Signal<SafeResourceUrl> = computed(() => {
     const url = this.getPlatformUrl(this.platform(), this.codeVideo());
     return this.getSafeUrl(url);
   });
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.showIframe.set(true);
+    }, 300);
+  }
 
   private getPlatformUrl(platform: string, code: string): string {
     switch (platform.toLowerCase()) {

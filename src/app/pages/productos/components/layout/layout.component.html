@@ -1,0 +1,17 @@
+<div class="wrapper__bg w-auto h-screen flex flex-col items-end justify-center gap-8 md:gap-4 pb-8">
+  <div class="bg__layout h-screen bg-cover bg-no-repeat bg-center relative" [style.background-image]="urlImageBackground | backgroundImage"></div>
+
+  <div class="relative justify-items-end grid">
+    <div class="col__info  w-full md:w-9/12 lg:w-6/12">
+      <p class="text-sage-100 -tracking-tighter text-end font-primary-thin text-xl md:text-2xl lg:text-3xl uppercase">
+        <!-- <b class="block font-primary-medium bg-clip-text text-primary text-2xl md:text-3xl lg:text-4xl">
+          Productos:
+        </b> -->
+        Tienda oficial Eden Dusk
+      </p>
+    </div>
+    <div class="wrap__help absolute right-0 -bottom-56">
+      <shared-dialog-help-float [titleMsg]="titleMsg" [descriptionMsg]="descriptionMsg"></shared-dialog-help-float>
+    </div>
+  </div>
+</div>

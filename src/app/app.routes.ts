@@ -24,5 +24,9 @@ export const routes: Routes = [
   {
     path: 'videoteca',
     loadChildren: () => import('./pages/videoteca/videoteca.routes').then(m => m.VIDEOTECA_ROUTES)
+  },
+  {
+    path: 'productos',
+    loadChildren: () => import('./pages/productos/productos.routes').then(m => m.PRODUCTOS_ROUTES)
   }
 ];
