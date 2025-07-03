@@ -1,40 +1,33 @@
-export type LicenseProduct = 'personal' | 'comercial' | '';
-export type TypeProduct = 'digital' | 'enmarcado' | '';
-
+export type LicenseProduct = 'personal' | 'comercial';
 
 export interface LicenseProductModel {
-  id: number;
-  label: LicenseProduct;
-  name: string;
-}
-
-export interface PriceProductModel {
-  id: string;
-  rangeAmount: string;
-}
-
-export interface SizeProductModel {
-  id: string;
-  size: string;
+  id: LicenseProduct;
+  label: string;
 }
 
 export interface TypeProductModel {
   id: string;
-  type: TypeProduct;
+  label: string;
 }
-
-export interface OrderProductModel {
+export interface OrderTypeProductModel {
   id: string;
-  typeOrder: string;
+  label: string;
 }
 
 export interface FiltersProducts {
   page?:        number;
   per_page?:    number;
-  license?:      string;
+  license?:     string;
   search?:      string;
-  price?:       string;
+  type?:        string;
+  minPrice?:    number;
+  maxPrice?:    number;
   order?:       string;
+}
+
+export interface SizeProductModel {
+  id: string;
+  size: string;
 }
 
 export interface ProductModel {
@@ -44,12 +37,10 @@ export interface ProductModel {
   description: string;
   license: LicenseProduct;
   autor: string;
-  collaborator: string;
   name: string;
-  downloadable: boolean;
-  forSale: boolean;
   price: string;
   size: string;
+  type: string;
 }
 
 export interface ResponseGalleryModel {

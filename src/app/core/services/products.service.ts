@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
 import { Observable, of, throwError } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
-import { LicenseProductModel } from "../models/products.model";
+import { LicenseProductModel, OrderTypeProductModel, TypeProductModel } from "../models/products.model";
 
 @Injectable({ providedIn: 'root' })
 
@@ -15,21 +15,71 @@ export class ProductsService {
 
   private readonly LICENSES_DUMMY: LicenseProductModel[] = [
     {
-      id: 1,
-      label: 'comercial',
-      name: 'Uso Comercial'
+      id: 'comercial',
+      label: 'Uso Comercial'
     },
     {
-      id: 2,
-      label: 'personal',
-      name: 'Uso Personal'
+      id: 'personal',
+      label: 'Uso Personal'
     }
   ];
+
+  private readonly TYPE_DUMMY: TypeProductModel[] = [
+    {
+      id: 'galeria',
+      label: 'Galeria'
+    },
+    {
+      id: 'playera',
+      label: 'Playera'
+    },
+    {
+      id: 'taza',
+      label: 'Taza'
+    }
+  ];
+
+  private readonly ORDERTYPE_DUMMY: OrderTypeProductModel[] = [
+    {
+      id: '',
+      label: 'Default'
+    },
+    {
+      id: 'populares',
+      label: 'Populares'
+    },
+    {
+      id: 'raiting',
+      label: 'Mejor raiting'
+    },
+    {
+      id: 'ultimos',
+      label: 'Últimos'
+    },
+    {
+      id: 'menosprecio',
+      label: 'Menor a mayor precio'
+    },
+    {
+      id: 'mayorprecio',
+      label: 'Mayor a menor precio'
+    }
+  ];
+
 
 
   getLicensesType(): Observable<LicenseProductModel[]> {
     return of (this.LICENSES_DUMMY);
   }
+
+  getProductTypes(): Observable<TypeProductModel[]> {
+    return of (this.TYPE_DUMMY);
+  }
+
+  getOrderProductType(): Observable<OrderTypeProductModel[]> {
+    return of (this.ORDERTYPE_DUMMY);
+  }
+
 
 
 

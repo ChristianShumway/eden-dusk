@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, of, throwError } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
 import { VideotecaModel, CategoryVideotecaModel, ResponseVideotecaModel, FiltersVideoteca } from '../models/videoteca.model';
 

@@ -1,3 +1,8 @@
 <products-layout />
-<products-filtros [licenses]="licensesType()" />
+<products-filtros
+  [licenses]="licensesType()"
+  [types]="catalogProductTypes()"
+  [catalogOrder]="catalogOrderProductType()"
+  (filterChanged)="onFilterChanged($event)"
+/>
 <products-grid-productos />

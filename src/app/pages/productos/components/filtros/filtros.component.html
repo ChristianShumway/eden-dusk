@@ -21,7 +21,8 @@
 
       <!-- WRAP FORMULARIO BUSQUEDA -->
       <form [formGroup]="myForm">
-        <div class="flex items-center mb-6">
+        <!-- Input busqueda -->
+        <div class="flex items-center">
           <label for="simple-search" class="sr-only">Search</label>
           <div class="relative w-full">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -35,8 +36,41 @@
             />
           </div>
         </div>
+
+        <!-- RANGE -->
+        <div class="w-full px-4 mt-2">
+          <label for="min-max" class="block mb-2 text-sm font-medium text-gray-700">Rango de precio</label>
+          <div class="flex items-center justify-between mb-2 text-sm">
+            <span>${{ minValueField?.value }}</span>
+            <span>${{ maxValueField?.value }}</span>
+          </div>
+          <div class="relative h-1 bg-gray-200 rounded">
+            <!-- Barra visual entre los rangos -->
+            <div
+              class="absolute -top-[2px] h-1 bg-black-100 rounded"
+              [style.left.%]="getLeftPercent()"
+              [style.width.%]="getWidthPercent()"
+            ></div>
+            <!-- Sliders -->
+            <input
+              type="range"
+              [min]="minRange"
+              [max]="maxRange"
+              formControlName="min"
+              class="range-thumb z-10 relative"
+            />
+            <input
+              type="range"
+              [min]="minRange"
+              [max]="maxRange"
+              formControlName="max"
+              class="range-thumb z-10 relative"
+            />
+          </div>
+        </div>
+
         <!-- WRAP BOTONES FILTROS -->
-        <div class="wrap__items grid justify-start items-center grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-4">
+        <div class="wrap__items grid justify-start items-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 mt-6">
 
           <!-- button licenses -->
           <button
@@ -54,6 +88,7 @@
             #dropCat
             id="dropdownRadioBgHoverLicenses"
             [class.hidden]="!isDropdownOpenLicense"
+            [attr.inert]="!isDropdownOpenLicense ? true : null"
             class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-black-100 dark:divide-gray-600"
           >
             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioBgHoverButtonLicenses" >
@@ -61,18 +96,18 @@
                 <li>
                   <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-black-200">
                     <input
-                      [id]="'radio-' + license.label"
+                      [id]="'radio-' + license.id"
                       type="radio"
-                      [value]="license.label"
+                      [value]="license.id"
                       name="license"
                       formControlName="license"
                       (change)="onSelectLicense(license, 1)"
                       class="w-4 h-4 text-black bg-gray-100 border-gray-300 focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-black-100 dark:border-gray-500">
                     <label
-                      [for]="'radio-' + license.label"
+                      [for]="'radio-' + license.id"
                       class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300"
                     >
-                      {{ license.name }}
+                      {{ license.label }}
                     </label>
                   </div>
                 </li>
@@ -80,41 +115,78 @@
             </ul>
           </div>
 
-          <div class="w-full px-4">
-  <label class="block mb-2 text-sm font-medium text-gray-700">Precio</label>
-  <div class="flex items-center justify-between mb-2 text-sm">
-    <span>${{ minValueField?.value }}</span>
-    <span>${{ maxValueField?.value }}</span>
-  </div>
-  <div class="relative h-2 bg-gray-200 rounded">
-    <input
-      type="range"
-      [min]="minRange"
-      [max]="maxRange"
-      formControlName="min"
-      class="range-thumb"
-    />
-    <input
-      type="range"
-      [min]="minRange"
-      [max]="maxRange"
-      formControlName="max"
-      class="range-thumb"
-    />
-  </div>
-</div>
+          <!-- button types -->
+          <button
+            (click)="toggleDropdown(2)"
+            id="dropdownRadioBgHoverButtonTypes"
+            type="button"
+            data-dropdown-toggle="dropdownRadioBgHoverTypes"
+            class="w-full btn__primary--black flex items-center justify-center">
+            Tipo Producto
+            <div class="w-3.5 h-3.5 ms-3 flex rotate-90" [innerHTML]="svgAngle()"></div>
+          </button>
 
-
+          <!-- Dropdown menu types -->
+          <div
+            #dropCat
+            id="dropdownRadioBgHoverTypes"
+            [class.hidden]="!isDropdownOpenType"
+            [attr.inert]="!isDropdownOpenType ? true : null"
+            class="z-10 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-black-100 dark:divide-gray-600"
+          >
+            <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioBgHoverButtonTypes" >
+            @for (typeProduct of types(); track $index) {
+                <li>
+                  <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-black-200">
+                    <input
+                      [id]="'radio-' + typeProduct.id"
+                      type="radio"
+                      [value]="typeProduct.id"
+                      name="type"
+                      formControlName="type"
+                      (change)="onSelectType(typeProduct, 1)"
+                      class="w-4 h-4 text-black bg-gray-100 border-gray-300 focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-black-100 dark:border-gray-500">
+                    <label
+                      [for]="'radio-' + typeProduct.id"
+                      class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300"
+                    >
+                      {{ typeProduct.label }}
+                    </label>
+                  </div>
+                </li>
+              }
+            </ul>
+          </div>
 
         </div>
       </form>
 
       <!-- WRAP BOTONES DELETE FILTROS -->
-      <!-- <gallery-limpiar-filtros [currencyFilters]="currencyFilters()" (valueFilter)="cleanFilter($event)" /> -->
+      <products-limpiar-filtros [currencyFilters]="currencyFilters()" (valueFilter)="cleanFilter($event)" />
 
     </div>
   </div>
 
 
+</div>
+
+<div class="flex justify-end items-center">
+  <form>
+    <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ordenar por:</label>
+    <div class="relative w-full">
+      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div class="w-4 h-4" [innerHTML]="svgArrowRounded()"></div>
+      </div>
+      <select
+        id="small"
+        [formControl]="orderField"
+        class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-black-100 focus:border-black-100 block w-full ps-10 p-3  dark:bg-black-100 dark:border-black dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white"
+      >
+        @for (item of catalogOrder(); track $index) {
+          <option [value]="item.id"> {{ item.label }} </option>
+        }
+      </select>
+    </div>
+  </form>
 </div>
 

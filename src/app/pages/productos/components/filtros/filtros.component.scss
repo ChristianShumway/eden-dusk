@@ -2,7 +2,7 @@ input[type='range'].range-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 2px;
+  height: 1px;
   background: transparent;
   position: absolute;
   pointer-events: none;
@@ -13,7 +13,7 @@ input[type='range'].range-thumb::-webkit-slider-thumb {
   appearance: none;
   width: 16px;
   height: 16px;
-  background: #3b82f6; /* Tailwind blue-500 */
+  background: black; /* Tailwind blue-500 */
   border-radius: 9999px;
   cursor: pointer;
   pointer-events: all;
@@ -22,9 +22,40 @@ input[type='range'].range-thumb::-webkit-slider-thumb {
 input[type='range'].range-thumb::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  background: #3b82f6;
+  background: black;
   border: none;
   border-radius: 9999px;
   cursor: pointer;
   pointer-events: all;
+}
+
+.range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: transparent;
+  pointer-events: auto;
+  position: absolute;
+  top: 0;
+}
+
+/* Para navegadores modernos */
+.range-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+}
+
+.range-thumb::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
 }
