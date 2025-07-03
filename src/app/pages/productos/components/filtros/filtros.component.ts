@@ -4,7 +4,7 @@ import { SvgService } from '../../../../core/services/svg.service';
 import { FiltersProducts, LicenseProductModel, OrderTypeProductModel, TypeProductModel } from '../../../../core/models/products.model';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
-import { debounceTime, min } from 'rxjs';
+import { debounceTime } from 'rxjs';
 import { initAccordions, initDropdowns } from 'flowbite';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -39,18 +39,18 @@ export class FiltrosComponent {
   public myForm!: FormGroup;
   public orderField: FormControl = new FormControl('');
 
-  public isDropdownOpenLicense = false;
-  public isDropdownOpenType = false;
-  public minRange = 0;
-  public maxRange = 1000;
+  public isDropdownOpenLicense = signal<boolean>(false);
+  public isDropdownOpenType = signal<boolean>(false);
+  public minRange = signal<number>(0);
+  public maxRange = signal<number>(1000);
 
   public currencyFilters = signal<FiltersProducts>({
-    search:   '',
-    license:  '',
-    minPrice:  this.minRange,
-    maxPrice:  this.maxRange,
-    type:     '',
-    order:    ''
+    search:    '',
+    license:   { id:'', label:'' },
+    minPrice:  this.minRange(),
+    maxPrice:  this.maxRange(),
+    type:      { id:'', label:'' },
+    order:     ''
   });
 
   public svgSearch = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.search));
@@ -83,8 +83,8 @@ export class FiltrosComponent {
       search: [''],
       license: [''],
       type: [''],
-      min: [this.minRange],
-      max: [this.maxRange]
+      min: [this.minRange()],
+      max: [this.maxRange()]
     });
   }
 
@@ -132,7 +132,7 @@ export class FiltrosComponent {
 
       // Si min es igual al max permitido, forzamos min a sea 100 menor que max
       if (min === this.maxRange) {
-        min = this.maxRange - 100;
+        min = this.maxRange() - 100;
         max = this.maxRange;
         this.myForm.patchValue({ min, max }, { emitEvent: false });
       }
@@ -151,48 +151,46 @@ export class FiltrosComponent {
   onSelectLicense(license: LicenseProductModel, index: number) {
     this.currencyFilters.update(newValue => ({
       ...newValue,
-      license: license.id,
+      license: license,
     }));
 
     this.closeDrop(index);
-    this.myForm.get('license')?.setValue(license.id);
-    this.filterChanged.emit(this.currencyFilters());
+    this.myForm.get('license')?.setValue(license);
   }
 
   onSelectType(type: TypeProductModel, index: number) {
     this.currencyFilters.update(newValue => ({
       ...newValue,
-      type: type.id,
+      type: type,
     }));
 
     this.closeDrop(index);
-    this.myForm.get('type')?.setValue(type.id);
-    this.filterChanged.emit(this.currencyFilters());
+    this.myForm.get('type')?.setValue(type);
   }
 
   toggleDropdown(index: number) {
     if (index === 1) {
-      this.isDropdownOpenLicense = !this.isDropdownOpenLicense;
-      this.isDropdownOpenType = false;
+      this.isDropdownOpenLicense.set(!this.isDropdownOpenLicense());
+      this.isDropdownOpenType.set(false);
     }
 
     else if (index === 2) {
-      this.isDropdownOpenType = !this.isDropdownOpenType;
-      this.isDropdownOpenLicense = false;
+      this.isDropdownOpenType.set(!this.isDropdownOpenType());
+      this.isDropdownOpenLicense.set(false);
     }
   }
 
   closeDrop(index: number) {
     (document.activeElement as HTMLElement)?.blur();
-    this.isDropdownOpenLicense = false;
-    this.isDropdownOpenType = false;
+    this.isDropdownOpenLicense.set(false);
+    this.isDropdownOpenType.set(false);
 
   }
 
   cleanFilter(key: string) {
     this.currencyFilters.update( current => ({
       ...current,
-      [key]: ''
+      [key]: { id:'', label:'' },
     }));
 
     this.myForm.get(key)?.setValue(''); // Esto desmarca el radio
@@ -208,12 +206,10 @@ export class FiltrosComponent {
     if(key === 'maxPrice'){
       this.currencyFilters.set({
         ...this.currencyFilters(),
-        maxPrice: this.maxRange
+        maxPrice: this.maxRange()
       });
-      this.maxValueField?.setValue(this.maxRange);
+      this.maxValueField?.setValue(this.maxRange());
     }
-
-    this.filterChanged.emit(this.currencyFilters());
   }
 
   get minValueField() {
@@ -226,14 +222,14 @@ export class FiltrosComponent {
 
   getLeftPercent(): number {
     const min = this.minValueField?.value || 0;
-    const maxRange = this.maxRange;
+    const maxRange = this.maxRange();
     return (min / maxRange) * 100;
   }
 
   getWidthPercent(): number {
     const min = this.minValueField?.value || 0;
     const max = this.maxValueField?.value || 0;
-    const range = this.maxRange - this.minRange;
+    const range = this.maxRange() - this.minRange();
     return ((max - min) / range) * 100;
   }
 

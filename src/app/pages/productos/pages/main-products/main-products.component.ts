@@ -36,8 +36,8 @@ export class MainProductsComponent implements OnInit {
     page: this.page(),
     per_page: this.perPage(),
     search: '',
-    license: '',
-    type: '',
+    license: { id:'', label:'' },
+    type: { id:'', label:'' },
     order: ''
   });
 

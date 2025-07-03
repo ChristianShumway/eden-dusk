@@ -12,7 +12,7 @@
   }
   @if (currencyFilters().minPrice !== 0) {
     <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-black-100 dark:text-gray-300">
-      {{ currencyFilters().minPrice |  currency  }}
+      Precio Mínimo: {{ currencyFilters().minPrice |  currency  }}
       <button
         type="button"
         (click)="cleanFilter('minPrice')"
@@ -22,9 +22,9 @@
     </span>
   }
 
-  @if (currencyFilters().maxPrice !== 1000) {
+  @if (currencyFilters().maxPrice !== maxRange()) {
     <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-black-100 dark:text-gray-300">
-      {{ currencyFilters().maxPrice |  currency  }}
+      Precio Máximo: {{ currencyFilters().maxPrice |  currency  }}
       <button
         type="button"
         (click)="cleanFilter('maxPrice')"
@@ -34,9 +34,9 @@
     </span>
   }
 
-  @if (currencyFilters().license !== '') {
+  @if (currencyFilters().license?.id !== '') {
     <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-black-100 dark:text-gray-300">
-      {{ currencyFilters().license   }}
+      Licencia de {{ currencyFilters().license?.label   }}
       <button
         type="button"
         (click)="cleanFilter('license')"
@@ -46,9 +46,9 @@
     </span>
   }
 
-  @if (currencyFilters().type !== '') {
+  @if (currencyFilters().type?.id !== '') {
     <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-black-100 dark:text-gray-300">
-      {{ currencyFilters().type   }}
+      {{ currencyFilters().type?.label   }}
       <button
         type="button"
         (click)="cleanFilter('type')"

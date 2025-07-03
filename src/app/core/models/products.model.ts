@@ -1,4 +1,4 @@
-export type LicenseProduct = 'personal' | 'comercial';
+export type LicenseProduct = 'personal' | 'comercial' | '';
 
 export interface LicenseProductModel {
   id: LicenseProduct;
@@ -17,9 +17,9 @@ export interface OrderTypeProductModel {
 export interface FiltersProducts {
   page?:        number;
   per_page?:    number;
-  license?:     string;
+  license?:     LicenseProductModel;
   search?:      string;
-  type?:        string;
+  type?:        TypeProductModel;
   minPrice?:    number;
   maxPrice?:    number;
   order?:       string;
