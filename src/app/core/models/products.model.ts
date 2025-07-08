@@ -1,17 +1,16 @@
-export type LicenseProduct = 'personal' | 'comercial' | '';
 
 export interface LicenseProductModel {
-  id: LicenseProduct;
-  label: string;
+  id: number;
+  value: string;
 }
 
 export interface TypeProductModel {
-  id: string;
-  label: string;
+  id: number;
+  value: string;
 }
 export interface OrderTypeProductModel {
-  id: string;
-  label: string;
+  id: number;
+  value: string;
 }
 
 export interface FiltersProducts {
@@ -22,7 +21,7 @@ export interface FiltersProducts {
   type?:        TypeProductModel;
   minPrice?:    number;
   maxPrice?:    number;
-  order?:       string;
+  order?:       number;
 }
 
 export interface SizeProductModel {
@@ -35,7 +34,7 @@ export interface ProductModel {
   date: string; // Formato: 'yyyy/MM/dd'
   sourceUrl: string;
   description: string;
-  license: LicenseProduct;
+  license: number;
   autor: string;
   name: string;
   price: string;

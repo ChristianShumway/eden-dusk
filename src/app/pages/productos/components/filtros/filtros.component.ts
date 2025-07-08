@@ -37,7 +37,7 @@ export class FiltrosComponent {
   public filterChanged = new EventEmitter<FiltersProducts>();
 
   public myForm!: FormGroup;
-  public orderField: FormControl = new FormControl('');
+  public orderField: FormControl = new FormControl(197);
 
   public isDropdownOpenLicense = signal<boolean>(false);
   public isDropdownOpenType = signal<boolean>(false);
@@ -46,11 +46,11 @@ export class FiltrosComponent {
 
   public currencyFilters = signal<FiltersProducts>({
     search:    '',
-    license:   { id:'', label:'' },
+    license:   { id:0, value:'' },
     minPrice:  this.minRange(),
     maxPrice:  this.maxRange(),
-    type:      { id:'', label:'' },
-    order:     ''
+    type:      { id:0, value:'' },
+    order:     197
   });
 
   public svgSearch = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.search));
@@ -190,7 +190,7 @@ export class FiltrosComponent {
   cleanFilter(key: string) {
     this.currencyFilters.update( current => ({
       ...current,
-      [key]: { id:'', label:'' },
+      [key]: { id:0, value:'' },
     }));
 
     this.myForm.get(key)?.setValue(''); // Esto desmarca el radio

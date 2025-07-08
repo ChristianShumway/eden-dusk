@@ -107,7 +107,7 @@
                       [for]="'radio-' + license.id"
                       class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300"
                     >
-                      {{ license.label }}
+                      {{ license.value }}
                     </label>
                   </div>
                 </li>
@@ -150,7 +150,7 @@
                       [for]="'radio-' + typeProduct.id"
                       class="w-full ms-2 text-sm font-medium text-gray-900 rounded-sm dark:text-gray-300"
                     >
-                      {{ typeProduct.label }}
+                      {{ typeProduct.value }}
                     </label>
                   </div>
                 </li>
@@ -187,7 +187,7 @@
         class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-black-100 focus:border-black-100 block w-full ps-10 p-3  dark:bg-black-100 dark:border-black dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white"
       >
         @for (item of catalogOrder(); track $index) {
-          <option [value]="item.id"> {{ item.label }} </option>
+          <option [value]="item.id"> {{ item.value }} </option>
         }
       </select>
     </div>

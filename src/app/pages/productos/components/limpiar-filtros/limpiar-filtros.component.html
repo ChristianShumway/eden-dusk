@@ -34,9 +34,9 @@
     </span>
   }
 
-  @if (currencyFilters().license?.id !== '') {
+  @if (currencyFilters().license?.id !== 0) {
     <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-black-100 dark:text-gray-300">
-      Licencia de {{ currencyFilters().license?.label   }}
+      Licencia de {{ currencyFilters().license?.value   }}
       <button
         type="button"
         (click)="cleanFilter('license')"
@@ -46,9 +46,9 @@
     </span>
   }
 
-  @if (currencyFilters().type?.id !== '') {
+  @if (currencyFilters().type?.id !== 0) {
     <span id="badge-dismiss-dark" class="inline-flex items-center px-2.5 py-1.5 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-sm dark:bg-black-100 dark:text-gray-300">
-      {{ currencyFilters().type?.label   }}
+      {{ currencyFilters().type?.value   }}
       <button
         type="button"
         (click)="cleanFilter('type')"

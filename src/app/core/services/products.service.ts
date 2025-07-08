@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
-import { Observable, of, throwError } from "rxjs";
+import { catchError, Observable, of, throwError } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
 import { LicenseProductModel, OrderTypeProductModel, TypeProductModel } from "../models/products.model";
 
@@ -11,78 +11,29 @@ export class ProductsService {
   private readonly http = inject(HttpClient);
 
   private readonly apiUrl = PathsEnum.APIURL;
-  private readonly pathBlog = 'api/products';
-
-  private readonly LICENSES_DUMMY: LicenseProductModel[] = [
-    {
-      id: 'comercial',
-      label: 'Uso Comercial'
-    },
-    {
-      id: 'personal',
-      label: 'Uso Personal'
-    }
-  ];
-
-  private readonly TYPE_DUMMY: TypeProductModel[] = [
-    {
-      id: 'galeria',
-      label: 'Galeria'
-    },
-    {
-      id: 'playera',
-      label: 'Playera'
-    },
-    {
-      id: 'taza',
-      label: 'Taza'
-    }
-  ];
-
-  private readonly ORDERTYPE_DUMMY: OrderTypeProductModel[] = [
-    {
-      id: '',
-      label: 'Default'
-    },
-    {
-      id: 'populares',
-      label: 'Populares'
-    },
-    {
-      id: 'raiting',
-      label: 'Mejor raiting'
-    },
-    {
-      id: 'ultimos',
-      label: 'Últimos'
-    },
-    {
-      id: 'menosprecio',
-      label: 'Menor a mayor precio'
-    },
-    {
-      id: 'mayorprecio',
-      label: 'Mayor a menor precio'
-    }
-  ];
-
-
+  private readonly pathCatalogs = 'api/catalogo';
+  private readonly pathProducts = 'api/products';
 
   getLicensesType(): Observable<LicenseProductModel[]> {
-    return of (this.LICENSES_DUMMY);
+    return this.http.get<LicenseProductModel[]>(`${this.apiUrl}/${this.pathCatalogs}/licencias`)
+      .pipe(
+        catchError( error => this.getThrowError(error))
+      );
   }
 
   getProductTypes(): Observable<TypeProductModel[]> {
-    return of (this.TYPE_DUMMY);
+    return this.http.get<TypeProductModel[]>(`${this.apiUrl}/${this.pathCatalogs}/tipoproducto`)
+      .pipe(
+        catchError( error => this.getThrowError(error))
+      );
   }
 
   getOrderProductType(): Observable<OrderTypeProductModel[]> {
-    return of (this.ORDERTYPE_DUMMY);
+    return this.http.get<OrderTypeProductModel[]>(`${this.apiUrl}/${this.pathCatalogs}/ordenarpor`)
+      .pipe(
+        catchError( error => this.getThrowError(error))
+      );
   }
-
-
-
-
 
   private getThrowError(error: any) {
     const statusCode = error.status;
