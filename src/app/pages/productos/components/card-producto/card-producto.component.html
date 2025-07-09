@@ -1,1 +1,54 @@
-<p>card-producto works!</p>
+
+<div class="item__layout group w-full p-4 relative overflow-hidden cursor-pointer rounded-lg shadow-sm dark:bg-transparent">
+  <!-- Imagen de fondo -->
+  <div
+    class="layout__imagebg bg-cover bg-no-repeat bg-center absolute inset-0 z-0"
+    [style.background-image]="product().sourceUrl | backgroundImage"
+  ></div>
+
+  <!-- Precio -->
+  <div class="hidden px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2 z-10">
+    {{ product().price }}
+  </div>
+
+  <!-- Fecha -->
+  <div
+    class="absolute top-2 left-2 px-2 py-1 text-sm rounded-md capitalize z-10"
+    [class.bg-black]="product().date | recentDate"
+  >
+    {{ product().date | recentDate }}
+  </div>
+
+  <!-- Botón (animado al hacer hover) -->
+  <div
+    class="absolute bottom-[-4rem] left-1/2 -translate-x-1/2 z-10 transition-all duration-300 ease-in-out group-hover:bottom-4"
+  >
+    <!-- Contenedor botones -->
+    <div class="flex gap-3">
+      <!-- Botón Preview -->
+      <a
+        title="Previsualizar"
+        class="w-12 h-12 rounded-full bg-white text-black shadow-md hover:bg-gray-200  flex items-center justify-center transition"
+        (click)="onPreview(product().sourceUrl)"
+      >
+        <div [innerHTML]="svgPreview()" class="w-4 h-4 flex items-center"></div>
+      </a>
+      <!-- Botón Ver producto -->
+      <a
+        title="Ver producto"
+        class="w-12 h-12 rounded-full bg-black text-white shadow-md hover:bg-black-100 flex items-center justify-center transition"
+        (click)="goTo(product().id)"
+      >
+        <div [innerHTML]="svgMore()" class="w-4 h-4 flex items-center"></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="product__info mt-2 p-2">
+  <p class="font-primary-thin text-lg mb-0 line-clamp-1">{{ product().name }}</p>
+  <span class="text-2xl font-primary-medium  line-clamp-1">{{ product().price | currency }}</span>
+</div>
+
+<shared-image-overlay [img]="currencyUrlImage()" (setImageEmpty)="currencyUrlImage.set('')" />
+

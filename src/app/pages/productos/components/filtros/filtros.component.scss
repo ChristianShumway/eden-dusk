@@ -13,21 +13,22 @@ input[type='range'].range-thumb::-webkit-slider-thumb {
   appearance: none;
   width: 16px;
   height: 16px;
-  background: black; /* Tailwind blue-500 */
   border-radius: 9999px;
   cursor: pointer;
   pointer-events: all;
+  @apply bg-black dark:bg-gray-200;
 }
 
 input[type='range'].range-thumb::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  background: black;
   border: none;
   border-radius: 9999px;
   cursor: pointer;
   pointer-events: all;
+  @apply bg-black dark:bg-gray-200;
 }
+
 
 .range-thumb {
   -webkit-appearance: none;
@@ -46,16 +47,16 @@ input[type='range'].range-thumb::-moz-range-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: #000;
   cursor: pointer;
   position: relative;
   z-index: 20;
+  @apply bg-black dark:bg-gray-200;
 }
 
 .range-thumb::-moz-range-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: #000;
   cursor: pointer;
+  @apply bg-black dark:bg-gray-200;
 }

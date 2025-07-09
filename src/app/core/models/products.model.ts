@@ -34,12 +34,11 @@ export interface ProductModel {
   date: string; // Formato: 'yyyy/MM/dd'
   sourceUrl: string;
   description: string;
-  license: number;
-  autor: string;
   name: string;
   price: string;
+  license: number;
+  type: number;
   size: string;
-  type: string;
 }
 
 export interface ResponseGalleryModel {

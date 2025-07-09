@@ -5,14 +5,16 @@ import { LayoutComponent } from '../../components/layout/layout.component';
 import { FiltrosComponent } from '../../components/filtros/filtros.component';
 import { GridProductosComponent } from '../../components/grid-productos/grid-productos.component';
 
-import { FiltersProducts, LicenseProductModel, TypeProductModel } from '../../../../core/models/products.model';
+import { FiltersProducts, LicenseProductModel, ProductModel, TypeProductModel } from '../../../../core/models/products.model';
 import { ProductsService } from '../../../../core/services/products.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-main-products',
   standalone: true,
   imports: [
     CommonModule,
+    NgxPaginationModule,
     LayoutComponent,
     FiltrosComponent,
     GridProductosComponent
@@ -28,7 +30,7 @@ export class MainProductsComponent implements OnInit {
   public catalogProductTypes = signal<TypeProductModel[]>([]);
   public catalogOrderProductType = signal<TypeProductModel[]>([]);
 
-
+  public productList = signal<ProductModel[]>([]);
   public page = signal<number>(1);
   public perPage = signal<number>(12);
   public totalItems = signal<number>(0);
@@ -46,6 +48,7 @@ export class MainProductsComponent implements OnInit {
     this.getLicensesType();
     this.getProductTypes();
     this.getOrderProductTypes();
+    this.getProducts();
   }
 
   getLicensesType() {
@@ -75,6 +78,9 @@ export class MainProductsComponent implements OnInit {
     });
     this.page.set(page ? page : this.page());
     console.log(this.filters());
+    this.productService.getAllProducts(this.filters()).subscribe({
+      next: response => this.productList.set(response)
+    })
   }
 
   onFilterChanged(data: FiltersProducts) {

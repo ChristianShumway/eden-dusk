@@ -1,18 +1,43 @@
-<div class="relative justify-self-center w-full h-64 bg-no-repeat bg-center bg-cover rounded-t-lg" [style.background-image]="video().imageUrl| backgroundImage">
-  <div class="px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2">
-    {{video().category}}
-  </div>
+
+<div class="item__layout group w-full p-4 relative overflow-hidden cursor-pointer rounded-lg shadow-sm dark:bg-transparent">
+  <!-- Imagen de fondo -->
   <div
-    class="absolute top-2 left-2 px-2 py-1 text-sm rounded-md capitalize"
-    [class.bg-yellow-400]="video().date| recentDate"
+    class="layout__imagebg bg-cover bg-no-repeat bg-center absolute inset-0 z-0"
+    [style.background-image]="video().imageUrl| backgroundImage"
+  ></div>
+
+  <!-- Categoría -->
+  <div class="px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2 z-10">
+    {{ video().category }}
+  </div>
+
+  <!-- Fecha -->
+  <div
+    class="absolute top-2 left-2 px-2 py-1 text-sm rounded-md capitalize z-10"
+    [class.bg-black]="video().date | recentDate"
   >
     {{ video().date | recentDate }}
   </div>
-</div>
-<div class="video__info mt-2 p-2">
-  <p class="font-primary-medium text-xl mb-0 line-clamp-1">{{ video().title }}</p>
-  <span class="text-sm text-gray-500 line-clamp-2">{{ video().description }}</span>
-  <div class="text-right mt-4 mb-2">
-    <button class="btn__primary--black" (click)="goTo(video().id)">Ver más detalles</button>
+
+  <!-- Botón (animado al hacer hover) -->
+  <div
+    class="absolute bottom-[-4rem] left-1/2 -translate-x-1/2 z-10 transition-all duration-300 ease-in-out group-hover:bottom-4"
+  >
+    <!-- Contenedor botones -->
+    <div class="flex gap-3">
+      <!-- Botón Ver video -->
+      <a
+        title="Ver video"
+        class="w-12 h-12 rounded-full bg-black text-white shadow-md hover:bg-black-100 flex items-center justify-center transition"
+        (click)="goTo(video().id)"
+      >
+        <div [innerHTML]="svgCamera()" class="w-4 h-4 flex items-center"></div>
+      </a>
+    </div>
   </div>
+</div>
+
+<div class="video__info mt-2 p-2">
+  <p class="font-primary-thin text-lg mb-0 line-clamp-1">{{ video().title }}</p>
+  <span class="text-sm  line-clamp-2">{{ video().smallDescription }}</span>
 </div>

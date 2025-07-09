@@ -1,8 +1,38 @@
-<products-layout />
-<products-filtros
+<section class="main__products">
+  <products-layout />
+  <products-filtros
   [licenses]="licensesType()"
   [types]="catalogProductTypes()"
   [catalogOrder]="catalogOrderProductType()"
   (filterChanged)="onFilterChanged($event)"
-/>
-<products-grid-productos />
+  />
+  <div class="grid__products grid grid-cols-1 gap-4 overflow-hidden">
+    <div class="wrapper__main">
+      <products-grid-productos
+        [products]="productList()"
+        [productsPerPage]="perPage()"
+        [currencyPage]="page()"
+        [totalProducts]="totalItems()"
+      />
+
+      <!-- PAGINATION -->
+      <div class="mt-4">
+        <pagination-controls
+        *ngIf="productList().length > 0"
+        id="paginator"
+        class="text-right font-circular-regular"
+        (maxSize)=10;
+        (directionLinks)=true
+        (pageChange)="page.set($event)"
+        (autoHide)=true
+        (responsive)=true
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        screenReaderPaginationLabel="Pagination"
+        (pageChange)="pageChanged($event)"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</section>

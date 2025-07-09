@@ -1,1 +1,33 @@
-<p>grid-productos works!</p>
+<section>
+  <div class="mb-4">
+    <div class=" mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start uppercase">
+      <div [innerHTML]="svgAngle()" class="w-12 h-12 text-primary hidden md:flex md:mr-4"></div>
+      <span class="text-2xl md:text-3xl lg:text-4xl"> Productos </span>
+    </div>
+
+    <p class="text-sm text-right">Total de productos encontrados: <b class="font-primary-bold"> {{ totalProducts() }} </b> </p>
+  </div>
+
+  @if(products().length) {
+    <div
+      class="wrap__productos flex flex-wrap items-start gap-y-6 mb-8"
+      [ngClass]="{
+        'justify-start gap-x-6': products().length  === 2 || products().length  === 5 || products().length  === 8,
+        'justify-between': products().length  !== 2 && products().length  !== 5 && products().length  !== 4
+      }"
+    >
+      <div class="w-full md:w-[48%] lg:w-[32%] rounded-lg bg-gray-50 dark:bg-transparent" *ngFor="let product of products()! | paginate:
+        {
+          id: 'paginator',
+          itemsPerPage: productsPerPage(),
+          currentPage: currencyPage(),
+          totalItems: totalProducts()
+        }"
+      >
+      <card-producto [product]="product" />
+      </div>
+    </div>
+  }@else {
+    <shared-no-data [type]="'galeria'" [msg]="msg" />
+  }
+</section>
