@@ -1,0 +1,33 @@
+<div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="info-tab" data-tabs-toggle="#tab-info-adicional" inactiveClasses>
+    <li class="me-2">
+      <button
+        class="inline-block p-4 border-t-0 border-l-0 border-r-0 border-b-2 rounded-none"
+        id="detalles-tab"
+        data-tabs-target="#detalles"
+        type="button"
+        role="tab"
+        aria-controls="detalles"
+        aria-selected="true"
+        inactiveClasses
+      >
+        Detalles del Producto
+      </button>
+    </li>
+    <li class="me-2">
+      <button class="inline-block p-4 border-t-0 border-l-0 border-r-0 border-b-2 rounded-none hover:text-gray-600 dark:hover:text-gray-300" id="envios-tab" data-tabs-target="#envios" type="button" role="tab" aria-controls="envios" aria-selected="false">Pedidos y envío</button>
+    </li>
+  </ul>
+</div>
+<div id="tab-info-adicional">
+  <div class=" p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
+    <p class="text-sm text-gray-500 dark:text-gray-400">
+      DETALLES DEL PRODUCTO
+    </p>
+  </div>
+  <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="envios" role="tabpanel" aria-labelledby="envios-tab">
+    <p class="text-sm text-gray-500 dark:text-gray-400">
+      DETALLES DEL ENVIO
+    </p>
+  </div>
+</div>

@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, of, throwError } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
-import { FiltersProducts, LicenseProductModel, OrderTypeProductModel, ProductModel, TypeProductModel } from "../models/products.model";
+import { FiltersProducts, LicenseProductModel, MaterialProductModel, OrderTypeProductModel, ResponseProductModel, SizeProductModel, TypeProductModel } from "../models/products.model";
 
 @Injectable({ providedIn: 'root' })
 
@@ -14,74 +14,16 @@ export class ProductsService {
   private readonly pathCatalogs = 'api/catalogo';
   private readonly pathProducts = 'api/products';
 
-  MOCK_PRODUCTS: ProductModel[] = [
-  {
-    id: 1,
-    date: '2025/07/01',
-    sourceUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg',
-    description: 'Diseño moderno y limpio para campañas digitales.',
-    name: 'Plantilla Digital Pro',
-    price: '29.99',
-    license: 1,
-    type: 2,
-    size: '1920x1080',
-  },
-  {
-    id: 2,
-    date: '2025/07/02',
-    sourceUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg',
-    description: 'Set de íconos minimalistas para interfaces web.',
-    name: 'Icon Pack UI',
-    price: '14.50',
-    license: 2,
-    type: 1,
-    size: '512x512',
-  },
-  {
-    id: 3,
-    date: '2025/07/03',
-    sourceUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg',
-    description: 'Mockup de camiseta en PSD editable para branding.',
-    name: 'Mockup Camiseta',
-    price: '9.99',
-    license: 1,
-    type: 3,
-    size: '3000x2000',
-  },
-  {
-    id: 4,
-    date: '2025/07/04',
-    sourceUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg',
-    description: 'Plantilla responsive para landing pages.',
-    name: 'Landing Clean',
-    price: '24.00',
-    license: 3,
-    type: 2,
-    size: '1920x1080',
-  },
-  {
-    id: 5,
-    date: '2025/07/05',
-    sourceUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg',
-    description: 'Animación SVG para loaders o iconos animados.',
-    name: 'Loader Animado',
-    price: '5.00',
-    license: 1,
-    type: 1,
-    size: '128x128',
-  },
-  {
-    id: 6,
-    date: '2025/07/06',
-    sourceUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg',
-    description: 'Set de fuentes para proyectos editoriales.',
-    name: 'Tipografías Creativas',
-    price: '19.90',
-    license: 2,
-    type: 3,
-    size: 'N/A',
-  }
-  ];
+  MOCK_SIZES: SizeProductModel[] = [
+    { id: 1, value: '60 x 90 cm' },
+    { id: 2, value: '80 x 120 cm' },
+    { id: 3, value: '100 x 150 cm' }
+  ]
+
+  MOCK_MATERIAL: MaterialProductModel[] = [
+    { id: 1, value: 'Impresión fotográfica en acrílico', subValue: 'Impreso en papel de primera calidad y montado bajo vidrio acrílico transparente de 4 mm.'  },
+    { id: 2, value: 'Sólo impresión de fotografías', subValue: 'Impreso en papel premium. Se envía enrollado.' }
+  ]
 
   getLicensesType(): Observable<LicenseProductModel[]> {
     return this.http.get<LicenseProductModel[]>(`${this.apiUrl}/${this.pathCatalogs}/licencias`)
@@ -104,8 +46,54 @@ export class ProductsService {
       );
   }
 
-  getAllProducts(filters: FiltersProducts): Observable<ProductModel[]> {
-    return of (this.MOCK_PRODUCTS)
+  getAllProducts(filters: FiltersProducts): Observable<ResponseProductModel> {
+    let params = new HttpParams();
+
+    if (filters.license?.id != null) {
+      params = params.set('license', filters.license.id.toString());
+    }
+
+    if (filters.type?.id != null) {
+      params = params.set('typeProduct', filters.type.id.toString());
+    }
+
+    if (filters.order != null) {
+      params = params.set('orderBy', filters.order.toString());
+    }
+
+    if (filters.page != null) {
+      params = params.set('page', filters.page.toString());
+    }
+
+    if (filters.per_page != null) {
+      params = params.set('per_page', filters.per_page.toString());
+    }
+
+    if (filters.minPrice != null) {
+      params = params.set('per_page', filters.minPrice.toString());
+    }
+
+    if (filters.maxPrice != null) {
+      params = params.set('per_page', filters.maxPrice.toString());
+    }
+
+    if (filters.search) {
+      params = params.set('search', filters.search);
+    }
+
+    return this.http.get<ResponseProductModel>(
+      `${this.apiUrl}/${this.pathProducts}`, { params }
+    ).pipe(
+      catchError( error => this.getThrowError(error))
+    );
+  }
+
+  getSizeProduct(): Observable<SizeProductModel[]>{
+    return of (this.MOCK_SIZES);
+  }
+
+  getMaterialProduct(): Observable<MaterialProductModel[]>{
+    return of (this.MOCK_MATERIAL);
   }
 
   private getThrowError(error: any) {

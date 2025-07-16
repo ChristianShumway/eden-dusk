@@ -1,1 +1,21 @@
-<p>main-product works!</p>
+<section class="main__section relative">
+  <div class="w-full h-[78px] mb-8"></div>
+  <shared-btn-return />
+
+  <!-- GRID SLIDE Y DATA DEL PRODUCTO -->
+  <div class="w-full grid grid-cols-1 sm:grid-cols-1  lg:grid-cols-2 gap-8 mb-8">
+    <productos-slide-images-product />
+    <div>
+      <productos-actions-product
+        [catalogSizes] = "sizeCatalog()"
+        [catalogMaterial] = 'materialCatalog()'
+      />
+    </div>
+  </div>
+
+  <!-- INFO DEL PRODUCTO -->
+  <div class="w-full mb-8">
+    <products-info-product />
+  </div>
+
+</section>

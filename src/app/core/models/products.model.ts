@@ -9,10 +9,19 @@ export interface TypeProductModel {
   value: string;
 }
 export interface OrderTypeProductModel {
+  id: string;
+  value: string;
+}
+export interface SizeProductModel {
   id: number;
   value: string;
 }
 
+export interface MaterialProductModel {
+  id: number;
+  value: string;
+  subValue: string;
+}
 export interface FiltersProducts {
   page?:        number;
   per_page?:    number;
@@ -21,13 +30,9 @@ export interface FiltersProducts {
   type?:        TypeProductModel;
   minPrice?:    number;
   maxPrice?:    number;
-  order?:       number;
+  order?:       string;
 }
 
-export interface SizeProductModel {
-  id: string;
-  size: string;
-}
 
 export interface ProductModel {
   id: number;
@@ -41,7 +46,7 @@ export interface ProductModel {
   size: string;
 }
 
-export interface ResponseGalleryModel {
+export interface ResponseProductModel {
   page: string;
   per_page: string;
   total: string;

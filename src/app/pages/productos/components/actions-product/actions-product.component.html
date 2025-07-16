@@ -1,0 +1,100 @@
+<section class="mb-8">
+  <div class=" wrap__title mb-4 text-center md:text-start uppercase">
+    <p class="text-xl md:text-2xl lg:text-3xl font-primary-bold">
+      Producto Name
+    </p>
+    <span class="font-primary-thin text-xs block">
+      EDICIÓN LIMITADA DE <b class="font-primary-bold">200</b>, CERTIFICADO DE AUTENTICIDAD FIRMADO A MANO.
+    </span>
+  </div>
+  <form [formGroup]="productForm" (submit)="addToBag()">
+    <div class="wrap__size mb-6">
+      <p class="font-primary-medium text-sm uppercase mb-2"> Selecciona un tamaño:</p>
+      <div class="grid grid-cols-3 gap-2 md:gap-4">
+        @for (size of catalogSizes(); track $index) {
+          <label
+            class="relative border rounded-lg overflow-hidden cursor-pointer transition bg-white hover:bg-black/20 hover:shadow-md dark:hover:bg-white/20 w-auto h-32 md:h-40 lg:w-40 xl:w-56"
+            [class.border-gray-600]="productForm.controls['selectedSize'].value === size.id"
+          >
+            <!-- Imagen -->
+            <img
+              [src]="imgTempGalery"
+              alt="Product img"
+              class="absolute left-1/2 -translate-x-1/2"
+              [ngClass]="{
+                'w-8  md:w-10 top-5 md:top-7': size.id === 1,
+                'w-10 md:w-12 top-4 md:top-6': size.id === 2,
+                'w-12 md:w-14 top-3 md:top-5': size.id === 3
+              }"
+            />
+
+            <img
+              [src]="imgSofa"
+              class="absolute w-16 md:w-20 bottom-9 md:bottom-10 left-1/2 -translate-x-1/2"
+              alt="sofa" />
+
+            <!-- Overlay con el tamaño -->
+            <div class="absolute bottom-0 w-full text-center py-2 text-sm font-primary-bold">
+              {{ size.value }}
+            </div>
+
+            <!-- Input radio oculto visualmente pero funcional -->
+            <input
+              type="radio"
+              [value]="size.id"
+              formControlName="selectedSize"
+              (change)="onSizeChange(size.id)"
+              class="absolute inset-0 opacity-0 cursor-pointer"
+            />
+          </label>
+        }
+      </div>
+    </div>
+    <div class="wrap__material mb-6">
+      <p class="font-primary-medium text-sm uppercase mb-2"> Material:</p>
+      <ul class="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
+        @for (material of catalogMaterial(); track material.id) {
+          <li>
+            <input
+              type="radio"
+              [id]="'material-' + material.id"
+              name="material"
+              [value]="material.id"
+              class="hidden peer"
+              formControlName="material"
+              required
+            />
+            <label
+              [for]="'material-' + material.id"
+              class="inline-flex items-start justify-between w-full h-full p-4 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer
+                dark:hover:text-gray-300 dark:border-gray-500 dark:peer-checked:text-blue-500 peer-checked:border-black
+                dark:peer-checked:border-blue-600 peer-checked:text-black hover:text-gray-600 hover:bg-gray-100
+                dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <div class="block text-start">
+                <div class="w-full text-base font-primary-bold uppercase">{{ material.value }}</div>
+                <div class="w-full text-sm">{{ material.subValue }}</div>
+              </div>
+            </label>
+          </li>
+        }
+      </ul>
+    </div>
+    <div class="wrap__action mb-6 flex justify-end items-center flex-col lg:flex-row gap-4">
+      <p class="text-4xl font-primary-bold text-center">$1000.00</p>
+      <div class="w-full lg:w-auto">
+        <button type="submit" class="w-full lg:w-auto btn__primary--black inline-flex items-center justify-center me-2">
+          <div class="w-5 h-5 me-3 flex items-center" [innerHTML]="svgBag()"></div>
+          Agregar a tu compra
+        </button>
+      </div>
+    </div>
+    <div class="wrap__info">
+      <p class="text-sm text-center lg:text-start">
+        ¿Te interesa un tamaño o una opción de enmarcado que no está disponible en línea?,
+        ¡Estamos aquí para ayudarte! Para hablar con un especialista en arte, haz
+        <b class="font-primary-bold cursor-pointer">clic aquí.</b>
+      </p>
+    </div>
+  </form>
+</section>
