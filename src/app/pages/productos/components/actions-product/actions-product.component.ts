@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal, Output, EventEmitter } from '@angular/core';
 import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
@@ -23,6 +23,7 @@ export class ActionsProductComponent implements OnInit {
 
   public  catalogSizes = input.required<SizeProductModel[]>();
   public  catalogMaterial = input.required<MaterialProductModel[]>();
+  @Output() public dataPedidoTemp = new EventEmitter();
 
   public productForm!: FormGroup;
 
@@ -40,7 +41,7 @@ export class ActionsProductComponent implements OnInit {
 
   initForm() {
     this.productForm = this.fb.group({
-      selectedSize: [null],
+      selectedSize: [null, Validators.required],
       material: [null, Validators.required]
     });
   }
@@ -50,7 +51,8 @@ export class ActionsProductComponent implements OnInit {
   }
 
   addToBag(){
-    console.log(this.productForm.value);
+    if(this.productForm.invalid) return;
+    this.dataPedidoTemp.emit(this.productForm.value);
   }
 
 }

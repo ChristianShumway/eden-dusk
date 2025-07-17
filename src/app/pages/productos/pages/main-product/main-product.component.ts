@@ -103,5 +103,9 @@ export class MainProductComponent implements OnInit {
     // this.initParams(); //TODO aquí refresca la petición del getbyid
   }
 
+  onAddPedido(dataProductSelected: any) {
+    console.log(dataProductSelected);
+  }
+
 
 }
