@@ -1,25 +1,27 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { initTabs } from 'flowbite';
-
 @Component({
   selector: 'products-info-product',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule
+  ],
   templateUrl: './info-product.component.html',
   styleUrl: './info-product.component.scss'
 })
-export class InfoProductComponent implements AfterViewInit {
+export class InfoProductComponent {
 
   private readonly router = inject(Router);
 
-  ngAfterViewInit(): void {
-    initTabs();
-    this.router.events.subscribe(() => {
-      setTimeout(() => {
-        initTabs(); // vuelve a correrlo cuando cambia la ruta
-      }, 100); // pequeño delay para que el DOM esté listo
-    });
+  public selectedTab: 'detalles' | 'envio' = 'detalles';
+
+  selectTab(tab: 'detalles' | 'envio') {
+    this.selectedTab = tab;
+  }
+
+  onChangeTab(tab: 'detalles' | 'envio') {
+    this.selectedTab = tab;
   }
 
 }

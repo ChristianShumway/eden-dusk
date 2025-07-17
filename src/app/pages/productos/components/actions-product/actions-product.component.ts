@@ -28,8 +28,11 @@ export class ActionsProductComponent implements OnInit {
 
   public svgAngle = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.angleRight));
   public svgBag = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons['shoppingBag']));
+  public svgStar = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.star));
+
   public imgSofa = 'https://iuriefineart.com/cdn/shop/files/Sofa_2.png';
   public imgTempGalery = 'https://iuriefineart.com/cdn/shop/files/the-phoenix-401879.jpg' //? esta debe venir de componente padre, primera img de muestra
+  public rating = 4;
 
   ngOnInit(): void {
     this.initForm();

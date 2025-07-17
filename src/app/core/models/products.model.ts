@@ -44,6 +44,8 @@ export interface ProductModel {
   license: number;
   type: number;
   size: string;
+  comments?: CommentProductModel[];
+
 }
 
 export interface ResponseProductModel {
@@ -59,5 +61,25 @@ export interface ResponseProductModel {
   firstPage: number;
   currentPage: string;
   data: ProductModel[];
+}
+
+export interface CommentProductModel {
+  id: number;
+  name: string;
+  email: string;
+  comment: string;
+  rating: number;
+  avatar: string;
+  date: Date;
+  postId: number;
+}
+
+export interface RequestNewComment {
+  name: string;
+  idPost: number;
+  email: string;
+  rating: number;
+  avatar: string;
+  comment: string;
 }
 
