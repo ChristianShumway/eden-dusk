@@ -47,7 +47,7 @@ export class ActionsProductComponent implements OnInit {
   }
 
   onSizeChange(sizeId: number) {
-    console.log('Tamaño seleccionado:', sizeId);
+    // console.log('Tamaño seleccionado:', sizeId);
   }
 
   addToBag(){

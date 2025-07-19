@@ -17,8 +17,14 @@
       <button
         type="button"
         data-drawer-target="drawer-cart-eden" data-drawer-show="drawer-cart-eden" data-drawer-placement="right" aria-controls="drawer-cart-eden"
-        class="group text-sage-100 border border-transparent hover:bg-black hover:border-primary-50 focus:ring-2 focus:outline-none  font-medium transition-all duration-300 rounded-lg text-sm p-2.5 lg:p-3 text-center inline-flex items-center">
+        class="group relative text-sage-100 border border-transparent hover:bg-black hover:border-primary-0 focus:ring-2 focus:outline-none  font-medium transition-all duration-300 rounded-lg text-sm p-2.5 lg:p-3 text-center inline-flex items-center">
           <div [innerHTML]="svgBag" class="text-primary-50 group-hover:text-primary-100"></div>
+          <span
+            *ngIf="cartCount$ | async as count"
+            class="absolute top-[2px] right-[2px] bg-red-600 group-hover:bg-red-700 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center"
+          >
+            {{ count }}
+          </span>
       </button>
 
       <!-- Botón Toggle -->

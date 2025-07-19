@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MenuItemModel } from '../../../core/models/item-menu.model';
 import { DrawerCartComponent } from '../drawer-cart/drawer-cart.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SvgService } from '../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../core/utils/svg-icons.enum';
+import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'shared-header',
@@ -16,7 +17,13 @@ import { SvgIcons } from '../../../core/utils/svg-icons.enum';
 })
 export class HeaderComponent implements OnInit {
 
-  private readonly svgService = inject(SvgService);
+  cartCount$ = this.cartService.getCartCount(); // observable
+
+  constructor(
+    private readonly svgService: SvgService,
+    private readonly cartService: CartService
+  ) {
+  }
 
   public itemsMenu: MenuItemModel[] = [
     { name: 'home', path: '/home' },

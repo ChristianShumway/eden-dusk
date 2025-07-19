@@ -12,6 +12,8 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { ActivatedRoute } from '@angular/router';
 import { ComentariosComponent } from '../../../blog/components/comentarios/comentarios.component';
 import { AgregarComentarioComponent } from '../../../blog/components/agregar-comentario/agregar-comentario.component';
+import { CartService } from '../../../../core/services/cart.service';
+import { CartItem } from '../../../../core/models/cart-item.model';
 
 const DUMMY_PRODUCT: ProductModel = {
   id: 1,
@@ -66,6 +68,7 @@ export class MainProductComponent implements OnInit {
   private readonly productService = inject(ProductsService);
   private readonly ar = inject(ActivatedRoute);
   private readonly svgService = inject(SvgService);
+  private readonly cartService = inject(CartService);
 
   public sizeCatalog = signal<SizeProductModel[]>([]);
   public materialCatalog = signal<MaterialProductModel[]>([]);
@@ -104,7 +107,13 @@ export class MainProductComponent implements OnInit {
   }
 
   onAddPedido(dataProductSelected: any) {
-    console.log(dataProductSelected);
+    const productCart: CartItem = {
+      productId: DUMMY_PRODUCT.id,
+      sizeId: dataProductSelected.selectedSize,
+      materialId: dataProductSelected.material,
+      quantity: 1
+    };
+    this.cartService.addToCart(productCart);
   }
 
 
