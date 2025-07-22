@@ -70,11 +70,11 @@ export class ProductsService {
     }
 
     if (filters.minPrice != null) {
-      params = params.set('per_page', filters.minPrice.toString());
+      params = params.set('minPrice', filters.minPrice.toString());
     }
 
     if (filters.maxPrice != null) {
-      params = params.set('per_page', filters.maxPrice.toString());
+      params = params.set('maxPrice', filters.maxPrice.toString());
     }
 
     if (filters.search) {
@@ -89,11 +89,17 @@ export class ProductsService {
   }
 
   getSizeProduct(): Observable<SizeProductModel[]>{
-    return of (this.MOCK_SIZES);
+    return this.http.get<SizeProductModel[]>(`${this.apiUrl}/${this.pathCatalogs}/sizes`)
+      .pipe(
+        catchError( error => this.getThrowError(error))
+      );
   }
 
   getMaterialProduct(): Observable<MaterialProductModel[]>{
-    return of (this.MOCK_MATERIAL);
+    return this.http.get<MaterialProductModel[]>(`${this.apiUrl}/${this.pathCatalogs}/material`)
+      .pipe(
+        catchError( error => this.getThrowError(error))
+      );
   }
 
   private getThrowError(error: any) {

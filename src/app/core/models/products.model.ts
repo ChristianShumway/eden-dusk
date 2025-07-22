@@ -40,12 +40,17 @@ export interface ProductModel {
   sourceUrl: string;
   description: string;
   name: string;
-  price: string;
+  price: number;
   license: number;
   type: number;
   size: string;
   comments?: CommentProductModel[];
-
+  // slideImages: string[];
+  // rating: number;
+  // stock: number;
+  // smallDescription: string;
+  // detailProduct: string;
+  // detailDelivery: string;
 }
 
 export interface ResponseProductModel {

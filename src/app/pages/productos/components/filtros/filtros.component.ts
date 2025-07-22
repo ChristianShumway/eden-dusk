@@ -42,7 +42,7 @@ export class FiltrosComponent {
   public isDropdownOpenLicense = signal<boolean>(false);
   public isDropdownOpenType = signal<boolean>(false);
   public minRange = signal<number>(0);
-  public maxRange = signal<number>(1000);
+  public maxRange = signal<number>(10000);
 
   public currencyFilters = signal<FiltersProducts>({
     search:    '',

@@ -1,6 +1,11 @@
+import { MaterialProductModel, SizeProductModel } from "./products.model";
+
 export interface CartItem {
   productId: number;
-  sizeId: number;
-  materialId: number;
+  name: string;
+  image: string;
+  size: SizeProductModel;
+  material: MaterialProductModel;
   quantity: number;
+  price: number;
 }

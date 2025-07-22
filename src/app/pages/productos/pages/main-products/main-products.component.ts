@@ -74,10 +74,8 @@ export class MainProductsComponent implements OnInit {
       }
     });
     this.page.set(page ? page : this.page());
-    console.log(this.filters());
     this.productService.getAllProducts(this.filters()).subscribe({
       next: response => {
-        console.log(response);
         this.productList.set(response.data);
         this.totalItems.set(response.data.length);
       },

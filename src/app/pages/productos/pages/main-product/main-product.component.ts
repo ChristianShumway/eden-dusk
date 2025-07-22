@@ -18,10 +18,10 @@ import { CartItem } from '../../../../core/models/cart-item.model';
 const DUMMY_PRODUCT: ProductModel = {
   id: 1,
   date: '2025/07/16',
-  sourceUrl: 'https://example.com/images/producto1.jpg',
+  sourceUrl: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg',
   description: 'Una obra fotográfica moderna impresa en alta calidad, ideal para decoración contemporánea.',
   name: 'Amanecer en el Valle',
-  price: '1999.00',
+  price: 1999.00,
   license: 2, // por ejemplo: licencia de uso limitado
   type: 1,     // por ejemplo: tipo fotografía
   size: '60x90 cm',
@@ -46,7 +46,7 @@ const DUMMY_PRODUCT: ProductModel = {
       date: new Date('2025-07-12'),
       postId: 1
     }
-  ]
+  ],
 };
 @Component({
   selector: 'app-main-product',
@@ -109,11 +109,36 @@ export class MainProductComponent implements OnInit {
   onAddPedido(dataProductSelected: any) {
     const productCart: CartItem = {
       productId: DUMMY_PRODUCT.id,
-      sizeId: dataProductSelected.selectedSize,
-      materialId: dataProductSelected.material,
-      quantity: 1
+      name: DUMMY_PRODUCT.name,
+      image: DUMMY_PRODUCT.sourceUrl,
+      size: this.getSizeProductById(dataProductSelected.selectedSize) || {id: 1, value: ''},
+      material: this.getMaterialProductById(dataProductSelected.material) || {id: 1, value: '', subValue: ''},
+      quantity: 1,
+      price: DUMMY_PRODUCT.price
     };
+
     this.cartService.addToCart(productCart);
+    this.openCartDrawer();
+  }
+
+  getSizeProductById(id: number) {
+    return this.sizeCatalog().find(item => item.id === id);
+  }
+
+  getMaterialProductById(id: number) {
+    return this.materialCatalog().find(item => item.id === id);
+  }
+
+  openCartDrawer() {
+    const drawerEl = document.getElementById('drawer-cart-eden');
+    if (!drawerEl) return;
+
+    // @ts-ignore
+    const drawerInstance = new Drawer(drawerEl, {
+      placement: 'right'
+    });
+
+    drawerInstance.show();
   }
 
 
