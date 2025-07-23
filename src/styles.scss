@@ -65,13 +65,12 @@ button.btn__primary {
   }
 }
 
+button.btn__outline--black {
+  @apply border-black bg-transparent text-black hover:border-black-100 hover:bg-black-100 hover:text-white  dark:border-gray-200 dark:bg-white dark:focus:border-primary-focus dark:hover:bg-primary-50 dark:hover:text-primary-300;
+}
 
 button.btn__outline--white {
   @apply border-white bg-transparent text-white hover:bg-white hover:text-black;
-}
-
-button.btn__outline--black {
-  @apply border-black bg-transparent text-black hover:border-black-100 hover:bg-black-100 hover:text-white  dark:border-gray-200 dark:bg-white dark:focus:border-primary-focus dark:hover:bg-primary-50 dark:hover:text-primary-300;
 }
 
 button.btn__filter {

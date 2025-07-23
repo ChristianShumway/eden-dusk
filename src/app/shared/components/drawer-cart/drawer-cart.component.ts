@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { SvgService } from '../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../core/utils/svg-icons.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'shared-drawer-cart',
@@ -20,11 +21,13 @@ export class DrawerCartComponent implements OnInit, OnDestroy {
 
   private readonly cartService = inject(CartService);
   private readonly svgService = inject(SvgService);
+  private readonly router = inject(Router);
 
   private subscription!: Subscription;
   public cartItems = signal<CartItem[]>([]);
   public svgTrash = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.trash));
   public svgClose = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.close));
+  public svgArrow = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.arrowRight));
 
   ngOnInit() {
     this.subscription = this.cartService.getCartItems().subscribe(items => {
@@ -54,6 +57,10 @@ export class DrawerCartComponent implements OnInit, OnDestroy {
     });
 
     drawerInstance.hide();
+  }
+
+  goToProducts(){
+    this.router.navigate(['/productos']);
   }
 
   ngOnDestroy() {

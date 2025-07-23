@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit {
 
   ];
 
-
   isScrolled = false; // Variable para controlar el estado del navbar
   isNavbarOpen = false;
   svgBag: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.bag);
@@ -48,8 +47,21 @@ export class HeaderComponent implements OnInit {
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;
   }
+
   ngOnInit(): void {
     this.urlImageMain = this.urlImageblack;
+  }
+
+  openCartDrawer() {
+    const drawerEl = document.getElementById('drawer-cart-eden');
+    if (!drawerEl) return;
+
+    // @ts-ignore
+    const drawerInstance = new Drawer(drawerEl, {
+      placement: 'right'
+    });
+
+    drawerInstance.show();
   }
 
   @HostListener('window:scroll', [])
