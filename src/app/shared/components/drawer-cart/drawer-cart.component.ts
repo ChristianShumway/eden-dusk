@@ -15,13 +15,16 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { NoDataComponent } from '../no-eventos/no-data.component';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'shared-drawer-cart',
   standalone: true,
   imports: [
     CommonModule,
-    ProductCartComponent
+    ProductCartComponent,
+    NoDataComponent
   ],
   templateUrl: './drawer-cart.component.html',
   styleUrl: './drawer-cart.component.scss',
@@ -68,18 +71,36 @@ export class DrawerCartComponent implements OnInit, OnDestroy {
   private readonly cartService = inject(CartService);
   private readonly svgService = inject(SvgService);
   private readonly router = inject(Router);
+  private readonly toastService = inject(ToastService);
+
 
   private subscription!: Subscription;
   public cartItems = signal<CartItem[]>([]);
   public svgClose = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.close));
   public svgArrow = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.arrowRight));
+  public svgTrash = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.trash));
+  public svgBag = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.bag));
+  public subTotal = signal<number>(0);
+  public totalProducts = signal<number>(0);
+  public msg = 'Tu cesta está vacía';
+
 
   ngOnInit() {
     this.subscription = this.cartService.getCartItems().subscribe(items => {
       this.cartItems.set(items);
+      this.geSubtotalPrice();
     });
     this.cartService.drawerOpen$.subscribe(() => {
       this.openDrawer();
+    });
+  }
+
+  geSubtotalPrice() {
+    this.subTotal.set(0);
+    this.totalProducts.set(0);
+    this.cartItems().forEach(({price, quantity}) =>  {
+      this.subTotal.update(currencyPrice =>  currencyPrice + (price * quantity));
+      this.totalProducts.update(currency =>  currency + quantity);
     });
   }
 
@@ -98,6 +119,13 @@ export class DrawerCartComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isDrawerVisible = false;
     }, 300);
+  }
+
+  deleteAll() {
+    this.cartService.clearCart();
+    this.toastService.showError(`
+      Has eliminado todos tus productos de tu cesta de compra.
+    `);
   }
 
   goToProducts() {

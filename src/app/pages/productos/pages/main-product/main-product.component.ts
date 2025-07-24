@@ -14,6 +14,7 @@ import { ComentariosComponent } from '../../../blog/components/comentarios/comen
 import { AgregarComentarioComponent } from '../../../blog/components/agregar-comentario/agregar-comentario.component';
 import { CartService } from '../../../../core/services/cart.service';
 import { CartItem } from '../../../../core/models/cart-item.model';
+import { ToastService } from '../../../../core/services/toast.service';
 
 const DUMMY_PRODUCT: ProductModel = {
   id: 1,
@@ -69,6 +70,8 @@ export class MainProductComponent implements OnInit {
   private readonly ar = inject(ActivatedRoute);
   private readonly svgService = inject(SvgService);
   private readonly cartService = inject(CartService);
+  private readonly toastService = inject(ToastService);
+
 
   public sizeCatalog = signal<SizeProductModel[]>([]);
   public materialCatalog = signal<MaterialProductModel[]>([]);
@@ -118,6 +121,9 @@ export class MainProductComponent implements OnInit {
     };
 
     this.cartService.addToCart(productCart);
+    this.toastService.showSuccess(`
+      Has agregado un producto a tu cesta de compra.
+    `);
     this.openCartDrawer();
   }
 

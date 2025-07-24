@@ -22,46 +22,75 @@
 
     <!-- HEADER -->
     <div class="wrap__title relative">
-      <h5 id="drawer-right-label" class="mb-4 font-semibold uppercase">
+      <h5 id="drawer-right-label" class="mb-4 font-primary-medium uppercase">
         Productos en cesta
       </h5>
       <button
         type="button"
         (click)="closeDrawer()"
-        class="absolute top-0 right-0 bg-white text-black hover:bg-black hover:text-white rounded-full p-2 cursor-pointer dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black"
+        class="absolute top-0 right-0 bg-transparent text-black hover:bg-black hover:text-white rounded-full p-2 cursor-pointer dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black"
       >
-        <div [innerHTML]="svgClose()" class="w-2 h-2"></div>
+        <div [innerHTML]="svgClose()" class="w-2.5 h-2.5"></div>
       </button>
+      @if(cartItems().length) {
+        <div class="text-end mb-4">
+          <a (click)="deleteAll()" class="text-sm font-primary-medium text-red-500 cursor-pointer"> Eliminar todos los productos </a>
+        </div>
+      }
     </div>
 
     <!-- CONTENIDO -->
     @if(cartItems().length) {
-      <div class="wrap__products w-full max-h-[80vh] overflow-auto">
+      <div class="wrap__products w-full max-h-[63vh] overflow-auto">
         @for (item of cartItems(); track $index) {
           <shared-product-cart [product]="item" />
         }
       </div>
     }@else {
-      <div class="text-center py-10 text-gray-400">Tu carrito está vacío</div>
+      <div class="flex flex-col gap-2 items-center text-gray-200 p-4">
+        <div [innerHTML]="svgBag()" class="w-32 h-32"></div>
+        <p class="text-sm uppercase text-gray-400 mb-4"> {{ msg }} </p>
+        <button
+          type="button"
+          (click)="goToProducts(); closeDrawer()"
+          class="btn__outline--black dark:btn__outline--white"
+        >
+          Ir a productos
+        </button>
+      </div>
     }
 
-    <!-- BOTONES -->
-    <div class="w-full absolute bottom-2 left-0 p-4 grid grid-cols-2 gap-4 mt-8">
-      <button
-        type="button"
-        (click)="goToProducts(); closeDrawer()"
-        class="btn__outline--black dark:btn__outline--white"
-      >
-        Seguir comprando
-      </button>
-      <button
-        type="button"
-        (click)="goToCart(); closeDrawer()"
-        class="inline-flex items-center justify-between btn__primary--black"
-      >
-        Ir a mi cesta
-        <div [innerHTML]="svgArrow()" class="w-3.5 h-3.5 flex"></div>
-      </button>
+
+    <!-- FOOTER -->
+    @if(cartItems().length) {
+    <div class="footer w-full absolute bottom-2 left-0 p-4 ">
+      <div class="text-end">
+        <p class="text-sm text-orange-500">
+          Subtotal: <span class="text-3xl text-black font-primary-bold"> {{ subTotal() | currency }} </span>
+        </p>
+        <p class="text-sm">
+          Hay <span class="font-primary-bold"> {{ totalProducts() }} </span> productos agregados en tu cesta.
+        </p>
+      </div>
+      <!-- BOTONES -->
+      <div class="grid grid-cols-2 gap-4 mt-8">
+        <button
+          type="button"
+          (click)="goToProducts(); closeDrawer()"
+          class="btn__outline--black dark:btn__outline--white"
+        >
+          Seguir comprando
+        </button>
+        <button
+          type="button"
+          (click)="goToCart(); closeDrawer()"
+          class="inline-flex items-center justify-between btn__primary--black"
+        >
+          Ir a mi cesta
+          <div [innerHTML]="svgArrow()" class="w-3.5 h-3.5 flex"></div>
+        </button>
+      </div>
     </div>
+    }
   </div>
 </div>
