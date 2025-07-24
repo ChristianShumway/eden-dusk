@@ -1,6 +1,6 @@
 // services/cart.service.ts
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { CartItem } from '../models/cart-item.model';
 
 const CART_KEY = 'cart_items';
@@ -10,6 +10,8 @@ export class CartService {
   private cartItems: CartItem[] = [];
   private readonly cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
   private readonly cartCountSubject = new BehaviorSubject<number>(0);
+  private readonly drawerOpen = new Subject<void>();
+  drawerOpen$ = this.drawerOpen.asObservable();
 
   constructor() {
     this.cartItems = this.getCart();
@@ -19,6 +21,10 @@ export class CartService {
 
   private isBrowser(): boolean {
     return typeof window !== 'undefined' && !!window.localStorage;
+  }
+
+  openDrawer() {
+    this.drawerOpen.next();
   }
 
   private getCart(): CartItem[] {

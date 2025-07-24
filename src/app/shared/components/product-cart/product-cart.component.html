@@ -1,0 +1,20 @@
+<div  class="relative flex items-center gap-4 border-b py-3 dark:border-gray-700">
+  <img [src]="product().image" alt="product img" class="w-20 h-20 object-cover rounded" />
+
+  <div class="flex-1">
+    <p class="font-bold">{{ product().name }}</p>
+    <p class="text-sm font-primary-regular ">{{ product().size.value }}</p>
+    <p class="text-xs text-gray-500 dark:text-gray-400">{{ product().material.value }}</p>
+
+    <div class="flex items-center gap-2 mt-2">
+      <button (click)="decrease(product())" class="px-2.5 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:text-black"> - </button>
+      <span class="text-sm font-bold">{{ product().quantity }}</span>
+      <button (click)="increase(product())" class="px-2.5 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:text-black">+</button>
+    </div>
+  </div>
+
+  <div [innerHTML]="svgTrash()" (click)="remove(product())" class="w-5 h-5 flex cursor-pointer hover:text-red-400" onkeypress></div>
+  <div class="absolute bottom-3 right-0">
+    <span class="font-primary-bold text-sm">{{ (product().price * product().quantity) | currency }}</span>
+  </div>
+</div>

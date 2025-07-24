@@ -1,0 +1,29 @@
+<div class="mt-96">
+
+  <div class="wrap__title relative">
+    <h5 id="drawer-right-label" class="mb-4 font-semibold uppercase">
+      Productos en cesta
+    </h5>
+  </div>
+
+  @if(cartItems().length) {
+    <div class="wrap__products w-full max-h-[80vh] overflow-auto">
+      @for (item of cartItems(); track $index) {
+        <shared-product-cart [product]="item" />
+      }
+    </div>
+  }@else {
+    <div class="text-center py-10 text-gray-400">Tu carrito está vacío</div>
+  }
+
+  <!-- ? BOTONES -->
+  <div class="w-full  bottom-2 left-0 p-4 grid grid-cols-2 gap-4 mt-8">
+    <button type="button" (click)="goToProducts()" class="btn__outline--black dark:btn__outline--white">
+      Seguir comprando
+    </button>
+    <button type="button" (click)="goToCart();" class="inline-flex items-center justify-between btn__primary--black">
+      Ir a mi cesta
+      <div [innerHTML]="svgArrow()" class="w-3.5 h-3.5 flex"></div>
+    </button>
+  </div>
+</div>

@@ -1,54 +1,67 @@
-<div id="drawer-cart-eden" class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-gray-50 w-full md:w-96 dark:bg-black-200" tabindex="-1" aria-labelledby="drawer-right-label">
+<!-- Contenedor completo -->
+<div  *ngIf="isDrawerVisible"  class="fixed inset-0 z-40 pointer-events-none">
 
-  <div class="wrap__title relative">
-    <h5 id="drawer-right-label" class="mb-4 font-semibold uppercase">
-      Productos en cesta
-    </h5>
-    <button
-      type="button"
-      (click)="closeDrawer()"
-      class="absolute top-0 right-0  bg-white text-black hover:bg-black hover:text-white rounded-full p-2 cursor-pointer dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black" >
-      <div [innerHTML]="svgClose()" class="w-2 h-2"></div>
-    </button>
-  </div>
+  <!-- Overlay -->
+  <div
+    class="absolute inset-0 bg-black/50 transition-opacity duration-300"
+    [ngClass]="{
+      'opacity-100 pointer-events-auto': isDrawerOpen,
+      'opacity-0 pointer-events-none': !isDrawerOpen
+    }"
+    (click)="closeDrawer()"
+    onkeypress
+  ></div>
 
-  @if(cartItems().length) {
-    <div class="wrap__products w-full max-h-[80vh] overflow-auto">
-      @for (item of cartItems(); track $index) {
-        <div  class="relative flex items-center gap-4 border-b py-3 dark:border-gray-700">
-          <img [src]="item.image" alt="product img" class="w-20 h-20 object-cover rounded" />
+  <!-- Drawer con animación -->
+  <div
+    class="absolute right-0 top-0 h-screen p-4 overflow-y-auto bg-gray-50 w-full md:w-96 dark:bg-black-200 pointer-events-auto"
+    [@drawerSlide]="isDrawerOpen ? 'open' : 'closed'"
+    (click)="$event.stopPropagation()"
+    onkeypress
+  >
 
-          <div class="flex-1">
-            <p class="font-bold">{{ item.name }}</p>
-            <p class="text-sm font-primary-regular ">{{ item.size.value }}</p>
-            <p class="text-xs text-gray-500 dark:text-gray-400">{{ item.material.value }}</p>
-
-            <div class="flex items-center gap-2 mt-2">
-              <button (click)="decrease(item)" class="px-2.5 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:text-black"> - </button>
-              <span class="text-sm font-bold">{{ item.quantity }}</span>
-              <button (click)="increase(item)" class="px-2.5 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:text-black">+</button>
-            </div>
-          </div>
-
-          <div [innerHTML]="svgTrash()" (click)="remove(item)" class="w-5 h-5 flex cursor-pointer hover:text-red-400" onkeypress></div>
-          <div class="absolute bottom-3 right-0">
-            <span class="font-primary-bold text-sm">{{ (item.price * item.quantity) | currency }}</span>
-          </div>
-        </div>
-      }
+    <!-- HEADER -->
+    <div class="wrap__title relative">
+      <h5 id="drawer-right-label" class="mb-4 font-semibold uppercase">
+        Productos en cesta
+      </h5>
+      <button
+        type="button"
+        (click)="closeDrawer()"
+        class="absolute top-0 right-0 bg-white text-black hover:bg-black hover:text-white rounded-full p-2 cursor-pointer dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black"
+      >
+        <div [innerHTML]="svgClose()" class="w-2 h-2"></div>
+      </button>
     </div>
-  }@else {
-    <div class="text-center py-10 text-gray-400">Tu carrito está vacío</div>
-  }
 
-  <!-- ? BOTONES -->
-  <div class="w-full absolute bottom-2 left-0 p-4 grid grid-cols-2 gap-4 mt-8">
-    <button type="button" (click)="goToProducts(); closeDrawer()" data-drawer-hide="drawer-cart-eden" aria-controls="drawer-cart-eden" class="btn__outline--black dark:btn__outline--white">
-      Seguir comprando
-    </button>
-    <button type="button" (click)="closeDrawer()" data-drawer-hide="drawer-cart-eden" aria-controls="drawer-cart-eden" class="inline-flex items-center justify-between btn__primary--black">
-      Ir a mi cesta
-      <div [innerHTML]="svgArrow()" class="w-3.5 h-3.5 flex"></div>
-    </button>
+    <!-- CONTENIDO -->
+    @if(cartItems().length) {
+      <div class="wrap__products w-full max-h-[80vh] overflow-auto">
+        @for (item of cartItems(); track $index) {
+          <shared-product-cart [product]="item" />
+        }
+      </div>
+    }@else {
+      <div class="text-center py-10 text-gray-400">Tu carrito está vacío</div>
+    }
+
+    <!-- BOTONES -->
+    <div class="w-full absolute bottom-2 left-0 p-4 grid grid-cols-2 gap-4 mt-8">
+      <button
+        type="button"
+        (click)="goToProducts(); closeDrawer()"
+        class="btn__outline--black dark:btn__outline--white"
+      >
+        Seguir comprando
+      </button>
+      <button
+        type="button"
+        (click)="goToCart(); closeDrawer()"
+        class="inline-flex items-center justify-between btn__primary--black"
+      >
+        Ir a mi cesta
+        <div [innerHTML]="svgArrow()" class="w-3.5 h-3.5 flex"></div>
+      </button>
+    </div>
   </div>
 </div>

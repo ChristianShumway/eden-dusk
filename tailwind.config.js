@@ -10,6 +10,15 @@ module.exports = {
   //darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
+      animation: {
+        'fade-in': 'fadeIn 0.3s ease-in-out forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
       fontFamily: {
         'primary-thin': ['f-thin'],
         'primary-regular': ['f-regular'],

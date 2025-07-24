@@ -53,15 +53,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openCartDrawer() {
-    const drawerEl = document.getElementById('drawer-cart-eden');
-    if (!drawerEl) return;
-
-    // @ts-ignore
-    const drawerInstance = new Drawer(drawerEl, {
-      placement: 'right'
-    });
-
-    drawerInstance.show();
+    this.cartService.openDrawer();
   }
 
   @HostListener('window:scroll', [])
