@@ -1,8 +1,8 @@
-<div class="fixed bottom-5 right-5 z-50 space-y-2">
+<div class="fixed bottom-5 right-1 md:right-5 z-50 space-y-2">
   @for (toast of toasts; track $index) {
     <div
       [ngSwitch]="toast.type"
-      class="flex items-center w-full max-w-sm p-4 rounded-lg shadow-sm dark:bg-gray-600"
+      class="flex items-center w-full max-w-sm p-4 rounded-lg shadow-sm"
       [ngClass]="{
         'bg-green-50': toast.type === 'success',
         'bg-orange-50': toast.type === 'warning',
