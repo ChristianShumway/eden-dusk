@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 @Component({
   selector: 'products-info-product',
@@ -15,6 +16,8 @@ export class InfoProductComponent {
   private readonly router = inject(Router);
 
   public selectedTab: 'detalles' | 'envio' = 'detalles';
+  public detailDelivery = input.required<SafeHtml>();
+  public detailProduct = input.required<SafeHtml>();
 
   selectTab(tab: 'detalles' | 'envio') {
     this.selectedTab = tab;

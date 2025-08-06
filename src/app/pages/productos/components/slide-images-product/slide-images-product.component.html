@@ -1,11 +1,13 @@
 <section class="w-full">
   <div class="grid gap-4">
 
-    <div class="wrap__selection grid gap-4 grid-cols-1">
-      <div class="mx-auto">
-        <img class="h-auto max-w-full rounded-lg" [src]="currencyEvent().image" alt="">
+    @if(imgTempGallery()) {
+      <div class="wrap__selection grid gap-4 grid-cols-1">
+        <div class="mx-auto cursor-pointer" (click)="onPreview(imgTempGallery())" onkeypress>
+          <img class="h-auto max-w-full rounded-lg" [src]="imgTempGallery()"  alt="producto" />
+        </div>
       </div>
-    </div>
+    }
 
     <div class="wrap__slide relative w-full overflow-hidden">
       <button
@@ -25,16 +27,16 @@
         class="flex overflow-x-auto scroll-smooth space-x-4 scrollbar-hide px-1"
         style="scroll-behavior: smooth; max-width: 100vw;"
       >
-        @for (item of dataDummy; track $index) {
+        @for (item of images(); track $index) {
           <div class="flex-shrink-0 w-36" (click)="selectItem(item)" onkeypress>
             <img
               [ngClass]="{
-                'border-2 border-primary-200': currencyEvent().id === item.id,
-                'border': currencyEvent().id !== item.id,
+                'border-2 border-yellow-500': imgTempGallery() === item,
+                'border': imgTempGallery() !== item,
               }"
               class="w-36 h-36 object-cover rounded-lg cursor-pointer  border-1 hover:border-white"
-              [src]="item.image"
-              alt="cronologia"
+              [src]="item"
+              alt="foto"
             />
           </div>
         }
@@ -54,3 +56,6 @@
 
   </div>
 </section>
+
+<shared-image-overlay [img]="currencyUrlImage()" (setImageEmpty)="currencyUrlImage.set('')" />
+

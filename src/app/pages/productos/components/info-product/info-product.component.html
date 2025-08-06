@@ -26,27 +26,11 @@
 <div class="my-4 px-4">
   @if (selectedTab === 'detalles') {
     <div class="p-4 rounded-lg bg-gray-50 dark:bg-black/50">
-      <p class="text-2xl uppercase mb-4">
-        Tecnología de vanguardia para una resolución extrema
-      </p>
-      <p class="text-sm mb-2">
-        Las impresiones acrílicas de Iurie | Fine Art se imprimen sin costuras con la más alta calidad y se montan sobre vidrio acrílico. Estas lujosas impresiones artísticas ofrecen una reproducción de detalles excepcional y colores duraderos. El uso de silicona elástica para montar la pieza sobre vidrio acrílico de alta transparencia de 4 mm le otorga a su fotografía una profundidad inigualable y un contraste incomparable. El vidrio acrílico es ligero, irrompible y resistente a las fluctuaciones de temperatura.
-      </p>
-      <p class="text-sm mb-2">
-        Este proceso ofrece una presentación impecable, digna de una galería, y un aspecto moderno que realzará notablemente cualquier hogar o negocio. Las impresiones artísticas producidas de esta manera muestran una increíble profundidad visual y una calidad casi 3D, repleta de detalles de alta definición, hermosas transiciones tonales y colores vibrantes. La luz que incide y se refleja en la superficie de la obra queda visualmente atrapada dentro del vidrio acrílico y, con la iluminación adecuada, parece iluminada o retroiluminada.
-      </p>
-      <p class="text-sm mb-2">
-        Iurie | Fine Art produce impresiones fotográficas en papel Lumachrome o Fuji Flex mediante modernas técnicas de exposición láser y un proceso de revelado tradicional. Garantizamos 100 años de brillo cromático para nuestras impresiones fotográficas originales.
-      </p>
+      <div [innerHTML]="detailProduct()"></div>
     </div>
   } @else {
     <div class="p-4 rounded-lg bg-gray-50 dark:bg-black/50">
-      <p class="text-2xl uppercase mb-4">
-        Pedidos y envíos
-      </p>
-      <p class="text-sm mb-2">
-        Realizamos envíos a todo el mundo y son gratuitos. En cuanto recibamos su pedido, le enviaremos una confirmación por correo electrónico. Normalmente, lo entregamos en un plazo de unos 10 días desde su realización. Una vez enviado, le enviaremos una confirmación de envío con un número de seguimiento de nuestros socios de envío certificados.
-      </p>
+      <div [innerHTML]="detailDelivery()"></div>
     </div>
   }
 </div>

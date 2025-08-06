@@ -4,11 +4,14 @@
 
   <!-- GRID SLIDE Y DATA DEL PRODUCTO -->
   <div class="w-full grid grid-cols-1 sm:grid-cols-1  lg:grid-cols-2 gap-8 mb-8">
-    <productos-slide-images-product />
+    <productos-slide-images-product
+      [images]="currencyProduct().slideImages"
+    />
     <div>
       <productos-actions-product
         [catalogSizes] = "sizeCatalog()"
         [catalogMaterial] = 'materialCatalog()'
+        [product]="currencyProduct()"
         (dataPedidoTemp) = onAddPedido($event)
       />
     </div>
@@ -16,7 +19,10 @@
 
   <!-- INFO DEL PRODUCTO -->
   <div class="w-full mb-8">
-    <products-info-product />
+    <products-info-product
+      [detailDelivery]="detailDelivery()"
+      [detailProduct]="detailProduct()"
+    />
   </div>
 
   <!-- COMENTARIOS Y AGREAR COMENTARIO -->
@@ -52,11 +58,11 @@
       @if (selectedTab === 'leer') {
         <div class="flex gap-1 items-center justify-end my-2 text-gray-500 dark:text-gray-200 font-primary-medium">
           <div class="w-4 h-4 flex" [innerHTML]="svgComment()"></div>
-          <span class="text-sm"> {{ product().comments?.length }} {{ product().comments?.length| i18nPlural: commentsMap }} </span>
+          <span class="text-sm"> {{ currencyProduct().comments?.length }} {{ currencyProduct().comments?.length| i18nPlural: commentsMap }} </span>
         </div>
-        <blog-comentarios [comments]="product().comments" />
+        <blog-comentarios [comments]="currencyProduct().comments" />
       } @else {
-        <blog-agregar-comentario [idPost]="product().id" (changeTab)="onChangeTab($event)" />
+        <blog-agregar-comentario [idPost]="currencyProduct().id" (changeTab)="onChangeTab($event)" />
       }
     </div>
 

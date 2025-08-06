@@ -8,7 +8,7 @@
 
   <!-- Precio -->
   <div class="hidden px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2 z-10">
-    {{ product().price }}
+    {{ product().price | currency }}
   </div>
 
   <!-- Fecha -->
@@ -47,7 +47,7 @@
 
 <div class="product__info mt-2 p-2">
   <p class="font-primary-thin text-lg mb-0 line-clamp-1">{{ product().name }}</p>
-  <span class="text-2xl font-primary-medium  line-clamp-1">{{ product().price | currency }}</span>
+  <span class="text-2xl font-primary-medium  line-clamp-1">{{ product().price | currency  }}</span>
 </div>
 
 <shared-image-overlay [img]="currencyUrlImage()" (setImageEmpty)="currencyUrlImage.set('')" />

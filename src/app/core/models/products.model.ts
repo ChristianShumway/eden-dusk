@@ -44,13 +44,32 @@ export interface ProductModel {
   license: number;
   type: number;
   size: string;
-  comments?: CommentProductModel[];
-  // slideImages: string[];
-  // rating: number;
-  // stock: number;
-  // smallDescription: string;
-  // detailProduct: string;
-  // detailDelivery: string;
+}
+
+export interface ProductTotalModel {
+  id: number;
+  date: string; // Formato: 'yyyy/MM/dd'
+  sourceUrl: string;
+  description: string;
+  name: string;
+  price: number;
+  prices?: PriceProductModel[];
+  license: number;
+  type: number;
+  size: string;
+  comments: CommentProductModel[];
+  slideImages: string[];
+  rating: number;
+  stock: number;
+  smallDescription: string;
+  detailProduct: string;
+  detailDelivery: string;
+}
+
+export interface PriceProductModel {
+  materialId: number;
+  sizeId: number;
+  price: number;
 }
 
 export interface ResponseProductModel {

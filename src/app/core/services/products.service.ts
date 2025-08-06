@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, of, throwError } from "rxjs";
 import { PathsEnum } from "../utils/paths.enum";
-import { FiltersProducts, LicenseProductModel, MaterialProductModel, OrderTypeProductModel, ResponseProductModel, SizeProductModel, TypeProductModel } from "../models/products.model";
+import { FiltersProducts, LicenseProductModel, MaterialProductModel, OrderTypeProductModel, ProductModel, ProductTotalModel, ResponseProductModel, SizeProductModel, TypeProductModel } from "../models/products.model";
 
 @Injectable({ providedIn: 'root' })
 
@@ -85,6 +85,13 @@ export class ProductsService {
       `${this.apiUrl}/${this.pathProducts}`, { params }
     ).pipe(
       catchError( error => this.getThrowError(error))
+    );
+  }
+
+  getProductById(id: number): Observable<ProductTotalModel> {
+    return this.http.get<ProductTotalModel>(`${this.apiUrl}/${this.pathProducts}/${id}`)
+      .pipe(
+        catchError( error => this.getThrowError(error))
     );
   }
 
