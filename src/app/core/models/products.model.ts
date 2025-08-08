@@ -69,7 +69,8 @@ export interface ProductTotalModel {
 export interface PriceProductModel {
   materialId: number;
   sizeId: number;
-  price: number;
+  price: string;
+  stock: string;
 }
 
 export interface ResponseProductModel {

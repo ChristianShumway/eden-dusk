@@ -3,9 +3,11 @@
     <p class="text-xl md:text-2xl lg:text-3xl font-primary-bold">
       {{ product().name }}
     </p>
-    <span class="font-primary-thin text-xs block">
-      EDICIÓN LIMITADA DE <b class="font-primary-bold"> {{ product().stock}} </b>, CERTIFICADO DE AUTENTICIDAD FIRMADO A MANO.
-    </span>
+    @if(currencyStock() > 0) {
+      <span class="font-primary-thin text-xs block">
+        EDICIÓN LIMITADA DE <b class="font-primary-bold"> {{ currencyStock() }}</b>, CERTIFICADO DE AUTENTICIDAD FIRMADO A MANO.
+      </span>
+    }
 
     <div class="flex justify-center md:justify-start gap-1 my-2">
       @for (star of [1,2,3,4,5]; track $index) {
@@ -96,7 +98,7 @@
       </ul>
     </div>
     <div class="wrap__action mb-6 flex justify-end items-center flex-col lg:flex-row gap-4">
-      <p class="text-4xl font-primary-bold text-center"> {{ this.productForm.get('price')?.value| currency }} </p>
+      <p class="text-4xl font-primary-bold text-center"> {{ currencyPrice() | currency }} </p>
       <div class="w-full lg:w-auto">
         <button
           type="submit"

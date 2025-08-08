@@ -21,6 +21,8 @@ export class ActionsProductComponent implements OnInit {
   private readonly svgService  = inject(SvgService);
   private readonly fb = inject(FormBuilder);
 
+  public currencyPrice = signal<number>(0);
+  public currencyStock = signal<number>(0);
   public  catalogSizes = input.required<SizeProductModel[]>();
   public  catalogMaterial = input.required<MaterialProductModel[]>();
   public product = input.required<ProductTotalModel>();
@@ -42,10 +44,12 @@ export class ActionsProductComponent implements OnInit {
     this.initForm();
     this.productForm.valueChanges.subscribe(response => {
       if(!response.selectedSize || !response.material) return;
-      console.log(response);
-      const newPrice = this.product().prices?.find(price => response.selectedSize === price.sizeId && response.material === price.materialId);
-      if(!newPrice) return;
-      console.log(newPrice);
+      const priceFind = this.product().prices?.find(price => response.selectedSize === price.sizeId && response.material === price.materialId);
+      if(!priceFind) return;
+      console.log(priceFind);
+      this.currencyPrice.set(Number(priceFind.price));
+      this.currencyStock.set(Number(priceFind.stock));
+      this.productForm.get('price')?.setValue(priceFind.price);
     });
   }
 

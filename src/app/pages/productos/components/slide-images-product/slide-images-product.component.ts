@@ -33,7 +33,6 @@ export class SlideImagesProductComponent implements AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['images'] && this.images().length) {
       this.imgTempGallery.set(this.images()[0]);
-      // this.currencyUrlImage.set(this.images()[0]);
     }
   }
 
