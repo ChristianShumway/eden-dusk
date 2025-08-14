@@ -38,8 +38,8 @@ export class HeaderComponent implements OnInit {
 
   isScrolled = false; // Variable para controlar el estado del navbar
   isNavbarOpen = false;
-  svgBag: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.bag);
-  svgMenu: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.menu);
+  svgCart: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.cart);
+  svgMenu: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.menuTwo);
   urlImageMain = '';
   urlImageblack = 'https://raw.githubusercontent.com/ChristianShumway/eden-dusk/refs/heads/master/src/assets/images/logos/EdenDusk-black.png';
   urlimageWhite = 'https://raw.githubusercontent.com/ChristianShumway/eden-dusk/refs/heads/master/src/assets/images/logos/EdenDusk-white.png';

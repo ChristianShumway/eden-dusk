@@ -7,7 +7,7 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   //darkMode: 'media', // Se activa automáticamente según el sistema del usuario
-  //darkMode: ['selector', '[data-theme="dark"]'],
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       animation: {
@@ -32,33 +32,20 @@ module.exports = {
       },
       colors: {
         'primary': {
-          300: "#7C8D64",
-          200: "#8E9F76",
-          DEFAULT: "#A3B18A",
-          100: "#DDE2D2",
-          50: "#F3F5EF",
-          'focus': '#C3CEA8'
-        },
-        'secondary': {
-          DEFAULT: "darkgoldenrod"
-        },
-        'esmeralda': {
-          DEFAULT: "#5FAD56",
-        },
-        'terracota': {
-          DEFAULT: "#A76D60"
+          500: "#1D4ED8",
+          400: "#265CE0",
+          300: "#2F6AE8",
+          200: "#3878F0",
+          DEFAULT: "#3B82F6",
+          100: "#5C96F7",
+          50: "#7EA9F9",
         },
         'black': {
-          DEFAULT: "#242423",
-          100: "#333533",
-          200: "#252422",
+          DEFAULT: "#111827",
+          100: "#1f2937",
         },
         'grays': {
-          500: "#595959",
-          400: "#7f7f7f",
-          300: "#a5a5a5",
-          200: "#cccccc",
-          100: "#f2f2f2",
+          100: "#d1d5db",
         },
         white: "#FFF",
         'sage': {

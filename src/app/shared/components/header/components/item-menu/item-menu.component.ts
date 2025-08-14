@@ -14,9 +14,9 @@ import { CommonModule } from '@angular/common';
     <li>
       <a [routerLink]="itemMenu().path"
       [routerLinkActiveOptions]="{ exact: false }"
-      routerLinkActive="bg-primary font-bold lg:text-primary "
+      routerLinkActive="bg-black-100 font-bold lg:bg-transparent lg:text-white"
       (click)="clickItemMenu.emit()"
-      class="block text-sage-100 py-2 px-3 rounded lg:bg-transparent lg:p-0  hover:lg:text-primary-200"
+      class="block text-grays-100 py-2 px-3 rounded lg:bg-transparent lg:p-0 hover:bg-black-100 hover:lg:bg-transparent  hover:lg:text-white text-center"
       >
         {{ itemMenu().name | titlecase }}
       </a>
