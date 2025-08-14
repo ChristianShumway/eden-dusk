@@ -17,7 +17,7 @@ export class FooterComponent {
   private readonly fullDate = new Date();
   public year = this.fullDate.getFullYear()
   public itemsMenu: MenuItemModel[] = [
-    { name: 'home', path: '/home' },
+    { name: 'inicio', path: '/inicio' },
     { name: 'transmisiones', path: '/transmisiones' },
     { name: 'nuestra historia', path: '/historia' },
     { name: 'blog', path: '/blog' },

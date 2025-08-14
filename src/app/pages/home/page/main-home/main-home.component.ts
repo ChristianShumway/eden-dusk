@@ -8,6 +8,8 @@ import { NewsLetterComponent } from '../../components/news-letter/news-letter.co
 import { EventosTransmisionesComponent } from '../../components/eventos-transmisiones/eventos-transmisiones.component';
 import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { TransmisionesService } from '../../../../core/services/transmisiones.service';
+import { GalleryService } from '../../../../core/services/galeria.service';
+import { FiltersGallery, ImageGalleryModel } from '../../../../core/models/filters-gallery.model';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -26,14 +28,35 @@ import { TransmisionesService } from '../../../../core/services/transmisiones.se
 export class HomeComponent implements OnInit {
 
   private readonly transmisionesService = inject(TransmisionesService);
+  private readonly galleryService = inject(GalleryService);
+
+  public imagesList = signal<ImageGalleryModel[]>([]);
 
   public eventos = signal<TransmisionModel[]>([]);
   public eventosPasados = signal<TransmisionModel[]>([]);
   public dateToSearh = new Date();
 
+  public filters = signal<FiltersGallery>({
+    page: 1,
+    per_page: 3,
+    category: '',
+    subcategory: '',
+    search: '',
+    date: '',
+    collaborator: 0
+  });
+
   ngOnInit(): void {
+    this.getGalleries();
     this.getAllTransmissions(this.dateToSearh);
     this.getLastTransmissions();
+  }
+
+  getGalleries() {
+    this.galleryService.getImagesGallery(this.filters()).subscribe({
+      next: response => this.imagesList.set(response.data),
+      error: error => console.error(error)
+    })
   }
 
 

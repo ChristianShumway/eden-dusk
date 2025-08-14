@@ -55,7 +55,7 @@ button {
 button.btn__primary {
   @apply border-primary-200 bg-primary text-white hover:bg-primary-500 hover:border-primary-400;
   &--white {
-    @apply bg-white text-black hover:bg-gray-100;
+    @apply bg-white text-black hover:bg-grays-100;
   }
   &--black {
     @apply border-black bg-black-100 text-white hover:bg-black dark:border-gray-200 dark:bg-white dark:text-black dark:hover:bg-gray-200;
@@ -63,6 +63,10 @@ button.btn__primary {
       @apply  border-neutral-200 bg-neutral-200 text-gray-500 dark:border-neutral-600  dark:bg-neutral-700 dark:text-gray-200;
     }
   }
+}
+
+button.btn__secondary {
+  @apply border-grays-100 bg-white text-black;
 }
 
 button.btn__outline--black {

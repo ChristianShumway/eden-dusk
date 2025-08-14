@@ -4,11 +4,11 @@ import { HomeComponent } from "./page/main-home/main-home.component";
 export const HOME_ROUTES: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/inicio',
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: 'inicio',
     component: HomeComponent
   }
 ];

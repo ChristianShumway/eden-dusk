@@ -30,7 +30,6 @@ export class GalleryService {
   }
 
   getImagesGallery(filters: FiltersGallery): Observable<ResponseGalleryModel> {
-    console.log(filters)
     return this.http.get<ResponseGalleryModel>(
       `${this.apiUrl}/${this.pathGallery}/all?per_page=${filters.per_page}&page=${filters.page}&author=${filters.collaborator}&date=${filters.date}&search=${filters.search}&subcategory=${filters.subcategory}&category=${filters.category}`
     ).pipe(
