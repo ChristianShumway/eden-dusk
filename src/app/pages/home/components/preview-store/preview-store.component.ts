@@ -1,11 +1,12 @@
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, inject, Inject, input, PLATFORM_ID, ViewChild } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, inject, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
-import { SvgService } from '../../../../core/services/svg.service';
+import { Router } from '@angular/router';
 import { SafeHtml } from '@angular/platform-browser';
-import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { Swiper } from 'swiper/types';
-import { PathsEnum } from '../../../../core/utils/paths.enum';
+import { SvgService } from '../../../../core/services/svg.service';
+import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
+import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
+import { ProductModel } from '../../../../core/models/products.model';
 
 @Component({
   selector: 'home-preview-store',
@@ -22,7 +23,9 @@ import { PathsEnum } from '../../../../core/utils/paths.enum';
 export class PreviewStoreComponent {
 
   private readonly svgService = inject(SvgService);
+  private readonly router = inject(Router);
 
+  public products = input.required<ProductModel[]>();
   svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
   svgStar: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.star);
   slidesPerView = 3;
@@ -36,7 +39,6 @@ export class PreviewStoreComponent {
   ) {
     this.updateSlidesScreenSize();
   }
-
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -56,44 +58,13 @@ export class PreviewStoreComponent {
     }
   }
 
-  productos = [
-    {
-      name: 'Producto 1',
-      description: 'Descripción del producto 1',
-      price: 1000,
-      image: `${PathsEnum.URLIMAGES}/_ELA6081-min.jpg`
-    },
-    {
-      name: 'Producto 2',
-      description: 'Descripción del producto 2',
-      price: 230,
-      image: `${PathsEnum.URLIMAGES}/_NEL3160-min.jpg`
-    },
-    {
-      name: 'Producto 3',
-      description: 'Descripción del producto 3',
-      price: 340,
-      image: `${PathsEnum.URLIMAGES}/_NEL2618-min.jpg`
-    },
-    {
-      name: 'Producto 4',
-      description: 'Descripción del producto 4',
-      price: 432,
-      image: `${PathsEnum.URLIMAGES}/_NEL2532-min.jpg`
-    },
-    {
-      name: 'Producto 5',
-      description: 'Descripción del producto 5',
-      price: 987,
-      image: `${PathsEnum.URLIMAGES}/_NEL3160-min.jpg`
-    },
-    {
-      name: 'Producto 6',
-      description: 'Descripción del producto 6',
-      price: 234,
-      image: `${PathsEnum.URLIMAGES}/_NEL2532-min.jpg`
-    },
-  ];
+  goToStore() {
+    this.router.navigate(['/tienda']);
+  }
+
+  goToProduct(id: number) {
+    this.router.navigate(['/tienda', id]);
+  }
 
   ngOnDestroy() {
     if (this.swiper) {

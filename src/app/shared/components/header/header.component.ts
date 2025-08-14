@@ -28,11 +28,11 @@ export class HeaderComponent implements OnInit {
   public itemsMenu: MenuItemModel[] = [
     { name: 'inicio', path: '/inicio' },
     { name: 'transmisiones', path: '/transmisiones' },
-    { name: 'nuestra historia', path: '/nosotros' },
+    { name: 'trayectoria', path: '/trayectoria' },
     { name: 'blog', path: '/blog' },
     { name: 'galeria', path: '/galeria' },
     { name: 'videoteca', path: '/videoteca' },
-    { name: 'productos', path: '/productos' }
+    { name: 'tienda', path: '/tienda' }
 
   ];
 

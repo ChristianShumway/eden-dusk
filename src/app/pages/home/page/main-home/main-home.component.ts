@@ -10,6 +10,8 @@ import { TransmisionModel } from '../../../../core/models/transmission.model';
 import { TransmisionesService } from '../../../../core/services/transmisiones.service';
 import { GalleryService } from '../../../../core/services/galeria.service';
 import { FiltersGallery, ImageGalleryModel } from '../../../../core/models/filters-gallery.model';
+import { ProductsService } from '../../../../core/services/products.service';
+import { FiltersProducts, ProductModel } from '../../../../core/models/products.model';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -29,8 +31,10 @@ export class HomeComponent implements OnInit {
 
   private readonly transmisionesService = inject(TransmisionesService);
   private readonly galleryService = inject(GalleryService);
+  private readonly productService = inject(ProductsService);
 
   public imagesList = signal<ImageGalleryModel[]>([]);
+  public productList = signal<ProductModel[]>([]);
 
   public eventos = signal<TransmisionModel[]>([]);
   public eventosPasados = signal<TransmisionModel[]>([]);
@@ -46,8 +50,15 @@ export class HomeComponent implements OnInit {
     collaborator: 0
   });
 
+  public filtersProducst = signal<FiltersProducts>({
+    page: 1,
+    per_page: 12,
+    order: 'default'
+  });
+
   ngOnInit(): void {
     this.getGalleries();
+    this.getProducts();
     this.getAllTransmissions(this.dateToSearh);
     this.getLastTransmissions();
   }
@@ -56,6 +67,15 @@ export class HomeComponent implements OnInit {
     this.galleryService.getImagesGallery(this.filters()).subscribe({
       next: response => this.imagesList.set(response.data),
       error: error => console.error(error)
+    })
+  }
+
+  getProducts() {
+    this.productService.getAllProducts(this.filtersProducst()).subscribe({
+      next: response => {
+        this.productList.set(response.data);
+      },
+      error: err => console.error(err)
     })
   }
 

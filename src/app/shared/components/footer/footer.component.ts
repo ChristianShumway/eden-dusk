@@ -19,9 +19,11 @@ export class FooterComponent {
   public itemsMenu: MenuItemModel[] = [
     { name: 'inicio', path: '/inicio' },
     { name: 'transmisiones', path: '/transmisiones' },
-    { name: 'nuestra historia', path: '/historia' },
+    { name: 'trayectoria', path: '/trayectoria' },
     { name: 'blog', path: '/blog' },
-    { name: 'galeria', path: '/galeria' }
+    { name: 'galeria', path: '/galeria' },
+    { name: 'videoteca', path: '/videoteca' },
+    { name: 'tienda', path: '/tienda' }
   ];
 
 

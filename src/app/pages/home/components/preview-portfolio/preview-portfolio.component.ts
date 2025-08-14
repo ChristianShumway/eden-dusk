@@ -43,17 +43,17 @@ export class PreviewPortfolioComponent {
 
     public itemsPortfolio: ItemLayoutModel[] = [
       {
-        text: 'Título',
+        text: 'Cura',
         url: `${PathsEnum.URLIMAGES}/_NEL2722-min.jpg`,
         visible: true
       },
       {
-        text: 'Título',
+        text: 'Hijo del mar',
         url: `${PathsEnum.URLIMAGES}/_NEL2385-min.jpg`,
         visible: true
       },
       {
-        text: 'Título',
+        text: 'Farallón',
         url: `${PathsEnum.URLIMAGES}/_ELA8309-min.jpg`,
         visible: true
       }

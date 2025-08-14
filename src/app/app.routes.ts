@@ -10,7 +10,7 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/transmisiones/transmisiones.routes').then(m => m.TRANSMISIONES_ROUTES)
   },
   {
-    path: 'nosotros',
+    path: 'trayectoria',
     loadChildren: () => import('./pages/nosotros/nosotros.routes').then(m => m.NOSOTROS_ROUTES)
   },
   {
@@ -26,7 +26,7 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/videoteca/videoteca.routes').then(m => m.VIDEOTECA_ROUTES)
   },
   {
-    path: 'productos',
+    path: 'tienda',
     loadChildren: () => import('./pages/productos/productos.routes').then(m => m.PRODUCTOS_ROUTES)
   },
   {

@@ -1,7 +1,7 @@
 <home-layout [imagesList]="imagesList()" />
 <home-quien-es-eden-dusk />
-<home-preview-store />
 <home-preview-portfolio />
+<home-preview-store [products]="productList()" />
 <home-novedades />
 <div class="mb-8 md:mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-2">
   <home-eventos-transmisiones [proximoEventos]="eventos()" [eventosPasados]="eventosPasados()" />

@@ -34,7 +34,7 @@ export class CardProductoComponent {
   public svgMore = signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.bag));
 
   goTo(id: number) {
-    this.router.navigate(['/productos', id]);
+    this.router.navigate(['/tienda', id]);
   }
 
   onPreview(img: string) {

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { SvgService } from '../../../../core/services/svg.service';
+import { Router } from '@angular/router';
 import { SafeHtml } from '@angular/platform-browser';
+import { SvgService } from '../../../../core/services/svg.service';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 
 @Component({
@@ -13,9 +14,14 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 export class QuienEsEdenDuskComponent {
 
   private readonly svgService = inject(SvgService);
+  private readonly router = inject(Router);
 
   svgSemiColons: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.semicolons);
   svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
+
+  goToTrayectoria() {
+    this.router.navigate(['/trayectoria']);
+  }
 
 
 }

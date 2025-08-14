@@ -1,26 +1,17 @@
-<section class="section__whois rounded  bg-center bg-cover bg-no-repeat bg-[url('https://raw.githubusercontent.com/ChristianShumway/eden-dusk/refs/heads/master/src/assets/images/fotos/_NEL3202-min.jpg')] bg-gray-600 bg-blend-multiply">
+<section class="section__whois">
 
-  <div class="py-12 px-4 mx-auto max-w-screen-xl text-center lg:py-40 lg:px-8">
+  <div class="py-12 px-4 mx-auto max-w-screen-xl text-center lg:py-24 lg:px-8">
 
-    <div class="wrap__info relative">
-      <blockquote class="text-xl md:text-2xl text-sage-100 font-secondary-light italic mb-6 relative z-10">
-        <b>Proyecto artístico-cultural</b> originado en Sinaloa, México, cuya
-        misión va más allá de capturar imágenes bonitas o producir videos llamativos
-        abordando temas de identidad, medio ambiente, activismo social y cultura originaria de manera más
-        profunda y profesional.
+    <div class="wrap__info relative mb-4">
+      <p class="text-5xl font-primary-bold mb-4">¿Qué es Eden Dusk?</p>
+      <blockquote class="text-xl md:text-xl  mb-6 relative z-10">
+        Somos un proyecto artístico-cultural de Sinaloa, México, cuya misión es rescatar y difundir la riqueza natural, cultural y social de la región. Por más de 11 años hemos desarrollado una narrativa visual que conecta, concientiza y fortalece lazos comunitarios, abordando temas de identidad, medio ambiente y cultura originaria de forma profesional.
       </blockquote>
-
-      <p class="mb-16 text-sage-100  text-xl font-primary-regular tracking-tight leading-none relative z-10">
-        - Eden Dusk
-      </p>
-
-      <div [innerHTML]="svgSemiColons" class="text-primary/60 w-64 h-64 semicolons__bg absolute"></div>
     </div>
 
     <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-      <button type="button" class="inline-flex justify-center items-center btn__outline--white">
-        Conoce un poco más
-        <div class="w-4 h-4 ms-2 flex" [innerHTML]="svgArrow"></div>
+      <button type="button" (click)="goToTrayectoria()" class="inline-flex justify-center items-center btn__primary">
+        Nuestra Trayectoria
       </button>
     </div>
   </div>
