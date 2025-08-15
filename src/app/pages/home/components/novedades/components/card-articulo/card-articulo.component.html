@@ -1,0 +1,47 @@
+<div class="item__layout group w-full p-4 relative overflow-hidden cursor-pointer rounded-lg shadow-sm dark:bg-transparent">
+  <!-- Imagen de fondo -->
+  <div
+    class="layout__imagebg bg-cover bg-no-repeat bg-center absolute inset-0 z-0"
+    [style.background-image]="article().imageUrl| backgroundImage"
+  ></div>
+
+  <!-- Categoría -->
+  <div class="px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2 z-10">
+    {{ article().category }}
+  </div>
+
+  <!-- Fecha -->
+  <div
+    class="absolute top-2 left-2 px-2 py-1 text-sm rounded-md capitalize z-10"
+    [class.bg-black]="article().date | recentDate"
+  >
+    {{ article().date | recentDate }}
+  </div>
+
+  <!-- Botón (animado al hacer hover) -->
+  <div
+    class="absolute bottom-[-4rem] left-1/2 -translate-x-1/2 z-10 transition-all duration-300 ease-in-out group-hover:bottom-4"
+  >
+    <!-- Contenedor botones -->
+    <div class="flex gap-3">
+      <!-- Botón Ver article -->
+      <a
+        title="Ver artículo"
+        class="w-12 h-12 rounded-full bg-primary text-white shadow-md hover:bg-primary-500 flex items-center justify-center transition cursor-pointer"
+        (click)="goTo(article().id)"
+      >
+        <div [innerHTML]="svgArrow()" class="w-4 h-4 flex items-center"></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="video__info mt-2 p-2">
+  <span class="text-primary uppercase text-sm"> {{ article().date | dateMx }} </span>
+  <p class="font-primary-bold text-xl mb-0 line-clamp-1">{{ article().title }}</p>
+  <span class="text-sm  line-clamp-2">{{ article().smallDescription }}</span>
+  <a (click)="goTo(article().id)" class="flex items-center gap-2 text-sm mt-3 cursor-pointer text-primary hover:text-primary-500">
+    Leer en el blog
+    <div [innerHTML]="svgArrow()" class="w-3 h-3 flex items-center"></div>
+  </a>
+</div>

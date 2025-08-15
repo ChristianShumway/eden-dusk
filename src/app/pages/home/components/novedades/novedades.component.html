@@ -13,22 +13,24 @@
         </div>
       </div>
 
-      <div class="grid grid__blog grid-cols-1 lg:grid-cols-2 gap-4">
-        @for (article of articlesList(); track $index) {
-          <a (click)="goTo(article.id)" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-max hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:hover:bg-gray-700 cursor-pointer">
-            <img
-              class="object-cover w-full h-full rounded-t-lg md:w-40 md:h-40 md:rounded-none md:rounded-s-lg"
-              [src]="article.imageUrl"
-              [alt]="article.title"
-              (error)="onImgError($event)"
-            />
-            <div class="flex flex-col justify-between p-4 leading-normal">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> {{ article.title }} </h5>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3"> {{ article.smallDescription }} </p>
+      @if(articlesList().length) {
+        <div
+          class="wrap__articles flex flex-wrap items-center gap-y-6 mb-8"
+          [ngClass]="{
+            'justify-start gap-x-6': articlesList().length  === 2 || articlesList().length  === 5 || articlesList().length  === 8,
+            'justify-between': articlesList().length  !== 2 && articlesList().length  !== 5 && articlesList().length  !== 4
+          }"
+        >
+          <div class="w-full md:w-[48%] lg:w-[32%] rounded-lg bg-gray-50 dark:bg-transparent" *ngFor="let article of articlesList()"
+          >
+            <div class="bg-black-100 rounded-lg p-4">
+              <novedades-card-articulo [article]="article" />
             </div>
-          </a>
-        }
-      </div>
+          </div>
+        </div>
+      }@else {
+        <shared-no-data [type]="'articulo'" [msg]="'No hay artículos en el blog'" />
+      }
     </div>
   </div>
 </section>

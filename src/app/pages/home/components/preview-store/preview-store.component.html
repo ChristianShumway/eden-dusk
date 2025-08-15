@@ -1,5 +1,5 @@
 <section class="section__store w-full my-16 md:my-32">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-lg shadow-sm bg-black-100 px-4 py-8 mb-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-lg shadow-sm bg-black-100 px-4 py-8 mb-16">
     <div>
       <div class=" mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start">
         <span class="text-4xl lg:text-5xl"> Súmate a la causa </span>
@@ -20,40 +20,38 @@
       </div>
     </div>
     <div>
-      <img class="rounded-lg w-full" [src]="products()[0].sourceUrl" alt="img" />
+      <swiper-container
+        #swiperContainer
+        [slidesPerView]="slidesPerView"
+        centered-slides="true"
+        space-between="32"
+        speed="700"
+        pagination="true"
+        pagination-clickable="true"
+        navigation="false"
+        [loop]="true"
+        autoplay-delay="2500"
+        autoplay-disable-on-interaction="false"
+        style=" --swiper-pagination-color: #3B82F6; --swiper-navigation-color: #3B82F6; "
+      >
+        <swiper-slide *ngFor="let producto of products()" >
+          <div class="bg-black-100 rounded-lg shadow-sm p-0">
+            <div class="bg-no-repeat rounded-lg bg-center bg-cover w-full h-64 md:h-80 mb-5" [style.background-image]="producto.sourceUrl| backgroundImage"></div>
+            <div class="pb-5">
+              <p class="tracking-tight text-xl font-primary-bold line-clamp-1"> {{ producto.name }} </p>
+              <p class="text-sm line-clamp-2"> {{ producto.description }} </p>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-xl font-primary-medium"> {{ producto.price| currency }} </span>
+                <button (click)="goToProduct(producto.id)" type="button" class="px-2 py-2.5 text-sm lg:text-base  btn__primary">
+                  Personalizar
+                </button>
+              </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
     </div>
   </div>
-
-  <swiper-container
-  #swiperContainer
-  [slidesPerView]="slidesPerView"
-  centered-slides="true"
-  space-between="10"
-  speed="700"
-  pagination="true"
-  pagination-clickable="true"
-  navigation="false"
-  [loop]="true"
-  autoplay-delay="2500"
-  autoplay-disable-on-interaction="false"
-  style=" --swiper-pagination-color: #3B82F6; --swiper-navigation-color: #3B82F6; "
-  >
-    <swiper-slide *ngFor="let producto of products()" >
-      <div class="bg-black-100 rounded-lg shadow-sm p-4">
-        <div class="bg-no-repeat rounded-lg bg-center bg-cover w-full h-64 mb-5" [style.background-image]="producto.sourceUrl| backgroundImage"></div>
-        <div class="pb-5">
-          <p class="tracking-tight text-xl font-primary-bold line-clamp-1"> {{ producto.name }} </p>
-          <p class="text-sm line-clamp-2"> {{ producto.description }} </p>
-        </div>
-        <div class="flex items-center justify-between">
-            <span class="text-xl font-primary-medium"> {{ producto.price| currency }} </span>
-            <button (click)="goToProduct(producto.id)" type="button" class="px-2 py-2.5 text-sm lg:text-base  btn__primary">
-              Personalizar
-            </button>
-          </div>
-      </div>
-    </swiper-slide>
-  </swiper-container>
 
 
 </section>
