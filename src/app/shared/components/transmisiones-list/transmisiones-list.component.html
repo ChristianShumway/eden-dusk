@@ -28,7 +28,7 @@
           @if(tiempoEvento() === 'pasado') {
             <button
               type="button"
-              class="btn__outline--black"
+              class="btn__primary--white"
               [ngClass]="{
                 'py-2': component() === 'sidebar'
               }"
@@ -39,7 +39,7 @@
             <button
               type="button"
               (click)="onViewInfoEvent(evento)"
-              class="btn__outline--black"
+              class="btn__primary--white"
               [ngClass]="{
                 'py-2': component() === 'sidebar'
               }"
