@@ -2,11 +2,11 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 rounded-lg shadow-sm bg-black-100 px-4 py-8 mb-16">
     <div class="px-0 md:px-8">
       <div class=" mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start">
-        <span class="text-4xl lg:text-5xl"> Súmate a la causa </span>
+        <span class="text-4xl lg:text-5xl"> {{ data()?.titulo }} </span>
       </div>
 
       <p class="text-lg mb-4 md:mb-6 text-center md:text-justify w-full md:w-11/12 lg:w-10/12">
-        Con cada obra que adquieres nos ayudas a explorar la naturaleza y la cultura de nuestra región, a encontrar inspiración, a crear arte y a despertar conciencias hacia un futuro mejor.
+        {{ data()?.descripcion }}
       </p>
 
       <div class="wrap__actions">
@@ -14,8 +14,19 @@
           ¿Deséas apoyar al proyecto?
         </p>
         <div class="col__actions w-full flex justify-start items-center gap-5 flex-col md:w-full md:flex-row">
-          <button (click)="goToStore()" type="button" class="w-full md:w-auto btn__primary--white">Ir a la tienda</button>
-          <button type="button" class="w-full md:w-auto btn__outline-primary">Hacer una donación</button>
+          @for (boton of data()?.botones ?? []; track boton.texto; let i = $index) {
+            <button
+              type="button"
+              (click)="goToStore()"
+              class="w-full md:w-auto"
+              [ngClass]="{
+                'btn__primary--white': i === 0,
+                'btn__outline-primary': i !== 0
+              }">
+              {{ boton.texto }}
+            </button>
+          }
+          <!-- <button type="button" class="w-full md:w-auto btn__outline-primary">Hacer una donación</button> -->
         </div>
       </div>
     </div>

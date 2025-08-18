@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { TransmisionModel } from "../models/transmission.model";
 import { PathsEnum } from "../utils/paths.enum";
+import { RootObjectHome } from "../models/home.model";
 @Injectable({ providedIn: 'root' })
 
 export class TransmisionesService {
@@ -13,6 +14,10 @@ export class TransmisionesService {
   private readonly pathAllTransmissions = 'api/events';
   private readonly pathNextTransmissions = 'api/events/upcoming';
   private readonly pathLastTransmissions = 'api/events/findPastEvents';
+
+  getDataHome(): Observable<RootObjectHome> {
+    return this.http.get<RootObjectHome>(`${this.apiUrl}/api/contenido-pagina`);
+  }
 
   getAllTransmissions(): Observable<TransmisionModel[]> {
     return this.http.get<TransmisionModel[]>(`${this.apiUrl}/${this.pathNextTransmissions}`);

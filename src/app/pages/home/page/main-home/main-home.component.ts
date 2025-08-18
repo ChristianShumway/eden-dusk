@@ -12,6 +12,11 @@ import { GalleryService } from '../../../../core/services/galeria.service';
 import { FiltersGallery, ImageGalleryModel } from '../../../../core/models/filters-gallery.model';
 import { ProductsService } from '../../../../core/services/products.service';
 import { FiltersProducts, ProductModel } from '../../../../core/models/products.model';
+import { RootObjectHome } from '../../../../core/models/home.model';
+
+const dataHomeDummy: RootObjectHome = {
+  secciones: null
+}
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -27,6 +32,7 @@ import { FiltersProducts, ProductModel } from '../../../../core/models/products.
   templateUrl: './main-home.component.html',
   styleUrl: './main-home.component.scss'
 })
+
 export class HomeComponent implements OnInit {
 
   private readonly transmisionesService = inject(TransmisionesService);
@@ -35,6 +41,8 @@ export class HomeComponent implements OnInit {
 
   public imagesList = signal<ImageGalleryModel[]>([]);
   public productList = signal<ProductModel[]>([]);
+  public seccionesHome = signal<RootObjectHome>(dataHomeDummy);
+
 
   public eventos = signal<TransmisionModel[]>([]);
   public eventosPasados = signal<TransmisionModel[]>([]);
@@ -57,10 +65,22 @@ export class HomeComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.getDataHome();
     this.getGalleries();
     this.getProducts();
     this.getAllTransmissions(this.dateToSearh);
     this.getLastTransmissions();
+  }
+
+  getDataHome() {
+    this.transmisionesService.getDataHome().subscribe({
+      next: response => {
+        if(!response.secciones) return;
+        console.log(response);
+        this.seccionesHome.set(response);
+      },
+      error: error => console.error(error)
+    })
   }
 
   getGalleries() {

@@ -7,6 +7,7 @@ import { SvgService } from '../../../../core/services/svg.service';
 import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { ProductModel } from '../../../../core/models/products.model';
+import { Sumate } from '../../../../core/models/home.model';
 
 @Component({
   selector: 'home-preview-store',
@@ -26,6 +27,7 @@ export class PreviewStoreComponent {
   private readonly router = inject(Router);
 
   public products = input.required<ProductModel[]>();
+  public data = input.required<Sumate | undefined>()
   svgArrow: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
   svgStar: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.star);
   slidesPerView = 3;

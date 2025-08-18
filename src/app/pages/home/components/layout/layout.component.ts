@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
+import { HeroHome } from '../../../../core/models/home.model';
 
 @Component({
   selector: 'home-layout',
@@ -23,6 +24,7 @@ export class LayoutComponent {
   private readonly svgService = inject(SvgService);
 
   public urlImageBackground: string = `${PathsEnum.URLIMAGES}/_NEL3001_-min.jpg`;
+  public data = input.required<HeroHome | undefined>()
   public imagesList = input.required<ImageGalleryModel[]>();
   public iconUser =  signal<SafeHtml>(this.svgService.getSanitizedSvg(SvgIcons.user));
 
