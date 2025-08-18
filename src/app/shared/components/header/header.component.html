@@ -37,7 +37,7 @@
 
     <!-- Menú de Navegación -->
     <div [ngClass]="{ 'hidden': !isNavbarOpen, 'block': isNavbarOpen }"
-    class="items-center justify-center w-full lg:flex lg:w-auto lg:order-1 bg-black-100 rounded-lg lg:bg-transparent mt-2 lg:mt-0" id="navbar">
+    class="items-center justify-center w-full lg:flex lg:w-auto lg:order-1 bg-black rounded-lg lg:bg-transparent mt-2 lg:mt-0" id="navbar">
       <header-menu class="flex lg:gap-6 flex-col lg:flex-row" [isNavbarOpen]="isNavbarOpen" [itemsMenu]="itemsMenu" (clickItemMenu)="toggleNavbar()" />
     </div>
 

@@ -28,7 +28,7 @@ import { RouterModule } from '@angular/router';
           <button
             type="button"
             (click)="toggleSubmenu(item)"
-            class="block border-none text-grays-100 py-4 px-3 rounded lg:bg-transparent lg:p-0 hover:bg-black hover:lg:bg-transparent hover:lg:text-white text-center w-full"
+            class="block border-none text-grays-100 py-4 px-3 rounded lg:bg-transparent lg:p-0 hover:bg-black-100 hover:lg:bg-transparent hover:lg:text-white text-center w-full"
           >
             {{ item.name | titlecase }}
             <svg class="inline w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2"
@@ -40,7 +40,7 @@ import { RouterModule } from '@angular/router';
 
           <!-- Submenú -->
           <ul
-            class="lg:absolute left-0 mt-0 lg:mt-2 text-center bg-black-100 w-full lg:w-52 backdrop-blur-md rounded-md lg:shadow-lg opacity-1 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-200 transform lg:-translate-y-2 z-50"
+            class="lg:absolute left-0 mt-0 lg:mt-2 text-center bg-black w-full lg:w-52 backdrop-blur-md rounded-md lg:shadow-lg opacity-1 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-200 transform lg:-translate-y-2 z-50"
             [ngClass]="{
               'block': openSubmenu === item.name,
               'hidden lg:block': openSubmenu !== item.name
@@ -52,7 +52,7 @@ import { RouterModule } from '@angular/router';
                 [routerLink]="sub.path"
                 routerLinkActive="bg-black font-bold lg:bg-transparent lg:text-white"
                 (click)="clickItemMenu.emit(); closeSubmenu()"
-                class="block text-grays-100 py-4 px-3 rounded lg:bg-transparent lg:py-3 hover:bg-primary hover:lg:bg-black  hover:lg:text-white text-center"
+                class="block text-grays-100 py-4 px-3 rounded lg:bg-transparent lg:py-3 hover:bg-primary hover:lg:bg-black-100  hover:lg:text-white text-center"
               >
                 {{ sub.name | titlecase }}
               </a>

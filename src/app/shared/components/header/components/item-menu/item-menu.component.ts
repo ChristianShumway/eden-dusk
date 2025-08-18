@@ -13,9 +13,9 @@ import { CommonModule } from '@angular/common';
   template: `
     <a [routerLink]="itemMenu().path"
     [routerLinkActiveOptions]="{ exact: false }"
-    routerLinkActive="bg-black font-bold lg:bg-transparent lg:text-white"
+    routerLinkActive="bg-black-100 font-bold lg:bg-transparent lg:text-white"
     (click)="clickItemMenu.emit()"
-    class="block text-grays-100 py-4 px-3 rounded lg:bg-transparent lg:p-0 hover:bg-black hover:lg:bg-transparent  hover:lg:text-white text-center"
+    class="block text-grays-100 py-4 px-3 rounded lg:bg-transparent lg:p-0 hover:bg-black-100 hover:lg:bg-transparent  hover:lg:text-white text-center"
     >
       {{ itemMenu().name | titlecase }}
     </a>
