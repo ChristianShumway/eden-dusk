@@ -1,9 +1,9 @@
 <nav
   [ngClass]="isScrolled ? 'bg-black/90' : 'bg-transparent'"
-  class="fixed w-full z-20 top-0 start-0 border-b border-white dark:border-white backdrop-blur-md">
+  class="fixed w-full z-20 top-0 start-0 border-b border-white dark:border-white backdrop-blur-md menu-container">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img class="w-16 align-bottom" [src]="urlImageMain" alt="logo eden-dusk" />
+    <a [routerLink]="['/inicio']" routerLinkActive="router-link-active"  href="#" class="flex items-center space-x-3 rtl:space-x-reverse font-bold text-xl hover:text-white transition-colors duration-500">
+      EDEN DUSK
     </a>
 
     <div class="flex lg:order-2 space-x-3 lg:space-x-2 rtl:space-x-reverse">
@@ -37,8 +37,8 @@
 
     <!-- Menú de Navegación -->
     <div [ngClass]="{ 'hidden': !isNavbarOpen, 'block': isNavbarOpen }"
-    class="items-center justify-center w-full lg:flex lg:w-auto lg:order-1" id="navbar">
-      <header-menu [isNavbarOpen]="isNavbarOpen" [itemsMenu]="itemsMenu" (clickItemMenu)="toggleNavbar()" />
+    class="items-center justify-center w-full lg:flex lg:w-auto lg:order-1 bg-black-100 rounded-lg lg:bg-transparent mt-2 lg:mt-0" id="navbar">
+      <header-menu class="flex lg:gap-6 flex-col lg:flex-row" [isNavbarOpen]="isNavbarOpen" [itemsMenu]="itemsMenu" (clickItemMenu)="toggleNavbar()" />
     </div>
 
   </div>

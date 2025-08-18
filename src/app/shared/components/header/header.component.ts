@@ -7,11 +7,17 @@ import { SvgService } from '../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../core/utils/svg-icons.enum';
 import { CartService } from '../../../core/services/cart.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'shared-header',
   standalone: true,
-  imports: [ CommonModule, DrawerCartComponent, MenuComponent ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    DrawerCartComponent,
+    MenuComponent
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -29,9 +35,16 @@ export class HeaderComponent implements OnInit {
     { name: 'inicio', path: '/inicio' },
     { name: 'transmisiones', path: '/transmisiones' },
     { name: 'trayectoria', path: '/trayectoria' },
+    {
+      name: 'proyectos',
+      children: [
+        { name: 'galeria', path: '/galeria' },
+        { name: 'videoteca', path: '/videoteca' },
+      ]
+    },
     { name: 'blog', path: '/blog' },
-    { name: 'galeria', path: '/galeria' },
-    { name: 'videoteca', path: '/videoteca' },
+    // { name: 'galeria', path: '/galeria' },
+    // { name: 'videoteca', path: '/videoteca' },
     { name: 'tienda', path: '/tienda' }
 
   ];
@@ -60,6 +73,14 @@ export class HeaderComponent implements OnInit {
   onWindowScroll() {
     this.isScrolled = window.scrollY > 80; // Detecta cuando el scroll supera los 60px
     this.urlImageMain = !this.isScrolled ? this.urlImageblack : this.urlimageWhite;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.menu-container')) {
+      this.isNavbarOpen = false;
+    }
   }
 
 }
