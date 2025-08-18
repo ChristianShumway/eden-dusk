@@ -52,7 +52,7 @@ import { RouterModule } from '@angular/router';
                 [routerLink]="sub.path"
                 routerLinkActive="bg-black font-bold lg:bg-transparent lg:text-white"
                 (click)="clickItemMenu.emit(); closeSubmenu()"
-                class="block text-grays-100 py-4 px-3 rounded lg:bg-transparent lg:py-3 hover:bg-primary hover:lg:bg-transparent  hover:lg:text-white text-center"
+                class="block text-grays-100 py-4 px-3 rounded lg:bg-transparent lg:py-3 hover:bg-primary hover:lg:bg-black  hover:lg:text-white text-center"
               >
                 {{ sub.name | titlecase }}
               </a>

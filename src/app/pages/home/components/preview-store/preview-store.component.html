@@ -1,11 +1,11 @@
-<section class="section__store w-full my-16 md:my-32">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-lg shadow-sm bg-black-100 px-4 py-8 mb-16">
-    <div>
+<section class="section__store w-full my-16 md:my-28">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 rounded-lg shadow-sm bg-black-100 px-4 py-8 mb-16">
+    <div class="px-0 md:px-8">
       <div class=" mb-4 md:mb-6 font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start">
         <span class="text-4xl lg:text-5xl"> Súmate a la causa </span>
       </div>
 
-      <p class=" mb-4 md:mb-6 text-center md:text-start">
+      <p class="text-lg mb-4 md:mb-6 text-center md:text-justify w-full md:w-11/12 lg:w-10/12">
         Con cada obra que adquieres nos ayudas a explorar la naturaleza y la cultura de nuestra región, a encontrar inspiración, a crear arte y a despertar conciencias hacia un futuro mejor.
       </p>
 
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="px-0 md:px-8">
       <swiper-container
         #swiperContainer
         [slidesPerView]="slidesPerView"
@@ -38,15 +38,15 @@
           <div class="bg-black-100 rounded-lg shadow-sm p-0">
             <div class="bg-no-repeat rounded-lg bg-center bg-cover w-full h-64 md:h-80 mb-5" [style.background-image]="producto.sourceUrl| backgroundImage"></div>
             <div class="pb-5">
-              <p class="tracking-tight text-xl font-primary-bold line-clamp-1"> {{ producto.name }} </p>
-              <p class="text-sm line-clamp-2"> {{ producto.description }} </p>
+              <p class="tracking-tight text-2xl font-primary-medium line-clamp-1"> {{ producto.name }} </p>
+              <p class="text-sm line-clamp-2 hidden"> {{ producto.description }} </p>
             </div>
-            <div class="flex items-center justify-between">
-                <span class="text-xl font-primary-medium"> {{ producto.price| currency }} </span>
-                <button (click)="goToProduct(producto.id)" type="button" class="px-2 py-2.5 text-sm lg:text-base  btn__primary">
-                  Personalizar
-                </button>
-              </div>
+            <div class="items-center justify-between hidden">
+              <span class="text-xl font-primary-medium"> {{ producto.price| currency }} </span>
+              <button (click)="goToProduct(producto.id)" type="button" class="px-2 py-2.5 text-sm lg:text-base  btn__primary">
+                Personalizar
+              </button>
+            </div>
           </div>
         </swiper-slide>
       </swiper-container>

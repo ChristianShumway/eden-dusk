@@ -1,7 +1,7 @@
 import { Component, inject, Inject, PLATFORM_ID, signal } from '@angular/core';
 import { ItemLayoutModel } from '../../../../core/models/item-layout.model';
 import { BackgroundImagePipe } from '../../../../shared/pipes/backgound-images.pipe';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PathsEnum } from '../../../../core/utils/paths.enum';
 import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
@@ -11,6 +11,7 @@ import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
   selector: 'home-preview-portfolio',
   standalone: true,
   imports: [
+    CommonModule,
     BackgroundImagePipe
   ],
   templateUrl: './preview-portfolio.component.html',
@@ -45,16 +46,19 @@ export class PreviewPortfolioComponent {
       {
         text: 'Cura',
         url: `${PathsEnum.URLIMAGES}/_NEL2722-min.jpg`,
+        color: '#3b82f6',
         visible: true
       },
       {
         text: 'Hijo del mar',
         url: `${PathsEnum.URLIMAGES}/_NEL2385-min.jpg`,
+        color: '#22c55e',
         visible: true
       },
       {
         text: 'Farallón',
         url: `${PathsEnum.URLIMAGES}/_ELA8309-min.jpg`,
+        color: '#f59e0b',
         visible: true
       }
     ];

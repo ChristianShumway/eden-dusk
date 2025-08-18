@@ -1,5 +1,5 @@
 .section__whois {
-  margin-top: 1450px;
+  margin-top: 0px;
   position: relative;
 }
 
@@ -13,5 +13,6 @@
 @media(min-width:768px) {
   .section__whois {
     margin-top: calc(78vh - 14vh);
+    margin-top: 0;
   }
 }

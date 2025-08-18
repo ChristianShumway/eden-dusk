@@ -6,7 +6,7 @@
   ></div>
 
   <!-- Categoría -->
-  <div class="px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2 z-10">
+  <div class="px-2 py-1 text-sm bg-black/75 text-white rounded-md absolute top-2 right-2 z-10 hidden">
     {{ article().category }}
   </div>
 
@@ -37,7 +37,9 @@
 </div>
 
 <div class="video__info mt-2 p-2">
-  <span class="text-primary uppercase text-sm"> {{ article().date | dateMx }} </span>
+  <span class="text-primary uppercase text-xs font-primary-bold">
+    {{ article().category }} • {{ article().date | dateMx }}
+  </span>
   <p class="font-primary-bold text-xl mb-0 line-clamp-1">{{ article().title }}</p>
   <span class="text-sm  line-clamp-2">{{ article().smallDescription }}</span>
   <a (click)="goTo(article().id)" class="flex items-center gap-2 text-sm mt-3 cursor-pointer text-primary hover:text-primary-500">
