@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="enviar()" class="w-full">
+
+  <!-- Nombre -->
+  <div class="mb-2">
+    <label for="nombre" class="block text-sm font-medium">Nombre</label>
+    <input formControlName="name" type="text" id="nombre" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-black" />
+    <span *ngIf="validField('name')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('name') }}
+    </span>
+  </div>
+
+  <!-- Correo -->
+  <div class="mb-2">
+    <label for="correo" class="block text-sm font-medium">Correo electrónico</label>
+    <input formControlName="email" type="email" id="correo" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-black" />
+    <span *ngIf="validField('email')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('email') }}
+    </span>
+  </div>
+
+  <!-- Comentario -->
+  <div class="mb-2">
+    <label for="comentario" class="block text-sm font-medium">Comentario</label>
+    <textarea formControlName="comment" id="comentario" rows="4" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-black"></textarea>
+    <span *ngIf="validField('comment')" class="text-xs text-red-600 font-primary-thin">
+      {{ getErrorField('comment') }}
+    </span>
+  </div>
+
+  <!-- Botón enviar -->
+  <div class="text-right mt-2">
+    <button [disabled]="form.invalid" type="submit" class="btn__primary">Iniciar Conversación</button>
+  </div>
+
+</form>
+

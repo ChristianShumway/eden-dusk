@@ -30,6 +30,14 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/productos/productos.routes').then(m => m.PRODUCTOS_ROUTES)
   },
   {
+    path: 'enlaces',
+    loadChildren: () => import('./pages/enlaces/enlaces.routes').then(m => m.ENLACES_ROUTES)
+  },
+  {
+    path: 'contacto',
+    loadChildren: () => import('./pages/contacto/contacto.routes').then(m => m.CONTACTO_ROUTES)
+  },
+  {
     path: 'carrito',
     loadChildren: () => import('./pages/cart/cart.routes').then(m => m.CART_ROUTES)
   }

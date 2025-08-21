@@ -45,8 +45,9 @@ export class HeaderComponent implements OnInit {
     { name: 'blog', path: '/blog' },
     // { name: 'galeria', path: '/galeria' },
     // { name: 'videoteca', path: '/videoteca' },
-    { name: 'tienda', path: '/tienda' }
-
+    { name: 'tienda', path: '/tienda' },
+    { name: 'enlaces', path: '/enlaces'},
+    { name: 'contacto', path: '/contacto'}
   ];
 
   isScrolled = false; // Variable para controlar el estado del navbar

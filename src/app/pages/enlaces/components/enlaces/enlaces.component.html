@@ -1,0 +1,30 @@
+<div class="container my-32">
+  <div class="flex flex-col gap-6 items-center justify-center">
+    <div class="">
+      <img class="w-32 h-32" [src]="urlimageWhite" alt="logo" />
+    </div>
+    <div class="text-center">
+      <p class="font-primary-bold text-3xl">Eden Dusk</p>
+      <span class="text-xl">Arte, Cultura y Naturaleza</span>
+    </div>
+    <div class="wrap-buttons-locals flex flex-col gap-3">
+      <button> Sitio Web Oficial </button>
+      <button> Sitio Web Oficial </button>
+      <button> Sitio Web Oficial </button>
+      <button> Sitio Web Oficial </button>
+    </div>
+    <div class="wrap-buttons-social flex flex-col gap-3">
+      <button> Sitio Web Oficial </button>
+      <button> Sitio Web Oficial </button>
+      <button> Sitio Web Oficial </button>
+      <button> Sitio Web Oficial </button>
+    </div>
+    <div class="flex flex-col gap-3 justify-center items-center">
+      <p class="text-xl">
+        Comparte nuestros enlaces
+      </p>
+      <img [src]="qrImage" alt="código QR" />
+      <button type="button" (click)="downloadQr()" class="btn__primary">Descarga QR</button>
+    </div>
+  </div>
+</div>

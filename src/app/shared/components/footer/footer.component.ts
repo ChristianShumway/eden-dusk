@@ -23,7 +23,9 @@ export class FooterComponent {
     { name: 'blog', path: '/blog' },
     { name: 'galeria', path: '/galeria' },
     { name: 'videoteca', path: '/videoteca' },
-    { name: 'tienda', path: '/tienda' }
+    { name: 'tienda', path: '/tienda' },
+    { name: 'enlaces', path: '/enlaces'},
+    { name: 'contacto', path: '/contacto'}
   ];
 
 
