@@ -1,0 +1,144 @@
+<section class="py-8 w-full">
+
+  <div class="text-center w-full md:w-3/4 md:mx-auto mb-8">
+    <p class="text-5xl mb-2 font-primary-bold text-center">
+      Colaboraciones y Alianzas
+    </p>
+    <p class="font-primary-regular text-xl">
+      A lo largo de nuestra trayectoria hemos trabajado de la mano con instituciones, organizaciones de conservación, colectivos culturales y creadores independientes. Cada colaboración ha sido clave para documentar y difundir la riqueza ambiental y cultural de Sinaloa.
+    </p>
+  </div>
+
+  <nosotros-filtros-colaboraciones [categories]="categoriesList()" (filterChanged)="onFilterChanged($event)" />
+
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+    <div>
+        <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg" alt="">
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">NOMBRE ALIANZA</p>
+          <span class="text-xs">Nombre de la colaboración</span>
+        </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-12 my-2">
+    <!-- Mensaje emotivo -->
+    <div class="max-w-3xl mx-auto mb-10">
+      <h2 class="text-3xl md:text-4xl font-primary-bold  mb-4">Gracias por acompañarnos</h2>
+      <p class="text-base mb-4">
+        Cada paso en la historia de <strong>Eden Dusk</strong> ha sido posible gracias a personas como tú.
+        Este viaje continúa escribiéndose con cada nueva colaboración, expedición o taller.
+        ¡Sé parte de lo que viene!
+      </p>
+      <p class="text-3xl md:text-4xl font-primary-bold">
+        ¿Quieres colaborar con Eden Dusk?
+      </p>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="flex flex-wrap justify-center gap-4 mb-10">
+      <button type="button" class="btn__primary">
+        Propón tu proyecto
+      </button>
+    </div>
+
+    <!-- Redes sociales / difusión -->
+    <div class="flex justify-center items-center gap-6 text-gray-500 text-xl">
+      <a href="https://facebook.com" target="_blank" class="hover:text-blue-600">
+        <i class="fab fa-facebook-square"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" class="hover:text-pink-500">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://youtube.com" target="_blank" class="hover:text-red-600">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="mailto:info@edendusk.com" class="hover:text-green-600">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+
+    <p class="text-sm text-gray-500 dark:text-gray-200 mt-6">
+      Comparte esta historia con quien sabes que le inspirará
+    </p>
+  </div>
+
+
+</section>

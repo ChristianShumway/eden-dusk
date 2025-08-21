@@ -28,6 +28,7 @@ export class GaleriaCronologiaComponent implements AfterViewInit {
       id: 1,
       title: '2014',
       description: 'Fotografía nocturna en Parque Sinaloa, génesis del proyecto.',
+      period: '2014',
       icon: 'camera',
       image: `${PathsEnum.URLIMAGES}/_ELA8362-min.jpg`
     },
@@ -36,6 +37,7 @@ export class GaleriaCronologiaComponent implements AfterViewInit {
       title: '2017',
       description: 'Apertura a nuevos géneros (retratos, paisajes urbanos).',
       icon: 'camera',
+      period: '2014',
       image: `${PathsEnum.URLIMAGES}/_NEL2618-min.jpg`
     },
     {
@@ -43,6 +45,7 @@ export class GaleriaCronologiaComponent implements AfterViewInit {
       title: '2019',
       description: 'Primeras colaboraciones con instituciones y medios, servicios comerciales.',
       icon: 'camera',
+      period: '2014',
       image: `${PathsEnum.URLIMAGES}/_ELA6081-min.jpg`
     },
     {
@@ -50,6 +53,7 @@ export class GaleriaCronologiaComponent implements AfterViewInit {
       title: '2020-2022',
       description: 'Documentales, cortometrajes, talleres, reconocimientos estatales y nacionales.',
       icon: 'camera',
+      period: '2014',
       image: `${PathsEnum.URLIMAGES}/_NEL2404-min.jpg`
     },
     {
@@ -57,6 +61,7 @@ export class GaleriaCronologiaComponent implements AfterViewInit {
       title: '2023',
       description: 'Consolidación en transmisiones en vivo, conexiones con comunidades yoreme, premiaciones, expansión del área audiovisual.',
       icon: 'camera',
+      period: '2014',
       image: `${PathsEnum.URLIMAGES}/_NEL3001_-min.jpg`
     },
     {
@@ -64,6 +69,7 @@ export class GaleriaCronologiaComponent implements AfterViewInit {
       title: '2017',
       description: 'Apertura a nuevos géneros (retratos, paisajes urbanos).',
       icon: 'camera',
+      period: '2014',
       image: `${PathsEnum.URLIMAGES}/_NEL3202-min.jpg`
     },
     {
@@ -71,6 +77,7 @@ export class GaleriaCronologiaComponent implements AfterViewInit {
       title: '2019',
       description: 'Primeras colaboraciones con instituciones y medios, servicios comerciales.',
       icon: 'camera',
+      period: '2014',
       image: `${PathsEnum.URLIMAGES}/_NEL3160-min.jpg`
     },
   ];

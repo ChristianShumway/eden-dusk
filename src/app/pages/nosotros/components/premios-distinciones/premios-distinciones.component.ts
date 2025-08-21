@@ -15,5 +15,6 @@ export class PremiosDistincionesComponent {
 
   public svgArrow = this.svgService.getSanitizedSvg(SvgIcons.arrowRight);
   public svgAngle = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
+  public svgCalendar = this.svgService.getSanitizedSvg(SvgIcons.calendar);
 
 }
