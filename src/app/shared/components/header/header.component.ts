@@ -43,6 +43,7 @@ export class HeaderComponent implements OnInit {
       ]
     },
     { name: 'blog', path: '/blog' },
+    { name: 'servicios', path: '/servicios' },
     // { name: 'galeria', path: '/galeria' },
     // { name: 'videoteca', path: '/videoteca' },
     { name: 'tienda', path: '/tienda' },

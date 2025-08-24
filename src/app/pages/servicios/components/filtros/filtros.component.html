@@ -1,0 +1,31 @@
+<div class="w-full md:w-11/12 lg:w-10/12 mt-12 mb-8 mx-auto">
+  <form class="flex items-center mb-4">
+    <label for="simple-search" class="sr-only">Search</label>
+    <div class="relative w-full">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <div class="w-4 h-4 flex" [innerHTML]="svgSearch()"></div>
+        </div>
+        <input
+          type="text"
+          (input)="onSearchChange($event)"
+          id="simple-search"
+          class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-black-100 focus:border-black-100 block w-full ps-10 p-3  dark:bg-black-100 dark:border-black dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white"
+          placeholder="buscar..." />
+    </div>
+  </form>
+  <div class="flex items-center justify-center gap-1.5 mb-4 md:mb-8 flex-wrap">
+    @for (category of categories(); track $index) {
+      <button
+        type="button"
+        (click)="setCategory(category)"
+        [ngClass]="{
+          'btn__filter--active': category.id === currencyCategory(),
+          'btn__filter': category.id !== currencyCategory()
+        }"
+      >
+        {{ category.label }}
+      </button>
+    }
+  </div>
+</div>
+

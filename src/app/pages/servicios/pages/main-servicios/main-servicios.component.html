@@ -1,0 +1,25 @@
+<section class="my-32 w-full ">
+  <div class="text-center w-full md:w-3/4 md:mx-auto mb-8">
+    <p class="font-primary-bold text-5xl md:text-6xl lg:text-7xl mb-2">
+      Servicios profesionales
+    </p>
+    <p class="font-primary-regular text-xl">
+      Producción audiovisual, fotografía de producto, documental y educación con enfoque biocultural. Al contratarnos, apoyas nuestra misión de documentar, educar y proteger el patrimonio de Sinaloa.
+    </p>
+  </div>
+  @if(dataServicios()) {
+    <servicios-tipo-servicio [data]="dataServicios().secciones?.produccionImagen" />
+    <servicios-tipo-servicio [data]="dataServicios().secciones?.postproduccion" />
+    <servicios-tipo-servicio [data]="dataServicios().secciones?.educacionComunidad" />
+    <servicios-tipo-servicio [data]="dataServicios().secciones?.comercialInstitucional" />
+  }
+  <div class="my-8 border-t-2 border-gray-500">
+    <servicios-filtros [categories]="categoriesList()"/>
+    <servicios-list-aliados />
+  </div>
+  <div class="flex justify-center items-center gap-4 mt-20">
+    <button type="button" class="btn__primary"> Solicitar una Cotización</button>
+    <button type="button" class="btn__outline-primary"> Contactar por Correo</button>
+
+  </div>
+</section>

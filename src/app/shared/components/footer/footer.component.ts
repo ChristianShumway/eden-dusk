@@ -21,6 +21,7 @@ export class FooterComponent {
     { name: 'transmisiones', path: '/transmisiones' },
     { name: 'trayectoria', path: '/trayectoria' },
     { name: 'blog', path: '/blog' },
+    { name: 'servicios', path: '/servicios' },
     { name: 'galeria', path: '/galeria' },
     { name: 'videoteca', path: '/videoteca' },
     { name: 'tienda', path: '/tienda' },

@@ -1,0 +1,21 @@
+
+@if(data()) {
+  <div class="p-4 md:p-8 bg-black-100 rounded shadow mb-12">
+    <div class="">
+      <p class="border-l-4 border-primary pl-4 font-primary-bold text-3xl md:text-4xl lg:text-5xl mb-8">
+        {{ data()?.titulo }}
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      @for (servicio of data()?.servicios; track $index) {
+        <div class="item">
+          <p class="text-xl"> {{ servicio.titulo }} </p>
+          <p class="text-gray-400"> {{ servicio.descripcion }} </p>
+          <p class="text-gray-400 text-sm">
+            <span class="font-primary-bold">Ideal para:</span>
+            {{ servicio.ideal }}
+        </div>
+      }
+    </div>
+  </div>
+}
