@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, input, OnInit, signal } from '@angular/core';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { SvgService } from '../../../../core/services/svg.service';
 import { RouterModule } from '@angular/router';
 import { FiltrosColaboracionesComponent } from '../filtros-colaboraciones/filtros-colaboraciones.component';
 import { BlogService } from '../../../../core/services/blog.service';
 import { CategoryArticleModel, FiltersArticle } from '../../../../core/models/article-blog.model';
+import { TrayectoriaDataModel } from '../../../../core/models/trayectoria.model';
 
 @Component({
   selector: 'nosotros-colaboraciones-alianzas',
@@ -21,6 +22,8 @@ export class ColaboracionesAlianzasComponent implements OnInit {
   private readonly svgService = inject(SvgService);
   private readonly blogService = inject(BlogService);
   private readonly cdr = inject(ChangeDetectorRef);
+
+  public data = input.required<TrayectoriaDataModel | null>();
 
   public svgArrow = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
 

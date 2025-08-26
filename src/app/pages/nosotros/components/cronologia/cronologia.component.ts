@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { SvgService } from '../../../../core/services/svg.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { TimeLineHistoryModel } from '../../../../core/models/timeline-history.model';
 import { CommonModule } from '@angular/common';
+import { TrayectoriaDataModel } from '../../../../core/models/trayectoria.model';
 
 @Component({
   selector: 'nosotros-cronologia',
@@ -17,6 +18,8 @@ import { CommonModule } from '@angular/common';
 export class CronologiaComponent {
 
   private readonly svgService = inject(SvgService);
+
+  public data = input.required<TrayectoriaDataModel | null>();
 
   svgSemiColons: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.semicolons);
   svgCalendar: SafeHtml = this.svgService.getSanitizedSvg(SvgIcons.calendar);

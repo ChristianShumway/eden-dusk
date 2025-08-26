@@ -1,33 +1,37 @@
-<section class="mt-32 mb-8">
-  <div class="text-center w-full md:w-3/4 md:mx-auto mb-8">
-    <p class="font-primary-bold text-5xl md:text-6xl lg:text-7xl mb-2">
-      Nuestra Trayectoria
-    </p>
-    <p class="font-primary-regular text-xl">
-      Más de 11 años explorando y documentando la riqueza natural y cultural de Sinaloa, un viaje de resiliencia, arte y conciencia biocultural.
-    </p>
-  </div>
+@if(data()) {
+  <section class="mt-32 mb-8">
+    <div class="text-center w-full md:w-3/4 md:mx-auto mb-8">
+      <p class="font-primary-bold text-5xl md:text-6xl lg:text-7xl mb-2">
+        {{ data()?.hero?.title }}
+      </p>
+      <p class="font-primary-regular text-xl">
+        {{ data()?.hero?.description }}
+      </p>
+    </div>
 
-  <div class="w-full p-6 mb-8 bg-black-100 rounded-lg shadow-sm">
-    <ol class="relative border-s border-grays-100  pl-2">
-      @for (item of dataDummy; track $index; ; let last = $last) {
-        <li class="mb-10 ms-6">
-            <span class="absolute flex items-center justify-center w-8 h-8 -left-4 bg-primary rounded-full -start-4 ring-8 ring-transparent">
-              <div class="w-4 h-4 text-white" [innerHTML]="svgCalendar"></div>
-            </span>
-            <h3 class="flex items-center mb-1 text-lg md:text-xl font-primary-bold ">
-              {{ item.period }}
-              @if(last) {
-                <span class="bg-primary-50 text-primary-300 text-xs font-secondary-regular me-2 px-2 py-1.5 rounded-lg dark:bg-blue-900 dark:text-blue-300 ms-3">Último</span>
-              }
-            </h3>
-            <time class="block mb-2 text-sm font-normal leading-none text-primary dark:text-gray-400">Released on January 13th, 2022</time>
-            <p class="mb-4 text-base font-normal">{{ item.description }} </p>
-            <button class="inline-flex items-center  btn__primary--black">
-              Ver más detalles
-            </button>
-        </li>
-      }
-    </ol>
-  </div>
-</section>
+    <div class="w-full p-6 mb-8 bg-black-100 rounded-lg shadow-sm">
+      <ol class="relative border-s border-grays-100  pl-2">
+        @for (item of data()?.trayectoria; track $index; ; let last = $last) {
+          <li class="mb-10 ms-6">
+              <span class="absolute flex items-center justify-center w-8 h-8 -left-4 bg-primary rounded-full -start-4 ring-8 ring-transparent">
+                <div class="w-4 h-4 text-white" [innerHTML]="svgCalendar"></div>
+              </span>
+              <h3 class="flex items-center mb-1 text-lg md:text-xl font-primary-bold ">
+                {{ item.periodo }}
+                @if(last) {
+                  <span class="bg-primary-50 text-primary-300 text-xs font-secondary-regular me-2 px-2 py-1.5 rounded-lg dark:bg-blue-900 dark:text-blue-300 ms-3">Último</span>
+                }
+              </h3>
+              <time class="block mb-2 text-sm font-normal leading-none text-primary dark:text-gray-400">
+                {{ item.titulo }}
+              </time>
+              <p class="mb-4 text-base font-normal">{{ item.descripcion }} </p>
+              <button class="inline-flex items-center  btn__primary--black">
+                Ver más detalles
+              </button>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+}
