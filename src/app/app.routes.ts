@@ -26,6 +26,10 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/videoteca/videoteca.routes').then(m => m.VIDEOTECA_ROUTES)
   },
   {
+    path: 'proyectos',
+    loadChildren: () => import('./pages/proyectos/proyectos.routes').then(m => m.PROYECTOS_ROUTES)
+  },
+  {
     path: 'servicios',
     loadChildren: () => import('./pages/servicios/servicios.routes').then(m => m.SERVICIOS_ROUTES)
   },

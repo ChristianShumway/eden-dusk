@@ -1,0 +1,31 @@
+<section class="main__proyectos my-32">
+  <proyectos-filtros [categories]="categoriesList()" (filterChanged)="onFilterChanged($event)" />
+  <div class="grid__blog grid grid-cols-1 gap-4 overflow-hidden">
+    <div class="wrapper__main">
+      <proyectos-coleccion
+        [projects]="projectList()"
+        [projectsPerPage]="perPage()"
+        [currencyPage]="page()"
+        [totalProjects]="totalProjects()"
+      />
+      <!-- PAGINATION -->
+      <div class="mt-4">
+        <pagination-controls
+        *ngIf="projectList().length > 0"
+        id="paginator"
+        class="text-right font-circular-regular"
+        (maxSize)=10;
+        (directionLinks)=true
+        (pageChange)="page.set($event)"
+        (autoHide)=true
+        (responsive)=true
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        screenReaderPaginationLabel="Pagination"
+        (pageChange)="pageChanged($event)"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</section>

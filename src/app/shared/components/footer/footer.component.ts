@@ -24,10 +24,10 @@ export class FooterComponent {
     { name: 'servicios', path: '/servicios' },
     { name: 'galeria', path: '/galeria' },
     { name: 'videoteca', path: '/videoteca' },
+    { name: 'nuestros proyectos', path: '/proyectos' },
     { name: 'tienda', path: '/tienda' },
     { name: 'enlaces', path: '/enlaces'},
     { name: 'contacto', path: '/contacto'}
   ];
-
 
 }
