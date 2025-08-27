@@ -1,17 +1,19 @@
 import { ChangeDetectorRef, Component, inject, input, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { SvgService } from '../../../../core/services/svg.service';
 import { RouterModule } from '@angular/router';
 import { FiltrosColaboracionesComponent } from '../filtros-colaboraciones/filtros-colaboraciones.component';
-import { BlogService } from '../../../../core/services/blog.service';
-import { CategoryArticleModel, FiltersArticle } from '../../../../core/models/article-blog.model';
-import { TrayectoriaDataModel } from '../../../../core/models/trayectoria.model';
-
+import { AlianzasModel, CategoriasAlianzas, FiltersAlianzas } from '../../../../core/models/colaboraciones-alianzas.model';
+import { TrayectoriaService } from '../../../../core/services/trayectoria.service';
 @Component({
   selector: 'nosotros-colaboraciones-alianzas',
   standalone: true,
   imports: [
+    CommonModule,
     RouterModule,
+    NgxPaginationModule,
     FiltrosColaboracionesComponent
   ],
   templateUrl: './colaboraciones-alianzas.component.html',
@@ -20,36 +22,48 @@ import { TrayectoriaDataModel } from '../../../../core/models/trayectoria.model'
 export class ColaboracionesAlianzasComponent implements OnInit {
 
   private readonly svgService = inject(SvgService);
-  private readonly blogService = inject(BlogService);
+  private readonly trayectoriaService = inject(TrayectoriaService);
   private readonly cdr = inject(ChangeDetectorRef);
 
-  public data = input.required<TrayectoriaDataModel | null>();
+  public categorias = input.required<CategoriasAlianzas[]>();
 
   public svgArrow = this.svgService.getSanitizedSvg(SvgIcons.angleRight);
 
-  public categoriesList = signal<CategoryArticleModel[]>([]);
-  // public articles = signal<ArticleModel[]>([]);
+  public alianzas = signal<AlianzasModel[]>([]);
   public page = signal<number>(1);
   public perPage = signal<number>(10);
-  public totalColaboraciones = signal<number>(0);
-  public filters = signal<FiltersArticle>({
+  public totalAlianzas = signal<number>(0);
+  public filters = signal<FiltersAlianzas>({
     page: this.page(),
     per_page: this.perPage(),
-    category: '',
-    search: ''
   });
 
   ngOnInit(): void {
-    this.getCategories();
+    this.getDataAlianzas();
   }
 
-  getCategories() {
-    this.blogService.getCategories().subscribe({
-      next: response => {
-        this.categoriesList.set(response);
-        this.cdr.detectChanges(); // <- Solución
+  getDataAlianzas(page?: number) {
+    this.filters.update( currencyValue => {
+      return {
+        ...currencyValue,
+        page: page ? page : this.page()
       }
     });
+    this.page.set(page ? page : this.page());
+
+    this.trayectoriaService.getAlianzas(this.filters()).subscribe({
+      next: response => {
+        if(!response.data) return;
+        console.log(response);
+        this.alianzas.set(response.data);
+        this.totalAlianzas.set(Number(response.total));
+      },
+      error: error => console.error(error)
+    })
+  }
+
+  pageChanged(e: number) {
+    this.getDataAlianzas(e);
   }
 
   onFilterChanged(data: { search: string; category: string }) {
@@ -62,7 +76,7 @@ export class ColaboracionesAlianzasComponent implements OnInit {
         page: this.page()
       }
     });
-    // this.getAllArticles();
+    this.getDataAlianzas();
   }
 
 }

@@ -98,36 +98,29 @@
 
     <div class="w-full p-6 mb-8 bg-black-100 rounded-lg shadow-sm">
       <ol class="divide-y divide-gray-200 dark:divide-gray-700">
-        <li class="item p-4 mb-4">
-          <span class="bg-primary-50 text-primary-500 text-xs font-secondary-regular px-2 py-1.5 rounded-lg mb-4 inline-block">20 julio 2025</span>
+        <li class="item p-4 mb-4"  *ngFor="let item of coberturas()! | paginate:
+          {
+            id: 'paginator',
+            itemsPerPage: itemsPerPage(),
+            currentPage: currencyPage(),
+            totalItems: totalCoberturas()
+          }"
+        >
+          <span class="bg-primary-50 text-primary-500 text-xs font-secondary-regular px-2 py-1.5 rounded-lg mb-4 inline-block">{{ item.fecha | dateMx }}</span>
           <div class="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
               <p class="font-primary-bold text-xl mb-2">
-                YouTube – Astillero Informa · Animatic / estreno
+                {{ item.medio }} · {{ item.tipo }}
               </p>
               <p class="mb-4">
-                Presentación del animatic del videoclip «Cura» con Eden Dusk & Yax Balam.
+                {{ item.descripcion }}
               </p>
             </div>
-            <button class="btn__primary--white">
-              Ver
-            </button>
-          </div>
-        </li>
-        <li class="item p-4 my-4">
-          <span class="bg-primary-50 text-primary-500 text-xs font-secondary-regular px-2 py-1.5 rounded-lg mb-4 inline-block">20 julio 2025</span>
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div>
-              <p class="font-primary-bold text-xl mb-2">
-                YouTube – Astillero Informa · Animatic / estreno
-              </p>
-              <p class="mb-4">
-                Presentación del animatic del videoclip «Cura» con Eden Dusk & Yax Balam.
-              </p>
-            </div>
-            <button class="btn__primary--white">
-              Ver
-            </button>
+            @if(item.url) {
+              <button (click)="goToUrl(item.url)" class="btn__primary--white">
+                Ver
+              </button>
+            }
           </div>
         </li>
       </ol>

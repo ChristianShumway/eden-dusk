@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, EventEmitter, inject, input, Output, signal } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { SvgService } from '../../../../core/services/svg.service';
-import { CategoryArticleModel } from '../../../../core/models/article-blog.model';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { debounceTime, Subject, Subscription } from 'rxjs';
+import { CategoriasAlianzas } from '../../../../core/models/colaboraciones-alianzas.model';
 
 @Component({
   selector: 'nosotros-filtros-colaboraciones',
@@ -20,7 +20,7 @@ export class FiltrosColaboracionesComponent {
   private readonly svgService = inject(SvgService);
   private readonly cdr = inject(ChangeDetectorRef)
 
-  public categories = input.required<CategoryArticleModel[]>();
+  public categories = input.required<CategoriasAlianzas[]>();
   @Output()
   public filterChanged = new EventEmitter<{ search: string; category: string }>();
 
@@ -39,7 +39,7 @@ export class FiltrosColaboracionesComponent {
       });
   }
 
-  setCategory(category: CategoryArticleModel) {
+  setCategory(category: CategoriasAlianzas) {
     this.currencyCategory.set(category.id);
     this.cdr.detectChanges(); // fuerza la detección inmediata
     this.filterChanged.emit({ search: this.searchValue(), category: this.currencyCategory() });

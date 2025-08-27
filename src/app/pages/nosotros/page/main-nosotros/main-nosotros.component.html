@@ -1,7 +1,32 @@
 <section class="main__historia">
-  <!-- <nosotros-layout /> -->
   <nosotros-cronologia [data]="dataTrayectoria()" />
-  <!-- <nosotros-galeria-cronologia /> -->
-  <nosotros-premios-distinciones [data]="dataTrayectoria()" />
-  <nosotros-colaboraciones-alianzas [data]="dataTrayectoria()" />
+  <nosotros-premios-distinciones
+    [data]="dataTrayectoria()"
+    [coberturas]="coberturas()"
+    [itemsPerPage]="perPage()"
+    [currencyPage]="pageCobertura()"
+    [totalCoberturas]="totalItems()"
+  />
+  <!-- PAGINATION COBERTURA -->
+  <div class="mt-4">
+    @if(coberturas().length > 0) {
+      <pagination-controls
+      id="paginator"
+      class="text-right font-circular-regular"
+      (maxSize)=10;
+      (directionLinks)=true
+      (pageChange)="pageCobertura.set($event)"
+      (autoHide)=true
+      (responsive)=true
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      screenReaderPaginationLabel="Pagination"
+      (pageChange)="pageCoberturaChanged($event)"
+      >
+      </pagination-controls>
+    }
+  </div>
+  <nosotros-colaboraciones-alianzas
+    [categorias]="categorias()"
+  />
 </section>
