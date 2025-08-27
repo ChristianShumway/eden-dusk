@@ -1,5 +1,16 @@
-<section class="main__blog">
-  <gallery-layout />
+<section class="main__gallery my-32">
+  <div class="relative text-center w-full md:w-3/4 md:mx-auto mb-12">
+    <p class="font-primary-bold text-5xl md:text-6xl lg:text-7xl mb-4">
+      Galería Fotográfica
+    </p>
+    <p class="font-primary-regular text-xl">
+      Descubriendo la Belleza y la Cultura de Sinaloa
+    </p>
+    <div class="mt-6 text-start">
+      <shared-dialog-help-float [titleMsg]="titleMsg" [descriptionMsg]="descriptionMsg"></shared-dialog-help-float>
+    </div>
+  </div>
+
   <div class="wrapper__filtros mt-4">
     <gallery-filtros
       [categories]="categoriesList()"

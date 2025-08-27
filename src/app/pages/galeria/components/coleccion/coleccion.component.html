@@ -1,11 +1,11 @@
 <section class="my-8">
-  <div class="mb-4">
-    <div class="text-2xl md:text-3xl lg:text-4xl  font-primary-bold text-center md:text-start flex items-end justify-center md:justify-start uppercase mb-4">
-      <div [innerHTML]="svgArrow()" class="w-12 h-12 text-primary lg:w-12 lg:h-12 hidden md:flex md:mr-4"></div>
-      Colecciones disponibles
-    </div>
-  </div>
-  <p class="mb-8 text-sm text-right">Total de galerías encontrados: <b class="font-primary-bold"> {{ totalGalleries() }} </b> </p>
+  <p class="text-5xl mb-8 font-primary-bold text-center break-words">
+    Colecciones disponibles
+  </p>
+
+  <p class="mb-8 text-sm text-right">
+    Total de colecciones encontradas: <b class="font-primary-bold"> {{ totalGalleries() }} </b>
+  </p>
 
   <div
     [ngClass]="{
@@ -14,7 +14,7 @@
       'grid-cols-1 md:grid-cols-3' : galleryGroups().length === 3,
       'grid-cols-2 md:grid-cols-4' : galleryGroups().length === 4
     }"
-    class="grid gap-4"
+    class="grid gap-6"
   >
     @if (galleryGroups().length) {
       @for (group of galleryGroups(); track $index) {

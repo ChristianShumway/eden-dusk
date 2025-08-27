@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import { LayoutComponent } from '../../components/layout/layout.component';
 import { FiltrosComponent } from '../../components/filtros/filtros.component';
 import { ColeccionComponent } from '../../components/coleccion/coleccion.component';
 import { GalleryService } from '../../../../core/services/galeria.service';
@@ -11,13 +10,14 @@ import {
   FiltersGallery,
   ImageGalleryModel
 } from '../../../../core/models/filters-gallery.model';
+import { DialogHelpFloatComponent } from '../../../../shared/components/dialog-help-float/dialog-help-float.component';
 
 @Component({
   selector: 'app-main-gallery',
   standalone: true,
   imports: [
     NgxPaginationModule,
-    LayoutComponent,
+    DialogHelpFloatComponent,
     FiltrosComponent,
     ColeccionComponent,
   ],
@@ -47,6 +47,9 @@ export class MainGalleryComponent implements OnInit {
     date: '',
     collaborator: 0
   });
+
+  public titleMsg: string = 'Explora tus colecciones';
+  public descriptionMsg: string = 'Desplazate hacia abajo y selecciona tu categoría favorita.';
 
   ngOnInit(): void {
     this.getCategories();

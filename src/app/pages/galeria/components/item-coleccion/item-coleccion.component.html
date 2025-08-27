@@ -1,17 +1,21 @@
-<a class="group cursor-pointer relative block overflow-hidden" (click)="goToDetail(itemGallery())">
+<a class="group cursor-pointer relative block overflow-hidden rounded-lg" (click)="goToDetail(itemGallery())">
   <img
-    class="h-auto max-w-full rounded-lg"
+    class="h-auto max-w-full rounded-t-lg"
     class="h-auto w-full object-cover transition duration-300 ease-in-out group-hover:brightness-75"
     [src]="itemGallery().sourceUrl"
     [alt]="itemGallery().name"
     appProtectImage
   />
 
-  <div class="pie__info mt-2 relative z-10">
-    <p class="font-primary-medium text-xl mb-0 line-clamp-1  group-hover:text-primary">{{ itemGallery().name }}</p>
-    <div class="flex items-center gap-1">
-      <div class="w-3 h-3 flex items-center text-gray-500" [innerHTML]="svgLocation()"></div>
-      <span class="text-sm text-gray-500 line-clamp-1">{{ itemGallery().site }}</span>
+  <div class="pie__info  relative z-10 bg-black-100 rounded-b-lg p-4">
+    <span class="text-primary uppercase text-xs font-primary-bold">
+      {{ itemGallery().category }} • {{ itemGallery().date | dateMx }}
+    </span>
+    <p class="font-primary-bold text-xl mb-0 line-clamp-1">{{ itemGallery().name }}</p>
+    <span class="text-sm line-clamp-1">{{ itemGallery().site }} / colaborador {{ itemGallery().collaborator }}</span>
+    <div (click)="goToDetail(itemGallery())" class="flex items-center gap-2 text-sm mt-2 cursor-pointer text-primary hover:text-primary-500" onkeydown="">
+      Ver Imagen
+      <div [innerHTML]="svgArrow()" class="w-3 h-3 flex items-center"></div>
     </div>
   </div>
 </a>
