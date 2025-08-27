@@ -1,7 +1,7 @@
 @if(data()) {
   <section class="mt-32 mb-8">
-    <div class="text-center w-full md:w-3/4 md:mx-auto mb-8">
-      <p class="font-primary-bold text-5xl md:text-6xl lg:text-7xl mb-2">
+    <div class="text-center w-full md:w-3/4 md:mx-auto mb-12">
+      <p class="font-primary-bold text-5xl md:text-6xl lg:text-7xl mb-4">
         {{ data()?.hero?.title }}
       </p>
       <p class="font-primary-regular text-xl">
@@ -16,15 +16,16 @@
               <span class="absolute flex items-center justify-center w-8 h-8 -left-4 bg-primary rounded-full -start-4 ring-8 ring-transparent">
                 <div class="w-4 h-4 text-white" [innerHTML]="svgCalendar"></div>
               </span>
-              <h3 class="flex items-center mb-1 text-lg md:text-xl font-primary-bold ">
+              <h3 class="flex items-center mb-2 text-lg font-primary-bold">
                 {{ item.periodo }}
                 @if(last) {
                   <span class="bg-primary-50 text-primary-300 text-xs font-secondary-regular me-2 px-2 py-1.5 rounded-lg dark:bg-blue-900 dark:text-blue-300 ms-3">Último</span>
                 }
               </h3>
-              <time class="block mb-2 text-sm font-normal leading-none text-primary dark:text-gray-400">
+
+              <p class="mb-2 text-2xl font-primary-medium text-gray-500">
                 {{ item.titulo }}
-              </time>
+              </p>
               <p class="mb-4 text-base font-normal">{{ item.descripcion }} </p>
               <button class="inline-flex items-center  btn__primary--black">
                 Ver más detalles

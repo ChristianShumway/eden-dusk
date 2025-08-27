@@ -1,12 +1,13 @@
 import { ChangeDetectorRef, Component, inject, input, OnInit, signal } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SvgIcons } from '../../../../core/utils/svg-icons.enum';
 import { SvgService } from '../../../../core/services/svg.service';
-import { RouterModule } from '@angular/router';
 import { FiltrosColaboracionesComponent } from '../filtros-colaboraciones/filtros-colaboraciones.component';
 import { AlianzasModel, CategoriasAlianzas, FiltersAlianzas } from '../../../../core/models/colaboraciones-alianzas.model';
 import { TrayectoriaService } from '../../../../core/services/trayectoria.service';
+import { NoDataComponent } from '../../../../shared/components/no-eventos/no-data.component';
 @Component({
   selector: 'nosotros-colaboraciones-alianzas',
   standalone: true,
@@ -14,7 +15,8 @@ import { TrayectoriaService } from '../../../../core/services/trayectoria.servic
     CommonModule,
     RouterModule,
     NgxPaginationModule,
-    FiltrosColaboracionesComponent
+    FiltrosColaboracionesComponent,
+    NoDataComponent
   ],
   templateUrl: './colaboraciones-alianzas.component.html',
 })
@@ -24,6 +26,7 @@ export class ColaboracionesAlianzasComponent implements OnInit {
   private readonly svgService = inject(SvgService);
   private readonly trayectoriaService = inject(TrayectoriaService);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly router = inject(Router);
 
   public categorias = input.required<CategoriasAlianzas[]>();
 
@@ -37,6 +40,9 @@ export class ColaboracionesAlianzasComponent implements OnInit {
     page: this.page(),
     per_page: this.perPage(),
   });
+
+  public msg = 'No hay colaboraciones/alianzas disponibles para esta categoría.'
+
 
   ngOnInit(): void {
     this.getDataAlianzas();
@@ -67,7 +73,6 @@ export class ColaboracionesAlianzasComponent implements OnInit {
   }
 
   onFilterChanged(data: { search: string; category: string }) {
-    console.log(data);
     this.page.set(1);
     this.filters.update(currencyValue => {
       return {
@@ -77,6 +82,10 @@ export class ColaboracionesAlianzasComponent implements OnInit {
       }
     });
     this.getDataAlianzas();
+  }
+
+  goToContacto() {
+    this.router.navigateByUrl('/contacto');
   }
 
 }

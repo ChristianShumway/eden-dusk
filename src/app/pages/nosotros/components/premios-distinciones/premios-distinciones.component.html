@@ -1,23 +1,23 @@
 @if(data()){
-  <section class="mt-12 w-full">
-    <p class="text-5xl mb-6 font-primary-bold text-center break-words">
+  <section class="mt-16 w-full">
+    <p class="text-5xl mb-8 font-primary-bold text-center break-words">
       Reconocimientos Destacados
     </p>
 
-    <div class="wrap-reconocimientos mb-12">
+    <div class="wrap-reconocimientos mb-16">
       @if(data()?.reconocimientos?.nacionales){
-        <div class="p-5 mb-4 bg-black-100 rounded-lg">
+        <div class="p-5 mb-8 bg-black-100 rounded-lg">
           <time class="text-2xl md:text-3xl font-primary-medium text-primarys">
-            <i class="fas fa-medal"></i>
+            <i class="fas fa-earth-americas"></i>
             Nacionales
           </time>
           <ol class="mt-3 divide-y divide-gray-200 dark:divide-gray-700">
             @for (reconocimiento of data()?.reconocimientos?.nacionales; track $index) {
               <li class="items-center block p-3 sm:flex">
-                <img class="w-8 h-8 mb-3 me-3 rounded-full sm:mb-0" [src]="reconocimiento.imagen" [alt]="reconocimiento.id"/>
+                <img class="hidden w-8 h-8 mb-3 me-3 rounded-full sm:mb-0" [src]="reconocimiento.imagen" [alt]="reconocimiento.id"/>
                 <div class="item-container mb-2">
                     <div class="text-base font-normal">
-                      <p class="font-primary-medium text-xl mb-2">
+                      <p class="font-primary-medium text-xl mb-2 text-gray-500">
                         {{ reconocimiento.titulo }}
                       </p>
                     </div>
@@ -34,16 +34,16 @@
       @if(data()?.reconocimientos?.localesyregionales){
         <div class="p-5 mb-4 bg-black-100 rounded-lg">
           <time class="text-2xl md:text-3xl font-primary-medium text-primarys">
-            <i class="fas fa-trophy"></i>
+            <i class="fas fa-house-flag"></i>
             Locales y Regionales
           </time>
           <ol class="mt-3 divide-y divide-gray-200 dark:divide-gray-700">
             @for (reconocimiento of data()?.reconocimientos?.localesyregionales; track $index) {
               <li class="items-center block p-3 sm:flex">
-                <img class="w-8 h-8 mb-3 me-3 rounded-full sm:mb-0" [src]="reconocimiento.imagen" [alt]="reconocimiento.id"/>
+                <img class="hidden w-8 h-8 mb-3 me-3 rounded-full sm:mb-0" [src]="reconocimiento.imagen" [alt]="reconocimiento.id"/>
                 <div class="item-container mb-2">
                     <div class="text-base font-normal">
-                      <p class="font-primary-medium text-xl mb-2">
+                      <p class="font-primary-medium text-gray-500 text-xl mb-2">
                         {{ reconocimiento.titulo }}
                       </p>
                     </div>
@@ -56,34 +56,33 @@
           </ol>
         </div>
       }
-
     </div>
 
-    <p class="text-5xl mb-6 font-primary-bold text-center">
+    <p class="text-5xl mb-8 font-primary-bold text-center">
       Publicaciones Destacadas
     </p>
 
-    <div class="w-full p-6 mb-8 bg-black-100 rounded-lg shadow-sm">
+    <div class="w-full p-6 mb-16 bg-black-100 rounded-lg shadow-sm">
       <ol class="relative border-s border-grays-100  pl-2">
         @for (publicacion of data()?.publicaciones; track $index; let last = $last) {
           <li class="mb-10 ms-6">
               <span class="absolute flex items-center justify-center w-8 h-8 -left-4 bg-primary rounded-full -start-4 ring-8 ring-transparent">
                 <div class="w-4 h-4 text-white" [innerHTML]="svgCalendar"></div>
               </span>
-              <h3 class="flex items-center mb-1 text-lg md:text-xl font-primary-bold ">
+              <h3 class="flex items-center mb-2 text-lg font-primary-bold">
                 {{ publicacion.fecha }}
                 @if(last) {
                   <span class="bg-primary-50 text-primary-300 text-xs font-secondary-regular me-2 px-2 py-1.5 rounded-lg dark:bg-blue-900 dark:text-blue-300 ms-3">Último</span>
                 }
               </h3>
-              <p class="mb-2 text-2xl font-primary-regular">
+              <p class="mb-2 text-2xl font-primary-medium  text-gray-500">
                 {{ publicacion.titulo }}
               </p>
               <p class="mb-4">
                 {{ publicacion.descripcion }}
               </p>
               @if (publicacion.cta) {
-                <button class="inline-flex items-center  btn__primary">
+                <button (click)="goToUrl(publicacion.cta.url)" class="inline-flex items-center  btn__primary">
                   {{ publicacion.cta.text }}
                 </button>
               }
@@ -92,7 +91,7 @@
       </ol>
     </div>
 
-    <p class="text-5xl mb-6 font-primary-bold text-center">
+    <p class="text-5xl mb-8 font-primary-bold text-center">
       Cobertura en Medios
     </p>
 
@@ -109,7 +108,7 @@
           <span class="bg-primary-50 text-primary-500 text-xs font-secondary-regular px-2 py-1.5 rounded-lg mb-4 inline-block">{{ item.fecha | dateMx }}</span>
           <div class="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <p class="font-primary-bold text-xl mb-2">
+              <p class="font-primary-medium text-gray-500 text-2xl mb-2">
                 {{ item.medio }} · {{ item.tipo }}
               </p>
               <p class="mb-4">
@@ -126,8 +125,6 @@
       </ol>
 
     </div>
-
-
 
   </section>
 }

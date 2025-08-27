@@ -1,7 +1,7 @@
 <section class="py-8 w-full">
 
-  <div class="text-center w-full md:w-3/4 md:mx-auto mb-8">
-    <p class="text-5xl mb-2 font-primary-bold text-center">
+  <div class="text-center w-full md:w-3/4 md:mx-auto mb-16">
+    <p class="text-5xl mb-4 font-primary-bold text-center">
       Colaboraciones y Alianzas
     </p>
     <p class="font-primary-regular text-xl">
@@ -11,25 +11,27 @@
 
   <nosotros-filtros-colaboraciones [categories]="categorias()" (filterChanged)="onFilterChanged($event)" />
 
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-    <div *ngFor="let item of alianzas()! | paginate:
-      {
-        id: 'paginator',
-        itemsPerPage: perPage(),
-        currentPage: page(),
-        totalItems: totalAlianzas()
-      }"
-    >
-      <img class="h-auto max-w-full rounded-lg" [src]="item.imagen" [alt]="item.nombre" />
-      <div class="mt-4 text-center">
-        <p class="text-sm font-primary-bold">{{ item.nombre }}</p>
-        <span class="text-xs">{{ item.descripcion }}</span>
+  @if(alianzas().length > 0) {
+    <p class="my-8 text-sm text-right">Total de colaboraciones/alianzas encontradas: <b class="font-primary-bold"> {{ totalAlianzas() }} </b> </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div *ngFor="let item of alianzas()! | paginate:
+        {
+          id: 'paginator',
+          itemsPerPage: perPage(),
+          currentPage: page(),
+          totalItems: totalAlianzas()
+        }"
+      >
+        <img class="h-auto w-full max-w-full rounded-lg" [src]="item.imagen" [alt]="item.nombre" />
+        <div class="mt-4 text-center">
+          <p class="text-sm font-primary-bold">{{ item.nombre }}</p>
+          <span class="text-xs">{{ item.descripcion }}</span>
+        </div>
       </div>
     </div>
-  </div>
     <!-- PAGINATION COBERTURA -->
-  <div class="mt-4">
-    @if(alianzas().length > 0) {
+    <div class="mt-8">
       <pagination-controls
       id="paginator"
       class="text-right font-circular-regular"
@@ -44,26 +46,22 @@
       (pageChange)="pageChanged($event)"
       >
       </pagination-controls>
-    }
-  </div>
+    </div>
+  }@else {
+    <shared-no-data [type]="'articulo'" [msg]="msg" />
+  }
 
-  <div class="text-center mt-12 my-2">
+  <div class="text-center mt-24 mb-4">
     <!-- Mensaje emotivo -->
     <div class="max-w-3xl mx-auto mb-10">
-      <h2 class="text-3xl md:text-4xl font-primary-bold  mb-4">Gracias por acompañarnos</h2>
-      <p class="text-base mb-4">
-        Cada paso en la historia de <strong>Eden Dusk</strong> ha sido posible gracias a personas como tú.
-        Este viaje continúa escribiéndose con cada nueva colaboración, expedición o taller.
-        ¡Sé parte de lo que viene!
-      </p>
       <p class="text-3xl md:text-4xl font-primary-bold">
-        ¿Quieres colaborar con Eden Dusk?
+        ¿Quieres colaborar con Eden Dusk?
       </p>
     </div>
 
     <!-- Botones de acción -->
     <div class="flex flex-wrap justify-center gap-4 mb-10">
-      <button type="button" class="btn__primary">
+      <button (click)="goToContacto()" type="button" class="btn__primary">
         Propón tu proyecto
       </button>
     </div>
