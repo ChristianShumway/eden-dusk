@@ -58,7 +58,7 @@
             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioBgHoverButtonCategories" >
             @for (category of categories(); track $index) {
                 <li>
-                  <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-black-200">
+                  <div class="flex items-center p-2 rounded-sm hover:bg-primary">
                     <input
                       [id]="'radio-' + category.name"
                       type="radio"
@@ -100,7 +100,7 @@
               <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioBgHoverButtonSubCategories" >
                 @for (subcategory of currencySubcategories(); track $index) {
                   <li>
-                    <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-black-200">
+                    <div class="flex items-center p-2 rounded-sm hover:bg-primary">
                       <input
                         [id]="'radio-sub-' + subcategory.name"
                         type="radio"
@@ -176,7 +176,7 @@
             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownRadioBgHoverButtonCollaborators" >
             @for (collaborator of collaborators(); track $index) {
                 <li>
-                  <div class="flex items-center p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-black-200">
+                  <div class="flex items-center p-2 rounded-sm  bg-primary">
                     <input
                       [id]="'radio-' + collaborator.name"
                       type="radio"

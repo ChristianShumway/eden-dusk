@@ -1,10 +1,11 @@
-<section class="mt-24" *ngIf="currencyImage">
-  <div class="bg-black/90 w-full h-[78px] fixed left-0 top-0"></div>
+<section class="mt-32 relative" *ngIf="currencyImage">
   <div class="w-full">
     <shared-btn-return />
-    <shared-alert-float [msg]="alertMsg" />
+    <div class="mb-4">
+      <shared-alert-float [msg]="alertMsg" />
+    </div>
     <!-- Imagen principal con controles -->
-    <div class="relative rounded-xl shadow-md mb-8 pt-4 bg-gray-50 dark:bg-black-200">
+    <div class="relative">
       <img
         [src]="currencyImage.sourceUrl"
         class="w-full max-h-[80vh] object-contain transition-all duration-300 cursor-pointer"
@@ -45,36 +46,38 @@
         </svg>
       </button>
 
-
-
       <!-- Detalles -->
-      <div class="mt-6 p-4 bg-black text-gray-300 rounded-b-xl dark:bg-black-100">
-        <h2 class="text-2xl sm:text-2xl font-bold">{{ currencyImage.name }}</h2>
-        <p class="mt-2 text-gray-300">{{ currencyImage.description }}</p>
+      <div class="mt-6 p-4 bg-black-100 rounded-lg">
+        <h2 class="text-2xl md:text-3xl font-primary-bold">{{ currencyImage.name }}</h2>
+        <p class="mt-2 text-lg">{{ currencyImage.description }}</p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm mt-4">
-          <div><span class="font-primary-medium">Lugar:</span> {{ currencyImage.site }}</div>
-          <div><span class="font-primary-medium">Fecha:</span> {{ currencyImage.date }}</div>
-          <div><span class="font-primary-medium">Categoría:</span> {{ currencyImage.category || 'N/A' }}</div>
-          <div><span class="font-primary-medium">Autor:</span> {{ currencyImage.autor }}</div>
-          <div><span class="font-primary-medium">Descargable:</span> {{ currencyImage.downloadable ? 'Sí' : 'No' }}</div>
-          <div><span class="font-primary-medium">A la venta:</span> {{ currencyImage.forSale ? 'Sí' : 'No' }}</div>
+          <div><span class="font-primary-bold mr-2">Lugar:</span> {{ currencyImage.site }}</div>
+          <div><span class="font-primary-bold mr-2">Fecha:</span> {{ currencyImage.date }}</div>
+          <div><span class="font-primary-bold mr-2">Categoría:</span> {{ currencyImage.category || 'N/A' }}</div>
+          <div><span class="font-primary-bold mr-2">Autor:</span> {{ currencyImage.autor }}</div>
+          <div><span class="font-primary-bold mr-2">Descargable:</span> {{ currencyImage.downloadable ? 'Sí' : 'No' }}</div>
+          <div><span class="font-primary-bold mr-2">A la venta:</span> {{ currencyImage.forSale ? 'Sí' : 'No' }}</div>
         </div>
 
         <!-- Acciones -->
-        <div class="mt-8 flex flex-wrap gap-4">
-          @if (currencyImage.downloadable) {
-            <button download class="btn__outline--white">
-              Descargar
-            </button>
-          }
+        @if (currencyImage.downloadable || currencyImage.forSale) {
+          <div class="mt-12 flex flex-wrap justify-center md:justify-end gap-4">
+            @if (currencyImage.downloadable) {
+              <button type="button" (click)="downloadImage(currencyImage.sourceUrl, currencyImage.name)" class="btn__outline-primary">
+                Descargar
+              </button>
+            }
 
-          @if (currencyImage.forSale) {
-            <button class="btn__primary--white">
-              Comprar
-            </button>
-          }
-        </div>
+            @if (currencyImage.forSale) {
+              @if(currencyImage.product) {
+                <button class="btn__primary"(click)="goToSell(currencyImage.product[0].ID)">
+                  Comprar
+                </button>
+              }
+            }
+          </div>
+        }
       </div>
     </div>
 

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { GalleryService } from '../../../../core/services/galeria.service';
 import { BtnReturnComponent } from '../../../../shared/components/btn-return/btn-return.component';
@@ -29,6 +29,7 @@ export class DetalleImagenComponent implements OnInit {
 
   private readonly ar = inject(ActivatedRoute);
   private readonly galleryService = inject(GalleryService);
+  private readonly router = inject(Router);
 
   public currencyImage!: ImageGalleryModel; // Llénalo desde un endpoint o dummy
   public category = signal<string | null>(null);
@@ -81,6 +82,18 @@ export class DetalleImagenComponent implements OnInit {
 
   viewOverlay(img: string) {
     this.currencyUrlImage.set(img);
+  }
+
+  goToSell(idProduct: number) {
+    this.router.navigate(['/tienda', idProduct])
+  }
+
+  downloadImage(url: string, filename: string) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${filename}.jpeg`;
+    link.target = '_blank';
+    link.click();
   }
 
 }

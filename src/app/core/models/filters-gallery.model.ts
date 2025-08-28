@@ -31,6 +31,7 @@ export interface ImageGalleryModel {
   downloadable: boolean;
   forSale: boolean;
   site: string;
+  product?: ProductoModel[];
 
 }
 
@@ -74,4 +75,32 @@ export interface FiltersGallery {
   date?:               string;
   collaborator?:       number;
   collaboratorName?:   string;
+}
+
+
+export interface ProductoModel {
+  ID:                    number;
+  post_author:           string;
+  post_date:             Date;
+  post_date_gmt:         Date;
+  post_content:          string;
+  post_title:            string;
+  post_excerpt:          string;
+  post_status:           string;
+  comment_status:        string;
+  ping_status:           string;
+  post_password:         string;
+  post_name:             string;
+  to_ping:               string;
+  pinged:                string;
+  post_modified:         Date;
+  post_modified_gmt:     Date;
+  post_content_filtered: string;
+  post_parent:           number;
+  guid:                  string;
+  menu_order:            number;
+  post_type:             string;
+  post_mime_type:        string;
+  comment_count:         string;
+  filter:                string;
 }
